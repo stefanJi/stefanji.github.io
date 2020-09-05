@@ -1228,9 +1228,9 @@
 <meta name="description" content="Ji Yang(YangJi) blog." />
 
 
-<meta name="created" content="2020-06-14T21:03:54&#43;0800">
-<meta name="modified" content="2020-06-14T21:03:54&#43;0800">
-<meta property="article:published_time" content="2020-06-14T21:03:54&#43;0800">
+<meta name="created" content="2020-09-05T22:41:45&#43;0800">
+<meta name="modified" content="2020-09-05T22:41:45&#43;0800">
+<meta property="article:published_time" content="2020-09-05T22:41:45&#43;0800">
 
 <meta name="author" content="Yang">
 
@@ -1523,6 +1523,43 @@
             
             
             
+            
+                
+  <article class="summary-classic" data-ani="true">
+  <div class="summary-classic__flex-box" >
+
+    
+
+    <div class="summary-classic__content">
+      <header>
+        <h5 class="title h5"><a href='https://blog.jiyang.site/posts/2018-05-28-flask%E8%87%AA%E5%B8%A6%E7%9A%84session/'>Flask自带的Session</a> </h5>
+        <h6 class="subtitle caption">
+          <time title="Written At" dir="ltr">📅&nbsp;May 28, 2018 </time>
+          
+          <span title="Reading Time" dir="ltr"> &middot; ☕&nbsp;2&nbsp;min read </span>
+          
+        </h6>
+      </header>
+      <div>
+        <div class="summary-classic__text p2">
+          
+            <p>今天才搞懂 Flask 自带的 session 竟然是完全依靠客户端的。</p>
+<ul>
+<li>当写入值到 session 中后， session 就会比加密成一个字符串，然后写入到 cookie 里</li>
+<li>当一个请求来时，获取请求的 cookie 里拿到 session 字符串，然后解析到 session 字典里</li>
+</ul>
+<p>之前还使用自带的 session 做用户登录，现在看来不安全，用户是否登录完全依赖了客户端呀。本以为 Flask 自带的 session 是储存在内存中的，结果现在清楚了，内存中没有存，都是每次从请求的 cookie 中拿到，然后解析成 dict.</p>
+          
+        </div>
+      </div>
+    </div>
+
+    
+    
+  </div>
+  <hr />
+</article>
+
             
                 
   <article class="summary-classic" data-ani="true">
@@ -1939,38 +1976,6 @@
 </article>
 
             
-                
-  <article class="summary-classic" data-ani="true">
-  <div class="summary-classic__flex-box" >
-
-    
-
-    <div class="summary-classic__content">
-      <header>
-        <h5 class="title h5"><a href='https://blog.jiyang.site/posts/2017-08-18-android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/'>Android性能优化</a> </h5>
-        <h6 class="subtitle caption">
-          <time title="Written At" dir="ltr">📅&nbsp;Jan 1, 0001 </time>
-          
-          <span title="Reading Time" dir="ltr"> &middot; ☕&nbsp;4&nbsp;min read </span>
-          
-        </h6>
-      </header>
-      <div>
-        <div class="summary-classic__text p2">
-          
-            Android程序不能无限制的使用设备的内存和CPU。正如经典所说，设备的资源不是给程序员用的，是给用户用的。在编写程序时，应该经常注意内存
-          
-        </div>
-      </div>
-    </div>
-
-    
-    
-  </div>
-  <hr />
-</article>
-
-            
             
 
 
@@ -2250,6 +2255,10 @@
             <ul class="sidebar-recent__ul">
                 
                     <li>
+                        <a href="/posts/android-ffmpeg-vs-mediacodec-video-decode/" class="sidebar-recent__a p2">Android 上 FFMpeg 和 MediaCodec 视频解码效率对比</a>
+                    </li>
+                
+                    <li>
                         <a href="/posts/collect-android-so-crash/" class="sidebar-recent__a p2">Android 处理 Native Crash</a>
                     </li>
                 
@@ -2263,10 +2272,6 @@
                 
                     <li>
                         <a href="/posts/kotlin-coroutine-inner/" class="sidebar-recent__a p2">Kotlin 协程的实现原理简析</a>
-                    </li>
-                
-                    <li>
-                        <a href="/posts/%E6%A0%91%E8%8E%93%E6%B4%BEos-%E5%A4%84%E7%90%86%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96/" class="sidebar-recent__a p2">树莓派OS#0x02 处理器初始化</a>
                     </li>
                 
             </ul>
@@ -2341,9 +2346,35 @@
         
         
             <span class="tag">
+                <a href="/tags/ffmpeg/" class="is-tags taxo__link" data-dir="ltr">
+                    <span class="taxo__text">
+                        FFmpeg
+                    </span>
+                    <span class="taxo__num" dir="auto">
+                        1
+                    </span>
+                </a>
+            </span>
+        
+        
+        
+            <span class="tag">
                 <a href="/tags/icmp/" class="is-tags taxo__link" data-dir="ltr">
                     <span class="taxo__text">
                         ICMP
+                    </span>
+                    <span class="taxo__num" dir="auto">
+                        1
+                    </span>
+                </a>
+            </span>
+        
+        
+        
+            <span class="tag">
+                <a href="/tags/mediacodec/" class="is-tags taxo__link" data-dir="ltr">
+                    <span class="taxo__text">
+                        MediaCodec
                     </span>
                     <span class="taxo__num" dir="auto">
                         1
@@ -2412,6 +2443,19 @@
                     </span>
                     <span class="taxo__num" dir="auto">
                         2
+                    </span>
+                </a>
+            </span>
+        
+        
+        
+            <span class="tag">
+                <a href="/tags/video/" class="is-tags taxo__link" data-dir="ltr">
+                    <span class="taxo__text">
+                        Video
+                    </span>
+                    <span class="taxo__num" dir="auto">
+                        1
                     </span>
                 </a>
             </span>
@@ -2580,7 +2624,7 @@
                         Android
                     </span>
                     <span class="taxo__num" dir="auto">
-                        58
+                        59
                     </span>
                 </a>
             </span>

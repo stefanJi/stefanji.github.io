@@ -12,13 +12,51 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Sun, 14 Jun 2020 21:03:54 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 05 Sep 2020 22:41:45 +0800</lastBuildDate>
     
         <atom:link href="https://blog.jiyang.site/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     
 
+      
+      <item>
+        <title>Android 上 FFMpeg 和 MediaCodec 视频解码效率对比</title>
+        <link>https://blog.jiyang.site/posts/android-ffmpeg-vs-mediacodec-video-decode/</link>
+        <pubDate>Sat, 05 Sep 2020 22:41:45 +0800</pubDate>
+        
+        <atom:modified>Sat, 05 Sep 2020 22:41:45 +0800</atom:modified>
+        <guid>https://blog.jiyang.site/posts/android-ffmpeg-vs-mediacodec-video-decode/</guid>
+        <description>视频编码格式为: H264, 封装格式为: mp4 外部参考: 手机CPU性能天梯图 手机Soc性能排行榜 能耗对比: 解码1080P 编码1080P 左边是硬件Codec</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>FFmpeg</category>
+            
+          
+            
+              <category>MediaCodec</category>
+            
+          
+            
+              <category>Video</category>
+            
+          
+        
+        
+          
+            
+              <category>Android</category>
+            
+          
+        
+        
+      </item>
       
       <item>
         <title>Android 处理 Native Crash</title>
