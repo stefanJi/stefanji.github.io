@@ -12,13 +12,41 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Sat, 05 Sep 2020 22:41:45 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Nov 2020 22:20:19 +0800</lastBuildDate>
     
         <atom:link href="https://blog.jiyang.site/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     
 
+      
+      <item>
+        <title>Compile And Run FFmpeg Examples</title>
+        <link>https://blog.jiyang.site/posts/compile-and-run-ffmpeg-examples/</link>
+        <pubDate>Thu, 26 Nov 2020 22:20:19 +0800</pubDate>
+        
+        <atom:modified>Thu, 26 Nov 2020 22:20:19 +0800</atom:modified>
+        <guid>https://blog.jiyang.site/posts/compile-and-run-ffmpeg-examples/</guid>
+        <description>FFmpeg 的源码仓库在 doc/examples 目录中提供了一些基本的 FFmpeg Api 使用方法。但是在我想运行这些例子时，却尝试了很久才编译出来可运行的例子。因为 FFmpeg 的 readme 中只大概提到了如</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>FFmpeg</category>
+            
+          
+        
+        
+          
+            
+          
+        
+        
+      </item>
       
       <item>
         <title>Android 上 FFMpeg 和 MediaCodec 视频解码效率对比</title>

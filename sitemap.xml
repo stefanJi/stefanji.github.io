@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.jiyang.site/posts/compile-and-run-ffmpeg-examples/</loc>
+    <lastmod>2020-11-26T22:20:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jiyang.site/tags/ffmpeg/</loc>
+    <lastmod>2020-11-26T22:20:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jiyang.site/posts/</loc>
+    <lastmod>2020-11-26T22:20:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jiyang.site/tags/</loc>
+    <lastmod>2020-11-26T22:20:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jiyang.site/</loc>
+    <lastmod>2020-11-26T22:20:19+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.jiyang.site/categories/android/</loc>
     <lastmod>2020-09-05T22:41:45+08:00</lastmod>
   </url>
@@ -18,32 +43,12 @@
   </url>
   
   <url>
-    <loc>https://blog.jiyang.site/tags/ffmpeg/</loc>
-    <lastmod>2020-09-05T22:41:45+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://blog.jiyang.site/tags/mediacodec/</loc>
     <lastmod>2020-09-05T22:41:45+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://blog.jiyang.site/posts/</loc>
-    <lastmod>2020-09-05T22:41:45+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.jiyang.site/tags/</loc>
-    <lastmod>2020-09-05T22:41:45+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://blog.jiyang.site/tags/video/</loc>
-    <lastmod>2020-09-05T22:41:45+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.jiyang.site/</loc>
     <lastmod>2020-09-05T22:41:45+08:00</lastmod>
   </url>
   
