@@ -1566,11 +1566,11 @@
 <pre class="chroma"><code class="language-gradle" data-lang="gradle"><span class="n">include</span> <span class="s1">&#39;:app&#39;</span><span class="o">,</span> <span class="s1">&#39;:feature_a&#39;</span><span class="o">,</span> <span class="s1">&#39;:feature_b&#39;</span><span class="o">,</span> <span class="s1">&#39;:feature_c&#39;</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="http://image.youcute.cn/android_project_multi_modules.jpg" alt="" /></p>
+</div><p><img src="https://image.youcute.cn/android_project_multi_modules.jpg" alt="" /></p>
 <p>利用这套机制时：比如开发者开发 A 功能时，只会涉及 feature_a 模块中代码的修改，那么开发者就可以让 gradle 不编译其他模块中的代码（在 settings.gradle 中注释不需要的模块），从而能够减少本地开发时的编译耗时，也能够让某些代码只会在开发期间存在（比如为了方便测试单独提供的 admin 模块）。</p>
 <h2 id="选择性编译">选择性编译</h2>
 <p>同时为了避免因为模块间彼此依赖，导致个别模块不编译的目标无法实现。于是要求各个模块之间不能直接依赖具体实现，只能依赖某个公共模块（比如 app 模块）提供的接口。</p>
-<p><img src="http://image.youcute.cn/FhFHM9Rmkpj1VSGUamnYrOW6YnvZ" alt="" /></p>
+<p><img src="https://image.youcute.cn/FhFHM9Rmkpj1VSGUamnYrOW6YnvZ" alt="" /></p>
 <p>具体实现是:</p>
 <p>在 app 模块中定义模块 feature_a 能够提供的功能，比如打开 feature_a 中的一个 Activity.</p>
 <div class="highlight"><div class="chroma">

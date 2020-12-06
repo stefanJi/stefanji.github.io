@@ -1558,7 +1558,7 @@
       <h2 id="isolate">Isolate</h2>
 <p>Dart 中的线程概念是 <code>Isolate</code>, 一个在操作系统 <code>Thread</code> 只上的封装, 默认 Dart 程序会在一个 <code>Isolate</code> 中顺序执行代码.</p>
 <!--more-->
-<p><img src="http://image.youcute.cn/005EDc3Bgy1g13v5b3dzhj30k009b0sr.jpg" alt="" /></p>
+<p><img src="https://image.youcute.cn/005EDc3Bgy1g13v5b3dzhj30k009b0sr.jpg" alt="" /></p>
 <ul>
 <li><code>Isolate</code> 中的代码是按顺序执行</li>
 <li>任何 <code>Dart</code> 程序的并发都是运行多个 <code>Isolate</code> 的结果</li>
@@ -1580,7 +1580,7 @@
 </thead>
 <tbody>
 <tr>
-<td align="left"><img src="http://image.youcute.cn/005EDc3Bgy1g13v5jzv07j30d30e2dg8.jpg" alt="" /></td>
+<td align="left"><img src="https://image.youcute.cn/005EDc3Bgy1g13v5jzv07j30d30e2dg8.jpg" alt="" /></td>
 <td align="left"><ul><li>事件循环只由单个线程执行 =&gt; 没有同步和锁的问题</li><li>microtask queue 优先级高于 event queue</li><li>队列里的方法被执行时会阻塞整个程序</li><li>创建一个 <code>Future</code> 就是向 event queue 提交一个事件 </li><li>通过 <code>Future.microtask</code> 或<code>scheduleMicrotask</code> 向 microtask queue 提交一个事件</li></ul></td>
 </tr>
 </tbody>

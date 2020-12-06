@@ -1571,7 +1571,7 @@
 <p>这几者可谓是你中有我，我中有你的存在。通过 Handler 发送 Message 到 Looper 的 MessageQueue 中，待 Looper 的循环执行到 Message 后，就会根据 Message 的 target handler，回调对应 Handler 的 handlerMessage 方法。</p>
 <p>例如: Thread-A 拥有一个 Looper，Thread-B 持有一个在 Thread-A 中构造的 Handler，Thread-B 就可以通过这个 Handler 将 Message 发送到 Thread-A 的 Looper 的 MessageQueue 中，然后消息会走到 Thread-A 的 Handler 的 handleMessage 方法。</p>
 <h2 id="looper-原理图">Looper 原理图</h2>
-<p><img src="http://image.youcute.cn/17-8-2/28744549.jpg" alt="" /></p>
+<p><img src="https://image.youcute.cn/17-8-2/28744549.jpg" alt="" /></p>
 <p>在 Looper 类加载时就会创建一个 ThreadLocal 类型的类变量 sThreadLocal</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

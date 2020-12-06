@@ -1716,8 +1716,8 @@
 </div>
 </div><p>它继承自 <code>Observable</code> ，并通过构造函数将 <code>ObservableOnSubscribe</code> 保存为自己的属性。<br />
 所以在创建 Observable 对象的过程中，进行了1次包装，最终返回了一个 <code>ObservableCreate</code> 被观察者对象：</p>
-<p><img src="http://image.youcute.cn/18-8-11/58334570.jpg" alt="" /></p>
-<p><img src="http://image.youcute.cn/18-8-11/57400110.jpg" alt="RxJava 被观察者创建时序" /></p>
+<p><img src="https://image.youcute.cn/18-8-11/58334570.jpg" alt="" /></p>
+<p><img src="https://image.youcute.cn/18-8-11/57400110.jpg" alt="RxJava 被观察者创建时序" /></p>
 <h2 id="看-observable-的-subscribe-方法">看 Observable 的 subscribe 方法</h2>
 <p>主要代码如下：</p>
 <div class="highlight"><div class="chroma">
@@ -2020,7 +2020,7 @@
 <li>onError(Throwable t) 在 emitter 发出 error 事件时调用</li>
 <li>dispose() 取消这次订阅，在 onNext onError onComplete 中都会先判断是否已经 dispose，如果 dispose 了，就不会回调观察者的对应方法。</li>
 </ul>
-<p><img src="http://image.youcute.cn/18-8-11/29437641.jpg" alt="RxJava 订阅时序" /></p>
+<p><img src="https://image.youcute.cn/18-8-11/29437641.jpg" alt="RxJava 订阅时序" /></p>
 <h2 id="总结">总结</h2>
 <p>在不使用 RxJava 的线程切换功能下分析了被观察者的创建和订阅观察者的流程。 主要涉及了 <code>Observable</code>、<code>ObservableOnSubscribe</code>、<code>ObservableCreate</code>、<code>Observer</code>(接口)、<code>CreateEmitter</code>。当被观察者的 subscribe 调用之后，就会走到 ObservableOnSubscribe 的 subscribe，从而触发 emitter 发送事件，emitter 发送事件之后，又由 emitter 调用观察者的对应事件回调方法。</p>
 

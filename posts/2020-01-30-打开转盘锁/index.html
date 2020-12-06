@@ -1570,9 +1570,9 @@
 <!-- more -->
 <h1 id="分析">分析</h1>
 <p>问题需要的答案为<em>给出最小的旋转次数</em>, 不难联想到与<em>最短</em>、<em>最少</em>相关的广度优先算法. 四个圆形拨轮组合在一起之后可以想象为一个抽奖时的数字转轮.</p>
-<p><img src="http://image.youcute.cn/FjCaxgEipPG2d8dpAHqBJBY4ijEf" alt="数字转轮" /></p>
+<p><img src="https://image.youcute.cn/FjCaxgEipPG2d8dpAHqBJBY4ijEf" alt="数字转轮" /></p>
 <p>4个位置上每次只有一个数能够进行 +1 或 -1 操作, 那么每个数经过变换之后就有2种结果, 4个数就有8种结果.</p>
-<p><img src="http://image.youcute.cn/FhntzIGDt1PfN5A36dSxc98uhqhq" alt="图" /></p>
+<p><img src="https://image.youcute.cn/FhntzIGDt1PfN5A36dSxc98uhqhq" alt="图" /></p>
 <h1 id="实现">实现</h1>
 <p>判断从 &lsquo;0000&rsquo; 到达目标数字经过的路径是否会经过死亡数字.每个拨轮的数能够+1(向前拨一下)和-1(向后拨一下) =&gt; 每个数相邻的数就将有8种.每个数和相邻的数相连就会构成一个网状图. 利用 BFS 算法查找从 0000 到目标节点的最短路径.</p>
 <p>为了方便存储数字组合, 构建一个类 Node 来存储, 因为涉及数组的比较, 所以需要注意复写 equals 和 hashCode 方法.</p>

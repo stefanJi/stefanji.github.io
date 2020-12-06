@@ -1639,7 +1639,7 @@
 </ul>
 <p>sk_buff 和 sk_buff_head 开始的两个节点(<code>next</code> <code>prev</code>)是相同的。即使 sk_buff_head 比 sk_buff 更轻量化，也允许这两种结构在链表中共存。另外，可以使用相同函数来操作 sk_buff 和 sk_buff_head。</p>
 <p>为了实现通过每个节点都能快速找到链表头，每个节点都会包含一个指向链表中唯一的 sk_buff_head 的指针（<code>list</code>）。</p>
-<p><img src="http://image.youcute.cn/image/blog/list_of_sk_buff.png" alt="sk_buff 链表" /></p>
+<p><img src="https://image.youcute.cn/image/blog/list_of_sk_buff.png" alt="sk_buff 链表" /></p>
 <h3 id="sk_buff-其他字段">sk_buff 其他字段</h3>
 <p>*<em>struct sock <em>sk</em></em></p>
 <p>一个指向 sock 数据结构的指针，表示 sock 对应 socket 拥有这个 sk_buff。当数据是由本地进程生成或接收时需要这个指针，因为数据和 socket相关的信息会被 L4（TCP或UDP）和用户态的程序使用。当一个 sk_buff 仅仅是被转发时（也就是说，源和目标地址不在本地计算机上），这个指针是不需要的，因此将会是 NULL。</p>
@@ -1670,7 +1670,7 @@
 *<em>unsigned char <em>data</em></em><br />
 *<em>unsigned char <em>tail</em></em></p>
 <p>上面4个指针用来表示 buffer 中数据域的边界。当每一层为了任务而准备 buffer 时，为了协议头或数据，可能会分配更多的空间。 <code>head</code> 和  <code>end</code> 指向了 buffer 被分配的内存区域的开始和结束， <code>data</code> 和 <code>tail</code> 指向其中实际数据域的开始和结束。</p>
-<p><img src="http://image.youcute.cn/image/blog/sk_buff_head_end.png" alt="" /></p>
+<p><img src="https://image.youcute.cn/image/blog/sk_buff_head_end.png" alt="" /></p>
 <p>每一层能够在 <code>head</code> 和 <code>data</code> 之间的区域填充协议头，或者在 <code>tail</code> 和 <code>end</code> 之间的区域填充新的数据。</p>
 <p>*<em>void (<em>destructor)(&hellip;)</em></em></p>
 <p>这个函数指针能够在运行时被赋值，从而在一个 buffer 被移除时，执行一些操作。当一个 buffer 不属于一个 socket 时，这个函数指针通常为空。当一个 buffer 属于一个 socket 时，这个函数指针通常被设置为 <code>sock_rfree</code> 或 <code>sock_wfree</code>。两个 <code>sock_xxx</code> 函数用于更新 socket 在它的队列中持有的大量内存。</p>
@@ -1691,7 +1691,7 @@
 <strong>union {&hellip;} mac</strong></p>
 <p>上面的3个指针表示了 TCP/IP 协议栈中的协议头: <code>h</code> 代表 L4, <code>nh</code> 代表 L3, <code>mac</code> 代表 L2。每个字段都指向的是各种共用体结构，某个结构只能被内核中对应的层的协议理解。比如：<code>h</code> 共用体就包含了L4上的每个协议能理解的头信息。每个共用体的一个成员称为<code>raw</code>，用于初始化。 所有以后的访问都通过协议特定的成员进行。</p>
 <p>当接收到数据包时，负责处理第 n 层协议头的函数从第 n-1 层接收一个 buffer，其中<code>skb-&gt;data</code> 指向第 n 层协议头的开头。处理第n层的函数会为此层初始化适当的指针（例如，L3 的处理函数会为 <code>skb-&gt;nh</code> 赋值）以保留 <code>skb-&gt;data</code> 字段，因为当 <code>skb-&gt;data</code> 被赋值为 buffer 内的其他偏移量时，该指针的内容将在下一层的处理过程中丢失。然后，该函数完成第 n 层的处理，并在将数据包传递到第 n+1 层处理程序之前，更新 <code>skb-&gt;data</code> 使其指向第 n 层协议头的末尾（即第n+1 层协议头的开始位置）。</p>
-<p><img src="http://image.youcute.cn/image/blog/L2_L3.png" alt="协议头指针从L2到L3的过程" /></p>
+<p><img src="https://image.youcute.cn/image/blog/L2_L3.png" alt="协议头指针从L2到L3的过程" /></p>
 <p><strong>struct dst_entry dst</strong></p>
 <p>由路由子系统使用。 因为数据结构非常复杂，并且需要了解其他子系统的工作原理，所以留在以后在详解。</p>
 <p><strong>char cb[40]</strong></p>
@@ -1791,7 +1791,7 @@ __u32 tc_classid</p>
 <p>内核提供了许多很简短的简单函数来操纵 sk_buff 节点或链表。</p>
 <p>如果查看文件 <em>include/linux/skbuff.h</em> 和 <em>net/core/skbuff.c</em>，你会发现几乎所有功能都有两个版本，名称分别为 <code>do_ something</code> 和 <code>__do_something</code>。通常，第一个是包装函数，它在对第二个调用的调用周围添加了额外的健全性检查或锁定机制。内部 <code>__do_something</code> 函数通常不直接调用。该规则的例外通常是编码不良的函数，这些函数最终将被修复。</p>
 <p>下图为分别对 sk_buff 执行 skb_put(a)，skb_push(b)，skb_pull(c)，skb_reserve(d) 的前后对比：</p>
-<p><img src="http://image.youcute.cn/image/blog/management_functions.png" alt="执行 skb_put skb_push skb_pull skb_reserve" /></p>
+<p><img src="https://image.youcute.cn/image/blog/management_functions.png" alt="执行 skb_put skb_push skb_pull skb_reserve" /></p>
 <ul>
 <li>skb_put：在数据域尾部追加一段空间</li>
 <li>skb_push：在数据域的头部追加一段空间</li>
@@ -1826,7 +1826,7 @@ __u32 tc_classid</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>在调用 kmalloc 之前，使用宏 <code>SKB_DATA_ALIGN</code> 调整了大小参数以强制对齐。返回之前，该函数将初始化结构体中的一些参数，从而产生下图所示的最终结果：</p>
-<p><img src="http://image.youcute.cn/image/blog/alloc_skb.png" alt="alloc_skb" /></p>
+<p><img src="https://image.youcute.cn/image/blog/alloc_skb.png" alt="alloc_skb" /></p>
 <p>在图右侧存储块的底部，可以看到为了强制对齐而引入的 Padding 区域。  <code>skb_shared_info</code> 块主要用于处理 IP 的分片（IP协议根据 MTU 和 MSS 对数据包进行的分片传输）。</p>
 <p><strong>dev_alloc_skb</strong></p>
 <p><code>dev_alloc_skb</code> 是供设备驱动程序使用的缓冲区分配函数。这类驱动程序预计将在中断模式下被执行。它就是简单的包装了下 <code>alloc_skb</code>, 相比 <code>alloc_skb</code> 多分配了一些字节的空间，并请求了原子操作（<code>GFP_ATOMIC</code>），因为设备驱动程序将在中断处理程序中调用。</p>
@@ -1837,7 +1837,7 @@ __u32 tc_classid</p>
 </ul>
 <p>这两个函数释放一个缓冲区，会让释放的缓冲区返回到缓冲池（缓存）中。<code>dev_kfree_skb</code> 只是通过宏定义的一个标示，内部还是调用的 <code>kfree_skb</code>。<br />
 <code>kfree_skb</code> 仅在 <code>skb-&gt;users</code> 计数器为1时（没有缓冲区的用户时）才释放缓冲区。 否则，该函数只会使该计数器递减。因此，如果一个缓冲区有三个用户，则只有当调用第三次 <code>dev_kfree_skb</code> 或 <code>kfree_skb</code> 时才会真正释放内存。</p>
-<p><img src="http://image.youcute.cn/image/blog/kfree_skb.png" alt="kfree_skb" /></p>
+<p><img src="https://image.youcute.cn/image/blog/kfree_skb.png" alt="kfree_skb" /></p>
 <h3 id="数据保留和对齐">数据保留和对齐</h3>
 <ul>
 <li>skb_reserve</li>
@@ -1856,9 +1856,9 @@ __u32 tc_classid</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>因为他们知道他们将要把协议头为 14 个字节的以太网帧复制到缓冲区中，所以参数2将缓冲区的 <code>head</code> 指针下移了 2 个字节。这将让紧跟在以太网头之后的 IP 头，从缓冲区的开头在 16 字节边界上对齐。</p>
-<p><img src="http://image.youcute.cn/image/blog/skb_reserve_aligned.png" alt="skb_reserve aligned" /></p>
+<p><img src="https://image.youcute.cn/image/blog/skb_reserve_aligned.png" alt="skb_reserve aligned" /></p>
 <p>下图展示了 skb_reserve 在数据从上到下传递（发送数据）时的作用（为下层协议在数据区的头部分配空间）：</p>
-<p><img src="http://image.youcute.cn/image/blog/skb_reserve_in_travering.png" alt="skb_reserve 在发送数据时" /></p>
+<p><img src="https://image.youcute.cn/image/blog/skb_reserve_in_travering.png" alt="skb_reserve 在发送数据时" /></p>
 <ol>
 <li>当要求 TCP 传输某些数据时，它会按照某些条件（TCP Max Segment Size(mss)，对分散收集 I/O 支持等）分配一个缓冲区。</li>
 <li>TCP 在缓冲区的头部保留（通过调用 <code>skb_reserve</code>）足够的空间，以容纳所有层（TCP，IP，Link 层）的所有协议头。参数 <code>MAX_TCP_HEADER</code> 是所有级别的所有协议头的总和，并考虑到最坏的情况：因为 TCP 层不知道将使用哪种类型的接口进行传输，因此它为每个层保留最大的标头。它甚至考虑到多个 IP 协议头的可能性（因为当内核编译为支持 <em><a href="https://en.wikipedia.org/wiki/IP_in_IP">IP in IP</a></em> 时，你可以拥有多个IP 协议头）。</li>
@@ -1993,14 +1993,14 @@ __u32 tc_classid</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>下图为一个被分段（一个缓冲区，其中一些数据存储在与frags数组链接的数据片段中）了的缓冲区克隆的例子:</p>
-<p><img src="http://image.youcute.cn/image/blog/sk_buff_clone.png" alt="sk_buff clone" /></p>
+<p><img src="https://image.youcute.cn/image/blog/sk_buff_clone.png" alt="sk_buff clone" /></p>
 <p>当缓冲区被克隆时，无法修改数据块的内容。这意味着代码无需做同步保证即可访问数据。但是，当一个函数不仅需要修改 sk_buff 结构的内容，还需要修改数据域时，就必须要克隆数据域了。如果真要修改数据域，开发者也有两个选项可用。</p>
 <ol>
 <li>当开发者知道自己仅仅需要修改的数据在 <code>skb-&gt;start</code> 和 <code>skb-&gt;end</code> 的区域时，开发者可以使用 <code>pskb_copy</code> 方法只克隆那个区域。</li>
 <li>当开发者认为自己或许也需要修改分段数据域时，就必须使用 <code>skb_copy</code>。</li>
 </ol>
 <p><code>pskb_copy</code> 和 <code>skb_copy</code> 的不同如下图中的(a)和(b):</p>
-<p><img src="http://image.youcute.cn/image/blog/skb_copys.png" alt="" /></p>
+<p><img src="https://image.youcute.cn/image/blog/skb_copys.png" alt="" /></p>
 <p>在决定克隆或复制缓冲区时，每个子系统的程序员都无法预料其他内核组件（或其子系统的其他用户）是否需要该缓冲区中的原始信息。内核是非常模块化的，并且以非常动态和不可预测的方式进行更改，因此每个子系统都不知道其他子系统可以使用缓冲区做什么。因此，每个子系统的程序员只需跟踪他们对缓冲区所做的任何修改，并注意<strong>在修改任何内容之前先进行复制，以防内核的其他部分需要原始信息</strong>。</p>
 <h3 id="队列管理函数">队列管理函数</h3>
 <p>有一些函数用来维护 sk_buff 双向链表（也可以称为队列 queue）中的节点。下面是一些常用的功能函数：</p>

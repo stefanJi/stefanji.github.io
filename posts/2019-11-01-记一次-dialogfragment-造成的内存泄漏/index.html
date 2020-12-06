@@ -1575,9 +1575,9 @@
 </thead>
 <tbody>
 <tr>
-<td align="center"><img src="http://image.youcute.cn/image/blog/dialogfragment_leak_1.png" alt="" /></td>
-<td align="center"><img src="http://image.youcute.cn/image/blog/dialogfragment_leak_2_2.png" alt="" /></td>
-<td align="center"><img src="http://image.youcute.cn/image/blog/dialogfragment_leak_3.png" alt="" /></td>
+<td align="center"><img src="https://image.youcute.cn/image/blog/dialogfragment_leak_1.png" alt="" /></td>
+<td align="center"><img src="https://image.youcute.cn/image/blog/dialogfragment_leak_2_2.png" alt="" /></td>
+<td align="center"><img src="https://image.youcute.cn/image/blog/dialogfragment_leak_3.png" alt="" /></td>
 </tr>
 </tbody>
 </table>
@@ -1748,7 +1748,7 @@
 </div>
 </div><p>看了 Dialog 中 Message 的创建逻辑，也没有涉及 HandlerThread 的内容，那为什么 HandlerThread 会引用了这些 Message，而且一直不释放呢？</p>
 <p>按照正常的逻辑, Message 的生命周期应该是:</p>
-<p><img src="http://image.youcute.cn/FjPcmdsY_sBkedX9qdKnaPBPIkSM" alt="" /></p>
+<p><img src="https://image.youcute.cn/FjPcmdsY_sBkedX9qdKnaPBPIkSM" alt="" /></p>
 <p>在回收进消息池之前会先解除 Message 引用的所有对象.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1830,7 +1830,7 @@ HandlerThread 则是在创建时就会自己创建一个 Looper 的线程, 所�
 </code></pre></td></tr></table>
 </div>
 </div><p>在 MessageQueue 中没有新的消息时, 当前线程线程就会被阻塞. 同时上一条被回收的消息会暂时被当前线程持有. 所以, 有一种可能就是 Dialog 获取的 <code>mDismissMessage</code> 就是被 HandlerThread 在等待下一条消息时阻塞的消息. 导致 <code>mDismissMessage</code> 无法被 GC 回收.</p>
-<p><img src="http://image.youcute.cn/FgdtvVsxEA5feWUCS-d5OwVQjAxL" alt="" /></p>
+<p><img src="https://image.youcute.cn/FgdtvVsxEA5feWUCS-d5OwVQjAxL" alt="" /></p>
 <h3 id="复现">复现</h3>
 <ul>
 <li>首先向一个 HandlerThread(称为 BackThread) 通过 Handler 发送一条 Message(称为 A)(<code>handler.post</code>)</li>

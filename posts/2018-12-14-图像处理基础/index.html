@@ -1583,16 +1583,16 @@
 <blockquote>
 <p>RGB 每个分量用 1 bit 表示</p>
 </blockquote>
-<p><img src="http://image.youcute.cn/image/blog/RGB111.png" alt="" /></p>
+<p><img src="https://image.youcute.cn/image/blog/RGB111.png" alt="" /></p>
 <p>如果每个像素的每个颜色分量只用二进制的 1 位来表示，那每个颜色的分量只有 “1” 和 “0” 这两个值，也就是说，每种颜色的强度要么是 100%，要么就是 0%. RGB 每个分量有2种可能(0和1), 3 个分量就有 8($2^3$) 种组合, 能表示 8 种颜色。 图像大小就为 <code>width * height * 3(1个像素3个分量) * 1(每个分量占1位) * / 8(bits 转 bytes)</code> =&gt; <code>W x H x 3 / 8</code> 个字节</p>
 <blockquote>
 <p>RGB888 每个分量用 8 bit 表示</p>
 </blockquote>
-<p><img src="http://image.youcute.cn/image/blog/RGB888.png" alt="" /></p>
+<p><img src="https://image.youcute.cn/image/blog/RGB888.png" alt="" /></p>
 <p>如果每个像素的每个颜色分量用 8 位二进制来表示, 则 RGB 每个分量有 256($2^8$) 种值, 3 个分量就有 16777216 ($2^24$) 种组合, 能表示 1600 万种颜色(也就是我们常说的1600万色)。 图像大小就为 <code>width * height * 3(1个像素3个分量) * 8(每个分量占8位) * / 8(bits 转 bytes)</code> =&gt; <code>W x H x 24 / 8</code> 个字节</p>
 <hr />
 <h3 id="rgb-的排列">RGB 的排列</h3>
-<p><img src="http://image.youcute.cn/image/blog/RGB.png" alt="" /></p>
+<p><img src="https://image.youcute.cn/image/blog/RGB.png" alt="" /></p>
 <p>抽象排列是指我们在思维上认为图片应该是以行列分布的, 实际在内存中, 图像其实更常见是以一维数组做存储, 以 RGB RGB RGB 的顺序存储. 待需要做一些矩阵运算时再转换为二维数组形式.</p>
 <h3 id="android-上的-rgb-模型">Android 上的 RGB 模型</h3>
 <p>在 Android 上的 <code>Bitmap</code> 有几种图像模型, 其区别就在于: 用不同的位数来存储各个分量和是否带 Alpha 通道, 我们可以在解析 Bitmap 时通过 Bitmap.Config 指定期望的模型，但是最终系统使用什么模型还要根据解析的图片的颜色模型来决定. 比如: 即使我们设置使用 <code>RGB_565</code> 去解析一张带 Alpha 通道的图片, 但最终系统还是会使用 <code>ARGB_8888</code> 模型来解析. 如果我们想减少内存占用则可以使用 <code>ARGB_4444</code> 来解析, 但是质量会降低许多; 或者可以去掉原图的 Alpha 通道, 然后使用 <code>RGB_565</code> 解析.</p>
@@ -1634,7 +1634,7 @@
 <p>YUV 是 Android 相机开发中输出图像的默认模型</p>
 </blockquote>
 <p>现代, YUV 一般是从 RGB 图像中进行采样, 先产生一个使用 Y 通道表示的黑白图像, 然后提取出图像中三个主要的颜色变成两个额外的信号(U 和 V)来描述颜色. YUV 根据不同的采样比和 YUV 分量的排列方式有很多细分的格式.</p>
-<p><img src="http://image.youcute.cn/image/blog/YUV.png" alt="" /></p>
+<p><img src="https://image.youcute.cn/image/blog/YUV.png" alt="" /></p>
 <table>
 <thead>
 <tr>

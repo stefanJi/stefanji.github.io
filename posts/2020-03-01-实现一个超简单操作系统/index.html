@@ -1564,7 +1564,7 @@
       
       <p>raspberry-pi-os 项目记录了从头实现一个适用于树莓派3B(处理器 ARMv8 架构)的操作系统的过程。这篇文章记录了我按照项目的 lesson01 学习的过程，另外再加上自己的修改。</p>
 <!-- more -->
-<p><img src="http://image.youcute.cn/FhAEHW19wYa4vAHamHvW_VK6T6pX" alt="本文概览" /></p>
+<p><img src="https://image.youcute.cn/FhAEHW19wYa4vAHamHvW_VK6T6pX" alt="本文概览" /></p>
 <blockquote>
 <p>内容参考自 <a href="https://github.com/s-matyukevich/raspberry-pi-os">https://github.com/s-matyukevich/raspberry-pi-os</a></p>
 </blockquote>
@@ -1578,8 +1578,8 @@
 </thead>
 <tbody>
 <tr>
-<td align="center"><img src="http://image.youcute.cn/FlRnXgjZiqH1qz3_ODflAvQQaRWu" alt="接线" /></td>
-<td align="center"><img src="http://image.youcute.cn/Fgg68uoCvTPaR59NQ5xljQzJrZ0N" alt="usb to ttl" /></td>
+<td align="center"><img src="https://image.youcute.cn/FlRnXgjZiqH1qz3_ODflAvQQaRWu" alt="接线" /></td>
+<td align="center"><img src="https://image.youcute.cn/Fgg68uoCvTPaR59NQ5xljQzJrZ0N" alt="usb to ttl" /></td>
 </tr>
 </tbody>
 </table>
@@ -1758,7 +1758,7 @@ master:
 
     mov    sp, #LOW_MEMORY // LOW_MEMORY的值为 4MB, 意思是将内存中4MB的地址拷贝到表示运行栈的 sp 寄存器中. 
     bl    kernel_main  // 调用 kernel_main 方法
-</code></pre><p><img src="http://image.youcute.cn/FlmdhnT_n1Nbxyl1Dn91ZQfqEx9m" alt="内存布局" /></p>
+</code></pre><p><img src="https://image.youcute.cn/FlmdhnT_n1Nbxyl1Dn91ZQfqEx9m" alt="内存布局" /></p>
 <blockquote>
 <p>汇编命令</p>
 </blockquote>
@@ -1834,14 +1834,14 @@ ARM 上内存的物理地址从 0x00000000 开始。物理内存地址从<code>0
 </ul>
 <h2 id="alternate-function">Alternate function</h2>
 <p>Alternate function 可以翻译为备用功能。每个GPIO pin(引脚)都可以承载多个功能。一共有6种备用功能可用，但并非每个引脚都具有那么多备用功能。如果只是将 pin 作为输入输出引脚，则用不到这些备用功能。</p>
-<p><img src="http://image.youcute.cn/FmHjx2rrzZ9jo0ThgOhhuSVNtVli" alt="" /></p>
+<p><img src="https://image.youcute.cn/FmHjx2rrzZ9jo0ThgOhhuSVNtVli" alt="" /></p>
 <h2 id="外设寄存器">外设寄存器</h2>
 <p>GPIO pin 和其他主板上的外设一样，也被设备寄存器来表示。GPIO pin 涉及的寄存器有多种。比如 <em>GPFSELn</em> 寄存器用来配置一个 pin 的功能。<br />
 通俗点说就是，要使用一个 pin，需要先拿到它被映射到了内存的哪里，然后在向它对应的内存区域写入不同的位来使用不同的功能。</p>
 <p>BCM2837 主板一共有6个 <em>GPFSLEn</em> (GPFSEL0~GPFSEL5) 寄存器。每个寄存器占用 32 位内存空间，这 32 位内存空间每 3 位用来表示一个pin, 32 位就能够表示 10 个 pin。</p>
 <p>比如 GPFSEL0 寄存器能用来表示 0～9 号 GPIO pin。<br />
 比如设置 GPFSEL0 的第 29-27 位(表示pin 19), 3位的不同组合表示的含义:</p>
-<p><img src="http://image.youcute.cn/FreShGVyMNx7MEAuHFtvEqm6SIEi" alt="GPFSEL0的不同位" /></p>
+<p><img src="https://image.youcute.cn/FreShGVyMNx7MEAuHFtvEqm6SIEi" alt="GPFSEL0的不同位" /></p>
 <h3 id="继电器-gpio-配置">继电器 GPIO 配置</h3>
 <p>那么现在我要使用3号引脚作为一个输出引脚，该做那些操作?</p>
 <ol>
@@ -1850,7 +1850,7 @@ ARM 上内存的物理地址从 0x00000000 开始。物理内存地址从<code>0
 <li>间隔输出高低电压</li>
 </ol>
 <p>gnu(接地) 和 vcc(供电)引脚主板启动之后自己设置好的，所以不用额外设置。</p>
-<p><img src="http://image.youcute.cn/FmDhX0Q3aK37ZDD4Yeq5CweNJAg6" alt="GPIO寄存器" /></p>
+<p><img src="https://image.youcute.cn/FmDhX0Q3aK37ZDD4Yeq5CweNJAg6" alt="GPIO寄存器" /></p>
 <p>根据文档可知 GPFSELn 寄存器在总线上的地址从 <code>0x7E200000</code> 开始, 那么对应到物理内存上就是 <code>0x3F200000</code>, 所以定义 <code>GPFSELn</code> 宏为:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1935,7 +1935,7 @@ ARM 上内存的物理地址从 0x00000000 开始。物理内存地址从<code>0
 </div><h3 id="uart-配置">UART 配置</h3>
 <p><a href="https://zh.wikipedia.org/wiki/UART">UART串口通信</a></p>
 <p>UART 串口通信属于外设辅助，BCM 主板支持三种 Aux 通信, mini UART 和 2个 <a href="https://en.wikipedia.org/wiki/Serial_Peripheral_Interface">SPI</a> master. 要使用这些外设辅助功能，也是通过修改寄存器的值，寄存器在总线上的位置和寄存器对应的功能如下:</p>
-<p><img src="http://image.youcute.cn/FnrKVkbLgY7KNSH6dC98ifzN6PrK" alt="Auxiliary" /></p>
+<p><img src="https://image.youcute.cn/FnrKVkbLgY7KNSH6dC98ifzN6PrK" alt="Auxiliary" /></p>
 <p>比如要让主板支持 Aux 通信。需要先修改 AUX_ENABLES 寄存器的值为 1.</p>
 <p>根据文档可知 AUX_ENABLES 寄存器在总线上的地址为 <code>0x7E215004</code>, 那么对应到物理内存上就是 <code>0x3F2154004</code>, 所以定义 <code>AUX_ENABLES</code> 宏为:</p>
 <div class="highlight"><div class="chroma">
@@ -2052,7 +2052,7 @@ hdiutil eject /Volumes/boot
 <li>需要为每个处理器核心分配他们各自的内存区域，否则处理器之间如果交叉读写了彼此的内存，会导致意外的问题</li>
 <li>某些只能执行一次的操作，需要做额外处理。防止多个处理器核心都执行了。</li>
 </ul>
-<p><img src="http://image.youcute.cn/Fgs7QdRSVpSxTmkFP0oY-Kr9_Ruw" alt="多核下流程" /></p>
+<p><img src="https://image.youcute.cn/Fgs7QdRSVpSxTmkFP0oY-Kr9_Ruw" alt="多核下流程" /></p>
 <pre><code class="language-armasm" data-lang="armasm">.globl _start
 _start:
     b   master  //每个核心通电之后都会执行 master
@@ -2072,7 +2072,7 @@ get_core_id:
         and x0, x0, #0xFF
         ret
 </code></pre><h2 id="内存初始化">内存初始化</h2>
-<p><img src="http://image.youcute.cn/Fp_jn_cqUImoD5AQvZextInlIKx_" alt="多处理核心下的内存布局" /></p>
+<p><img src="https://image.youcute.cn/Fp_jn_cqUImoD5AQvZextInlIKx_" alt="多处理核心下的内存布局" /></p>
 <ul>
 <li>
 <p>将 bss_begin 和 bss_end 范围的内存赋值0</p>

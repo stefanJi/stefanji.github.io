@@ -2412,19 +2412,19 @@ void setUser(in User user);
 <blockquote>
 <p>Service 不单独声明 <code>process</code>属性</p>
 </blockquote>
-<p><img src="http://image.youcute.cn/18-12-29/9580920.jpg" alt="binder-local" /></p>
+<p><img src="https://image.youcute.cn/18-12-29/9580920.jpg" alt="binder-local" /></p>
 <p>可以看到，调用直接返回了 <code>queryLocalInterface</code>返回的<code>IInterface</code>对象，该对象其实就是在上面 Service 的<code>onBind</code>方法中创建的 <code>IUserManagerInterfaceImpl</code>匿名内部类。客户端调用的直接是那个<code>onBind</code>返回的对象的方法。</p>
 <h4 id="跨进程分析">跨进程分析</h4>
 <blockquote>
 <p>Service 单独声明 <code>process</code>属性</p>
 </blockquote>
-<p><img src="http://image.youcute.cn/18-12-29/41328367.jpg" alt="binder-remote" /></p>
+<p><img src="https://image.youcute.cn/18-12-29/41328367.jpg" alt="binder-remote" /></p>
 <p>这时候就返回了代理对象，然后接着就是调用<code>getUser</code>方法。</p>
-<p><img src="http://image.youcute.cn/18-12-29/87088144.jpg" alt="binder-proxy" /></p>
+<p><img src="https://image.youcute.cn/18-12-29/87088144.jpg" alt="binder-proxy" /></p>
 <p>走到了 Proxy 的 <code>getUser</code>，这是还没有发生跨进程的调用，下一行<code>remote.transact</code>就会发起跨进程请求，将我们请求的方法编号、输入数据、输出数据作为参数传入，接下来的调用就会走到另一个进程里，同时客户端这边线程会被挂起等待。Debug 也需要 attach 到另一个进程上。<code>onTransact</code>将执行在服务端进程上：</p>
-<p><img src="http://image.youcute.cn/18-12-29/51477042.jpg" alt="binder-onTransact" /></p>
+<p><img src="https://image.youcute.cn/18-12-29/51477042.jpg" alt="binder-onTransact" /></p>
 <p><code>onTransact</code>里根据方法编号调用对应的方法，这里的<code>this</code>是在 Service 的 <code>onBind</code>中返回的对象。在这里会将结果写到 <code>replay</code>中，然后结束，程序执行切换会客户端进程。</p>
-<p><img src="http://image.youcute.cn/18-12-29/41081320.jpg" alt="proxy-getUser" /></p>
+<p><img src="https://image.youcute.cn/18-12-29/41081320.jpg" alt="proxy-getUser" /></p>
 <p>Proxy 继续执行，从 <code>reply</code>中取出结果，最后返回。</p>
 <h3 id="总结">总结</h3>
 <ul>

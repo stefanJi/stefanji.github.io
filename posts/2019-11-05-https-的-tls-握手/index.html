@@ -1598,10 +1598,10 @@
 <li>由于 Bob 事先已经安装了 Carol 的数字证书，因此 Bob 使用 Carol 的公钥解密消息并获取到 Alice 的数字证书状态信息；</li>
 <li>Bob 验证通过后, Bob 决定与 Alice进行通信。</li>
 </ol>
-<p><img src="http://image.youcute.cn/image/blog/tls_handshake.gif" alt="" /></p>
+<p><img src="https://image.youcute.cn/image/blog/tls_handshake.gif" alt="" /></p>
 <h2 id="握手过程">握手过程</h2>
-<p><img src="http://image.youcute.cn/https_handshark.svg" alt="流程" /></p>
-<p><img src="http://image.youcute.cn/image/blog/https_handshake.png" alt="概览" /></p>
+<p><img src="https://image.youcute.cn/https_handshark.svg" alt="流程" /></p>
+<p><img src="https://image.youcute.cn/image/blog/https_handshake.png" alt="概览" /></p>
 <p>高亮的部分就是 TLS 握手的过程</p>
 <table>
 <thead>
@@ -1616,18 +1616,18 @@
 </thead>
 <tbody>
 <tr>
-<td align="center"><img src="http://image.youcute.cn/image/blog/client_hello.png" alt="" /></td>
-<td align="center"><img src="http://image.youcute.cn/image/blog/server_hello.png" alt="" /></td>
-<td align="center"><img src="http://image.youcute.cn/image/blog/server_certificate.png" alt="" /></td>
-<td align="center"><img src="http://image.youcute.cn/image/blog/server_key_exchange.png" alt="" /></td>
-<td align="center"><img src="http://image.youcute.cn/image/blog/client_key_exchange.png" alt="" /></td>
-<td align="center"><img src="http://image.youcute.cn/image/blog/change_cipher.png" alt="" /></td>
+<td align="center"><img src="https://image.youcute.cn/image/blog/client_hello.png" alt="" /></td>
+<td align="center"><img src="https://image.youcute.cn/image/blog/server_hello.png" alt="" /></td>
+<td align="center"><img src="https://image.youcute.cn/image/blog/server_certificate.png" alt="" /></td>
+<td align="center"><img src="https://image.youcute.cn/image/blog/server_key_exchange.png" alt="" /></td>
+<td align="center"><img src="https://image.youcute.cn/image/blog/client_key_exchange.png" alt="" /></td>
+<td align="center"><img src="https://image.youcute.cn/image/blog/change_cipher.png" alt="" /></td>
 </tr>
 </tbody>
 </table>
 <h2 id="initial-client-message-to-server">Initial Client Message to Server</h2>
 <h3 id="client-hello">Client Hello</h3>
-<!-- ![Client Hello](http://image.youcute.cn/image/blog/client_hello.png) -->
+<!-- ![Client Hello](https://image.youcute.cn/image/blog/client_hello.png) -->
 <p>Client Hello 发送的消息:</p>
 <table>
 <thead>
@@ -1672,7 +1672,7 @@
 </table>
 <h2 id="server-response-to-client">Server Response to Client</h2>
 <h3 id="server-hello">Server Hello</h3>
-<!-- ![Server Hello](http://image.youcute.cn/image/blog/server_hello.png) -->
+<!-- ![Server Hello](https://image.youcute.cn/image/blog/server_hello.png) -->
 <p>Server Hello 发送的消息:</p>
 <table>
 <thead>
@@ -1716,7 +1716,7 @@
 </tbody>
 </table>
 <h3 id="server-certificates">Server certificates</h3>
-<!-- ![Server certificates](http://image.youcute.cn/image/blog/server_certificate.png) -->
+<!-- ![Server certificates](https://image.youcute.cn/image/blog/server_certificate.png) -->
 <p>服务端发送自己的证书: 这里发送了两个证书，一个是网站自己的证书，另一个是网站证书申请使用的二级证书。因为网站的证书不是直接从根证书机构签发的, 所以这里会发送中级颁发机构的证书.<br />
 客户端先通过本地的根证书验证中级颁发机构的证书，然后再使用中级颁发结构的证书验证网站的证书。客户端验证证书通过后，会从网站证书中提取公钥.</p>
 <ul>
@@ -1724,7 +1724,7 @@
 <li>Let&rsquo;s Encrypt Authority X3: 中级颁发机构证书</li>
 </ul>
 <h3 id="server-key-exchange">Server Key Exchange</h3>
-<!-- ![Server key exchange](http://image.youcute.cn/image/blog/server_key_exchange.png) -->
+<!-- ![Server key exchange](https://image.youcute.cn/image/blog/server_key_exchange.png) -->
 <p>这里服务端在一次通信里做了 2 件事:</p>
 <ul>
 <li>Server Key Exchange</li>
@@ -1735,7 +1735,7 @@
 <p>此消息表明服务器握手已完成，正在等待客户端的响应</p>
 <h2 id="client-response-to-server">Client Response to Server</h2>
 <h3 id="client-key-exchange">Client Key Exchange</h3>
-<!-- ![Client key exchange](http://image.youcute.cn/image/blog/client_key_exchange.png) -->
+<!-- ![Client key exchange](https://image.youcute.cn/image/blog/client_key_exchange.png) -->
 <p>这里客户端在一次通信里做了 3 件事:</p>
 <ul>
 <li>Client Key Exchange</li>
@@ -1752,7 +1752,7 @@
 </ul>
 <p>这个报文的目的就是告诉对端自己在整个握手过程中收到了什么数据, 发送了什么数据. 来保证中间没人篡改报文. 其次, 这个报文作用就是确认秘钥的正确性. 因为 <code>Encrypted handshake message</code> 是使用对称秘钥进行加密的第一个报文, 如果这个报文加解密校验成功, 那么就说明对称秘钥是正确的.</p>
 <h2 id="server-final-response">Server Final Response</h2>
-<!-- ![change cipher](http://image.youcute.cn/image/blog/change_cipher.png) -->
+<!-- ![change cipher](https://image.youcute.cn/image/blog/change_cipher.png) -->
 <p>接着服务端又在一次通信里做了 2 件事:</p>
 <ul>
 <li>Change Cipher Spec</li>

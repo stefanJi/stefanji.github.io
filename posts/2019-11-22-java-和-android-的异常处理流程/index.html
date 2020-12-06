@@ -1649,11 +1649,11 @@ E/AndroidRuntime: FATAL EXCEPTION: Thread-2
 <h2 id="java-异常处理">Java 异常处理</h2>
 <p>Java 默认的异常处理机制流程如下图:</p>
 <p>当一个线程抛出异常时, JVM 会调用线程的 <code>dispatchUncaughtException</code> 方法, 如果线程有设置 <code>UncaughtExceptionHandler</code> 则会调用设置的 Handler 处理; 否则判断 <code>parent</code> ThreadGroup 是否存在, 如果存在则调用 <code>parent</code> 的 <code>uncaughtException</code> 方法, 否则判断是否设置过全局的 <code>defaultUncaughtExceptionHandler</code>, 如果设置过就调用全局的 Handler 处理; 否则就只输出.</p>
-<p><img src="http://image.youcute.cn/FtSWUapxx0CWXUT0jJUCYBtvhsv5" alt="" /></p>
+<p><img src="https://image.youcute.cn/FtSWUapxx0CWXUT0jJUCYBtvhsv5" alt="" /></p>
 <h2 id="android-异常处理">Android 异常处理</h2>
 <p>讲道理, Android 应用层是基于 Java 的, 应该沿袭 Java 的处理机制的. 但是它却直接 Crash 了, 说明它单独设置了全局 Handler 或者为每个线程设置了 Handler. 为每个线程单独设置应该不大可能, 应用中那么多开发者自己创建的线程. 看来只有设置全局的 Handler 这条路了.</p>
 <p>那 Android 是在哪里设置的呢? =_= 搜索大法: 在 SDK 源码中搜索 Crash 时输出的日志 <code>E/AndroidRuntime: FATAL EXCEPTION: Thread-2....</code></p>
-<p><img src="http://image.youcute.cn/image/blog/search_android_exception.png" alt="" /></p>
+<p><img src="https://image.youcute.cn/image/blog/search_android_exception.png" alt="" /></p>
 <p>在 Android-28 <code>com/android/internal/os/RuntimeInit.java</code> 中发现了踪影:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

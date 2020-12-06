@@ -1556,15 +1556,15 @@
     <article class="single__contents" data-dir="ltr" data-ani="true">
       
       <p>TextView 在布局方面提供了一些特别的属性来控制文本的布局。比如现在要显示一个句子 <em>What is a good time for you?</em>。 TextView 在发现一行布局不足以显示整个文本内容时，会进行自动的换行。</p>
-<p><img src="http://image.youcute.cn/FoseM7p_frPkYOVgLr7_ERxHR_tA" alt="长文本" /></p>
+<p><img src="https://image.youcute.cn/FoseM7p_frPkYOVgLr7_ERxHR_tA" alt="长文本" /></p>
 <p>那么 TextView 是如何知道或者说它是如何做到自动换行的呢? 这就要涉及下图所示的内容。</p>
-<p><img src="http://image.youcute.cn/FhoRo7hUqjX1P76p1CBbAgj5O2VO" alt="概要" /></p>
+<p><img src="https://image.youcute.cn/FhoRo7hUqjX1P76p1CBbAgj5O2VO" alt="概要" /></p>
 <h2 id="layout">Layout</h2>
-<p><img src="http://image.youcute.cn/FrSLa_Oo_0MR9n7iKijERvbuuA9B" alt="TextView Layout" /></p>
+<p><img src="https://image.youcute.cn/FrSLa_Oo_0MR9n7iKijERvbuuA9B" alt="TextView Layout" /></p>
 <blockquote>
 <p>官方介绍： <em>android.text.Layout</em> 是一个管理屏幕上文本布局的基类。在 TextView 内部，对于会编辑的文本(EditText)，会使用 <em>DynamicLayout</em> ，它会随着文本的更改而更新；对于不会更改的文本，会使用 <em>StaticLayout</em> 或 <em>BroingLayout</em>。</p>
 </blockquote>
-<p><img src="http://image.youcute.cn/FkAMYG5p4ZUr8zAhi8iAmvQ3671c" alt="TextView Layout 创建流程" /></p>
+<p><img src="https://image.youcute.cn/FkAMYG5p4ZUr8zAhi8iAmvQ3671c" alt="TextView Layout 创建流程" /></p>
 <h3 id="getlinexxx">getLineXXX</h3>
 <p>由于文本可能会被显示为多行，所以 Layout 提供了一系列获取每一行文本具体位置的方法。通过 <code>getLineCount()</code> 可以获取一个 Layout 包含了多少行文本，然后通过一系列 <code>getLineXXX(int line)</code> 方法可以获取每行的具体参数。</p>
 <table>
@@ -1651,8 +1651,8 @@
 </thead>
 <tbody>
 <tr>
-<td align="center"><img src="http://image.youcute.cn/FnqDX0Fxm0As6Bt6tVMLWlHhUNkc" alt="" /></td>
-<td align="center"><img src="http://image.youcute.cn/FsYAcHyNtiqCDvhsRd87NTfb5Cje" alt="" /></td>
+<td align="center"><img src="https://image.youcute.cn/FnqDX0Fxm0As6Bt6tVMLWlHhUNkc" alt="" /></td>
+<td align="center"><img src="https://image.youcute.cn/FsYAcHyNtiqCDvhsRd87NTfb5Cje" alt="" /></td>
 </tr>
 </tbody>
 </table>
@@ -1712,7 +1712,7 @@
 <span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="http://image.youcute.cn/Fku1VrxKd9ySZW0Tk6zxrhEt5k0f" alt="" /></p>
+</div><p><img src="https://image.youcute.cn/Fku1VrxKd9ySZW0Tk6zxrhEt5k0f" alt="" /></p>
 <h3 id="实验">实验</h3>
 <p>通过继承一个 TextView，可以方便的在布局和绘制相关方法中输出当前 TextView 使用的 Layout。</p>
 <div class="highlight"><div class="chroma">
@@ -1759,7 +1759,7 @@
 <ul>
 <li>
 <p>当文本为 <em>What is a good time for you?</em> 时，输出：</p>
-<p><img src="http://image.youcute.cn/FoseM7p_frPkYOVgLr7_ERxHR_tA" alt="StaticLayout" /></p>
+<p><img src="https://image.youcute.cn/FoseM7p_frPkYOVgLr7_ERxHR_tA" alt="StaticLayout" /></p>
 <pre><code>D/TAG: [onMeasure] android.text.StaticLayout@b677650
 D/TAG: [onMeasure] android.text.StaticLayout@b677650
 D/TAG: [onMeasure] android.text.StaticLayout@19ea28b
@@ -1770,7 +1770,7 @@ D/TAG: [onDraw] android.text.StaticLayout@19ea28b
 </li>
 <li>
 <p>当文本为较短的 <em>a good time</em> 时，输出：</p>
-<p><img src="http://image.youcute.cn/Fm4wjbQ3ViUw8BIiJZfqDSMkUo54" alt="BoringLayout" /></p>
+<p><img src="https://image.youcute.cn/Fm4wjbQ3ViUw8BIiJZfqDSMkUo54" alt="BoringLayout" /></p>
 <pre><code>D/TAG: [onMeasure] android.text.BoringLayout@fb6605a
 D/TAG: [onMeasure] android.text.BoringLayout@fb6605a
 D/TAG: [onMeasure] android.text.BoringLayout@fb6605a
@@ -1781,7 +1781,7 @@ D/TAG: [onDraw] android.text.BoringLayout@fb6605a
 </li>
 <li>
 <p>使用 EditText 时：</p>
-<p><img src="http://image.youcute.cn/FgsccnUzOF-__0QK-j2CE9ewlqm-" alt="DynamicLayout" /></p>
+<p><img src="https://image.youcute.cn/FgsccnUzOF-__0QK-j2CE9ewlqm-" alt="DynamicLayout" /></p>
 <pre><code>D/TAG: [onMeasure] android.text.DynamicLayout@aa9b261
 D/TAG: [onMeasure] android.text.DynamicLayout@aa9b261
 D/TAG: [onMeasure] android.text.DynamicLayout@c1d4c99
@@ -1986,7 +1986,7 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 <h3 id="staticlayout">StaticLayout</h3>
 <p><em>StaticLayout</em> 中主要做了测量文本需要多少行的工作。</p>
 <p>在测量过程中会对 <em>StaticLayout</em> 中的成员变量 <code>mLineCount</code> 进行 <code>++</code> 操作。</p>
-<p><img src="http://image.youcute.cn/FkEMQGZU8qT1lqlPSrXO1O8F2tH3" alt="lineCount" /></p>
+<p><img src="https://image.youcute.cn/FkEMQGZU8qT1lqlPSrXO1O8F2tH3" alt="lineCount" /></p>
 <h3 id="dynamiclayout">DynamicLayout</h3>
 <p>//TODO</p>
 <h2 id="linespacingextra">lineSpacingExtra</h2>
@@ -2027,9 +2027,9 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 </thead>
 <tbody>
 <tr>
-<td align="center"><img src="http://image.youcute.cn/FhZ7PDCKHnRKBHSn6kY09UkBRPC_" alt="default" /></td>
-<td align="center"><img src="http://image.youcute.cn/FvpIAQrdHBn--YC-rTRCpfIGRiPP" alt="0 0" /></td>
-<td align="center"><img src="http://image.youcute.cn/FgkZnotm9xBr8zl9lRiOpavOSSJC" alt="100 0" /></td>
+<td align="center"><img src="https://image.youcute.cn/FhZ7PDCKHnRKBHSn6kY09UkBRPC_" alt="default" /></td>
+<td align="center"><img src="https://image.youcute.cn/FvpIAQrdHBn--YC-rTRCpfIGRiPP" alt="0 0" /></td>
+<td align="center"><img src="https://image.youcute.cn/FgkZnotm9xBr8zl9lRiOpavOSSJC" alt="100 0" /></td>
 </tr>
 </tbody>
 </table>
@@ -2043,9 +2043,9 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 </thead>
 <tbody>
 <tr>
-<td align="center"><img src="http://image.youcute.cn/FhmZplE8-T6ykO7ZAyjiRB2CqokY" alt="100 3" /></td>
-<td align="center"><img src="http://image.youcute.cn/FpQfzLAqi68q5uBtyXAQ8PLHprBr" alt="100 1" /></td>
-<td align="center"><img src="http://image.youcute.cn/Ftn5h6DJvS58Q6oFRqRz9iuYx_c-" alt="100 0.5" /></td>
+<td align="center"><img src="https://image.youcute.cn/FhmZplE8-T6ykO7ZAyjiRB2CqokY" alt="100 3" /></td>
+<td align="center"><img src="https://image.youcute.cn/FpQfzLAqi68q5uBtyXAQ8PLHprBr" alt="100 1" /></td>
+<td align="center"><img src="https://image.youcute.cn/Ftn5h6DJvS58Q6oFRqRz9iuYx_c-" alt="100 0.5" /></td>
 </tr>
 </tbody>
 </table>

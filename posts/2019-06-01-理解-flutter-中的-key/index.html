@@ -1669,7 +1669,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><h5 id="结果">结果</h5>
-<img alt="PositionedTiles" src="http://image.youcute.cn/image/blog/gifhome_433x532.gif" width=200/>
+<img alt="PositionedTiles" src="https://image.youcute.cn/image/blog/gifhome_433x532.gif" width=200/>
 <center>
 成功实现需求 ^_^
 </center>
@@ -1745,7 +1745,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><h5 id="结果-1">结果</h5>
-<img alt="PositionedTiles" src="http://image.youcute.cn/image/blog/gifhome_229x272.gif" width=200/>
+<img alt="PositionedTiles" src="https://image.youcute.cn/image/blog/gifhome_229x272.gif" width=200/>
 <center>
 貌似没效果 -_-
 </center>
@@ -1754,16 +1754,16 @@
 <p>在 Flutter 框架中，视图维持在树的结构中，我们编写的 Widget 一个嵌套一个，最终组合为一个 Tree。</p>
 <h4 id="statelesswidget">StatelessWidget</h4>
 <p>在第一种使用 <code>StatelessWidget</code> 的实现中，当 Flutter 渲染这些 Widgets 时，<code>Row</code> Widget 为它的子 Widget 提供了一组有序的插槽。对于每一个 Widget，Flutter 都会构建一个对应的 <code>Element</code>。构建的这个 <code>Element</code> Tree 相当简单，仅保存有关每个 <code>Widget</code> 类型的信息以及对子<code>Widget</code> 的引用。你可以将这个 <code>Element</code> Tree 当做就像你的 Flutter App 的骨架。它展示了 App 的结构，但其他信息需要通过引用原始<code>Widget</code>来查找。</p>
-<p><img alt="StatelessWidget Tree & Element Tree" src="http://image.youcute.cn/image/blog/flutter_tree.png" width=300 /></p>
+<p><img alt="StatelessWidget Tree & Element Tree" src="https://image.youcute.cn/image/blog/flutter_tree.png" width=300 /></p>
 <p>当我们交换行中的两个色块时，Flutter 遍历 <code>Widget</code> 树，看看骨架结构是否相同。它从 <code>Row</code> Widget 开始，然后移动到它的子 Widget，Element 树检查 Widget 是否与旧 Widget 是相同类型和 <code>Key</code>。 如果都相同的话，它会更新对新 widget 的引用。在我们这里，Widget 没有设置 Key，所以<code>Flutter</code>只是检查类型。它对第二个孩子做同样的事情。所以 Element 树将根据 Widget 树进行对应的更新。</p>
-<p><img alt="swap之后" src="http://image.youcute.cn/image/blog/flutter_element_tree.png" width=300 /></p>
+<p><img alt="swap之后" src="https://image.youcute.cn/image/blog/flutter_element_tree.png" width=300 /></p>
 <p>当 Element Tree 更新完成后，Flutter 将根据 Element Tree 构建一个 Render Object Tree，最终开始渲染流程。</p>
 <p><img src="http://gw.alicdn.com/mt/TB1UIYNnVuWBuNjSspnXXX1NVXa-2108-1224.png" alt="类似这样的渲染流程" /></p>
 <h4 id="statefulwidget">StatefulWidget</h4>
 <p>当使用 <code>StatefulWidget</code> 实现时，控件树的结构也是类似的，只是现在 color 信息没有存储控件自身了，而是在外部的 State 对象中。</p>
-<p><img alt="StatefulWidget Tree & Element Tree" src="http://image.youcute.cn/image/blog/flutter_statefullwidget_tree.png" width=300 /></p>
+<p><img alt="StatefulWidget Tree & Element Tree" src="https://image.youcute.cn/image/blog/flutter_statefullwidget_tree.png" width=300 /></p>
 <p>现在，我们点击按钮，交换控件的次序，Flutter 将遍历 Element 树，检查 Widget 树中 <code>Row</code> 控件并且更新 Element 树中的引用，然后第一个 Tile 控件检查它对应的控件是否是相同类型，它发现对方是相同的类型; 然后第二个 Tile 控件做相同的事情，最终就导致 Flutter 认为这两个控件都没有发生改变。Flutter 使用 Element 树和它对应的控件的 State 去确定要在设备上显示的内容, 所以 Element 树没有改变，显示的内容也就不会改变。</p>
-<p><img alt="swap之后" src="http://image.youcute.cn/image/blog/flutter_statefullwidget_tree_swap.png" width=300 /></p>
+<p><img alt="swap之后" src="https://image.youcute.cn/image/blog/flutter_statefullwidget_tree_swap.png" width=300 /></p>
 <h4 id="statefullwidget-结合-key">StatefullWidget 结合 Key</h4>
 <p>现在，为 <code>StatefulColorfulTile</code> 传递一个 <code>Key</code> 对象:</p>
 <div class="highlight"><div class="chroma">
@@ -1789,16 +1789,16 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>再次运行:</p>
-<img alt="PositionedTiles" src="http://image.youcute.cn/image/blog/gifhome_433x532.gif" width=200/>
+<img alt="PositionedTiles" src="https://image.youcute.cn/image/blog/gifhome_433x532.gif" width=200/>
 <p>成功 swap!</p>
 <p>添加了 <code>Key</code> 之后的结构:</p>
-<img alt="PositionedTiles" src="http://image.youcute.cn/image/blog/flutter_statefullwidget_tree_with_key.png" width=300/>
+<img alt="PositionedTiles" src="https://image.youcute.cn/image/blog/flutter_statefullwidget_tree_with_key.png" width=300/>
 <p>当现在执行 swap 时, Element 数中 StatafulWidget 控件除了比较类型外，还会比较 <code>key</code> 是否相等:</p>
-<img alt="检查比较" src="http://image.youcute.cn/image/blog/flutter_statefullwidget_tree_with_key_diff.png" width=300/>
+<img alt="检查比较" src="https://image.youcute.cn/image/blog/flutter_statefullwidget_tree_with_key_diff.png" width=300/>
 <p>只有类型和<code>key</code> 都匹配时，才算找到对应的 Widget。于是在 Widget Tree 发生交换后，Element Tree 中子控件和原始控件对应关系就被打乱了，所以 Flutter 会重建 Element Tree，直到控件们正确对应上。</p>
-<img alt="重建" src="http://image.youcute.cn/image/blog/flutter_statefullwidget_tree_swapping.png" width=300/>
+<img alt="重建" src="https://image.youcute.cn/image/blog/flutter_statefullwidget_tree_swapping.png" width=300/>
 <p>所以，现在 Element 树正确更新了，最终就会显示交换后的色块。</p>
-<img alt="交换完毕" src="http://image.youcute.cn/image/blog/flutter_statefullwidget_tree_swaped.png" width=300/>
+<img alt="交换完毕" src="https://image.youcute.cn/image/blog/flutter_statefullwidget_tree_swaped.png" width=300/>
 <h3 id="使用场景">使用场景</h3>
 <p>如果要修改集合中的控件的顺序或数量，<code>Key</code> 会很有用。</p>
 <h2 id="where-在哪设置-key">Where: 在哪设置 Key</h2>
@@ -1838,21 +1838,21 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img alt="交换时" src="http://image.youcute.cn/image/blog/flutter_color_swap.gif" width=300 /></p>
+</div><p><img alt="交换时" src="https://image.youcute.cn/image/blog/flutter_color_swap.gif" width=300 /></p>
 <p>当点击按钮发生交换之后，可以看到两个色块的颜色会随机改变，但是我的预期是两个固定的颜色彼此交换。</p>
 <h3 id="为什么产生问题">为什么产生问题</h3>
 <p>当Widget 树中两个 <code>Padding</code> 发生了交换，它们包裹的色块也就发生了交换:</p>
-<img alt="交换" src="http://image.youcute.cn/image/blog/flutter_swap_padding.png" width=300/>
+<img alt="交换" src="https://image.youcute.cn/image/blog/flutter_swap_padding.png" width=300/>
 <p>然后 Flutter 将进行检查，以便对 Element 树进行对应的更新: Flutter 的 <code>Elemetn to Widget</code> 匹配算法将一次只检查树的一个层级:</p>
-<img alt="检查" src="http://image.youcute.cn/image/blog/flutter_match_level_1.png" width=300/>
+<img alt="检查" src="https://image.youcute.cn/image/blog/flutter_match_level_1.png" width=300/>
 <ol>
 <li>在第一级，<code>Padding</code> Widget 都正确匹配。</li>
 </ol>
-<img alt="检查" src="http://image.youcute.cn/image/blog/flutter_match_level_1_correctly.png" width=300/>
+<img alt="检查" src="https://image.youcute.cn/image/blog/flutter_match_level_1_correctly.png" width=300/>
 <ol start="2">
 <li>在第二级，Flutter 注意到 Tile 控件的 <code>Key</code> 不匹配，就停用该 Tile Element，删除 Widget 和 Element 之间的连接</li>
 </ol>
-<img alt="检查" src="http://image.youcute.cn/image/blog/flutter_match_level_2.png" width=300/>
+<img alt="检查" src="https://image.youcute.cn/image/blog/flutter_match_level_2.png" width=300/>
 <ol start="3">
 <li>我们这里使用的 <code>Key</code> 是 <code>UniqueKey</code>， 它是一个 <code>LocalKey</code></li>
 </ol>
@@ -1899,7 +1899,7 @@
  <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="http://image.youcute.cn/image/blog/flutter_swap_padding.gif" alt="根据 Padding Key" width=300 /></p>
+</div><p><img src="https://image.youcute.cn/image/blog/flutter_swap_padding.gif" alt="根据 Padding Key" width=300 /></p>
 <h2 id="which-该使用哪种类型的-key">Which: 该使用哪种类型的 Key</h2>
 <p><code>Key</code> 的目的在于为每个 Widget 指明一个唯一的身份，使用何种 <code>Key</code> 就要依具体的使用场景决定。</p>
 <ul>
@@ -1925,7 +1925,7 @@
 <ul>
 <li>比如: 要在两个不同的屏幕上显示相同的 Widget，同时保持相同的 State，则需要使用 GlobalKeys。</li>
 </ul>
-<p><img src="http://image.youcute.cn/image/blog/flutter_global_keys_sample.gif" alt="复用 Widget" width=200 /></p>
+<p><img src="https://image.youcute.cn/image/blog/flutter_global_keys_sample.gif" alt="复用 Widget" width=200 /></p>
 </li>
 <li>
 <p>在第二种情况下，您可能希望验证密码，但不希望与树中的其他 Widget 共享该状态信息，可以使用 <code>GlobalKey&lt;FromState&gt;</code> 持有一个表单 <code>Form</code> 的 <code>State</code>。 Flutter.dev 上有这个例子<a href="https://flutter.dev/docs/cookbook/forms/validation">Building a form with validation</a>。</p>

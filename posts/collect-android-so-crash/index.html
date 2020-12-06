@@ -1567,14 +1567,14 @@
     <article class="single__contents" data-dir="ltr" data-ani="true">
       
       <p>在 Android 上，native 层的代码出现问题时，系统内核将会发送一些信号到应用进程，应用进程可以通过自定义信号的处理过程来实现 native crash 的收集等工作。</p>
-<p><img src="http://image.youcute.cn/Fgu0rZPwQltaGiMIm01d9uQmLN5l" alt="本文大概" /></p>
+<p><img src="https://image.youcute.cn/Fgu0rZPwQltaGiMIm01d9uQmLN5l" alt="本文大概" /></p>
 <h1 id="linux-信号">Linux 信号</h1>
 <blockquote>
 <p>在计算机科学中，信号（英语：Signals）是 Unix、类 Unix 以及其他 POSIX 兼容的操作系统中进程间通讯的一种有限制的方式。它是一种异步的通知机制，用来提醒进程一个事件已经发生。当一个信号发送给一个进程，操作系统中断了进程正常的控制流程，此时，任何非原子操作都将被中断。如果进程定义了信号的处理函数，那么它将被执行，否则就会执行默认的处理函数。</p>
 </blockquote>
 <p>信号类似于中断，不同之处在于中断由处理器产生并由内核处理，而信号由内核产生(可能通过系统调用)并由用户进程处理。当然内核也可以将中断作为信号传递给导致中断的用户进程。</p>
 <h2 id="常见信号">常见信号</h2>
-<p><img src="http://image.youcute.cn/FhlTkg82cDn3YjBMYKkEYzxtMsbN" alt="常见信号" /></p>
+<p><img src="https://image.youcute.cn/FhlTkg82cDn3YjBMYKkEYzxtMsbN" alt="常见信号" /></p>
 <p><strong>无法被截获处理的信号</strong></p>
 <ul>
 <li>SIGKILL: 这个信号不能被捕获或忽略，同时接收这个信号的进程在收到这个信号时也不能执行任何清理工作</li>
@@ -2056,9 +2056,9 @@ _ZN13NativeCatcher10make_crashEv
 </code></pre></td></tr></table>
 </div>
 </div><p>结果:</p>
-<p><img src="http://image.youcute.cn/FnyKsmmRp8iO8nAmTAPYQTbAFZJd" alt="bugly导出的符号文件" /></p>
+<p><img src="https://image.youcute.cn/FnyKsmmRp8iO8nAmTAPYQTbAFZJd" alt="bugly导出的符号文件" /></p>
 <p>看到这个结果就可以进一步查找 bugly 是如何生成这个文件的了。经过一番定位：</p>
-<p><img src="http://image.youcute.cn/FlfGKu3t6cOGGOebG3JUTEdGeW9Q" alt="定位" /></p>
+<p><img src="https://image.youcute.cn/FlfGKu3t6cOGGOebG3JUTEdGeW9Q" alt="定位" /></p>
 <p>断点处就是核心所在，bugly 将 so 中上面几种内容储存为 <em>内存地址</em> -&gt; <em>源码行数</em> 的映射。</p>
 <p><em>so</em> 文件本身是属于 <strong>ELF</strong> 文件的，<code>.debug_info</code>、<code>.debug_line</code> <code>.debug_str</code> 和 <code>.debug_ranges</code> 代表的是 ELF 文件中 Section 的名称。</p>
 <h4 id="elf-文件-section">ELF 文件 Section</h4>
@@ -2164,7 +2164,7 @@ native_catcher.cpp                            <span class="m">55</span>         
 <li>Google breakpad</li>
 </ul>
 <h2 id="breakpad">Breakpad</h2>
-<p><img src="http://image.youcute.cn/FoRh9rRxh71SFSVm1suyQ27N7ZYm" alt="breakpad" /></p>
+<p><img src="https://image.youcute.cn/FoRh9rRxh71SFSVm1suyQ27N7ZYm" alt="breakpad" /></p>
 <p>Breakpad 的几大部分:</p>
 <ul>
 <li><strong>client</strong> 是开发者应该引用的一个库。通过它可以捕获当前线程的状态、当前加载的可执行文件和共享库的标识去生成 <em>minidump</em> 文件。开发者可以配置 client，使其在发生崩溃或显式请求时生成 <em>minidump</em> 文件</li>

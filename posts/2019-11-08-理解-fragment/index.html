@@ -1579,7 +1579,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>方法调用栈:</p>
-<p><img src="http://image.youcute.cn/image/blog/fragment_commit_flow.png" alt="Fragment Commit Flow" /></p>
+<p><img src="https://image.youcute.cn/image/blog/fragment_commit_flow.png" alt="Fragment Commit Flow" /></p>
 <p>通过看调用栈中绿色的分布也能大致看出, 整个过程分了两个步骤.</p>
 <blockquote>
 <p>对 Fragment 的操作需要先在 Activity 获取 FragmentManager, 那 FragmentManager 是从哪里拿到的呢?</p>
@@ -1737,11 +1737,11 @@
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="一图胜千言">一图胜千言</h4>
-<p><img src="http://image.youcute.cn/image/blog/get_fragment_manager.png" alt="概括图" /></p>
+<p><img src="https://image.youcute.cn/image/blog/get_fragment_manager.png" alt="概括图" /></p>
 <p>至此, FragmentManager 的创建过程梳理结束, FragmentActivity 在创建时会创建一个 HostCallbacks 和 FragmentController, HostCallbacks 会在创建时创建 FragmentManager. FragmentController 会持有 HostCallbacks 对象的引用, 调用 FragmentController 的方法内部都将调用 HostCallbacks 对应的方法.</p>
 <hr />
 <p>放大上面大图左侧的部分, 可以看<code>add</code> 和 <code>commit</code> 两个操作的调用栈:</p>
-<p><img src="http://image.youcute.cn/image/blog/fragment_add_flow.png" alt="add && commit" /></p>
+<p><img src="https://image.youcute.cn/image/blog/fragment_add_flow.png" alt="add && commit" /></p>
 <h3 id="add-过程">add 过程</h3>
 <p>整体调用栈:</p>
 <pre><code>FragmentManager: beginTransaction
@@ -1940,7 +1940,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="一图胜千言-1">一图胜千言</h4>
-<p><img src="http://image.youcute.cn/image/blog/add_fragment_ops_2.png" alt="BackStackRecord ops" /></p>
+<p><img src="https://image.youcute.cn/image/blog/add_fragment_ops_2.png" alt="BackStackRecord ops" /></p>
 <p>至此, <code>add</code> 调用过程结束, 会在 BackStackRecord 的 <code>mOps</code> 数组中添加一条 <code>Op</code> 记录, <code>Op</code> 记录着这次操作的命令(<code>mCmd</code>)和操作的 Fragment(<code>mFragnment</code>).</p>
 <h3 id="commit-过程">commit 过程</h3>
 <p>整体调用栈:</p>
@@ -2102,7 +2102,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><p><code>commit</code> 调用之后, mExecCommit 这个 Runnable 就作为一个 Message 的 callback 插入到主线程 MessageQueue 中, 之后 mExecCommit 会从消息池中取出, 然后执行:</p>
-<p><img src="http://image.youcute.cn/image/blog/backstack_record_commit.png" alt="mExecCommit 被执行" /></p>
+<p><img src="https://image.youcute.cn/image/blog/backstack_record_commit.png" alt="mExecCommit 被执行" /></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1

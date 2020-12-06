@@ -1945,7 +1945,7 @@ getViewModelStore:262, ComponentActivity (androidx.activity)
 run:20, ViewModelActivity$onCreate$1 
 runOnUiThread:6282, Activity (android.app)
 </pre>
-<p><img src="http://image.youcute.cn/blog/get_viewModel.png" alt="ViewModelProvider 与 ViewModel" /></p>
+<p><img src="https://image.youcute.cn/blog/get_viewModel.png" alt="ViewModelProvider 与 ViewModel" /></p>
 <hr />
 <p>所以 ViewModelStore 的创建时机在基于 FragmentActivity 的 Activity 和 基于 ComponentActivity 的 Activity 上有所区别。在 FragmentActivity 上是在 onCreate 中创建；在 ComponentActivity 上是在利用 ViewModelProvider 获取 ViewModel 时再创建。</p>
 <p>总的来说 ViewModelStore 就是 ComponentActivity 里的一个成员字段，且只会创建一次。</p>
@@ -2082,10 +2082,10 @@ Found usages  (9 usages found)
 </code></pre></td></tr></table>
 </div>
 </div><p>那么这个 <code>getNonConfigInstance</code> 参数是在哪里赋值为 <code>true</code> 的呢?</p>
-<p><img src="http://image.youcute.cn/Fgh9Y0_C1a-W8DGvwpK731ifvnIq" alt="getNonConfigInstance写入" /></p>
+<p><img src="https://image.youcute.cn/Fgh9Y0_C1a-W8DGvwpK731ifvnIq" alt="getNonConfigInstance写入" /></p>
 <p>通过定位发现：在 <em>ActivityThread.H</em> 收到 <em>RELAUNCH_ACTIVITY</em> 消息时，会走到 <em>performDestroyActivity</em> 方法，并且 在 RELAUNCH_ACTIVITY 消息的消费链上 <em>handleRelaunchActivityInner</em> 方法会把 <code>getNonConfingInstance</code> 赋值为 <code>true</code>。</p>
 <p>在 Activity <em>destroy</em> 执行完之后，立马会执行 <em>handleLaunchActivity</em> 方法去重建 Activity。</p>
-<p><img src="http://image.youcute.cn/FsQgETVwNvuq93rgHuoPxW2OdZk4" alt="getNonConfigInstance读取" /></p>
+<p><img src="https://image.youcute.cn/FsQgETVwNvuq93rgHuoPxW2OdZk4" alt="getNonConfigInstance读取" /></p>
 <p>在创建了新的 Activity 对象之后，就会把 <code>lastNonConfigurationInstances</code> 写入到 Activity 的字段中。因为这里的 <code>lastNonConfigurationInstances</code> 一直是存在 <em>ActivityClientRecord</em> (代码中的<code>r</code>)中的，而 <em>ActivityClientRecord</em> 是维护在 ActivityThread 中的，所以 Activity 对象的销毁和重建不会影响 ActivityThread 中的 ActivityClientRecord 对象，也正是因为这样 ActivityClientRecord 才能持有独立与 Activity 生命周期之外的数据。</p>
 <p>通过上面知道 <code>lastNonConfigurationInstances</code> 在 ComponentActivity 中存储的实际是 Activity 的 ViewModelStore 对象。所以 ViewModelStore 靠着 ActivityClientRecord 就实现了与 Activity 生命周期的无关性。</p>
 

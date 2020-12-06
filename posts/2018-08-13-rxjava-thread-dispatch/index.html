@@ -1659,7 +1659,7 @@
 </div>
 </div><p>就是保存下 <code>source</code> 和被观察者的 <code>scheduler</code>。</p>
 <p>到这里，最初的 ObservableOnSubscribe 已经被包装了3层：</p>
-<p><img src="http://image.youcute.cn/18-8-13/53670834.jpg" alt="ObservableSubscribeOn" /></p>
+<p><img src="https://image.youcute.cn/18-8-13/53670834.jpg" alt="ObservableSubscribeOn" /></p>
 <p>然后到执行订阅的地方，事件的发出都是在订阅之后，所以来到 Observable.subscribe 方法，上篇也分析了最终会走到当前被观察者的 <code>subscribeActual</code> 方法，现在的被观察者被包装为了 <code>ObservableSubscribeOn</code>，<br />
 所以直接到 ObservableSubscribeOn 的 subscribeActual 中：</p>
 <div class="highlight"><div class="chroma">
@@ -1685,7 +1685,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>这里先将我们自己的观察者 <code>Observer</code> 包装为了 <code>SubscribeOnObserver</code> 对象。</p>
-<p><img src="http://image.youcute.cn/005EDc3Bgy1fue7v24657j30b008gjrk.jpg" alt="SubscribeOnObserver" /></p>
+<p><img src="https://image.youcute.cn/005EDc3Bgy1fue7v24657j30b008gjrk.jpg" alt="SubscribeOnObserver" /></p>
 <p>然后重要的是创建了一个 <code>SubscribeTask</code>，接着调用 <code>scheduler.scheduDirect</code> 执行。</p>
 <p>先看下 <code>SubscribeTask</code> 类：</p>
 <div class="highlight"><div class="chroma">
@@ -1978,7 +1978,7 @@
 <span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="http://image.youcute.cn/18-8-13/22007295.jpg" alt="ObservableObserveOn" /></p>
+</div><p><img src="https://image.youcute.cn/18-8-13/22007295.jpg" alt="ObservableObserveOn" /></p>
 <p><code>ObservableObserveOn</code> 类：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -2033,7 +2033,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>加上上面的 subscribeOn 操作，观察者已经被包装了2层：</p>
-<p><img src="http://image.youcute.cn/005EDc3Bgy1fue97nxjddj30fq0bc0t9.jpg" alt="ObserveOnObserver" /></p>
+<p><img src="https://image.youcute.cn/005EDc3Bgy1fue97nxjddj30fq0bc0t9.jpg" alt="ObserveOnObserver" /></p>
 <p><code>source.subscribe()</code> 中将会把事件通过 <code>onNext</code> <code>onError</code> <code>onComplete</code> 方法发送出去，所以看下 <code>ObserveOnObserver</code> 的 <code>onNext</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

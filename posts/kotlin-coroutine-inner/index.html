@@ -1555,7 +1555,7 @@
     </div>
     <article class="single__contents" data-dir="ltr" data-ani="true">
       
-      <p><img src="http://image.youcute.cn/FlTdIzchzNTr9PPR7aSFS7kI46xV" alt="大纲" /></p>
+      <p><img src="https://image.youcute.cn/FlTdIzchzNTr9PPR7aSFS7kI46xV" alt="大纲" /></p>
 <h1 id="背景-使用">背景: 使用</h1>
 <p>Kotlin Coroutine 的使用方法，参照<a href="https://kotlinlang.org/docs/reference/coroutines/coroutines-guide.html">官方文档</a>食用即可。这里只简单给出一些概念。</p>
 <h2 id="suspend">suspend</h2>
@@ -1639,7 +1639,7 @@
 </thead>
 <tbody>
 <tr>
-<td align="left"><img src="http://image.youcute.cn/FuYgwCHQXViqtkj1ZjZywAvMu70g" alt="" /></td>
+<td align="left"><img src="https://image.youcute.cn/FuYgwCHQXViqtkj1ZjZywAvMu70g" alt="" /></td>
 <td align="left">1. 调用 <code>runBlocking</code>，<em>block 1</em> 入队，然后开始循环从队列中消费任务 <br>2. <em>block 1</em> 出队执行，输出 <code>1</code><br>3. <code>launch</code> 被调用，<em>block 2</em> 入队<br>4. 输出 <code>3</code><br>5. <em>block 1</em> 执行完成，执行继续从队列中取下一个任务<br>6. <em>block 2</em> 出队执行，输出 <code>3</code>，调用 <em>suspendFunc</em> 方法<br>8. <em>suspendFunc</em> 方法在编译之后，会在调用时先持有它自己的代码执行完成之后将要继续执行的代码块(<em>block 3</em>)的引用(在它自己的代码执行完成之后，就会恢复执行 <em>block 3</em>)<br>9. 执行 <em>suspendFunc</em> ，输出 <code>4</code><br>10. 调用 <em>delay</em> ，<em>block 5</em> 会被封装为一个 delay task 并入队<br>11. <em>block 2</em> 和 <em>block 4</em> 执行完毕，执行继续从队列中取下一个任务<br>12. 这时队列中存在的任务是 <em>block 5</em> ，循环会一直循环等待，直到到满足了 <em>block 5</em> delay 的时间时就将 <em>block 5</em> 出队<br>13. <em>block 5</em> 出队执行，输出 <code>5</code><br>14. <em>block 5</em> 执行完成就代表 <em>suspendFunc</em> 执行完毕了，就会恢复执行 <em>suspendFunc</em> 在进入时持有的 <em>block 3</em><br>15. <em>block 3</em> 执行，输出 <code>6</code><br>16. <em>runBlocking</em> 中的所有代码执行完毕，程序执行完毕</td>
 </tr>
 </tbody>
@@ -1653,7 +1653,7 @@
 <li>如何在已编译的 Java 字节码中实现这个逻辑概念？</li>
 <li>如何跟踪代码块的执行状态？或者说如何决定一个代码块执行完成之后该执行的哪一个代码块？</li>
 </ol>
-<p><img src="http://image.youcute.cn/FtN_6GhoaFek8QMzuoLIEJgAbz3a" alt="生成的类" /></p>
+<p><img src="https://image.youcute.cn/FtN_6GhoaFek8QMzuoLIEJgAbz3a" alt="生成的类" /></p>
 <p>我尝试通过 JD-GUI 去反编译 <em>RunBlockingDemo</em> 类，但是 <em>suspendFuncA</em> 方法 JD-GUI 反编译失败了，没有显示出来。于是我先通过 <code>javap RunBlockingDemo</code> 查看了 <em>RunBlockingDemo</em> 类会有哪些方法，发现 <em>suspendFuncA</em> 被编译为了下面的样子：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1851,7 +1851,7 @@
 <span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="http://image.youcute.cn/FmW5j3UdDZLvF2Zwk6An6gI01dUA" alt="继承关系" /></p>
+</div><p><img src="https://image.youcute.cn/FmW5j3UdDZLvF2Zwk6An6gI01dUA" alt="继承关系" /></p>
 
     </article>
     

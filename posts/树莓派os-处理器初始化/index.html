@@ -1562,13 +1562,13 @@
     </div>
     <article class="single__contents" data-dir="ltr" data-ani="true">
       
-      <p><img src="http://image.youcute.cn/FvP8y2SiUGxGMbaJD8YKbDMHtswP" alt="本文概览" /></p>
+      <p><img src="https://image.youcute.cn/FvP8y2SiUGxGMbaJD8YKbDMHtswP" alt="本文概览" /></p>
 <h1 id="exception-level">Exception Level</h1>
 <blockquote>
 <p><a href="https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/exception-levels">https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/exception-levels</a></p>
 </blockquote>
 <p>在 ARMv8 处理器中，处理器的运行总是发生在 4 个异常级别之中的一个。异常级别决定了权限级别(<em>privilege level</em>)，每个异常级别(<em>ELn</em>)都有对应的权限级别(<em>PLn</em>)。<em>n</em> 的值越大，权限也就越大。</p>
-<p><img src="http://image.youcute.cn/Fvxlyxs-cYCdCItyHtgPAZU4G5uD" alt="ARM Exception Levels" /></p>
+<p><img src="https://image.youcute.cn/Fvxlyxs-cYCdCItyHtgPAZU4G5uD" alt="ARM Exception Levels" /></p>
 <p>通常会按照如下规则来配置运行软件的异常级别:</p>
 <ul>
 <li><em>EL0</em>: Normal user applications</li>
@@ -1707,7 +1707,7 @@
 <li>当处理器从较高的异常级别移至较低的异常级别时，执行状态(<a href="https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/execution-state">Execution State</a>)可以保持不变，也可以从 <em>AArch64</em> 切换到 <em>AArch32</em> 。</li>
 <li>相反，当从较低的异常级别移到较高的异常级别时，执行状态可以保持不变或从 <em>AArch32</em> 切换到 <em>AArch64</em> 。</li>
 </ul>
-<p><img src="http://image.youcute.cn/FjYOamWo2mTfnHtmRMjYLC9W0JhA" alt="异常流程" /></p>
+<p><img src="https://image.youcute.cn/FjYOamWo2mTfnHtmRMjYLC9W0JhA" alt="异常流程" /></p>
 <p>当应用程序发生异常时，处理器会到一个异常表去查找分派代码然后执行分派代码(异常表包含每种异常类型对应的分派代码)，分派代码选择并调用适当的函数来处理异常。分派代码执行完成后，返回到高级别的处理程序，该处理程序执行 <a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289871515.htm"><code>ERET</code></a> 指令返回到应用程序。</p>
 <h3 id="相关寄存器">相关寄存器</h3>
 <p>当处理异常时，会涉及几个寄存器的操作:</p>
@@ -1726,8 +1726,8 @@
 </thead>
 <tbody>
 <tr>
-<td align="left"><img src="http://image.youcute.cn/FjNZH3Ga7ORBhmBlzshIkjeEkPTG" alt="流程图" /></td>
-<td align="left"><img src="http://image.youcute.cn/FqCB2e-oH89_gwKDn6GGVIFcoeg0" alt="示意图" /></td>
+<td align="left"><img src="https://image.youcute.cn/FjNZH3Ga7ORBhmBlzshIkjeEkPTG" alt="流程图" /></td>
+<td align="left"><img src="https://image.youcute.cn/FqCB2e-oH89_gwKDn6GGVIFcoeg0" alt="示意图" /></td>
 </tr>
 </tbody>
 </table>
@@ -1824,7 +1824,7 @@
 <span class="cp">#define SCTLR_VALUE_MMU_DISABLED	(SCTLR_RESERVED | SCTLR_EE_LITTLE_ENDIAN | SCTLR_I_CACHE_DISABLED | SCTLR_D_CACHE_DISABLED |    SCTLR_MMU_DISABLED)
 </span></code></pre></td></tr></table>
 </div>
-</div><p><img src="http://image.youcute.cn/FtRRQKuDmdRRzsMCqPt4SaIHYWWX" alt="上述代码执行之后的布局" /></p>
+</div><p><img src="https://image.youcute.cn/FtRRQKuDmdRRzsMCqPt4SaIHYWWX" alt="上述代码执行之后的布局" /></p>
 <h3 id="配置-hcr_el2">配置 HCR_EL2</h3>
 <blockquote>
 <p>Hypervisor Configuration Register</p>
