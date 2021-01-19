@@ -92,30 +92,6 @@
         
       </item>
       
-      <item>
-        <title>Kotlin-Tips</title>
-        <link>https://blog.jiyang.site/posts/2018-06-04-kotlin-tips/</link>
-        <pubDate>Mon, 04 Jun 2018 15:06:32 +0000</pubDate>
-        
-        <atom:modified>Mon, 04 Jun 2018 15:06:32 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2018-06-04-kotlin-tips/</guid>
-        <description>&lt;p&gt;Kotlin 是基于 JVM 的语言。它提供了许多语法糖来替代 Java 中的一些操作。如果 Java 做不到的功能，Kotlin 也做不到。Kotlin 源代码执行时都会被编译为Java字节码，IDE中可以使用 &lt;code&gt;Tool -&amp;gt; Kotlin-&amp;gt;Show Kotlin Bytecode&lt;/code&gt;查看自己的代码将会被编译之后的样子，然后使用IDE的 &lt;code&gt;Decompile&lt;/code&gt; 反编译成java源码查看，就知道Kotlin代码实际对应的Java代码了。&lt;/p&gt;</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Kotlin</category>
-            
-          
-        
-        
-      </item>
-      
 
     
   </channel>

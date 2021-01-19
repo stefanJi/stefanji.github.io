@@ -2127,23 +2127,24 @@
 </nav>
     
   
-    <div id="gitalk-container"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <div id="disqus_thread"></div>
 <script>
-  var gitalk = new Gitalk({
-    id: '2018-06-05 10:03:13 \u002b0000 UTC',
-    title: 'PWA从入门到实战',
-    clientID: '93599b11da5a176286c4',
-    clientSecret: 'd50fe6b681662b8a96bd9c00efe718d17da286ad',
-    repo: 'stefanji.github.io',
-    owner: 'stefanji',
-    admin: ['stefanji'],
-    body: decodeURI(location.href)
-  });
-  gitalk.render('gitalk-container');
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function () {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + 'yangji' + '.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  }) ();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
   
 
     <div class="modal micromodal-slide" id="modal" aria-hidden="true">
@@ -3269,7 +3270,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2020, All Rights Reserved
+                    ©2021, All Rights Reserved
                 
             </p>
         

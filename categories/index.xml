@@ -165,24 +165,6 @@
       </item>
       
       <item>
-        <title>树莓派</title>
-        <link>https://blog.jiyang.site/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
-        <pubDate>Wed, 29 Jan 2020 16:40:02 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</guid>
-        <description></description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-        
-      </item>
-      
-      <item>
         <title>Java</title>
         <link>https://blog.jiyang.site/categories/java/</link>
         <pubDate>Mon, 20 Jan 2020 17:59:51 +0000</pubDate>
@@ -363,12 +345,12 @@
       </item>
       
       <item>
-        <title>Web</title>
-        <link>https://blog.jiyang.site/categories/web/</link>
-        <pubDate>Tue, 05 Jun 2018 10:03:13 +0000</pubDate>
+        <title>树莓派</title>
+        <link>https://blog.jiyang.site/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
+        <pubDate>Sun, 22 Jul 2018 21:31:44 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/web/</guid>
+        <guid>https://blog.jiyang.site/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -441,42 +423,6 @@
         
         
         <guid>https://blog.jiyang.site/categories/ios/</guid>
-        <description></description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-        
-      </item>
-      
-      <item>
-        <title>JavaScript</title>
-        <link>https://blog.jiyang.site/categories/javascript/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/categories/javascript/</guid>
-        <description></description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-        
-      </item>
-      
-      <item>
-        <title>博客</title>
-        <link>https://blog.jiyang.site/categories/%E5%8D%9A%E5%AE%A2/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/categories/%E5%8D%9A%E5%AE%A2/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>

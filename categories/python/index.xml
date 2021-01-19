@@ -94,30 +94,6 @@
       </item>
       
       <item>
-        <title>Python2字符串编码</title>
-        <link>https://blog.jiyang.site/posts/2017-08-31-python2%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2017-08-31-python2%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81/</guid>
-        <description>先看这里 再看这里 Python2默认的编码是ACSII编码。 编码: 1 encode(obj, encoding=None, errors=None) 解码: 1 decode(self, encoding=None, errors=None) &amp;gt;&amp;gt;&amp;gt; a = &amp;quot;中&amp;quot; &amp;gt;&amp;gt;&amp;gt; a &#39;\xd6\xd0&#39; &amp;gt;&amp;gt;&amp;gt; len(a) 2 &amp;gt;&amp;gt;&amp;gt; 变量a引</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Python</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
         <title>Python笔记-基础</title>
         <link>https://blog.jiyang.site/posts/2017-03-24-python%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -125,30 +101,6 @@
         
         <guid>https://blog.jiyang.site/posts/2017-03-24-python%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80/</guid>
         <description>Python数据类型 Number 数字 int 有符号整数 long 长整形，也可以代表十六进制或八进制 float 浮点型 complex 复数 String 字符串 list 列表 按索引存取 1 list = [&amp;#39;item1&amp;#39;, 2, &amp;#39;3&amp;#39;, 4, 5] 元组 只读列表</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Python</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>Redis实现原子计数</title>
-        <link>https://blog.jiyang.site/posts/2017-10-08-redis%E5%AE%9E%E7%8E%B0%E5%8E%9F%E5%AD%90%E8%AE%A1%E6%95%B0/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2017-10-08-redis%E5%AE%9E%E7%8E%B0%E5%8E%9F%E5%AD%90%E8%AE%A1%E6%95%B0/</guid>
-        <description>Redis的原子性自增操作实现分布式下的计数 后端实现一个批处理的任务计数问题：由于批处理任务会被拆分为小的单元进入分布式的消息队列，然后通过</description>
         
         <dc:creator>Yang</dc:creator>
         

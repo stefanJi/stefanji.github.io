@@ -1817,11 +1817,11 @@ mv PowerlineSymbols.otf ~/.fonts/
 <nav class="pagination-single">
   
     
-      <a href="https://blog.jiyang.site/posts/2017-11-27-videojs-hls-player/" class="pagination-single__left">
+      <a href="https://blog.jiyang.site/posts/2017-08-09-volley%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="pagination-single__left">
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
         </div>
-        <div class="pagination-single__left-title">Videojs-hls-player</div>      
+        <div class="pagination-single__left-title">Volley Source Code</div>      
       </a>
     
     <div class="grow"></div>
@@ -1837,23 +1837,24 @@ mv PowerlineSymbols.otf ~/.fonts/
 </nav>
     
   
-    <div id="gitalk-container"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <div id="disqus_thread"></div>
 <script>
-  var gitalk = new Gitalk({
-    id: '0001-01-01 00:00:00 \u002b0000 UTC',
-    title: 'Ubuntu-Terminal-Style',
-    clientID: '93599b11da5a176286c4',
-    clientSecret: 'd50fe6b681662b8a96bd9c00efe718d17da286ad',
-    repo: 'stefanji.github.io',
-    owner: 'stefanji',
-    admin: ['stefanji'],
-    body: decodeURI(location.href)
-  });
-  gitalk.render('gitalk-container');
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function () {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + 'yangji' + '.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  }) ();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
   
 
     <div class="modal micromodal-slide" id="modal" aria-hidden="true">
@@ -2961,7 +2962,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2020, All Rights Reserved
+                    ©2021, All Rights Reserved
                 
             </p>
         

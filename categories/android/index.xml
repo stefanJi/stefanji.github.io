@@ -1003,54 +1003,6 @@
       </item>
       
       <item>
-        <title>Android Studio集成百度地图SDK</title>
-        <link>https://blog.jiyang.site/posts/2016-11-20-android-studio%E9%9B%86%E6%88%90%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BEsdk/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2016-11-20-android-studio%E9%9B%86%E6%88%90%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BEsdk/</guid>
-        <description>1、建议先阅读百度地图官方的继承指南，针对了Eclipse和Android Studio。 百度官方集成指南 2、下载百度地图SDK Android SDK v4.1.1 下载有两</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>Android基础简单回顾</title>
-        <link>https://blog.jiyang.site/posts/2016-12-06-android%E5%9F%BA%E7%A1%80%E7%AE%80%E5%8D%95%E5%9B%9E%E9%A1%BE/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2016-12-06-android%E5%9F%BA%E7%A1%80%E7%AE%80%E5%8D%95%E5%9B%9E%E9%A1%BE/</guid>
-        <description>Activity 1. 启动Activity： 系统会先调用onCreate-&amp;gt;onStart-&amp;gt;onResume方法，Activity进入运行状态 2.</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
         <title>Android性能优化</title>
         <link>https://blog.jiyang.site/posts/2017-08-18-android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1099,54 +1051,6 @@
       </item>
       
       <item>
-        <title>Android面试题</title>
-        <link>https://blog.jiyang.site/posts/2017-09-24-android%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2017-09-24-android%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
-        <description>1. ==和equals的区别 ==比较的是在对象在栈里的地址是否相同，是绝对比较 equals是比较对象的属性，通过实现继承自Object的equ</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>Android高效加载大图</title>
-        <link>https://blog.jiyang.site/posts/2017-06-25-android%E9%AB%98%E6%95%88%E5%8A%A0%E8%BD%BD%E5%A4%A7%E5%9B%BE/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2017-06-25-android%E9%AB%98%E6%95%88%E5%8A%A0%E8%BD%BD%E5%A4%A7%E5%9B%BE/</guid>
-        <description>通过BitmapFactory的decode方法设置特定的options缩小图片到指定尺寸 1：通过加载设置了只编码图片边界options的图</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
         <title>AsyncTask Source Code</title>
         <link>https://blog.jiyang.site/posts/2017-08-06-asynctask%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1154,30 +1058,6 @@
         
         <guid>https://blog.jiyang.site/posts/2017-08-06-asynctask%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/</guid>
         <description>AsyncTask类的初始化过程 初始化阶段： 初始化线程池THREAD_POOL_EXECUTOR。用于执行任务。 构造一个负责调度线程的线程池</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>FloatActionButton菜单</title>
-        <link>https://blog.jiyang.site/posts/2017-07-01-floatactionbutton%E8%8F%9C%E5%8D%95/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2017-07-01-floatactionbutton%E8%8F%9C%E5%8D%95/</guid>
-        <description>浮动按钮的弹出菜单动画 将几个按钮重叠摆放，使用ValueAnimator更新按钮的坐标实现。 布局 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22</description>
         
         <dc:creator>Yang</dc:creator>
         
@@ -1219,30 +1099,6 @@
       </item>
       
       <item>
-        <title>Mac下获取Android-SHA1·针对才搭建了Mac环境</title>
-        <link>https://blog.jiyang.site/posts/2017-02-22-mac%E4%B8%8B%E8%8E%B7%E5%8F%96android-sha1%E9%92%88%E5%AF%B9%E6%89%8D%E6%90%AD%E5%BB%BA%E4%BA%86mac%E7%8E%AF%E5%A2%83/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2017-02-22-mac%E4%B8%8B%E8%8E%B7%E5%8F%96android-sha1%E9%92%88%E5%AF%B9%E6%89%8D%E6%90%AD%E5%BB%BA%E4%BA%86mac%E7%8E%AF%E5%A2%83/</guid>
-        <description>在mac下刚搭建起Android开发环境，发现之前的有些SDK AppKey都需要更新。于是按windows下一样的获取Sha1，结果是提示.</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
         <title>OkHttp拦截器使用</title>
         <link>https://blog.jiyang.site/posts/2017-08-23-okhttp%E6%8B%A6%E6%88%AA%E5%99%A8%E4%BD%BF%E7%94%A8/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1267,30 +1123,6 @@
       </item>
       
       <item>
-        <title>OpenGL-ES-Android坐标和画点</title>
-        <link>https://blog.jiyang.site/posts/2017-06-30-opengl-es-android%E5%9D%90%E6%A0%87%E5%92%8C%E7%94%BB%E7%82%B9/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2017-06-30-opengl-es-android%E5%9D%90%E6%A0%87%E5%92%8C%E7%94%BB%E7%82%B9/</guid>
-        <description>在上一篇的基础上，使用OpenGL ES绘制三个点。 (0,0,0)是位于屏幕中央的点。屏幕的坐标如下，都是 -1.0~1.0 的范围。 三个点的坐标: -0.0f, -0.0f, 0.0f | -0.5f, 0.0f,</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
         <title>OpenGL-ES-Line</title>
         <link>https://blog.jiyang.site/posts/2017-07-01-opengl-es-line/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1298,30 +1130,6 @@
         
         <guid>https://blog.jiyang.site/posts/2017-07-01-opengl-es-line/</guid>
         <description>绘制了x,y坐标轴 绘制了4条直线 一些函数说明: gl.glLoadIdentity(): 将当前画布矩阵的状态回归初始状态。 因为Translate``Rotate等操作都是基于当前画</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>RxJava结合Retrofit和Volley简单比较</title>
-        <link>https://blog.jiyang.site/posts/2016-11-25-rxjava%E7%BB%93%E5%90%88retrofit%E5%92%8Cvolley%E7%AE%80%E5%8D%95%E6%AF%94%E8%BE%83/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2016-11-25-rxjava%E7%BB%93%E5%90%88retrofit%E5%92%8Cvolley%E7%AE%80%E5%8D%95%E6%AF%94%E8%BE%83/</guid>
-        <description>通过使用Retrofit+RxJava和Volley获取知乎日报消息，比较两者的使用区别。 文中 RR:代指Retrofit+Rxjava 主要两</description>
         
         <dc:creator>Yang</dc:creator>
         
@@ -1422,132 +1230,6 @@
         
         <guid>https://blog.jiyang.site/posts/2016-12-30-%E5%88%86%E6%9E%90%E5%AE%9E%E7%8E%B0android%E8%87%AA%E5%AE%9A%E4%B9%89view%E4%B9%8B%E9%80%92%E5%A2%9E%E7%9B%B4%E6%96%B9%E5%9B%BE/</guid>
         <description>继上次分析实现Android自定义View之扇形图之后，自己又画了下面的这个递增直方图，本来是想做个静态的直方图就完了，结果想想静态的没啥趣</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>去除DialogFragment的背景阴影-背景色-标题栏</title>
-        <link>https://blog.jiyang.site/posts/2017-08-12-%E5%8E%BB%E9%99%A4dialogfragment%E7%9A%84%E8%83%8C%E6%99%AF%E9%98%B4%E5%BD%B1-%E8%83%8C%E6%99%AF%E8%89%B2-%E6%A0%87%E9%A2%98%E6%A0%8F/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2017-08-12-%E5%8E%BB%E9%99%A4dialogfragment%E7%9A%84%E8%83%8C%E6%99%AF%E9%98%B4%E5%BD%B1-%E8%83%8C%E6%99%AF%E8%89%B2-%E6%A0%87%E9%A2%98%E6%A0%8F/</guid>
-        <description>去除DialogFragment的背景阴影，背景色，标题栏 style中: 1 2 3 4 5 6 7 8 9 10 11 12 13 &amp;lt;resources xmlns:android=&amp;#34;http://schemas.android.com/apk/res/android&amp;#34;&amp;gt; &amp;lt;style name=&amp;#34;MyDialog&amp;#34; parent=&amp;#34;@android:style/Theme.Dialog&amp;#34;&amp;gt; &amp;lt;item name=&amp;#34;android:windowBackground&amp;#34;&amp;gt;@android:color/transparent&amp;lt;/item&amp;gt; &amp;lt;item name=&amp;#34;android:windowContentOverlay&amp;#34;&amp;gt;@null&amp;lt;/item&amp;gt; &amp;lt;item name=&amp;#34;android:windowTitleStyle&amp;#34;&amp;gt;@null&amp;lt;/item&amp;gt; &amp;lt;item name=&amp;#34;android:colorBackgroundCacheHint&amp;#34;&amp;gt;@null&amp;lt;/item&amp;gt; &amp;lt;item name=&amp;#34;android:windowAnimationStyle&amp;#34;&amp;gt;@android:style/Animation.Dialog&amp;lt;/item&amp;gt; &amp;lt;item name=&amp;#34;android:windowSoftInputMode&amp;#34;&amp;gt;stateUnspecified|adjustPan&amp;lt;/item&amp;gt; &amp;lt;item name=&amp;#34;android:gravity&amp;#34;&amp;gt;center&amp;lt;/item&amp;gt; &amp;lt;/style&amp;gt; &amp;lt;/resources&amp;gt;</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>可折叠的ToolBar&#43;抽屉菜单NavigationView&#43;浮动按钮FloatButton</title>
-        <link>https://blog.jiyang.site/posts/2016-12-11-%E5%8F%AF%E6%8A%98%E5%8F%A0%E7%9A%84toolbar&#43;%E6%8A%BD%E5%B1%89%E8%8F%9C%E5%8D%95navigationview&#43;%E6%B5%AE%E5%8A%A8%E6%8C%89%E9%92%AEfloatbutton/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2016-12-11-%E5%8F%AF%E6%8A%98%E5%8F%A0%E7%9A%84toolbar&#43;%E6%8A%BD%E5%B1%89%E8%8F%9C%E5%8D%95navigationview&#43;%E6%B5%AE%E5%8A%A8%E6%8C%89%E9%92%AEfloatbutton/</guid>
-        <description>使用Material Design风格的ToolBar和抽屉导航 先看个简单的运行效果 主要记录下布局的写法 1 用到的Google Design依赖和</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>图片加载AsyncTask的并发问题</title>
-        <link>https://blog.jiyang.site/posts/2017-06-28-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BDasynctask%E7%9A%84%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2017-06-28-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BDasynctask%E7%9A%84%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/</guid>
-        <description>在列表控件中使用AsycnTask加载图片时，会带来并发问题。 如果每个子视图都触发一个AsyncTask，因为AsyncTask内部是一个线</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>自定义日历控件(继承系统控件实现)</title>
-        <link>https://blog.jiyang.site/posts/2017-05-28-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%97%A5%E5%8E%86%E6%8E%A7%E4%BB%B6%E7%BB%A7%E6%89%BF%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6%E5%AE%9E%E7%8E%B0/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2017-05-28-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%97%A5%E5%8E%86%E6%8E%A7%E4%BB%B6%E7%BB%A7%E6%89%BF%E7%B3%BB%E7%BB%9F%E6%8E%A7%E4%BB%B6%E5%AE%9E%E7%8E%B0/</guid>
-        <description>Android自定义日历控件(继承系统控件实现) 主要步骤 编写布局 继承LinearLayout设置子控件 设置数据 继承TextView实现有圆圈</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-          
-            
-              <category>View</category>
-            
-          
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>走着官方的教程入门Material-Design</title>
-        <link>https://blog.jiyang.site/posts/2016-12-08-%E8%B5%B0%E7%9D%80%E5%AE%98%E6%96%B9%E7%9A%84%E6%95%99%E7%A8%8B%E5%85%A5%E9%97%A8material-design/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2016-12-08-%E8%B5%B0%E7%9D%80%E5%AE%98%E6%96%B9%E7%9A%84%E6%95%99%E7%A8%8B%E5%85%A5%E9%97%A8material-design/</guid>
-        <description>又到期末了，学习下Google的材料设计。写下此文记录自己的同时，分享给需要的同学，若发现文中有什么问题和不对，欢迎指出 使用 Material Design 创建新应用 首</description>
         
         <dc:creator>Yang</dc:creator>
         
