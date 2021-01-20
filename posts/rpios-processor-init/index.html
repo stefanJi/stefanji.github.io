@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Kotlin 协程的实现原理简析 – Yang Blog</title>
+    <title>树莓派OS#0x02 处理器初始化 – Yang Blog</title>
     
 
 
@@ -556,7 +556,7 @@
     
     var baseurl = JSON.parse("\"https://blog.jiyang.site/\"");
     
-    var permalink = JSON.parse("\"https://blog.jiyang.site/posts/kotlin-coroutine-inner/\"");
+    var permalink = JSON.parse("\"https://blog.jiyang.site/posts/rpios-processor-init/\"");
     
     var langprefix = JSON.parse("\"\"");
     var searchResults = null;
@@ -1221,21 +1221,23 @@
 
 
     
-<meta name="description" content="理解 Kotlin Coroutine 的实现原理" />
+<meta name="description" content="理解并配置 ARM 处理器的异常级别。" />
 
 
-<meta name="created" content="2020-05-10T23:14:27&#43;0800">
-<meta name="modified" content="2020-05-10T23:14:27&#43;0800">
-<meta property="article:published_time" content="2020-05-10T23:14:27&#43;0800">
+<meta name="keywords" content="RPI_OS">
+
+<meta name="created" content="2020-05-04T09:10:45&#43;0800">
+<meta name="modified" content="2020-05-04T09:10:45&#43;0800">
+<meta property="article:published_time" content="2020-05-04T09:10:45&#43;0800">
 
 <meta name="author" content="Yang">
 
 
 <meta property="og:site_name" content="Yang Blog">
-<meta property="og:title" content="Kotlin 协程的实现原理简析">
-<meta property="og:url" content="https://blog.jiyang.site/posts/kotlin-coroutine-inner/">
+<meta property="og:title" content="树莓派OS#0x02 处理器初始化">
+<meta property="og:url" content="https://blog.jiyang.site/posts/rpios-processor-init/">
 <meta property="og:type" content="article">
-<meta property="og:description" content="理解 Kotlin Coroutine 的实现原理">
+<meta property="og:description" content="理解并配置 ARM 处理器的异常级别。">
 
 <meta name="generator" content="Hugo 0.74.3" />
 <meta name="msapplication-TileColor" content="#fff">
@@ -1246,7 +1248,7 @@
 
 <meta name="apple-mobile-web-app-status-bar-style" content="#fff">
 
-<link rel="canonical" href="https://blog.jiyang.site/posts/kotlin-coroutine-inner/">
+<link rel="canonical" href="https://blog.jiyang.site/posts/rpios-processor-init/">
 
 <link rel="manifest" href="/manifest.json">
 
@@ -1260,11 +1262,12 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "Kotlin 协程的实现原理简析",
-    "datePublished": "2020-05-10T23:14:27+08:00",
-    "dateModified": "2020-05-10T23:14:27+08:00",
-    "url" : "https://blog.jiyang.site/posts/kotlin-coroutine-inner/",
-    "description": "理解 Kotlin Coroutine 的实现原理",
+    "headline": "树莓派OS#0x02 处理器初始化",
+    "datePublished": "2020-05-04T09:10:45+08:00",
+    "dateModified": "2020-05-04T09:10:45+08:00",
+    "url" : "https://blog.jiyang.site/posts/rpios-processor-init/",
+    "description": "理解并配置 ARM 处理器的异常级别。",
+    "keywords": ["RPI_OS"],
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://blog.jiyang.site/"
@@ -1523,7 +1526,7 @@
   
   <li  class="is-active" >
     
-      <span>Kotlin 协程的实现原理简析</span>
+      <span>树莓派OS#0x02 处理器初始化</span>
     
   </li>
   
@@ -1535,13 +1538,13 @@
   <div class="single ">
     <div class="single__nojs">This page looks best with JavaScript enabled</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
-    <h2 class="single__title" data-ani="true">Kotlin 协程的实现原理简析</h2>
+    <h2 class="single__title" data-ani="true">树莓派OS#0x02 处理器初始化</h2>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;May 10, 2020 </time>
+  <time class="single__info" title="Written At">📅&nbsp;May 4, 2020 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;7&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;6&nbsp;min read </span>
   
   <span class="single__info">
     
@@ -1550,40 +1553,187 @@
       
 <ul class="single__tags caption">
   
+  🏷️
+  
+
+  <li><a href="https://blog.jiyang.site/tags/rpi_os/" class="single__tag" title="RPI_OS">#RPI_OS</a></li>
 
 </ul>
     </div>
     <article class="single__contents" data-dir="ltr" data-ani="true">
       
-      <p><img src="https://image.youcute.cn/FlTdIzchzNTr9PPR7aSFS7kI46xV" alt="大纲" /></p>
-<h1 id="背景-使用">背景: 使用</h1>
-<p>Kotlin Coroutine 的使用方法，参照<a href="https://kotlinlang.org/docs/reference/coroutines/coroutines-guide.html">官方文档</a>食用即可。这里只简单给出一些概念。</p>
-<h2 id="suspend">suspend</h2>
-<p>​使用 suspend 表示函数支持挂起操作，目的在于告诉编译器，该方法可能产生阻塞(因为普通方法也能使用 suspend 标记，但是实际不会起作用)。suspend 方法会被编译为继承 SuspendLambda 的类</p>
-<h2 id="创建协程">创建协程</h2>
+      <p><img src="https://image.youcute.cn/FvP8y2SiUGxGMbaJD8YKbDMHtswP" alt="本文概览" /></p>
+<h1 id="exception-level">Exception Level</h1>
+<blockquote>
+<p><a href="https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/exception-levels">https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/exception-levels</a></p>
+</blockquote>
+<p>在 ARMv8 处理器中，处理器的运行总是发生在 4 个异常级别之中的一个。异常级别决定了权限级别(<em>privilege level</em>)，每个异常级别(<em>ELn</em>)都有对应的权限级别(<em>PLn</em>)。<em>n</em> 的值越大，权限也就越大。</p>
+<p><img src="https://image.youcute.cn/Fvxlyxs-cYCdCItyHtgPAZU4G5uD" alt="ARM Exception Levels" /></p>
+<p>通常会按照如下规则来配置运行软件的异常级别:</p>
+<ul>
+<li><em>EL0</em>: Normal user applications</li>
+<li><em>EL1</em>: Operating system kernel typically described as privileged</li>
+<li><em>EL2</em>: <a href="https://zh.wikipedia.org/wiki/Hypervisor">Hypervisor</a></li>
+<li><em>EL3</em>: Low-level firmware, including the Secure Monitor</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">Exception Level</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">EL0</td>
+<td align="left">EL0 的权限是最小的，运行在 EL0 的程序只能访问通用寄存器，大多数系统寄存器都不能访问，也不能修改某些系统配置，比如虚拟内存映射等。</td>
+</tr>
+<tr>
+<td align="center">EL1</td>
+<td align="left">EL1 通常是操作系统运行的级别，EL1 在 EL0 的基础上还能访问系统寄存器，也能够修改系统配置。</td>
+</tr>
+<tr>
+<td align="center">EL2</td>
+<td align="left">EL2 提供了处理器虚拟化支持。</td>
+</tr>
+<tr>
+<td align="center">EL3</td>
+<td align="left">EL3 提供了切换 <a href="https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/armv8-security-model">Scurity 状态</a>的能力。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="获得当前-el">获得当前 EL</h1>
+<blockquote>
+<p><a href="https://developer.arm.com/docs/ddi0595/g/aarch64-system-registers/currentel">https://developer.arm.com/docs/ddi0595/g/aarch64-system-registers/currentel</a></p>
+</blockquote>
+<p>可以通过系统寄存器 <code>CurrentEL</code> 获取处理器当前的 <em>Exception Level</em>。</p>
+<p>AArch64 架构下 <code>CurrentEL</code> 用 64 位表示，其中第 [3:2] 位表示 EL，[63:4] 和 [1:0] 都是保留位。</p>
+<table>
+<thead>
+<tr>
+<th align="left">EL</th>
+<th align="left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">0b00</td>
+<td align="left">EL0</td>
+</tr>
+<tr>
+<td align="left">0b01</td>
+<td align="left">EL1</td>
+</tr>
+<tr>
+<td align="left">0b10</td>
+<td align="left">EL2</td>
+</tr>
+<tr>
+<td align="left">0b11</td>
+<td align="left">EL3</td>
+</tr>
+</tbody>
+</table>
+<p>通过下面的代码能够获得当前的 EL:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="err">//</span> <span class="nf">Move</span> <span class="no">the</span> <span class="no">contents</span> <span class="no">of</span> <span class="no">a</span> <span class="no">PSR</span> <span class="no">to</span> <span class="no">a</span> <span class="no">general-purpose</span> <span class="no">register</span>
+<span class="err">//</span> <span class="err">将</span> <span class="nf">CurrentEL</span> <span class="err">值写入通用寄存器</span> <span class="no">x0</span>
+<span class="nf">mrs</span> <span class="no">x0</span><span class="p">,</span> <span class="no">CurrentEL</span>
+
+<span class="err">//</span> <span class="nf">Logical</span> <span class="no">Shift</span> <span class="no">Right</span>
+<span class="err">//</span> <span class="err">将</span> <span class="nf">Xt</span> <span class="err">值右移</span> <span class="mi">2</span> <span class="err">位</span>
+<span class="nf">lsr</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x0</span><span class="p">,</span> <span class="c">#2
+</span></code></pre></td></tr></table>
+</div>
+</div><p>比如获取到的值是 <code>0b0100</code>, 因为 [1:0] 2位是保留位，总是为0，所以右移 2 位就得到了上表中的 <code>0b01</code> EL。</p>
+<p>所以能创建如下的方法去获取当前 EL:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="na">.global</span> <span class="no">get_el</span>
+<span class="nl">get_el:</span>
+    <span class="nf">mrs</span> <span class="no">x0</span><span class="p">,</span> <span class="no">CurrentEL</span>
+    <span class="nf">lsr</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x0</span><span class="p">,</span> <span class="c">#2
+</span><span class="c"></span>    <span class="no">ret</span> <span class="err">//</span> <span class="err">返回到</span> <span class="no">X30</span> <span class="err">寄存器</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="切换-el">切换 EL</h1>
+<p>在了解异常级别的切换前，需要先了解 ARM 架构的异常。</p>
+<h2 id="arm-excepion">ARM Excepion</h2>
+<blockquote>
+<p>在通常的操作系统概念中，经常提到中断：一种中断软件执行流程的机制。在 ARM 体系中，中断实际是通过异常体现的。异常是一种要求异常处理程序采取某些措施以确保系统平稳运行的条件或系统事件。每个异常类型都有对应的异常处理程序。处理完异常后，异常处理程序将为内核做好准备(比如: 恢复处理器状态、恢复异常发生时的指令地址)，以恢复发生异常之前的操作。</p>
+</blockquote>
 <ul>
 <li>
-<p>launch</p>
-<p>返回 <em>Job</em>，​能够获取和控制当前 Scope 下的协程的状态，比如取消(cancel)协程、获取是否运行(isActive)。</p>
+<p>ARM 架构下有如下3种类型的异常：</p>
+<ol>
+<li>Interrupts: 中断。这里的中断是指硬件层面的中断。通常由外部硬件发起中断。</li>
+<li>Aborts: 中止。这个就是软件层面的异常了。比如代码中访问了不存在的内存地址，进行了除0操作(指令执行错误)等问题。</li>
+<li>Reset: 复位。复位被视为实现最高异常级别的特殊变量。这是引发异常时 ARM 处理器跳转到的指令的位置。 该向量使用 <em>IMPLEMENTATION DEFINED</em> 地址。 <code>RVBAR_ELn</code> 包含此变量的地址，其中 n 是已实现的最高异常级别的编号。所有内核都有一个复位输入，并在复位后立即执行复位异常。它是最高优先级的异常，无法屏蔽。处理器上电后，此异常用于在内核上执行初始化的代码。</li>
+</ol>
 </li>
 <li>
-<p>async</p>
-<p>​返回 <em>Deferred</em>，Deferred 继承自 Job，它拥有 Job 的功能。另外 Deferred 还类似 Java UTC 中的 Future 接口，通过 Deferred 能够获取协程执行完毕之后的结果。</p>
-</li>
-<li>
-<p>withContext</p>
-<p>​切换代码块的执行上下文</p>
+<p>除了运行时程序出现问题产生异常外，也有一些指令能够产生异常，通常执行这些指令是为了从运行于更高权限级别的软件中请求服务:</p>
+<ul>
+<li><code>svc</code>: Supervisor Call 指令使用户模式程序可以请求 OS 服务</li>
+<li><code>hvc</code>: Hypervisor Call 指令使来宾 OS 可以请求系统管理程序服务。</li>
+<li><code>smc</code>: 通过 Secure monitor Call 指令，普通世界可以请求安全世界服务。(<a href="https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/armv8-security-model">security model 参考</a>)</li>
+</ul>
+<p>如果异常是由于在 EL0 执行指令而生成的，则会将其视为 EL1 的异常。如果是在任何其他 EL 执行指令导致生成异常，则异常级别保持不变。</p>
 </li>
 </ul>
-<h2 id="结构化并发">结构化并发</h2>
-<p>​将多个协程放到一个可以管理的空间里面，这个空间的名字就叫 CoroutineScope。通过 Scope 就能够统一的管理内部的协程，方便对多个协程整体上做取消(cancel)、等待结果(join)等操作。</p>
-<h1 id="实现原理">实现原理</h1>
-<p>Kotlin 的协程实现属于<a href="https://zh.wikipedia.org/wiki/%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%BC%96%E7%A8%8B">有限状态机编程</a>, 有限状态机编程是<a href="https://zh.wikipedia.org/wiki/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B">编程范式</a>的一种。是指利用有限状态机来进行编程实现。</p>
-<p>Kotlin 在 JVM 上实现的协程机制，本身没有超脱出 JVM 的范畴，也不能够超脱，所以代码本质还是运行在操作系统级别的线程上的。所以 Kotlin Coroutine 的实现就是要在 JVM 上实现一套代码(任务)的挂起和恢复机制，而挂起和恢复刚好能抽取为两种状态，于是要实现代码运行的挂起和恢复的需求，就转变为了实现一种控制状态转移的需求。而有限状态下的编程，使用有限状态机编程范式再合适不过了。</p>
-<p>Kotlin 协程本质还是运行在线程上的，所以如果从代码的运行角度来看，并没有太多的魔法，代码的运行机制和传统一样，虚拟机按行读取指令和操作数，然后执行操作。所以 Kotlin 协程的魔法更多是在编译期就开始了。</p>
-<h2 id="执行的最小单元-codeblock">​执行的最小单元 CodeBlock</h2>
-<p>在 Kotlin 代码编译时，<em>launch</em>/<em>async</em> 和 <em>suspend</em> 方法中的代码会根据挂起点被拆分到多个 <strong>Code Block</strong> 中。Code Block 会被封装为 <code>Runnable</code>，被封装的 <code>Runnable</code> 会被 <em>Dispatcher</em> 执行。使用哪种 <em>Dispatcher</em> 则由传递给 <em>launch</em>/<em>async</em> 的 <em>CoroutineContext</em> 参数决定。</p>
-<p><em>例子代码:</em></p>
+<h2 id="异常处理">异常处理</h2>
+<blockquote>
+<p>程序只能通过「获取异常」或「从异常返回」去切换异常级别</p>
+</blockquote>
+<p>也就是说程序只有在处理异常的过程中，才能切换异常级别。</p>
+<ul>
+<li>当处理器从较高的异常级别移至较低的异常级别时，执行状态(<a href="https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/execution-state">Execution State</a>)可以保持不变，也可以从 <em>AArch64</em> 切换到 <em>AArch32</em> 。</li>
+<li>相反，当从较低的异常级别移到较高的异常级别时，执行状态可以保持不变或从 <em>AArch32</em> 切换到 <em>AArch64</em> 。</li>
+</ul>
+<p><img src="https://image.youcute.cn/FjYOamWo2mTfnHtmRMjYLC9W0JhA" alt="异常流程" /></p>
+<p>当应用程序发生异常时，处理器会到一个异常表去查找分派代码然后执行分派代码(异常表包含每种异常类型对应的分派代码)，分派代码选择并调用适当的函数来处理异常。分派代码执行完成后，返回到高级别的处理程序，该处理程序执行 <a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289871515.htm"><code>ERET</code></a> 指令返回到应用程序。</p>
+<h3 id="相关寄存器">相关寄存器</h3>
+<p>当处理异常时，会涉及几个寄存器的操作:</p>
+<ol>
+<li>当前正在执行的指令地址(PC 寄存器)会被存储在 ELR_ELn(Exception link register) 中</li>
+<li>当前处理器的状态(PSTATE)被存储在 SPSR_ELn(Saved Program Status Register)</li>
+<li>异常处理程序被执行。异常处理程序可以修改 ELR 和 SPSR</li>
+<li>异常处理程序执行 eret 指令。这个指令会从 SPSR_Eln 寄存器恢复处理器的状态，并且恢复 ELE_Eln 中储存的指令的执行​</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><img src="https://image.youcute.cn/FjNZH3Ga7ORBhmBlzshIkjeEkPTG" alt="流程图" /></td>
+<td align="left"><img src="https://image.youcute.cn/FqCB2e-oH89_gwKDn6GGVIFcoeg0" alt="示意图" /></td>
+</tr>
+</tbody>
+</table>
+<p>由于异常处理程序可以修改 <code>ELR_ELn</code> 和 <code>SPSR_ELn</code> 寄存器，所以异常处理程序能够间接的修改 EL 等参数，达到切换 EL 的目的。</p>
+<h2 id="切换到-el1">切换到 EL1</h2>
+<p>回到树莓派OS这边，通电之后，处理器默认是在最高级别的 EL 运行的，也就是 EL3。现在我希望树莓派OS 启动之后切换到 EL1 执行(如同 Linux 和 Windows 都是在EL1运行)。通过配置一些系统寄存器，然后调用 <code>eret</code> 指令触发处理器去执行状态重读取就能达成目的。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -1603,255 +1753,243 @@
 </span><span class="lnt">15
 </span><span class="lnt">16
 </span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">class</span> <span class="nc">RunBlockingDemo</span> <span class="p">{</span>
-    <span class="k">fun</span> <span class="nf">demo</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">runBlocking</span> <span class="p">{</span>
-            <span class="n">println</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="c1">// block 1
-</span><span class="c1"></span>            <span class="n">launch</span> <span class="p">{</span> <span class="c1">// block 1
-</span><span class="c1"></span>                <span class="n">println</span><span class="p">(</span><span class="m">3</span><span class="p">)</span> <span class="c1">// block 2
-</span><span class="c1"></span>                <span class="n">suspendFunc</span><span class="p">()</span> <span class="c1">// block 2
-</span><span class="c1"></span>                <span class="n">println</span><span class="p">(</span><span class="m">6</span><span class="p">)</span> <span class="c1">// block 3
-</span><span class="c1"></span>            <span class="p">}</span>
-            <span class="n">println</span><span class="p">(</span><span class="m">2</span><span class="p">)</span> <span class="c1">// block 1
-</span><span class="c1"></span>        <span class="p">}</span>
-    <span class="p">}</span>
+<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nl">master:</span>
+    <span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SCTLR_VALUE_MMU_DISABLED</span>
+    <span class="nf">msr</span>    <span class="no">sctlr_el1</span><span class="p">,</span> <span class="no">x0</span>
 
-    <span class="k">private</span> <span class="k">suspend</span> <span class="k">fun</span> <span class="nf">suspendFunc</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">println</span><span class="p">(</span><span class="m">4</span><span class="p">)</span> <span class="c1">// block 4
-</span><span class="c1"></span>        <span class="n">delay</span><span class="p">(</span><span class="m">500</span><span class="p">)</span> <span class="c1">// block 4
-</span><span class="c1"></span>        <span class="n">println</span><span class="p">(</span><span class="m">5</span><span class="p">)</span> <span class="c1">// block 5
-</span><span class="c1"></span>    <span class="p">}</span>
-<span class="p">}</span>
+    <span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">HCR_VALUE</span>
+    <span class="nf">msr</span>    <span class="no">hcr_el2</span><span class="p">,</span> <span class="no">x0</span>
+
+    <span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SCR_VALUE</span>
+    <span class="nf">msr</span>    <span class="no">scr_el3</span><span class="p">,</span> <span class="no">x0</span>
+
+    <span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SPSR_VALUE</span>
+    <span class="nf">msr</span>    <span class="no">spsr_el3</span><span class="p">,</span> <span class="no">x0</span>
+
+    <span class="nf">adr</span>    <span class="no">x0</span><span class="p">,</span> <span class="no">el1_entry</span>
+    <span class="nf">msr</span>    <span class="no">elr_el3</span><span class="p">,</span> <span class="no">x0</span>
+
+    <span class="nf">eret</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>例子代码中，使用的 <code>runBlocking</code> 来创建协程，<code>runBlocking</code> 会为内部的协程提供一个阻塞当前线程的 <em>EventLoop</em> 队列，等队列中的所有协程都执行完之后，<code>runBlocking</code> 才会执行完毕。例子代码中的 <code>launch</code> 没有传递额外的 CoroutineContext 参数，所以它会继承 <code>runBlocking</code> 的 context 去使用。</p>
-<p>例子代码的执行过程可以简述为:</p>
-<table>
-<thead>
-<tr>
-<th align="left">运行流</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><img src="https://image.youcute.cn/FuYgwCHQXViqtkj1ZjZywAvMu70g" alt="" /></td>
-<td align="left">1. 调用 <code>runBlocking</code>，<em>block 1</em> 入队，然后开始循环从队列中消费任务 <br>2. <em>block 1</em> 出队执行，输出 <code>1</code><br>3. <code>launch</code> 被调用，<em>block 2</em> 入队<br>4. 输出 <code>3</code><br>5. <em>block 1</em> 执行完成，执行继续从队列中取下一个任务<br>6. <em>block 2</em> 出队执行，输出 <code>3</code>，调用 <em>suspendFunc</em> 方法<br>8. <em>suspendFunc</em> 方法在编译之后，会在调用时先持有它自己的代码执行完成之后将要继续执行的代码块(<em>block 3</em>)的引用(在它自己的代码执行完成之后，就会恢复执行 <em>block 3</em>)<br>9. 执行 <em>suspendFunc</em> ，输出 <code>4</code><br>10. 调用 <em>delay</em> ，<em>block 5</em> 会被封装为一个 delay task 并入队<br>11. <em>block 2</em> 和 <em>block 4</em> 执行完毕，执行继续从队列中取下一个任务<br>12. 这时队列中存在的任务是 <em>block 5</em> ，循环会一直循环等待，直到到满足了 <em>block 5</em> delay 的时间时就将 <em>block 5</em> 出队<br>13. <em>block 5</em> 出队执行，输出 <code>5</code><br>14. <em>block 5</em> 执行完成就代表 <em>suspendFunc</em> 执行完毕了，就会恢复执行 <em>suspendFunc</em> 在进入时持有的 <em>block 3</em><br>15. <em>block 3</em> 执行，输出 <code>6</code><br>16. <em>runBlocking</em> 中的所有代码执行完毕，程序执行完毕</td>
-</tr>
-</tbody>
-</table>
-<p>通过上面这个例子能看出，虽然所有代码都是在同一个线程执行的，但是 Kotlin 协程却实现了非阻塞的运行(<code>println(2)</code> 不会被 <code>println(3)</code> 阻塞)，而协程内部又是按照同步的方式执行的(<code>println(5)</code> 在 <code>delay</code> 完成之后才会被执行)。</p>
-<p>正是由于编译器将来自不同协程的代码块相互交错的插入到事件循环队列中，才让仅使用一个线程就能实现代码块的挂起和恢复得以实现。</p>
-<p>其他的 CoroutineContext 或许使用不同的 Dispatcher 在不同的线程上采用不同的策略去执行协程，但是其过程与这个例子是类似的。</p>
-<h2 id="维护执行状态的-continuation">​维护执行状态的 Continuation</h2>
-<p>到目前为止，我们已经了解了使代码块执行的逻辑概念了。但是，在该概念是如何实现上面还存在一些疑惑。</p>
-<ol>
-<li>如何在已编译的 Java 字节码中实现这个逻辑概念？</li>
-<li>如何跟踪代码块的执行状态？或者说如何决定一个代码块执行完成之后该执行的哪一个代码块？</li>
-</ol>
-<p><img src="https://image.youcute.cn/FtN_6GhoaFek8QMzuoLIEJgAbz3a" alt="生成的类" /></p>
-<p>我尝试通过 JD-GUI 去反编译 <em>RunBlockingDemo</em> 类，但是 <em>suspendFuncA</em> 方法 JD-GUI 反编译失败了，没有显示出来。于是我先通过 <code>javap RunBlockingDemo</code> 查看了 <em>RunBlockingDemo</em> 类会有哪些方法，发现 <em>suspendFuncA</em> 被编译为了下面的样子：</p>
+</div><h3 id="配置-sctlr_el1">配置 SCTLR_EL1</h3>
+<blockquote>
+<p>System Control Register</p>
+</blockquote>
+<p>sctlr_eln 寄存器被用来配置处理器的不同参数。存在 sctlr_el1、 sctlr_el2 和 sctlr_el3 分别对应 EL1、 EL2 和 EL3 的寄存器。</p>
+<p>sctlr_el1 寄存器能够配置 EL0 和 EL1 级别的内存等配置。通过修改 sctlr_el1 某些位的值能达到配置处理器在 EL0 和 EL1 级别运行时的行为。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SCTLR_VALUE_MMU_DISABLED</span>
+<span class="nf">msr</span>    <span class="no">sctlr_el1</span><span class="p">,</span> <span class="no">x0</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-h" data-lang="h"><span class="cp">#define SCTLR_RESERVED                  (3 &lt;&lt; 28) | (3 &lt;&lt; 22) | (1 &lt;&lt; 20) | (1 &lt;&lt; 11)
+</span><span class="cp"></span><span class="c1">// 保留位赋值1
+</span><span class="c1"></span><span class="cp">#define SCTLR_EE_LITTLE_ENDIAN          (0 &lt;&lt; 25)
+</span><span class="cp"></span><span class="c1">// EL1 采用小端字节序
+</span><span class="c1"></span><span class="cp">#define SCTLR_EOE_LITTLE_ENDIAN         (0 &lt;&lt; 24)
+</span><span class="cp"></span><span class="c1">// EL0 采用小端字节序
+</span><span class="c1"></span><span class="cp">#define SCTLR_I_CACHE_DISABLED          (0 &lt;&lt; 12)
+</span><span class="cp"></span><span class="c1">// 禁用指令缓存
+</span><span class="c1"></span><span class="cp">#define SCTLR_D_CACHE_DISABLED          (0 &lt;&lt; 2)
+</span><span class="cp"></span><span class="c1">// 禁用数据缓存
+</span><span class="c1"></span><span class="cp">#define SCTLR_MMU_DISABLED              (0 &lt;&lt; 0)
+</span><span class="cp"></span><span class="c1">// 禁用内存管理单元
+</span><span class="c1"></span>
+<span class="cp">#define SCTLR_VALUE_MMU_DISABLED	(SCTLR_RESERVED | SCTLR_EE_LITTLE_ENDIAN | SCTLR_I_CACHE_DISABLED | SCTLR_D_CACHE_DISABLED |    SCTLR_MMU_DISABLED)
+</span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://image.youcute.cn/FtRRQKuDmdRRzsMCqPt4SaIHYWWX" alt="上述代码执行之后的布局" /></p>
+<h3 id="配置-hcr_el2">配置 HCR_EL2</h3>
+<blockquote>
+<p>Hypervisor Configuration Register</p>
+</blockquote>
+<p>HCR_EL2 寄存器提供了虚拟化的配置，包括定义是否将各种操作限制在EL2中。因为只有 EL2 支持 Hypervisor,所以只存在一个 HCR_EL2 寄存器。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define HCR_RW	    			(1 &lt;&lt; 31)
+</span><span class="cp"></span><span class="c1">// EL1 的 Execution State 为 AArch64
+</span><span class="c1"></span><span class="cp">#define HCR_VALUE			HCR_RW
+</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm">    <span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">HCR_VALUE</span>
+    <span class="nf">msr</span>    <span class="no">hcr_el2</span><span class="p">,</span> <span class="no">x0</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="配置-scr_el3">配置 SCR_EL3</h3>
+<blockquote>
+<p>Secure Configuration Register</p>
+</blockquote>
+<p>SCR_EL3 寄存器定义当前安全状态的配置:</p>
+<ul>
+<li>EL0，EL1 和 EL2 的安全状态为 <em>Secure</em> 或 <em>Non-Secure</em></li>
+<li>EL2 的 Execution State</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define SCR_RESERVED	    		(3 &lt;&lt; 4)
+</span><span class="cp">#define SCR_RW				(1 &lt;&lt; 10)
+</span><span class="cp"></span><span class="c1">// EL2 的Execution State 为 AArch64
+</span><span class="c1"></span><span class="cp">#define SCR_NS				(1 &lt;&lt; 0)
+</span><span class="cp"></span><span class="c1">// 安全状态为 Non-secure
+</span><span class="c1"></span><span class="cp">#define SCR_VALUE	    	    	(SCR_RESERVED | SCR_RW | SCR_NS)
+</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SCR_VALUE</span>
+<span class="nf">msr</span>    <span class="no">scr_el3</span><span class="p">,</span> <span class="no">x0</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="配置-spsr_el3">配置 SPSR_EL3</h3>
+<blockquote>
+<p>Saved Program Status Register</p>
+</blockquote>
+<p>EL3 发生异常时，SPSR_EL3 寄存器用来保存处理器的状态。这里因为树莓派OS启动之后是在 EL3 运行，所以通过修改 SPSR_EL3 的值来修改处理器的运行状态。</p>
+<p><code>7 &lt;&lt; 6</code> 意味着将 [8:7] 3 个位都置 1:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Object</span> <span class="nf">suspendFuncA</span><span class="o">(</span><span class="n">kotlin</span><span class="o">.</span><span class="na">coroutines</span><span class="o">.</span><span class="na">Continuation</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">kotlin</span><span class="o">.</span><span class="na">Unit</span><span class="o">&gt;);</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define SPSR_MASK_ALL 			(7 &lt;&lt; 6)
+</span></code></pre></td></tr></table>
 </div>
-</div><p>然后我再使用 <code>javap -c RunBlockingDemo</code> 反编译得到编译之后的字节码:</p>
-<details>
-<summary> *suspendFuncA* 方法的反编译字节码太长, 点击可展开</summary>
-<pre><code>    Code:
-       0: aload_1 // 加载第二个局部变量到栈顶, 这里的第二个局部变量就是方法的第一个参数 Continuation
-       1: instanceof    #29                 // class RunBlockingDemo$suspendFuncA$1
-       4: ifeq          39 //如果不是 RunBlockingDemo$suspendFuncA$1 的对象，就跳转到 39 行
-       7: aload_1          //否则加载第二个局部变量到栈顶
-       8: checkcast     #29                 // class RunBlockingDemo$suspendFuncA$1
-      11: astore        5  //栈顶对象存入第5个局部变量，即方法的第一个参数通过了 checkcast 判断之后，存入第5个局部变量
-      13: aload         5  //加载第5个局部变量到栈顶
-      15: getfield      #33                 // Field RunBlockingDemo$suspendFuncA$1.label:I  // 获取 label 字段
-      18: ldc           #34                 // int -2147483648 // 从常量池中加载第34个整形常量到栈顶，其值是 Integer.MIN_VALUE
-      20: iand                              // 从栈中弹出两个整数，进行与运算，即将 label 和 Integer.MIN_VALUE 进行与运算
-      21: ifeq          39                  // 如果结果为0，就跳转到 39 行
-      24: aload         5                   // 否则加载第5个局部变量到栈顶
-      26: dup                               // 复制栈顶元素
-      27: getfield      #33                 // Field RunBlockingDemo$suspendFuncA$1.label:I // 加载 label 字段到栈顶
-      30: ldc           #34                 // int -2147483648 // 从常量池加载数字 Integer.MIN_VALUE
-      32: isub                              // label 减去 Integer.MIN_VALUE 的结果存入栈顶
-      33: putfield      #33                 // Field RunBlockingDemo$suspendFuncA$1.label:I // 将栈顶元素存入 label
-      36: goto          50                   // 跳转到 50 行
-      39: new           #29                 // class RunBlockingDemo$suspendFuncA$1
-      42: dup
-      43: aload_0
-      44: aload_1
-      45: invokespecial #35                 // Method RunBlockingDemo$suspendFuncA$1.&quot;&lt;init&gt;&quot;:(LRunBlockingDemo;Lkotlin/coroutines/Continuation;)V
-      48: astore        5
-      50: aload         5                   // 加载第5个局部变量
-      52: getfield      #39                 // Field RunBlockingDemo$suspendFuncA$1.result:Ljava/lang/Object;  // result 字段加载到栈顶
-      55: astore        4                   // result 存到第4个局部变量中
-      57: invokestatic  #45                 // Method kotlin/coroutines/intrinsics/IntrinsicsKt.getCOROUTINE_SUSPENDED:()Ljava/lang/Object;
-      60: astore        6                   // 将  getCOUROUTINE_SUSPENDED() 的返回值存入第6个局部变量中
-      62: aload         5                   // 加载第5个局部变量
-      64: getfield      #33                 // Field RunBlockingDemo$suspendFuncA$1.label:I // 加载 label 字段到栈顶
-      67: tableswitch   { // 0 to 1
-                     0: 88          // label 为 0 就跳转到 88 行
-                     1: 133         // label 为 1 就跳转到 133 行
-               default: 165         // 默认跳转到 165 行
-          }
-      88: aload         4           // 加载 result 到栈顶
-      90: invokestatic  #51                 // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
-      93: iconst_4                  // 加载常量数字 4 到栈顶
-      94: istore_2                  // 将栈顶数字(这里就是4)存到第二个局部变量中
-      95: iconst_0
-      96: istore_3                  // 将数字0 存到第3个局部变量中
-      97: getstatic     #57                 // Field java/lang/System.out:Ljava/io/PrintStream;
-     100: iload_2                   // 加载第2个局部变量，这里存的是 4
-     101: invokevirtual #63                 // Method java/io/PrintStream.println:(I)V                           // 调用 println 输出栈顶的数字 4
-     104: ldc2_w        #64                 // long 500l    // 加载常量池第63个长整形数字到栈顶，这里就是 500L
-     107: aload         5
-     109: aload         5
-     111: aload_0
-     112: putfield      #68                 // Field RunBlockingDemo$suspendFuncA$1.L$0:Ljava/lang/Object;  // 将 this 对象引用存储到 L$0 字段
-     115: aload         5
-     117: iconst_1
-     118: putfield      #33                 // Field RunBlockingDemo$suspendFuncA$1.label:I             // label 赋值 1
-     121: invokestatic  #74                 // Method kotlinx/coroutines/DelayKt.delay:(JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-     124: dup
-     125: aload         6
-     127: if_acmpne     149                 // 如果 delay 的返回值 != getCOROUTINE_SUSPEND() 的返回值，就跳转 149 行
-     130: aload         6                   // 否则返回 getCOROUTINE_SUSPEND() 的返回值
-     132: areturn
-     133: aload         5
-     135: getfield      #68                 // Field RunBlockingDemo$suspendFuncA$1.L$0:Ljava/lang/Object;
-     138: checkcast     #2                  // class RunBlockingDemo
-     141: astore_0
-     142: aload         4
-     144: invokestatic  #51                 // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
-     147: aload         4
-     149: pop
-     150: iconst_5
-     151: istore_2      // 5 存入第2个局部变量
-     152: iconst_0
-     153: istore_3      // 0 存入第3个局部变量
-     154: getstatic     #57                 // Field java/lang/System.out:Ljava/io/PrintStream;
-     157: iload_2
-     158: invokevirtual #63                 // Method java/io/PrintStream.println:(I)V              // 输出 5
-     161: getstatic     #80                 // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
-     164: areturn      // return Unit.INSTANCE
-     165: new           #82                 // class java/lang/IllegalStateException
-     168: dup
-     169: ldc           #84                 // String call to 'resume' before 'invoke' with coroutine
-     171: invokespecial #87                 // Method java/lang/IllegalStateException.&quot;&lt;init&gt;&quot;:(Ljava/lang/String;)V
-     174: athrow        // 抛出异常
-</code></pre></details>
-<p>下面是我根据反编译出来的字节码推测出的 <em>RunBlockingDemo</em> 类的 <em>suspendFuncA</em> 方法经过编译器处理之后的源码:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="n">Object</span> <span class="nf">suspendFuncA</span><span class="o">(</span><span class="n">Continuation</span><span class="o">&lt;?&gt;</span> <span class="n">continuation</span><span class="o">){</span>
-    <span class="k">if</span><span class="o">(!</span><span class="n">continuation</span> <span class="n">istanceOf</span> <span class="n">RunBlockingDemo$suspendFuncA$1</span> <span class="o">||</span> 
-        <span class="o">(</span><span class="n">RunBlockingDemo$suspendFuncA$1</span><span class="o">)</span><span class="n">continuation</span><span class="o">.</span><span class="na">label</span> <span class="o">&amp;</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span> <span class="o">==</span> <span class="n">0</span> <span class="o">){</span>
-        <span class="n">continuation</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RunBlockingDemo$suspendFuncA$1</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="n">continuation</span><span class="o">.</span><span class="na">label</span> <span class="o">=</span> <span class="n">contination</span><span class="o">.</span><span class="na">label</span> <span class="o">-</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">;</span>
-    <span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">IntrinsicsKt</span><span class="o">.</span><span class="na">getCOROUTINE_SUSPEND</span><span class="o">();</span>
-    <span class="k">switch</span><span class="o">(</span><span class="n">continuation</span><span class="o">.</span><span class="na">label</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">case</span> <span class="n">0</span><span class="o">:</span> 
-            <span class="n">println</span><span class="o">(</span><span class="n">4</span><span class="o">);</span>
-            <span class="n">continuation</span><span class="o">.</span><span class="na">L$0</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
-            <span class="n">continuation</span><span class="o">.</span><span class="na">label</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">delay</span><span class="o">(</span><span class="n">500</span><span class="o">,</span> <span class="n">continuation</span><span class="o">)</span> <span class="o">==</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="n">obj</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="k">case</span> <span class="n">1</span><span class="o">:</span>
-            <span class="n">ResultKt</span><span class="o">.</span><span class="na">throwOnFailure</span><span class="o">(</span><span class="n">continuation</span><span class="o">.</span><span class="na">result</span><span class="o">);</span>
-            <span class="n">println</span><span class="o">(</span><span class="n">5</span><span class="o">);</span>
-            <span class="k">return</span> <span class="n">Unit</span><span class="o">.</span><span class="na">INSTANCE</span><span class="o">;</span>
-        <span class="k">default</span><span class="o">:</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="o">(</span><span class="s">&#34;call to &#39;resume&#39; before &#39;invoke&#39; with coroutine&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>从源码中能得出两个有趣的地方:</p>
-<ol>
-<li>例子中的 <code>supendFuncA</code> 是没有参数的，但是编译之后，编译器为它增加了一个 <em>Continuation</em> 类型的参数</li>
-<li><code>suspendFuncA</code> 内部通过一个 <em>switch-case</em> 去调度执行不同的代码块，而 <em>switch</em> 的参数则是传入的 <em>Continuation</em> 对象的 <em>label</em> 字段</li>
-</ol>
-<p>因此不难推测出，编译器为 <code>suspendFuncA</code> 方法增加的 <em>Continuation</em> 参数就是用来跟踪协程运行状态的对象，而且运行状态就保存在一个简单的 <em>int</em> 类型的 <code>label</code> 字段中。</p>
-<p>再回头看看 <code>suspendFuncA</code> 方法是如何被调用的。</p>
-<ul>
-<li>首先编译器会为 <em>suspend</em> 方法生成一个实现了 <em>ContinuationImpl</em> 的包装类，然后在包装类的 <em>invokeSuspend</em> 方法中调用 <code>suspendFuncA</code>。<br />
-下面就是编译器为 <code>suspendFuncA</code> 方法生成的包装类(使用 JD-GUI 查看):</li>
+</div><ul>
+<li>bit[8]: SError interrupt mask</li>
+<li>bit[7]: IRQ interrupt mask</li>
+<li>bit[6]: FIQ interrupt mask</li>
 </ul>
+<p>设置 Exception level 和 selected Stack Pointer 为 EL1h:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">RunBlockingDemo$suspendFuncA$1</span> <span class="kd">extends</span> <span class="n">ContinuationImpl</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">label</span><span class="o">;</span>
-
-    <span class="n">Object</span> <span class="n">L$0</span><span class="o">;</span>
-
-    <span class="nd">@Nullable</span>
-    <span class="kd">public</span> <span class="kd">final</span> <span class="n">Object</span> <span class="nf">invokeSuspend</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">Object</span> <span class="n">$result</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">result</span> <span class="o">=</span> <span class="n">$result</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">label</span> <span class="o">|=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">;</span>
-        <span class="k">return</span> <span class="n">RunBlockingDemo</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">suspendFuncA</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="n">RunBlockingDemo$suspendFuncA$1</span><span class="o">(</span><span class="n">Continuation</span> <span class="n">paramContinuation</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">(</span><span class="n">paramContinuation</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define SPSR_EL1h			(5 &lt;&lt; 0)
+</span><span class="cp">#define SPSR_VALUE			(SPSR_MASK_ALL | SPSR_EL1h)
+</span></code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th align="left">位</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">0b0000</td>
+<td align="left">EL0t</td>
+</tr>
+<tr>
+<td align="left">0b0100</td>
+<td align="left">EL1t</td>
+</tr>
+<tr>
+<td align="left">0b0101 (<code>5 &lt;&lt; 0</code>)</td>
+<td align="left">EL1h</td>
+</tr>
+<tr>
+<td align="left">0b1000</td>
+<td align="left">EL2t</td>
+</tr>
+<tr>
+<td align="left">0b1001</td>
+<td align="left">EL2h</td>
+</tr>
+<tr>
+<td align="left">0b1100</td>
+<td align="left">EL3t</td>
+</tr>
+<tr>
+<td align="left">0b1101</td>
+<td align="left">EL3h</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SPSR_VALUE</span>
+<span class="nf">msr</span>    <span class="no">spsr_el3</span><span class="p">,</span> <span class="no">x0</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="https://image.youcute.cn/FmW5j3UdDZLvF2Zwk6An6gI01dUA" alt="继承关系" /></p>
+</div><p>将 SPSR_EL3 的第 [3:0] 3 个位, 置为 <code>EL1h</code> 后，在执行 <code>eret</code> 指令后，处理器的状态会从 SPSR_EL3 中恢复，也就让处理器的 EL 切换到了 EL1。</p>
+<h3 id="配置-elr_el3">配置 ELR_EL3</h3>
+<blockquote>
+<p>Exception Link Register (EL3)</p>
+</blockquote>
+<p>在 EL3 进行异常处理时，ELR_EL3 寄存器将用来保留要返回的地址。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">adr</span>    <span class="no">x0</span><span class="p">,</span> <span class="no">el1_entry</span>
+<span class="err">//</span> <span class="err">将</span> <span class="nf">el1_entry</span> <span class="no">label</span> <span class="err">地址存到</span> <span class="no">x0</span>
+<span class="nf">msr</span>    <span class="no">elr_el3</span><span class="p">,</span> <span class="no">x0</span>
+<span class="err">//</span> <span class="err">将</span> <span class="nf">x0</span> <span class="err">值存到</span> <span class="no">elr_el3</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>先将 <code>el1_entry</code> 符号地址存到 <code>elr_el3</code>，在执行 <code>eret</code> 指令之后，处理器就将从 <code>elr_el3</code> 寄存器读取符号去恢复执行，也就间接的让处理器执行 <code>el1_entry</code>。</p>
+<hr />
+<p>通过配置上述系统寄存器，然后调用 <code>eret</code> 触发处理器的执行状态的重恢复，就能将异常级别从 EL3 切换到 EL1 了。</p>
 
     </article>
     
@@ -2013,22 +2151,41 @@
     <section class="related">
     
     
+    <h1 class="related__title">
+      <hr class="hr-dots"/>
+      <div>
+        See Also
+      </div>
+      <hr class="hr-dots"/>
+    </h1>
+    <ul class="related-ul">
+        
+        <li>
+          <a href="/posts/2020-03-28-%E5%AE%9E%E7%8E%B0rpi-os-b-%E7%90%86%E8%A7%A3linux%E5%86%85%E6%A0%B8%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B/" class="related__link">树莓派OS-#0x01-理解Linux内核的初始化流程</a>
+        </li>
+        
+        <li>
+          <a href="/posts/2020-03-01-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%B6%85%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="related__link">树莓派OS-#0x00-自制系统镜像并控制处理器的运行</a>
+        </li>
+        
+    </ul>
+    
   </section>
     <div class="grow"></div>
 <nav class="pagination-single">
   
     
-      <a href="https://blog.jiyang.site/posts/rpios-processor-init/" class="pagination-single__left">
+      <a href="https://blog.jiyang.site/posts/%E4%BD%BF%E7%94%A8-onframemetricsavailablelistener-%E7%BB%9F%E8%AE%A1%E7%BB%98%E5%88%B6%E8%80%97%E6%97%B6/" class="pagination-single__left">
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
         </div>
-        <div class="pagination-single__left-title">树莓派OS#0x02 处理器初始化</div>      
+        <div class="pagination-single__left-title">使用 OnFrameMetricsAvailableListener 统计绘制耗时</div>      
       </a>
     
     <div class="grow"></div>
     
-      <a href="https://blog.jiyang.site/posts/libc-io-cache/" class="pagination-single__right">      
-        <div class="pagination-single__right-title">C库的IO缓存机制</div>
+      <a href="https://blog.jiyang.site/posts/kotlin-coroutine-inner/" class="pagination-single__right">      
+        <div class="pagination-single__right-title">Kotlin 协程的实现原理简析</div>
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
         </div>
@@ -2409,17 +2566,25 @@ document.addEventListener('DOMContentLoaded', function () {
   <div class="toc " data-dir="ltr" data-folding="false" data-ani="true">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#背景-使用">背景: 使用</a>
+    <li><a href="#exception-level">Exception Level</a></li>
+    <li><a href="#获得当前-el">获得当前 EL</a></li>
+    <li><a href="#切换-el">切换 EL</a>
       <ul>
-        <li><a href="#suspend">suspend</a></li>
-        <li><a href="#创建协程">创建协程</a></li>
-        <li><a href="#结构化并发">结构化并发</a></li>
-      </ul>
-    </li>
-    <li><a href="#实现原理">实现原理</a>
-      <ul>
-        <li><a href="#执行的最小单元-codeblock">​执行的最小单元 CodeBlock</a></li>
-        <li><a href="#维护执行状态的-continuation">​维护执行状态的 Continuation</a></li>
+        <li><a href="#arm-excepion">ARM Excepion</a></li>
+        <li><a href="#异常处理">异常处理</a>
+          <ul>
+            <li><a href="#相关寄存器">相关寄存器</a></li>
+          </ul>
+        </li>
+        <li><a href="#切换到-el1">切换到 EL1</a>
+          <ul>
+            <li><a href="#配置-sctlr_el1">配置 SCTLR_EL1</a></li>
+            <li><a href="#配置-hcr_el2">配置 HCR_EL2</a></li>
+            <li><a href="#配置-scr_el3">配置 SCR_EL3</a></li>
+            <li><a href="#配置-spsr_el3">配置 SPSR_EL3</a></li>
+            <li><a href="#配置-elr_el3">配置 ELR_EL3</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>

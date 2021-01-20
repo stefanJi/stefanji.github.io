@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Kotlin 协程的实现原理简析 – Yang Blog</title>
+    <title>记最近做的冷启动耗时优化 – Yang Blog</title>
     
 
 
@@ -556,7 +556,7 @@
     
     var baseurl = JSON.parse("\"https://blog.jiyang.site/\"");
     
-    var permalink = JSON.parse("\"https://blog.jiyang.site/posts/kotlin-coroutine-inner/\"");
+    var permalink = JSON.parse("\"https://blog.jiyang.site/posts/2020-03-28-%E8%AE%B0%E6%9C%80%E8%BF%91%E5%81%9A%E7%9A%84%E5%86%B7%E5%90%AF%E5%8A%A8%E8%80%97%E6%97%B6%E4%BC%98%E5%8C%96/\"");
     
     var langprefix = JSON.parse("\"\"");
     var searchResults = null;
@@ -1221,21 +1221,21 @@
 
 
     
-<meta name="description" content="理解 Kotlin Coroutine 的实现原理" />
+<meta name="description" content="最近参与了公司应用的冷启动耗时优化，做一些记录" />
 
 
-<meta name="created" content="2020-05-10T23:14:27&#43;0800">
-<meta name="modified" content="2020-05-10T23:14:27&#43;0800">
-<meta property="article:published_time" content="2020-05-10T23:14:27&#43;0800">
+<meta name="created" content="2020-03-28T19:39:43&#43;0000">
+<meta name="modified" content="2020-03-28T19:39:43&#43;0000">
+<meta property="article:published_time" content="2020-03-28T19:39:43&#43;0000">
 
 <meta name="author" content="Yang">
 
 
 <meta property="og:site_name" content="Yang Blog">
-<meta property="og:title" content="Kotlin 协程的实现原理简析">
-<meta property="og:url" content="https://blog.jiyang.site/posts/kotlin-coroutine-inner/">
+<meta property="og:title" content="记最近做的冷启动耗时优化">
+<meta property="og:url" content="https://blog.jiyang.site/posts/2020-03-28-%E8%AE%B0%E6%9C%80%E8%BF%91%E5%81%9A%E7%9A%84%E5%86%B7%E5%90%AF%E5%8A%A8%E8%80%97%E6%97%B6%E4%BC%98%E5%8C%96/">
 <meta property="og:type" content="article">
-<meta property="og:description" content="理解 Kotlin Coroutine 的实现原理">
+<meta property="og:description" content="最近参与了公司应用的冷启动耗时优化，做一些记录">
 
 <meta name="generator" content="Hugo 0.74.3" />
 <meta name="msapplication-TileColor" content="#fff">
@@ -1246,7 +1246,7 @@
 
 <meta name="apple-mobile-web-app-status-bar-style" content="#fff">
 
-<link rel="canonical" href="https://blog.jiyang.site/posts/kotlin-coroutine-inner/">
+<link rel="canonical" href="https://blog.jiyang.site/posts/2020-03-28-%E8%AE%B0%E6%9C%80%E8%BF%91%E5%81%9A%E7%9A%84%E5%86%B7%E5%90%AF%E5%8A%A8%E8%80%97%E6%97%B6%E4%BC%98%E5%8C%96/">
 
 <link rel="manifest" href="/manifest.json">
 
@@ -1260,11 +1260,11 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "Kotlin 协程的实现原理简析",
-    "datePublished": "2020-05-10T23:14:27+08:00",
-    "dateModified": "2020-05-10T23:14:27+08:00",
-    "url" : "https://blog.jiyang.site/posts/kotlin-coroutine-inner/",
-    "description": "理解 Kotlin Coroutine 的实现原理",
+    "headline": "记最近做的冷启动耗时优化",
+    "datePublished": "2020-03-28T19:39:43Z",
+    "dateModified": "2020-03-28T19:39:43Z",
+    "url" : "https://blog.jiyang.site/posts/2020-03-28-%E8%AE%B0%E6%9C%80%E8%BF%91%E5%81%9A%E7%9A%84%E5%86%B7%E5%90%AF%E5%8A%A8%E8%80%97%E6%97%B6%E4%BC%98%E5%8C%96/",
+    "description": "最近参与了公司应用的冷启动耗时优化，做一些记录",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://blog.jiyang.site/"
@@ -1523,7 +1523,7 @@
   
   <li  class="is-active" >
     
-      <span>Kotlin 协程的实现原理简析</span>
+      <span>记最近做的冷启动耗时优化</span>
     
   </li>
   
@@ -1535,13 +1535,13 @@
   <div class="single ">
     <div class="single__nojs">This page looks best with JavaScript enabled</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
-    <h2 class="single__title" data-ani="true">Kotlin 协程的实现原理简析</h2>
+    <h2 class="single__title" data-ani="true">记最近做的冷启动耗时优化</h2>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;May 10, 2020 </time>
+  <time class="single__info" title="Written At">📅&nbsp;Mar 28, 2020 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;7&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;4&nbsp;min read </span>
   
   <span class="single__info">
     
@@ -1555,201 +1555,53 @@
     </div>
     <article class="single__contents" data-dir="ltr" data-ani="true">
       
-      <p><img src="https://image.youcute.cn/FlTdIzchzNTr9PPR7aSFS7kI46xV" alt="大纲" /></p>
-<h1 id="背景-使用">背景: 使用</h1>
-<p>Kotlin Coroutine 的使用方法，参照<a href="https://kotlinlang.org/docs/reference/coroutines/coroutines-guide.html">官方文档</a>食用即可。这里只简单给出一些概念。</p>
-<h2 id="suspend">suspend</h2>
-<p>​使用 suspend 表示函数支持挂起操作，目的在于告诉编译器，该方法可能产生阻塞(因为普通方法也能使用 suspend 标记，但是实际不会起作用)。suspend 方法会被编译为继承 SuspendLambda 的类</p>
-<h2 id="创建协程">创建协程</h2>
+      <h1 id="背景">背景</h1>
+<p>最近公司 Client Infra 开始专项整治各业务线的应用启动耗时，我负责和架构组同事对接我们业务组的启动耗时优化工作。</p>
+<p>整个优化工作大致的流程如下:</p>
+<p><img src="https://image.youcute.cn/FlSAu6_ltxLgNjT10_xsCYbhfBsg" alt="大致流程" /></p>
+<h1 id="定位耗时方法">定位耗时方法</h1>
+<p>主要通过 SDK 提供的 <code>Debug</code> 接口中的 Method Tracing 方法去获取一段时间内处理器执行的方法。然后 Top Down 降序排列耗时，就能找到耗时较高的方法。</p>
+<h2 id="冷启动-tracing">冷启动 Tracing</h2>
+<p>冷启动耗时的优化方向主要在减少 Application 的 onCreate 调用到第一个 Activity onCreate 调用这段时间的耗时。所以Tracing 的开始点和结束点可以是: Application#attachBaseContext 和 Activity#onCreate。</p>
+<h1 id="主要问题">主要问题</h1>
 <ul>
-<li>
-<p>launch</p>
-<p>返回 <em>Job</em>，​能够获取和控制当前 Scope 下的协程的状态，比如取消(cancel)协程、获取是否运行(isActive)。</p>
-</li>
-<li>
-<p>async</p>
-<p>​返回 <em>Deferred</em>，Deferred 继承自 Job，它拥有 Job 的功能。另外 Deferred 还类似 Java UTC 中的 Future 接口，通过 Deferred 能够获取协程执行完毕之后的结果。</p>
-</li>
-<li>
-<p>withContext</p>
-<p>​切换代码块的执行上下文</p>
-</li>
+<li>主线程IO</li>
 </ul>
-<h2 id="结构化并发">结构化并发</h2>
-<p>​将多个协程放到一个可以管理的空间里面，这个空间的名字就叫 CoroutineScope。通过 Scope 就能够统一的管理内部的协程，方便对多个协程整体上做取消(cancel)、等待结果(join)等操作。</p>
-<h1 id="实现原理">实现原理</h1>
-<p>Kotlin 的协程实现属于<a href="https://zh.wikipedia.org/wiki/%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%BC%96%E7%A8%8B">有限状态机编程</a>, 有限状态机编程是<a href="https://zh.wikipedia.org/wiki/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B">编程范式</a>的一种。是指利用有限状态机来进行编程实现。</p>
-<p>Kotlin 在 JVM 上实现的协程机制，本身没有超脱出 JVM 的范畴，也不能够超脱，所以代码本质还是运行在操作系统级别的线程上的。所以 Kotlin Coroutine 的实现就是要在 JVM 上实现一套代码(任务)的挂起和恢复机制，而挂起和恢复刚好能抽取为两种状态，于是要实现代码运行的挂起和恢复的需求，就转变为了实现一种控制状态转移的需求。而有限状态下的编程，使用有限状态机编程范式再合适不过了。</p>
-<p>Kotlin 协程本质还是运行在线程上的，所以如果从代码的运行角度来看，并没有太多的魔法，代码的运行机制和传统一样，虚拟机按行读取指令和操作数，然后执行操作。所以 Kotlin 协程的魔法更多是在编译期就开始了。</p>
-<h2 id="执行的最小单元-codeblock">​执行的最小单元 CodeBlock</h2>
-<p>在 Kotlin 代码编译时，<em>launch</em>/<em>async</em> 和 <em>suspend</em> 方法中的代码会根据挂起点被拆分到多个 <strong>Code Block</strong> 中。Code Block 会被封装为 <code>Runnable</code>，被封装的 <code>Runnable</code> 会被 <em>Dispatcher</em> 执行。使用哪种 <em>Dispatcher</em> 则由传递给 <em>launch</em>/<em>async</em> 的 <em>CoroutineContext</em> 参数决定。</p>
-<p><em>例子代码:</em></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">class</span> <span class="nc">RunBlockingDemo</span> <span class="p">{</span>
-    <span class="k">fun</span> <span class="nf">demo</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">runBlocking</span> <span class="p">{</span>
-            <span class="n">println</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="c1">// block 1
-</span><span class="c1"></span>            <span class="n">launch</span> <span class="p">{</span> <span class="c1">// block 1
-</span><span class="c1"></span>                <span class="n">println</span><span class="p">(</span><span class="m">3</span><span class="p">)</span> <span class="c1">// block 2
-</span><span class="c1"></span>                <span class="n">suspendFunc</span><span class="p">()</span> <span class="c1">// block 2
-</span><span class="c1"></span>                <span class="n">println</span><span class="p">(</span><span class="m">6</span><span class="p">)</span> <span class="c1">// block 3
-</span><span class="c1"></span>            <span class="p">}</span>
-            <span class="n">println</span><span class="p">(</span><span class="m">2</span><span class="p">)</span> <span class="c1">// block 1
-</span><span class="c1"></span>        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">private</span> <span class="k">suspend</span> <span class="k">fun</span> <span class="nf">suspendFunc</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">println</span><span class="p">(</span><span class="m">4</span><span class="p">)</span> <span class="c1">// block 4
-</span><span class="c1"></span>        <span class="n">delay</span><span class="p">(</span><span class="m">500</span><span class="p">)</span> <span class="c1">// block 4
-</span><span class="c1"></span>        <span class="n">println</span><span class="p">(</span><span class="m">5</span><span class="p">)</span> <span class="c1">// block 5
-</span><span class="c1"></span>    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>例子代码中，使用的 <code>runBlocking</code> 来创建协程，<code>runBlocking</code> 会为内部的协程提供一个阻塞当前线程的 <em>EventLoop</em> 队列，等队列中的所有协程都执行完之后，<code>runBlocking</code> 才会执行完毕。例子代码中的 <code>launch</code> 没有传递额外的 CoroutineContext 参数，所以它会继承 <code>runBlocking</code> 的 context 去使用。</p>
-<p>例子代码的执行过程可以简述为:</p>
-<table>
-<thead>
-<tr>
-<th align="left">运行流</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><img src="https://image.youcute.cn/FuYgwCHQXViqtkj1ZjZywAvMu70g" alt="" /></td>
-<td align="left">1. 调用 <code>runBlocking</code>，<em>block 1</em> 入队，然后开始循环从队列中消费任务 <br>2. <em>block 1</em> 出队执行，输出 <code>1</code><br>3. <code>launch</code> 被调用，<em>block 2</em> 入队<br>4. 输出 <code>3</code><br>5. <em>block 1</em> 执行完成，执行继续从队列中取下一个任务<br>6. <em>block 2</em> 出队执行，输出 <code>3</code>，调用 <em>suspendFunc</em> 方法<br>8. <em>suspendFunc</em> 方法在编译之后，会在调用时先持有它自己的代码执行完成之后将要继续执行的代码块(<em>block 3</em>)的引用(在它自己的代码执行完成之后，就会恢复执行 <em>block 3</em>)<br>9. 执行 <em>suspendFunc</em> ，输出 <code>4</code><br>10. 调用 <em>delay</em> ，<em>block 5</em> 会被封装为一个 delay task 并入队<br>11. <em>block 2</em> 和 <em>block 4</em> 执行完毕，执行继续从队列中取下一个任务<br>12. 这时队列中存在的任务是 <em>block 5</em> ，循环会一直循环等待，直到到满足了 <em>block 5</em> delay 的时间时就将 <em>block 5</em> 出队<br>13. <em>block 5</em> 出队执行，输出 <code>5</code><br>14. <em>block 5</em> 执行完成就代表 <em>suspendFunc</em> 执行完毕了，就会恢复执行 <em>suspendFunc</em> 在进入时持有的 <em>block 3</em><br>15. <em>block 3</em> 执行，输出 <code>6</code><br>16. <em>runBlocking</em> 中的所有代码执行完毕，程序执行完毕</td>
-</tr>
-</tbody>
-</table>
-<p>通过上面这个例子能看出，虽然所有代码都是在同一个线程执行的，但是 Kotlin 协程却实现了非阻塞的运行(<code>println(2)</code> 不会被 <code>println(3)</code> 阻塞)，而协程内部又是按照同步的方式执行的(<code>println(5)</code> 在 <code>delay</code> 完成之后才会被执行)。</p>
-<p>正是由于编译器将来自不同协程的代码块相互交错的插入到事件循环队列中，才让仅使用一个线程就能实现代码块的挂起和恢复得以实现。</p>
-<p>其他的 CoroutineContext 或许使用不同的 Dispatcher 在不同的线程上采用不同的策略去执行协程，但是其过程与这个例子是类似的。</p>
-<h2 id="维护执行状态的-continuation">​维护执行状态的 Continuation</h2>
-<p>到目前为止，我们已经了解了使代码块执行的逻辑概念了。但是，在该概念是如何实现上面还存在一些疑惑。</p>
-<ol>
-<li>如何在已编译的 Java 字节码中实现这个逻辑概念？</li>
-<li>如何跟踪代码块的执行状态？或者说如何决定一个代码块执行完成之后该执行的哪一个代码块？</li>
-</ol>
-<p><img src="https://image.youcute.cn/FtN_6GhoaFek8QMzuoLIEJgAbz3a" alt="生成的类" /></p>
-<p>我尝试通过 JD-GUI 去反编译 <em>RunBlockingDemo</em> 类，但是 <em>suspendFuncA</em> 方法 JD-GUI 反编译失败了，没有显示出来。于是我先通过 <code>javap RunBlockingDemo</code> 查看了 <em>RunBlockingDemo</em> 类会有哪些方法，发现 <em>suspendFuncA</em> 被编译为了下面的样子：</p>
+<p>通过 Tracing 得到的方法中，主要的耗时问题基本都是在 Application 的 attachBaseContext 或 onCreate 中进行很多库的初始化工作，而有些库的初始化工作会涉及IO操作，所以会在隐式的主线程IO操作。</p>
+<ul>
+<li>数据库创建</li>
+</ul>
+<p>数据库创建也是引入的外部库会在初始化进行某些数据库操作</p>
+<h1 id="解决方向">解决方向</h1>
+<p>针对耗时问题，主要的解决方向我们总结了如下几个方向。</p>
+<h2 id="延迟初始化">延迟初始化</h2>
+<p>将一些库的初始化工作，延后到需要调用库提供的功能时再进行一次初始化操作，这样能有效降低初始化操作对应用启动的影响。</p>
+<p>这就要求我们平时接入外部库时需要做好自己的 Wrapper，这样就能很方便的在 Wrapper 中插入延后初始化的操作。我在进行我们项目的延后初始化时，就发现历史代码存在直接依赖外部库，现在要抽取一层时发现很痛苦，每个依赖的地方都需要修改。所以，延迟初始化的最好前提是项目中做好了对外部库的封装，尽量不直接依赖，依赖抽象。</p>
+<h2 id="登录与非登录库区分">登录与非登录库区分</h2>
+<p>还有的问题是：一些库其实在登录和非登录两种状态下是存在不用初始化的必要的。比如登录用到的各种第三方SDK，在用户已经是登录用户的情况下，其实没有在初始化时加载的必要。还有一些依赖用户信息的统计库，在非登录状态下没有初始化的必要。</p>
+<h2 id="轻量化登录判断">轻量化登录判断</h2>
+<p>还有一个值得优化的点是用户是否已经登录的判断。因为判断用户是否登录是我们应用第一个 Activity 启动之后做的第一件事情。判断的机制就是从磁盘中获取本地是否存有 token，如果存在，说明用户登录过，否则说明用户没有登录过，直接到登录注册界面。</p>
+<p>目前我们从磁盘获取 token 记录的方法是：通过将一个包含了用户昵称、签名等许多额外信息的类序列化为 JSON 格式的字符串之后，存到 Sharedpreference 中，应用启动时从 SP 中拿到，再进行反序列化解析为类对象。</p>
+<p>这一步是值得优化的，将从磁盘获取 token 的过程轻量化，因为用户昵称、签名这类的信息对于判断是否登录是没有任何作用的，额外的解析这些对登录判断无用的信息只会增加额外的耗时。</p>
+<h2 id="不同进程区别对待">不同进程区别对待</h2>
+<p>这一点主要针对应用中存在多进程的情况，因为每个进程都会走 Application 的创建，所以需要在 Application 中对进程做区别对待，避免在不期望的进程进行了不应该进行的初始化操作。</p>
+<h1 id="其他方案">其他方案</h1>
+<h2 id="支付宝">支付宝</h2>
+<blockquote>
+<p>纯属学习目的，对支付宝 Apk 反编译之后希望能找到一些优化方法</p>
+</blockquote>
+<p>支付宝(10.1.88.7000)的启动 Application 是 <code>com.alipay.mobile.quinox.LauncherApplication</code>，启动 Activity 是 <code>com.eg.android.AlipayGphone.AlipayLogin</code></p>
+<p><img src="https://image.youcute.cn/Fm82XFYRwJTXATEr40kLNhOJoN8z" alt="启动流程" /></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Object</span> <span class="nf">suspendFuncA</span><span class="o">(</span><span class="n">kotlin</span><span class="o">.</span><span class="na">coroutines</span><span class="o">.</span><span class="na">Continuation</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">kotlin</span><span class="o">.</span><span class="na">Unit</span><span class="o">&gt;);</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">AlipayLogin</span> <span class="kd">extends</span> <span class="n">LauncherActivity</span> <span class="o">{}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>然后我再使用 <code>javap -c RunBlockingDemo</code> 反编译得到编译之后的字节码:</p>
-<details>
-<summary> *suspendFuncA* 方法的反编译字节码太长, 点击可展开</summary>
-<pre><code>    Code:
-       0: aload_1 // 加载第二个局部变量到栈顶, 这里的第二个局部变量就是方法的第一个参数 Continuation
-       1: instanceof    #29                 // class RunBlockingDemo$suspendFuncA$1
-       4: ifeq          39 //如果不是 RunBlockingDemo$suspendFuncA$1 的对象，就跳转到 39 行
-       7: aload_1          //否则加载第二个局部变量到栈顶
-       8: checkcast     #29                 // class RunBlockingDemo$suspendFuncA$1
-      11: astore        5  //栈顶对象存入第5个局部变量，即方法的第一个参数通过了 checkcast 判断之后，存入第5个局部变量
-      13: aload         5  //加载第5个局部变量到栈顶
-      15: getfield      #33                 // Field RunBlockingDemo$suspendFuncA$1.label:I  // 获取 label 字段
-      18: ldc           #34                 // int -2147483648 // 从常量池中加载第34个整形常量到栈顶，其值是 Integer.MIN_VALUE
-      20: iand                              // 从栈中弹出两个整数，进行与运算，即将 label 和 Integer.MIN_VALUE 进行与运算
-      21: ifeq          39                  // 如果结果为0，就跳转到 39 行
-      24: aload         5                   // 否则加载第5个局部变量到栈顶
-      26: dup                               // 复制栈顶元素
-      27: getfield      #33                 // Field RunBlockingDemo$suspendFuncA$1.label:I // 加载 label 字段到栈顶
-      30: ldc           #34                 // int -2147483648 // 从常量池加载数字 Integer.MIN_VALUE
-      32: isub                              // label 减去 Integer.MIN_VALUE 的结果存入栈顶
-      33: putfield      #33                 // Field RunBlockingDemo$suspendFuncA$1.label:I // 将栈顶元素存入 label
-      36: goto          50                   // 跳转到 50 行
-      39: new           #29                 // class RunBlockingDemo$suspendFuncA$1
-      42: dup
-      43: aload_0
-      44: aload_1
-      45: invokespecial #35                 // Method RunBlockingDemo$suspendFuncA$1.&quot;&lt;init&gt;&quot;:(LRunBlockingDemo;Lkotlin/coroutines/Continuation;)V
-      48: astore        5
-      50: aload         5                   // 加载第5个局部变量
-      52: getfield      #39                 // Field RunBlockingDemo$suspendFuncA$1.result:Ljava/lang/Object;  // result 字段加载到栈顶
-      55: astore        4                   // result 存到第4个局部变量中
-      57: invokestatic  #45                 // Method kotlin/coroutines/intrinsics/IntrinsicsKt.getCOROUTINE_SUSPENDED:()Ljava/lang/Object;
-      60: astore        6                   // 将  getCOUROUTINE_SUSPENDED() 的返回值存入第6个局部变量中
-      62: aload         5                   // 加载第5个局部变量
-      64: getfield      #33                 // Field RunBlockingDemo$suspendFuncA$1.label:I // 加载 label 字段到栈顶
-      67: tableswitch   { // 0 to 1
-                     0: 88          // label 为 0 就跳转到 88 行
-                     1: 133         // label 为 1 就跳转到 133 行
-               default: 165         // 默认跳转到 165 行
-          }
-      88: aload         4           // 加载 result 到栈顶
-      90: invokestatic  #51                 // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
-      93: iconst_4                  // 加载常量数字 4 到栈顶
-      94: istore_2                  // 将栈顶数字(这里就是4)存到第二个局部变量中
-      95: iconst_0
-      96: istore_3                  // 将数字0 存到第3个局部变量中
-      97: getstatic     #57                 // Field java/lang/System.out:Ljava/io/PrintStream;
-     100: iload_2                   // 加载第2个局部变量，这里存的是 4
-     101: invokevirtual #63                 // Method java/io/PrintStream.println:(I)V                           // 调用 println 输出栈顶的数字 4
-     104: ldc2_w        #64                 // long 500l    // 加载常量池第63个长整形数字到栈顶，这里就是 500L
-     107: aload         5
-     109: aload         5
-     111: aload_0
-     112: putfield      #68                 // Field RunBlockingDemo$suspendFuncA$1.L$0:Ljava/lang/Object;  // 将 this 对象引用存储到 L$0 字段
-     115: aload         5
-     117: iconst_1
-     118: putfield      #33                 // Field RunBlockingDemo$suspendFuncA$1.label:I             // label 赋值 1
-     121: invokestatic  #74                 // Method kotlinx/coroutines/DelayKt.delay:(JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-     124: dup
-     125: aload         6
-     127: if_acmpne     149                 // 如果 delay 的返回值 != getCOROUTINE_SUSPEND() 的返回值，就跳转 149 行
-     130: aload         6                   // 否则返回 getCOROUTINE_SUSPEND() 的返回值
-     132: areturn
-     133: aload         5
-     135: getfield      #68                 // Field RunBlockingDemo$suspendFuncA$1.L$0:Ljava/lang/Object;
-     138: checkcast     #2                  // class RunBlockingDemo
-     141: astore_0
-     142: aload         4
-     144: invokestatic  #51                 // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
-     147: aload         4
-     149: pop
-     150: iconst_5
-     151: istore_2      // 5 存入第2个局部变量
-     152: iconst_0
-     153: istore_3      // 0 存入第3个局部变量
-     154: getstatic     #57                 // Field java/lang/System.out:Ljava/io/PrintStream;
-     157: iload_2
-     158: invokevirtual #63                 // Method java/io/PrintStream.println:(I)V              // 输出 5
-     161: getstatic     #80                 // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
-     164: areturn      // return Unit.INSTANCE
-     165: new           #82                 // class java/lang/IllegalStateException
-     168: dup
-     169: ldc           #84                 // String call to 'resume' before 'invoke' with coroutine
-     171: invokespecial #87                 // Method java/lang/IllegalStateException.&quot;&lt;init&gt;&quot;:(Ljava/lang/String;)V
-     174: athrow        // 抛出异常
-</code></pre></details>
-<p>下面是我根据反编译出来的字节码推测出的 <em>RunBlockingDemo</em> 类的 <em>suspendFuncA</em> 方法经过编译器处理之后的源码:</p>
+</div><p>AlipayLogin 直接继承了 LauncherActivity，所以首页 Activity 最终启动的其实是 LauncherActivity。</p>
+<p>查看 attachBaseContext，😯 没反编译出来，只能硬着头皮看了，我翻译了部分字节码(太长host到 <a href="https://gist.github.com/stefanJi/2267625a4d4091fca59307bb5ba47364">gist</a> 了)对应的源码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -1775,84 +1627,126 @@
 </span><span class="lnt">21
 </span><span class="lnt">22
 </span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="n">Object</span> <span class="nf">suspendFuncA</span><span class="o">(</span><span class="n">Continuation</span><span class="o">&lt;?&gt;</span> <span class="n">continuation</span><span class="o">){</span>
-    <span class="k">if</span><span class="o">(!</span><span class="n">continuation</span> <span class="n">istanceOf</span> <span class="n">RunBlockingDemo$suspendFuncA$1</span> <span class="o">||</span> 
-        <span class="o">(</span><span class="n">RunBlockingDemo$suspendFuncA$1</span><span class="o">)</span><span class="n">continuation</span><span class="o">.</span><span class="na">label</span> <span class="o">&amp;</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span> <span class="o">==</span> <span class="n">0</span> <span class="o">){</span>
-        <span class="n">continuation</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RunBlockingDemo$suspendFuncA$1</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="n">continuation</span><span class="o">.</span><span class="na">label</span> <span class="o">=</span> <span class="n">contination</span><span class="o">.</span><span class="na">label</span> <span class="o">-</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">;</span>
-    <span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">IntrinsicsKt</span><span class="o">.</span><span class="na">getCOROUTINE_SUSPEND</span><span class="o">();</span>
-    <span class="k">switch</span><span class="o">(</span><span class="n">continuation</span><span class="o">.</span><span class="na">label</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">case</span> <span class="n">0</span><span class="o">:</span> 
-            <span class="n">println</span><span class="o">(</span><span class="n">4</span><span class="o">);</span>
-            <span class="n">continuation</span><span class="o">.</span><span class="na">L$0</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
-            <span class="n">continuation</span><span class="o">.</span><span class="na">label</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">delay</span><span class="o">(</span><span class="n">500</span><span class="o">,</span> <span class="n">continuation</span><span class="o">)</span> <span class="o">==</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="n">obj</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="k">case</span> <span class="n">1</span><span class="o">:</span>
-            <span class="n">ResultKt</span><span class="o">.</span><span class="na">throwOnFailure</span><span class="o">(</span><span class="n">continuation</span><span class="o">.</span><span class="na">result</span><span class="o">);</span>
-            <span class="n">println</span><span class="o">(</span><span class="n">5</span><span class="o">);</span>
-            <span class="k">return</span> <span class="n">Unit</span><span class="o">.</span><span class="na">INSTANCE</span><span class="o">;</span>
-        <span class="k">default</span><span class="o">:</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="o">(</span><span class="s">&#34;call to &#39;resume&#39; before &#39;invoke&#39; with coroutine&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// this-&gt;LauncherApplicationWrapper
+</span><span class="c1"></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">attachBaseContext</span><span class="o">(</span><span class="n">Context</span> <span class="n">paramContext</span><span class="o">){</span>
+ <span class="n">local_0</span> <span class="o">=</span> <span class="k">this</span>
+ <span class="n">local_1</span> <span class="o">=</span> <span class="n">paramContext</span>
+ <span class="n">local_2</span> <span class="o">=</span> <span class="kc">null</span>
+ <span class="n">local_3</span> <span class="o">=</span> <span class="n">ldc_0</span>
+ <span class="n">local_4</span> <span class="o">=</span> <span class="n">LauncherApplication</span><span class="o">.</span><span class="na">mCureentProcessStartupTime</span>
+ <span class="n">sInstance</span> <span class="o">=</span> <span class="k">this</span>
+ <span class="n">mBaseContext</span> <span class="o">=</span> <span class="n">paramContext</span>
+ <span class="n">mMainHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Handler</span><span class="o">()</span>
+ <span class="n">mSharedPreferenceWrapper</span> <span class="o">=</span> <span class="n">SharedPreferenceWrapper</span><span class="o">.</span><span class="na">createInstance</span><span class="o">(</span><span class="n">mBaseContext</span>    <span class="o">)</span>
+ <span class="n">ContextHolder</span><span class="o">.</span><span class="na">setContext</span><span class="o">(</span><span class="n">mLauncherApplication</span><span class="o">)</span>
+ <span class="n">DataProvider</span><span class="o">.</span><span class="na">putData</span><span class="o">(</span><span class="s">&#34;process_launch_time&#34;</span><span class="o">,</span> <span class="n">mCurrentProcessStartupTime</span><span class="o">)</span>
+ <span class="n">StartServiceController</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">setApplicationWrapper</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
+ <span class="n">mPackageName</span> <span class="o">=</span> <span class="n">mLauncherApplication</span><span class="o">.</span><span class="na">getPackageName</span><span class="o">()</span>
+ <span class="k">if</span><span class="o">(</span><span class="n">mPackageName</span> <span class="n">equals</span> <span class="err">&#39;</span><span class="n">com</span><span class="o">.</span><span class="na">eg</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">AlipayGphone</span><span class="err">&#39;</span><span class="o">){</span>
+     <span class="n">SystemUtil</span><span class="o">.</span><span class="na">IS_ALIPAY</span> <span class="o">=</span> <span class="kc">true</span>
+ <span class="o">}</span>
+ <span class="n">mProcessInfo</span> <span class="o">=</span> <span class="n">ProcessInfo</span><span class="o">(</span><span class="n">mLauncherApplication</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">getProcessName</span><span class="o">())</span>
+ <span class="k">if</span><span class="o">(!</span><span class="n">mProcessInfo</span><span class="o">.</span><span class="na">isMainProcess</span><span class="o">){</span>
+     <span class="n">跳到</span> <span class="n">243</span> <span class="n">行执行</span>
+ <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+     <span class="n">local13</span> <span class="o">=</span> <span class="n">SharedPreferenceWrapper</span><span class="o">.</span><span class="na">getDefaultSharedPreference</span><span class="o">(</span><span class="n">ContextHelper</span><span class="o">.</span><span class="na">getContex</span>    <span class="nf">t</span><span class="o">())</span>
+     <span class="k">if</span><span class="o">(</span><span class="n">local13</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="err">&#39;</span><span class="n">iop_preload_library_at_launch</span><span class="err">&#39;</span><span class="o">,</span> <span class="err">&#39;</span><span class="n">no</span><span class="err">&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="err">&#39;</span><span class="n">yes</span><span class="err">&#39;</span><span class="o">){</span>
+        <span class="n">loadLibraryInPathClassLoader</span><span class="o">()</span>
+     <span class="o">}</span>
+     <span class="n">local14</span> <span class="o">=</span> <span class="n">local13</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="err">&#39;</span><span class="n">iop_binder_thread_pool_num</span><span class="err">&#39;</span><span class="o">,</span> <span class="sc">&#39;0&#39;</span><span class="o">)</span>
+     <span class="k">if</span><span class="o">(</span><span class="n">local14</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+         <span class="n">跳到</span> <span class="n">4821</span> <span class="n">行执行</span>
+      <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+         <span class="n">local14</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">local14</span><span class="o">)</span>
+          <span class="k">if</span><span class="o">(</span><span class="n">local14</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                  <span class="n">startBinderThread</span><span class="o">(</span><span class="n">local14</span><span class="o">)</span>
+          <span class="o">}</span>
+          <span class="n">hookSpFinishersAbove26</span><span class="o">(</span><span class="n">ContextHelper</span><span class="o">.</span><span class="na">getContext</span><span class="o">())</span>
+          <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">mProcessInfo</span><span class="o">.</span><span class="na">isLiteProcess</span><span class="o">()){</span>
+                  <span class="n">local15</span> <span class="o">=</span> <span class="n">65516</span>
+                  <span class="nf">setThreadPriority</span><span class="o">(</span><span class="n">local15</span><span class="o">)</span>
+                  <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">mProcessInfo</span><span class="o">.</span><span class="na">isMainProcess</span><span class="o">()){</span>
+                          <span class="n">跳到293行</span>
+                          <span class="nf">if</span><span class="o">(</span><span class="n">checkStrategy</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">mLauncherApplication</span><span class="o">)){</span>
+                                  <span class="k">if</span><span class="o">(</span><span class="n">ProfileUtil</span><span class="o">.</span><span class="na">DUMP_PROFILE</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">ProfileUtil</span><span class="o">.</span><span class="na">DUMP_START2S</span>    <span class="n">CAN_PROFILE</span><span class="o">){</span>
+                                          <span class="n">ProfileUtile</span><span class="o">.</span><span class="na">iniSO</span><span class="o">(</span><span class="n">mLauncherApplication</span><span class="o">)</span>
+                                          <span class="n">replaceJitCompileMethod</span><span class="o">()</span>
+                                          <span class="n">replaceProcessProfilingInfo</span><span class="o">()</span>
+                                          <span class="n">replaceJitAddSamples</span><span class="o">()</span>
+                                          <span class="n">setReplaceAddSampleCount</span><span class="o">(</span><span class="n">6666</span><span class="o">,</span> <span class="n">1</span><span class="o">)</span>
+                                          <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="na">mProcessInfo</span><span class="o">.</span><span class="na">isLiteProcess</span><span class="o">()){</span>
+                                                  <span class="n">stopDumpProfileDelayed</span><span class="o">(</span><span class="n">mLauncherApplicat</span>    <span class="n">ion</span><span class="o">)</span>
+                                          <span class="o">}</span>
+                                  <span class="o">}</span>
+                          <span class="o">}</span>
+                          <span class="k">if</span><span class="o">(</span><span class="n">ProfileUtil</span><span class="o">.</span><span class="na">RESTORE_PROFILE</span><span class="o">){</span>
+                                  <span class="n">restorePrimaryProf</span><span class="o">(</span><span class="n">mLauncherApplication</span><span class="o">)</span>
+                          <span class="o">}</span>
+                          <span class="k">if</span><span class="o">(</span><span class="n">ProfileUtil</span><span class="o">.</span><span class="na">TRY_COMPILE</span><span class="o">){</span>
+                                  <span class="n">profileCompile</span><span class="o">(</span><span class="n">mLauncherApplication</span><span class="o">)</span>
+                          <span class="o">}</span>
+                  <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+                          <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="na">mProcessInfo</span><span class="o">.</span><span class="na">isLiteProcess</span><span class="o">()){</span>
+                                  <span class="n">跳到393行</span>
+                          <span class="o">}</span>
+                  <span class="o">}</span>
+          <span class="o">}</span>
+          <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="na">mProcessInfo</span><span class="o">.</span><span class="na">isMainProcess</span><span class="o">()){</span>
+                  <span class="n">跳到273行</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>从源码中能得出两个有趣的地方:</p>
-<ol>
-<li>例子中的 <code>supendFuncA</code> 是没有参数的，但是编译之后，编译器为它增加了一个 <em>Continuation</em> 类型的参数</li>
-<li><code>suspendFuncA</code> 内部通过一个 <em>switch-case</em> 去调度执行不同的代码块，而 <em>switch</em> 的参数则是传入的 <em>Continuation</em> 对象的 <em>label</em> 字段</li>
-</ol>
-<p>因此不难推测出，编译器为 <code>suspendFuncA</code> 方法增加的 <em>Continuation</em> 参数就是用来跟踪协程运行状态的对象，而且运行状态就保存在一个简单的 <em>int</em> 类型的 <code>label</code> 字段中。</p>
-<p>再回头看看 <code>suspendFuncA</code> 方法是如何被调用的。</p>
-<ul>
-<li>首先编译器会为 <em>suspend</em> 方法生成一个实现了 <em>ContinuationImpl</em> 的包装类，然后在包装类的 <em>invokeSuspend</em> 方法中调用 <code>suspendFuncA</code>。<br />
-下面就是编译器为 <code>suspendFuncA</code> 方法生成的包装类(使用 JD-GUI 查看):</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">RunBlockingDemo$suspendFuncA$1</span> <span class="kd">extends</span> <span class="n">ContinuationImpl</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">label</span><span class="o">;</span>
-
-    <span class="n">Object</span> <span class="n">L$0</span><span class="o">;</span>
-
-    <span class="nd">@Nullable</span>
-    <span class="kd">public</span> <span class="kd">final</span> <span class="n">Object</span> <span class="nf">invokeSuspend</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">Object</span> <span class="n">$result</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">result</span> <span class="o">=</span> <span class="n">$result</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">label</span> <span class="o">|=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">;</span>
-        <span class="k">return</span> <span class="n">RunBlockingDemo</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">suspendFuncA</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="n">RunBlockingDemo$suspendFuncA$1</span><span class="o">(</span><span class="n">Continuation</span> <span class="n">paramContinuation</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">(</span><span class="n">paramContinuation</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
 </div>
-</div><p><img src="https://image.youcute.cn/FmW5j3UdDZLvF2Zwk6An6gI01dUA" alt="继承关系" /></p>
-
     </article>
     
     <script>
@@ -2018,17 +1912,17 @@
 <nav class="pagination-single">
   
     
-      <a href="https://blog.jiyang.site/posts/rpios-processor-init/" class="pagination-single__left">
+      <a href="https://blog.jiyang.site/posts/2020-03-28-%E5%AE%9E%E7%8E%B0rpi-os-b-%E7%90%86%E8%A7%A3linux%E5%86%85%E6%A0%B8%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B/" class="pagination-single__left">
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
         </div>
-        <div class="pagination-single__left-title">树莓派OS#0x02 处理器初始化</div>      
+        <div class="pagination-single__left-title">树莓派OS-#0x01-理解Linux内核的初始化流程</div>      
       </a>
     
     <div class="grow"></div>
     
-      <a href="https://blog.jiyang.site/posts/libc-io-cache/" class="pagination-single__right">      
-        <div class="pagination-single__right-title">C库的IO缓存机制</div>
+      <a href="https://blog.jiyang.site/posts/2020-04-10-textview-%E5%B8%83%E5%B1%80%E5%8E%9F%E7%90%86/" class="pagination-single__right">      
+        <div class="pagination-single__right-title">TextView 的布局细节</div>
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
         </div>
@@ -2409,17 +2303,24 @@ document.addEventListener('DOMContentLoaded', function () {
   <div class="toc " data-dir="ltr" data-folding="false" data-ani="true">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#背景-使用">背景: 使用</a>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#定位耗时方法">定位耗时方法</a>
       <ul>
-        <li><a href="#suspend">suspend</a></li>
-        <li><a href="#创建协程">创建协程</a></li>
-        <li><a href="#结构化并发">结构化并发</a></li>
+        <li><a href="#冷启动-tracing">冷启动 Tracing</a></li>
       </ul>
     </li>
-    <li><a href="#实现原理">实现原理</a>
+    <li><a href="#主要问题">主要问题</a></li>
+    <li><a href="#解决方向">解决方向</a>
       <ul>
-        <li><a href="#执行的最小单元-codeblock">​执行的最小单元 CodeBlock</a></li>
-        <li><a href="#维护执行状态的-continuation">​维护执行状态的 Continuation</a></li>
+        <li><a href="#延迟初始化">延迟初始化</a></li>
+        <li><a href="#登录与非登录库区分">登录与非登录库区分</a></li>
+        <li><a href="#轻量化登录判断">轻量化登录判断</a></li>
+        <li><a href="#不同进程区别对待">不同进程区别对待</a></li>
+      </ul>
+    </li>
+    <li><a href="#其他方案">其他方案</a>
+      <ul>
+        <li><a href="#支付宝">支付宝</a></li>
       </ul>
     </li>
   </ul>

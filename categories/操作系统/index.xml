@@ -22,11 +22,11 @@
       
       <item>
         <title>树莓派OS#0x02 处理器初始化</title>
-        <link>https://blog.jiyang.site/posts/%E6%A0%91%E8%8E%93%E6%B4%BEos-%E5%A4%84%E7%90%86%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96/</link>
+        <link>https://blog.jiyang.site/posts/rpios-processor-init/</link>
         <pubDate>Mon, 04 May 2020 09:10:45 +0800</pubDate>
         
         <atom:modified>Mon, 04 May 2020 09:10:45 +0800</atom:modified>
-        <guid>https://blog.jiyang.site/posts/%E6%A0%91%E8%8E%93%E6%B4%BEos-%E5%A4%84%E7%90%86%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96/</guid>
+        <guid>https://blog.jiyang.site/posts/rpios-processor-init/</guid>
         <description>Exception Level https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/exception-levels 在 ARMv8 处理器中，处理器的运行总是发生在 4 个异常级别之中的一个。异常级别决定了权限级别(privilege level)，每个异常级别(EL</description>
         
         <dc:creator>Yang</dc:creator>
