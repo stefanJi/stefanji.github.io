@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Python on Yang Blog</title>
+    <link>https://blog.jiyang.site/categories/python/</link>
+    <description>Recent content in Python on Yang Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 28 May 2018 00:32:41 +0000</lastBuildDate>
+    
+        <atom:link href="https://blog.jiyang.site/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>Flask自带的Session</title>
+        <link>https://blog.jiyang.site/posts/2018-05-28-flask%E8%87%AA%E5%B8%A6%E7%9A%84session/</link>
+        <pubDate>Mon, 28 May 2018 00:32:41 +0000</pubDate>
+        
+        <atom:modified>Mon, 28 May 2018 00:32:41 +0000</atom:modified>
+        <guid>https://blog.jiyang.site/posts/2018-05-28-flask%E8%87%AA%E5%B8%A6%E7%9A%84session/</guid>
+        <description>&lt;p&gt;今天才搞懂 Flask 自带的 session 竟然是完全依靠客户端的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当写入值到 session 中后， session 就会比加密成一个字符串，然后写入到 cookie 里&lt;/li&gt;
+&lt;li&gt;当一个请求来时，获取请求的 cookie 里拿到 session 字符串，然后解析到 session 字典里&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;之前还使用自带的 session 做用户登录，现在看来不安全，用户是否登录完全依赖了客户端呀。本以为 Flask 自带的 session 是储存在内存中的，结果现在清楚了，内存中没有存，都是每次从请求的 cookie 中拿到，然后解析成 dict.&lt;/p&gt;</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>Python</category>
+            
+          
+        
+        
+      </item>
+      
+      <item>
+        <title>Python新旧类的方法查找区别</title>
+        <link>https://blog.jiyang.site/posts/2018-04-20-python%E6%96%B0%E6%97%A7%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95%E6%9F%A5%E6%89%BE%E5%8C%BA%E5%88%AB/</link>
+        <pubDate>Fri, 20 Apr 2018 21:59:38 +0000</pubDate>
+        
+        <atom:modified>Fri, 20 Apr 2018 21:59:38 +0000</atom:modified>
+        <guid>https://blog.jiyang.site/posts/2018-04-20-python%E6%96%B0%E6%97%A7%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95%E6%9F%A5%E6%89%BE%E5%8C%BA%E5%88%AB/</guid>
+        <description>&lt;p&gt;Python 中现在存在两种类的定义方式:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1  旧式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;A foo&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;2 新式( Python 3 默认的方式)&lt;/li&gt;
+&lt;/ul&gt;</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>Python</category>
+            
+          
+        
+        
+      </item>
+      
+      <item>
+        <title>Python笔记-基础</title>
+        <link>https://blog.jiyang.site/posts/2017-03-24-python%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        
+        <guid>https://blog.jiyang.site/posts/2017-03-24-python%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80/</guid>
+        <description>Python数据类型 Number 数字 int 有符号整数 long 长整形，也可以代表十六进制或八进制 float 浮点型 complex 复数 String 字符串 list 列表 按索引存取 1 list = [&amp;#39;item1&amp;#39;, 2, &amp;#39;3&amp;#39;, 4, 5] 元组 只读列表</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>Python</category>
+            
+          
+        
+        
+      </item>
+      
+      <item>
+        <title>使用Beanstalkd做异步任务处理</title>
+        <link>https://blog.jiyang.site/posts/2018-04-10-%E4%BD%BF%E7%94%A8beanstalkd%E5%81%9A%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        
+        <guid>https://blog.jiyang.site/posts/2018-04-10-%E4%BD%BF%E7%94%A8beanstalkd%E5%81%9A%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;使用 Beanstalkd 作为消息队列服务，然后结合 Python 的装饰器语法实现一个简单的异步任务处理框架.&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>Python</category>
+            
+          
+        
+        
+      </item>
+      
+      <item>
+        <title>制作Chrome书签同步插件</title>
+        <link>https://blog.jiyang.site/posts/2017-09-12-%E5%88%B6%E4%BD%9Cchrome%E4%B9%A6%E7%AD%BE%E5%90%8C%E6%AD%A5%E6%8F%92%E4%BB%B6/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        
+        <guid>https://blog.jiyang.site/posts/2017-09-12-%E5%88%B6%E4%BD%9Cchrome%E4%B9%A6%E7%AD%BE%E5%90%8C%E6%AD%A5%E6%8F%92%E4%BB%B6/</guid>
+        <description>作为Chrome的重度使用者，解决了访问Google的问题之后，书签又经常不能同步。 利用Chrome的Api接口获取所有书签，然后上传到自己</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>Python</category>
+            
+          
+            
+              <category>Chrome</category>
+            
+          
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

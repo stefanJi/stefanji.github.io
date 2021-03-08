@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>libc on Yang Blog</title>
+    <link>https://blog.jiyang.site/categories/libc/</link>
+    <description>Recent content in libc on Yang Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Sat, 30 May 2020 21:53:39 +0800</lastBuildDate>
+    
+        <atom:link href="https://blog.jiyang.site/categories/libc/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>C库的IO缓存机制</title>
+        <link>https://blog.jiyang.site/posts/libc-io-cache/</link>
+        <pubDate>Sat, 30 May 2020 21:53:39 +0800</pubDate>
+        
+        <atom:modified>Sat, 30 May 2020 21:53:39 +0800</atom:modified>
+        <guid>https://blog.jiyang.site/posts/libc-io-cache/</guid>
+        <description>缓存分类 块缓存 一般用于访问真正的磁盘文件。C库会为文件访问申请一块内存，只有当文件内容将缓存块填满或执行冲刷函数flush时，C库才会将缓存</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>libc</category>
+            
+          
+            
+              <category>读书笔记</category>
+            
+          
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

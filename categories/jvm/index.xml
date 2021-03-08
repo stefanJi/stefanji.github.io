@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>JVM on Yang Blog</title>
+    <link>https://blog.jiyang.site/categories/jvm/</link>
+    <description>Recent content in JVM on Yang Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Tue, 03 Mar 2020 21:17:54 +0000</lastBuildDate>
+    
+        <atom:link href="https://blog.jiyang.site/categories/jvm/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>Java的动态分派和静态分派</title>
+        <link>https://blog.jiyang.site/posts/2020-03-03-java%E7%9A%84%E5%8A%A8%E6%80%81%E5%88%86%E6%B4%BE%E5%92%8C%E9%9D%99%E6%80%81%E5%88%86%E6%B4%BE/</link>
+        <pubDate>Tue, 03 Mar 2020 21:17:54 +0000</pubDate>
+        
+        <atom:modified>Tue, 03 Mar 2020 21:17:54 +0000</atom:modified>
+        <guid>https://blog.jiyang.site/posts/2020-03-03-java%E7%9A%84%E5%8A%A8%E6%80%81%E5%88%86%E6%B4%BE%E5%92%8C%E9%9D%99%E6%80%81%E5%88%86%E6%B4%BE/</guid>
+        <description>Java 方法执行时的动态分派和静态分派是 Java 实现多态的本质 背景 Java 的动态分派和静态分派也是 Java 方法的执行原理。 Java 源代码的编译之后，方法之间的调用是使用符</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>JVM</category>
+            
+          
+        
+        
+      </item>
+      
+      <item>
+        <title>Jvm垃圾收集和内存分配</title>
+        <link>https://blog.jiyang.site/posts/2018-11-17-jvm%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%92%8C%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/</link>
+        <pubDate>Sat, 17 Nov 2018 21:40:35 +0000</pubDate>
+        
+        <atom:modified>Sat, 17 Nov 2018 21:40:35 +0000</atom:modified>
+        <guid>https://blog.jiyang.site/posts/2018-11-17-jvm%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%92%8C%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;参考 &lt;a href=&#34;https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html&#34;&gt;Java Garbage Collection Basics&lt;/a&gt; 和 《周志明. 深入理解Java虚拟机》&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>JVM</category>
+            
+          
+        
+        
+      </item>
+      
+      <item>
+        <title>Jvm运行时数据区</title>
+        <link>https://blog.jiyang.site/posts/2018-10-20-jvm%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA/</link>
+        <pubDate>Sat, 20 Oct 2018 11:30:03 +0000</pubDate>
+        
+        <atom:modified>Sat, 20 Oct 2018 11:30:03 +0000</atom:modified>
+        <guid>https://blog.jiyang.site/posts/2018-10-20-jvm%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;https://image.youcute.cn/18-12-2/42746474.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>JVM</category>
+            
+          
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

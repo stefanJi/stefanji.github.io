@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>ICMP on Yang Blog</title>
+    <link>https://blog.jiyang.site/tags/icmp/</link>
+    <description>Recent content in ICMP on Yang Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Sun, 15 Dec 2019 22:25:43 +0000</lastBuildDate>
+    
+        <atom:link href="https://blog.jiyang.site/tags/icmp/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>实现 ping Utility</title>
+        <link>https://blog.jiyang.site/posts/2019-12-15-%E5%AE%9E%E7%8E%B0-ping-utility/</link>
+        <pubDate>Sun, 15 Dec 2019 22:25:43 +0000</pubDate>
+        
+        <atom:modified>Sun, 15 Dec 2019 22:25:43 +0000</atom:modified>
+        <guid>https://blog.jiyang.site/posts/2019-12-15-%E5%AE%9E%E7%8E%B0-ping-utility/</guid>
+        <description>为了加深自己对计算机网络的理解, 想自己实现一些操作系统提供的网络工具, 于是先从 ping 开始 首先, ping 命令的作用是检测两个网络设备在 TCP/IP 网络下是否能连通</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>ICMP</category>
+            
+          
+        
+        
+          
+            
+              <category>计算机网络</category>
+            
+          
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

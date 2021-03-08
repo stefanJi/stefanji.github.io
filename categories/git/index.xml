@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Git on Yang Blog</title>
+    <link>https://blog.jiyang.site/categories/git/</link>
+    <description>Recent content in Git on Yang Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    
+        <atom:link href="https://blog.jiyang.site/categories/git/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>Resolve-Merge(Pull)-Request-Conflict</title>
+        <link>https://blog.jiyang.site/posts/2017-12-13-resolve-mergepull-request-conflict/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        
+        <guid>https://blog.jiyang.site/posts/2017-12-13-resolve-mergepull-request-conflict/</guid>
+        <description>Conflict 产生原因 当两个版本的同一文件之间的合并不能干净的执行时，就会产生合并冲突。 大多数情况下，Git可以自动完成合并，但有时却不行。例如，如果我</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>Git</category>
+            
+          
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

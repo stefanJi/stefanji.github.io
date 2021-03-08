@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>ARP on Yang Blog</title>
+    <link>https://blog.jiyang.site/tags/arp/</link>
+    <description>Recent content in ARP on Yang Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 27 Dec 2019 20:33:51 +0000</lastBuildDate>
+    
+        <atom:link href="https://blog.jiyang.site/tags/arp/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>实现Arp报文发送和接收</title>
+        <link>https://blog.jiyang.site/posts/2019-12-27-%E5%AE%9E%E7%8E%B0arp%E6%8A%A5%E6%96%87%E5%8F%91%E9%80%81%E5%92%8C%E6%8E%A5%E6%94%B6/</link>
+        <pubDate>Fri, 27 Dec 2019 20:33:51 +0000</pubDate>
+        
+        <atom:modified>Fri, 27 Dec 2019 20:33:51 +0000</atom:modified>
+        <guid>https://blog.jiyang.site/posts/2019-12-27-%E5%AE%9E%E7%8E%B0arp%E6%8A%A5%E6%96%87%E5%8F%91%E9%80%81%E5%92%8C%E6%8E%A5%E6%94%B6/</guid>
+        <description>继上次实现了 Ping 之后，尝试进入更底层的网络接口层实现局域网的 ARP 报文收发 ARP 协议概述 ARP(Address Resolution Protocol) 地址解析协议是用来通过网络层地址(IP地址)去寻找数据链</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>ARP</category>
+            
+          
+        
+        
+          
+            
+              <category>计算机网络</category>
+            
+          
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

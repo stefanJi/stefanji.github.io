@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Audio on Yang Blog</title>
+    <link>https://blog.jiyang.site/tags/audio/</link>
+    <description>Recent content in Audio on Yang Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 08 Mar 2021 21:13:34 +0800</lastBuildDate>
+    
+        <atom:link href="https://blog.jiyang.site/tags/audio/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>音频波形图绘制</title>
+        <link>https://blog.jiyang.site/posts/audio_waveform/</link>
+        <pubDate>Mon, 08 Mar 2021 21:13:34 +0800</pubDate>
+        
+        <atom:modified>Mon, 08 Mar 2021 21:13:34 +0800</atom:modified>
+        <guid>https://blog.jiyang.site/posts/audio_waveform/</guid>
+        <description>背景 最近需要上线一个音乐编辑功能，需要展示音乐的波形图(如下图)。 期待效果 初步效果 首先这样的波形图，是根据音频在采样点的采样值来绘制的。像 mp3</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>Audio</category>
+            
+          
+        
+        
+          
+            
+              <category>Android</category>
+            
+          
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>
