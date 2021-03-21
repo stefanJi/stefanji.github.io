@@ -12,11 +12,41 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Thu, 26 Nov 2020 22:20:19 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 21 Mar 2021 20:34:57 +0800</lastBuildDate>
     
         <atom:link href="https://blog.jiyang.site/tags/ffmpeg/index.xml" rel="self" type="application/rss+xml" />
     
 
+      
+      <item>
+        <title>通过分析mobile Ffmpeg解析如何优雅的集成ffmpeg到Android应用中</title>
+        <link>https://blog.jiyang.site/posts/mobile_ffmpeg_compile/</link>
+        <pubDate>Sun, 21 Mar 2021 20:34:57 +0800</pubDate>
+        
+        <atom:modified>Sun, 21 Mar 2021 20:34:57 +0800</atom:modified>
+        <guid>https://blog.jiyang.site/posts/mobile_ffmpeg_compile/</guid>
+        <description>背景 FFmpeg 是一个开源的、强大的音视频工具库，平常情况下的使用方法一般是利用编译好的 ffmpeg 程序，在 PC 上使用，需要不同的功能时只需传递不同的参数即可，而</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>FFmpeg</category>
+            
+          
+        
+        
+          
+            
+              <category>Android</category>
+            
+          
+        
+        
+      </item>
       
       <item>
         <title>Compile And Run FFmpeg Examples</title>

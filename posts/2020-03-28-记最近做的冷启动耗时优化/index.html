@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ViewModel 的实现原理 – Yang Blog</title>
+    <title>记最近做的冷启动耗时优化 – Yang Blog</title>
     
 
 
@@ -653,7 +653,7 @@
     
     var baseurl = JSON.parse("\"https://blog.jiyang.site/\"");
     
-    var permalink = JSON.parse("\"https://blog.jiyang.site/posts/2020-01-12-viewmodel-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/\"");
+    var permalink = JSON.parse("\"https://blog.jiyang.site/posts/2020-03-28-%E8%AE%B0%E6%9C%80%E8%BF%91%E5%81%9A%E7%9A%84%E5%86%B7%E5%90%AF%E5%8A%A8%E8%80%97%E6%97%B6%E4%BC%98%E5%8C%96/\"");
     
     var langprefix = JSON.parse("\"\"");
     var searchResults = null;
@@ -1323,21 +1323,21 @@
 
 
     
-<meta name="description" content="Android Jetpack 提供了 ViewModel, 以用来维护 Activity 或 Fragment 中需要的数据。其能够在因配置改变(比如屏幕旋转)造成的 Activity 和 Fragment 重建时, 依然维护其内部的数据。" />
+<meta name="description" content="最近参与了公司应用的冷启动耗时优化，做一些记录" />
 
 
-<meta name="created" content="2020-01-12T16:26:07&#43;0000">
-<meta name="modified" content="2020-01-12T16:26:07&#43;0000">
-<meta property="article:published_time" content="2020-01-12T16:26:07&#43;0000">
+<meta name="created" content="2020-03-28T19:39:43&#43;0000">
+<meta name="modified" content="2020-03-28T19:39:43&#43;0000">
+<meta property="article:published_time" content="2020-03-28T19:39:43&#43;0000">
 
 <meta name="author" content="Yang">
 
 
 <meta property="og:site_name" content="Yang Blog">
-<meta property="og:title" content="ViewModel 的实现原理">
-<meta property="og:url" content="https://blog.jiyang.site/posts/2020-01-12-viewmodel-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+<meta property="og:title" content="记最近做的冷启动耗时优化">
+<meta property="og:url" content="https://blog.jiyang.site/posts/2020-03-28-%E8%AE%B0%E6%9C%80%E8%BF%91%E5%81%9A%E7%9A%84%E5%86%B7%E5%90%AF%E5%8A%A8%E8%80%97%E6%97%B6%E4%BC%98%E5%8C%96/">
 <meta property="og:type" content="article">
-<meta property="og:description" content="Android Jetpack 提供了 ViewModel, 以用来维护 Activity 或 Fragment 中需要的数据。其能够在因配置改变(比如屏幕旋转)造成的 Activity 和 Fragment 重建时, 依然维护其内部的数据。">
+<meta property="og:description" content="最近参与了公司应用的冷启动耗时优化，做一些记录">
 
 <meta name="generator" content="Hugo 0.81.0" />
 <meta name="msapplication-TileColor" content="#fff">
@@ -1348,7 +1348,7 @@
 
 <meta name="apple-mobile-web-app-status-bar-style" content="#fff">
 
-<link rel="canonical" href="https://blog.jiyang.site/posts/2020-01-12-viewmodel-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+<link rel="canonical" href="https://blog.jiyang.site/posts/2020-03-28-%E8%AE%B0%E6%9C%80%E8%BF%91%E5%81%9A%E7%9A%84%E5%86%B7%E5%90%AF%E5%8A%A8%E8%80%97%E6%97%B6%E4%BC%98%E5%8C%96/">
 
 <link rel="manifest" href="/manifest.json">
 
@@ -1362,11 +1362,11 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "ViewModel 的实现原理",
-    "datePublished": "2020-01-12T16:26:07Z",
-    "dateModified": "2020-01-12T16:26:07Z",
-    "url" : "https://blog.jiyang.site/posts/2020-01-12-viewmodel-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/",
-    "description": "Android Jetpack 提供了 ViewModel, 以用来维护 Activity 或 Fragment 中需要的数据。其能够在因配置改变(比如屏幕旋转)造成的 Activity 和 Fragment 重建时, 依然维护其内部的数据。",
+    "headline": "记最近做的冷启动耗时优化",
+    "datePublished": "2020-03-28T19:39:43Z",
+    "dateModified": "2020-03-28T19:39:43Z",
+    "url" : "https://blog.jiyang.site/posts/2020-03-28-%E8%AE%B0%E6%9C%80%E8%BF%91%E5%81%9A%E7%9A%84%E5%86%B7%E5%90%AF%E5%8A%A8%E8%80%97%E6%97%B6%E4%BC%98%E5%8C%96/",
+    "description": "最近参与了公司应用的冷启动耗时优化，做一些记录",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://blog.jiyang.site/"
@@ -1627,7 +1627,7 @@
   
   <li  class="is-active" >
     
-      <span>ViewModel 的实现原理</span>
+      <span>记最近做的冷启动耗时优化</span>
     
   </li>
   
@@ -1639,14 +1639,14 @@
   <div class="single ">
     <div class="single__nojs">This page looks best with JavaScript enabled</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
-    <h2 class="single__title" data-ani="true">ViewModel 的实现原理</h2>
+    <h2 class="single__title" data-ani="true">记最近做的冷启动耗时优化</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Jan 12, 2020 </time>
+  <time class="single__info" title="Written At">📅&nbsp;Mar 28, 2020 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;8&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;4&nbsp;min read </span>
   
   <span class="single__info">
     
@@ -1662,185 +1662,54 @@
     </div>
     <article class="single__contents" data-dir="ltr" data-ani="true">
       
-      <p>Android Jetpack 提供了 ViewModel, 以用来维护 Activity 或 Fragment 中需要的数据。其能够在因配置改变(比如屏幕旋转)造成的 Activity 和 Fragment 重建时, 依然维护其内部的数据。</p>
-<!-- more -->
-<h1 id="背景">背景</h1>
-<p>首先，根据官方文档能得出 ViewModel 的适用场景（也可以叫出现的目的）：</p>
+      <h1 id="背景">背景</h1>
+<p>最近公司 Client Infra 开始专项整治各业务线的应用启动耗时，我负责和架构组同事对接我们业务组的启动耗时优化工作。</p>
+<p>整个优化工作大致的流程如下:</p>
+<p><img src="https://image.youcute.cn/FlSAu6_ltxLgNjT10_xsCYbhfBsg" alt="大致流程" /></p>
+<h1 id="定位耗时方法">定位耗时方法</h1>
+<p>主要通过 SDK 提供的 <code>Debug</code> 接口中的 Method Tracing 方法去获取一段时间内处理器执行的方法。然后 Top Down 降序排列耗时，就能找到耗时较高的方法。</p>
+<h2 id="冷启动-tracing">冷启动 Tracing</h2>
+<p>冷启动耗时的优化方向主要在减少 Application 的 onCreate 调用到第一个 Activity onCreate 调用这段时间的耗时。所以Tracing 的开始点和结束点可以是: Application#attachBaseContext 和 Activity#onCreate。</p>
+<h1 id="主要问题">主要问题</h1>
 <ul>
-<li>在发生配置改变时 Activity 和 Fragment 会被销毁重建，它们内部的临时性数据(不是通过 Intent 传入的数据)就会丢失. 如果把这些临时数据放到 ViewModel 中, 则可以避免数据的丢失。当然也可以利用 <code>onSaveInstanceState</code> 来保留临时数据，但是如果临时数据的量较大，<code>onSaveInstanceState</code> 由于涉及了跨进程通信，较大的数据量会造成 <em>marshalling</em> 和 <em>unmashlling</em> 消耗较大。而利用 ViewModel 其实是没有跨进程通信的消耗。但是它没有 <code>onSaveInstanceState</code> 提供的 Activity 被回收之后的数据恢复功能：在 Activity 位于后台时系统会在内存不足时将其回收，当 Activity 再次回到前台时，系统会把 <code>onSaveInstanceState</code> 中保存的数据通过 <code>onRestoreInstanceState</code> 和 <code>onCreate</code> 里的 <code>savedInstanceState</code> 参数传递给 Activity。</li>
-<li>ViewModel 顾名思义能知道它本质就是用来储存与视图相关的数据的，官方也是推荐将 Activity(Fragment) 中的数据及数据操作提取到 ViewModel 中，让视图的显示控制和数据分离。感觉就是利用 ViewModel 做 MVP 模式了。</li>
-<li>ViewModel 能感知 Activity或Fragment 的生命周期的改变，在 Activity或Fragment 销毁时执行一些数据清理工作(ViewModel 的实现类可以通过重写<code>onCleared</code>方法)。</li>
+<li>主线程IO</li>
 </ul>
-<h1 id="先摊牌">先摊牌</h1>
-<p>后面的查找实现原理的内容可能较多，可能会让读者觉得较拖沓，因此先抛出经过查找实现原理而找到的结论。</p>
-<blockquote>
-<p>我将 ViewModel 的实现原理总结为：隔山打牛</p>
-</blockquote>
+<p>通过 Tracing 得到的方法中，主要的耗时问题基本都是在 Application 的 attachBaseContext 或 onCreate 中进行很多库的初始化工作，而有些库的初始化工作会涉及IO操作，所以会在隐式的主线程IO操作。</p>
 <ul>
-<li>Activity(Fragment) 的 ViewModel 都存储在 ViewModelStore 中，每个 Activity(Fragment) 都会拥有一个 ViewModelStore 实例</li>
-<li>ViewModelProvider 负责向使用者提供访问某个 ViewModel 的接口，其内部会持有当前 Activity(Fragment) 的 ViewModelStore，然后将操作委托给 ViewModelStore 完成</li>
-<li>ViewModel 能在 Activity(Fragment) 在由于配置重建时恢复数据的实现原理是：Activity(指 support library 中的 ComponentActivity) 会将 ViewModelStore 在 Activity(Fragment) 重建之前交给 ActivityThread 中的 ActivityClientRecord 持有，待 Activity(Fragment) 重建完成之后，再从 ActivityClientRecord 中获取 ViewModelStore</li>
-<li>如果应用的进程位于后台时，由于系统内存不足被销毁了。即使利用 ViewModel 的也不能在 Activity(Fragment) 重建时恢复数据。因为存储 ViewModel 的 ViewModelStore 是交给 ActivityThread 中的 ActivityClientRecord 暂存的，进程被回收了，ActivityThread 也就会被回收，ViewModelStore 也就被回收了，ViewModel 自然不复存在了</li>
+<li>数据库创建</li>
 </ul>
-<h1 id="分析入口">分析入口</h1>
-<p>JetPack 提供的组件都是基于 Android SDK 现有组件进行的封装, 没有修改 SDK 已有的那些类。ViewModel 也是如此, 其实现是基于 AndroidX(以前的 support library)中的 <em>ComponentActivity</em>。</p>
-<p>结合 ViewModel 的功能特点，我将从以下几个方面入手，进而理清 ViewModel 的实现原理。</p>
-<ol>
-<li>ViewModel 中涉及的类和数据结构。</li>
-<li>ViewModel 如何保证 Activity 或 Fragment 因为配置改变而发生重建时，ViewModel 中的数据能得以保留。</li>
-</ol>
-<h2 id="核心数据结构">核心数据结构</h2>
-<p>核心数据结构将介绍 ViewModel 中涉及的一些类和数据结构。</p>
-<h3 id="viewmodel">ViewModel</h3>
-<p>ViewModel 是一个抽象类，使用者需要继承它，ViewModel 内部的变量和方法较少。</p>
-<p><code>private volatile boolean mCleared = false;</code></p>
-<p>表示当前的 ViewModel 是否已经被销毁了。</p>
-<p><code>protected void onCleared()</code></p>
-<p>子类通过复写这个方法能够在 ViewModel 被销毁时进行额外的操作(比如释放资源等)。</p>
-<p><code>final void clear()</code></p>
-<h3 id="viewmodelstore">ViewModelStore</h3>
-<p>ViewModelStore 顾名思义，它是负责储存 ViewModel 的一个类。引用 ViewModelStore 代码注释中的一段话表示它的功能:</p>
+<p>数据库创建也是引入的外部库会在初始化进行某些数据库操作</p>
+<h1 id="解决方向">解决方向</h1>
+<p>针对耗时问题，主要的解决方向我们总结了如下几个方向。</p>
+<h2 id="延迟初始化">延迟初始化</h2>
+<p>将一些库的初始化工作，延后到需要调用库提供的功能时再进行一次初始化操作，这样能有效降低初始化操作对应用启动的影响。</p>
+<p>这就要求我们平时接入外部库时需要做好自己的 Wrapper，这样就能很方便的在 Wrapper 中插入延后初始化的操作。我在进行我们项目的延后初始化时，就发现历史代码存在直接依赖外部库，现在要抽取一层时发现很痛苦，每个依赖的地方都需要修改。所以，延迟初始化的最好前提是项目中做好了对外部库的封装，尽量不直接依赖，依赖抽象。</p>
+<h2 id="登录与非登录库区分">登录与非登录库区分</h2>
+<p>还有的问题是：一些库其实在登录和非登录两种状态下是存在不用初始化的必要的。比如登录用到的各种第三方SDK，在用户已经是登录用户的情况下，其实没有在初始化时加载的必要。还有一些依赖用户信息的统计库，在非登录状态下没有初始化的必要。</p>
+<h2 id="轻量化登录判断">轻量化登录判断</h2>
+<p>还有一个值得优化的点是用户是否已经登录的判断。因为判断用户是否登录是我们应用第一个 Activity 启动之后做的第一件事情。判断的机制就是从磁盘中获取本地是否存有 token，如果存在，说明用户登录过，否则说明用户没有登录过，直接到登录注册界面。</p>
+<p>目前我们从磁盘获取 token 记录的方法是：通过将一个包含了用户昵称、签名等许多额外信息的类序列化为 JSON 格式的字符串之后，存到 Sharedpreference 中，应用启动时从 SP 中拿到，再进行反序列化解析为类对象。</p>
+<p>这一步是值得优化的，将从磁盘获取 token 的过程轻量化，因为用户昵称、签名这类的信息对于判断是否登录是没有任何作用的，额外的解析这些对登录判断无用的信息只会增加额外的耗时。</p>
+<h2 id="不同进程区别对待">不同进程区别对待</h2>
+<p>这一点主要针对应用中存在多进程的情况，因为每个进程都会走 Application 的创建，所以需要在 Application 中对进程做区别对待，避免在不期望的进程进行了不应该进行的初始化操作。</p>
+<h1 id="其他方案">其他方案</h1>
+<h2 id="支付宝">支付宝</h2>
 <blockquote>
-<p>ViewModelStore 的实例必须在发生配置更改时得以保留：如果此 ViewModelStore 的所有者由于配置的改变而被销毁并重新创建，那么所有者的新实例应该具有相同的 ViewModelStore 旧实例。</p>
+<p>纯属学习目的，对支付宝 Apk 反编译之后希望能找到一些优化方法</p>
 </blockquote>
-<p><code>HashMap&lt;String, ViewModel&gt; mMap = new HashMap&lt;&gt;();</code></p>
-<p><code>mMap</code> 是ViewModelStore 中有且仅有的成员变量，看它的泛型类型参数就能明白，它就是 ViewModelStore 用来存储 ViewModel 的池子。</p>
-<p><code>final void put(String key, ViewModel viewModel)</code></p>
-<p>向 ViewModelStore 的池子中存入 ViewModel, 如果池子中已经有 key 对应 ViewModel了，旧的会被新的替换，而且会调用旧的 ViewModel 的 <code>onCleared</code> 方法。(🤔️不是应该调用 ViewModel 的 <code>clear</code> 去释放资源吗？)</p>
+<p>支付宝(10.1.88.7000)的启动 Application 是 <code>com.alipay.mobile.quinox.LauncherApplication</code>，启动 Activity 是 <code>com.eg.android.AlipayGphone.AlipayLogin</code></p>
+<p><img src="https://image.youcute.cn/Fm82XFYRwJTXATEr40kLNhOJoN8z" alt="启动流程" /></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="kt">void</span> <span class="nf">put</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="n">ViewModel</span> <span class="n">viewModel</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">ViewModel</span> <span class="n">oldViewModel</span> <span class="o">=</span> <span class="n">mMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">viewModel</span><span class="o">);</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">oldViewModel</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">oldViewModel</span><span class="o">.</span><span class="na">onCleared</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">AlipayLogin</span> <span class="kd">extends</span> <span class="n">LauncherActivity</span> <span class="o">{}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><code>ViewModel get(String key)</code></p>
-<p>从池子(<code>mMap</code>)中获取 key 对应的 ViewModel</p>
+</div><p>AlipayLogin 直接继承了 LauncherActivity，所以首页 Activity 最终启动的其实是 LauncherActivity。</p>
+<p>查看 attachBaseContext，😯 没反编译出来，只能硬着头皮看了，我翻译了部分字节码(太长host到 <a href="https://gist.github.com/stefanJi/2267625a4d4091fca59307bb5ba47364">gist</a> 了)对应的源码：</p>
 <div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="n">ViewModel</span> <span class="nf">get</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">mMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><code>Set&lt;String&gt; keys()</code></p>
-<p>返回 <code>mMap</code> 的所有 key</p>
-<p><code>final void clear()</code></p>
-<p>清空 <code>mMap</code> 中的所有 ViewModel，并调用每一个的 <code>clear</code> 方法</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">clear</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">for</span> <span class="o">(</span><span class="n">ViewModel</span> <span class="n">vm</span> <span class="o">:</span> <span class="n">mMap</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
-        <span class="n">vm</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
-    <span class="o">}</span>
-    <span class="n">mMap</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>这里注意下 ViewModelStore 的 get 和 put 方法的声明，访问权限都是包层级的，也就表示我们使用者是无法直接通过 ViewModelStore 通过 key 拿到对应的 ViewModel 的。</p>
-<h3 id="viewmodelprovider">ViewModelProvider</h3>
-<blockquote>
-<p>一个为范围(Application, Activity, Fragment)提供 ViewModels 的实用工具类</p>
-</blockquote>
-<p>先看下 ViewModelProvider 有哪些字段：</p>
-<p><code>private final Factory mFactory;</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Factory</span> <span class="o">{</span>
-    <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">ViewModel</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">create</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">modelClass</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Factory 表示创建 ViewModel 的工厂，<code>final</code> 的声明表示它必须在 ViewModelProvider 的构造函数中就赋值。</p>
-<p><code>final ViewModelStore mViewModelStore;</code></p>
-<p><code>final</code> 的声明表示 mViewModelStore 也必须在构造函数中就赋值。</p>
-<p><code>static final String DEFAULT_KEY =&quot;androidx.lifecycle.ViewModelProvider.DefaultKey&quot;;</code></p>
-<p><code>DEFAULT_KEY</code>，用来在提交 ViewModel 到 ViewModelStore 时构造 key</p>
-<p>以下是 ViewModelProvider 中的方法：</p>
-<p><strong>构造方法</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">ViewModelProvider</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">ViewModelStoreOwner</span> <span class="n">owner</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">(</span><span class="n">owner</span><span class="o">.</span><span class="na">getViewModelStore</span><span class="o">(),</span> <span class="n">owner</span> <span class="k">instanceof</span> <span class="n">HasDefaultViewModelProviderFactory</span>
-            <span class="o">?</span> <span class="o">((</span><span class="n">HasDefaultViewModelProviderFactory</span><span class="o">)</span> <span class="n">owner</span><span class="o">).</span><span class="na">getDefaultViewModelProviderFactory</span><span class="o">()</span>
-            <span class="o">:</span> <span class="n">NewInstanceFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">());</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="nf">ViewModelProvider</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">ViewModelStoreOwner</span> <span class="n">owner</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">Factory</span> <span class="n">factory</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">(</span><span class="n">owner</span><span class="o">.</span><span class="na">getViewModelStore</span><span class="o">(),</span> <span class="n">factory</span><span class="o">);</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="nf">ViewModelProvider</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">ViewModelStore</span> <span class="n">store</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">Factory</span> <span class="n">factory</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">mFactory</span> <span class="o">=</span> <span class="n">factory</span><span class="o">;</span>
-    <span class="n">mViewModelStore</span> <span class="o">=</span> <span class="n">store</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><strong>public <T extends ViewModel> T get(@NonNull Class<T> modelClass)</strong><br />
-<strong>public <T extends ViewModel> T get(@NonNull String key, @NonNull Class<T> modelClass)</strong></p>
-<p>以上两个方法就是获取 ViewModel 的方法，也是 ViewModel 库向使用者提供的两个公开的接口。第一个 <code>get</code> 方法会利用 <code>DEFAULT_KEY</code> 构造一个 key，然后调用第二个 <code>get</code> 方法。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">ViewModel</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">get</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">modelClass</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">String</span> <span class="n">canonicalName</span> <span class="o">=</span> <span class="n">modelClass</span><span class="o">.</span><span class="na">getCanonicalName</span><span class="o">();</span>
-    <span class="c1">// 构建一个 key
-</span><span class="c1"></span>    <span class="k">return</span> <span class="n">get</span><span class="o">(</span><span class="n">DEFAULT_KEY</span> <span class="o">+</span> <span class="s">&#34;:&#34;</span> <span class="o">+</span> <span class="n">canonicalName</span><span class="o">,</span> <span class="n">modelClass</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1861,341 +1730,130 @@
 </span><span class="lnt">17
 </span><span class="lnt">18
 </span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">ViewModel</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">get</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">modelClass</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 从 ViewModelStore 中获取 ViewModel
-</span><span class="c1"></span>    <span class="n">ViewModel</span> <span class="n">viewModel</span> <span class="o">=</span> <span class="n">mViewModelStore</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">modelClass</span><span class="o">.</span><span class="na">isInstance</span><span class="o">(</span><span class="n">viewModel</span><span class="o">))</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="o">(</span><span class="n">T</span><span class="o">)</span> <span class="n">viewModel</span><span class="o">;</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">viewModel</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="c1">// ViewModelStore 中还没有对应 ViewModel, 就创建
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">mFactory</span> <span class="k">instanceof</span> <span class="n">KeyedFactory</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">viewModel</span> <span class="o">=</span> <span class="o">((</span><span class="n">KeyedFactory</span><span class="o">)</span> <span class="o">(</span><span class="n">mFactory</span><span class="o">)).</span><span class="na">create</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">modelClass</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="n">viewModel</span> <span class="o">=</span> <span class="o">(</span><span class="n">mFactory</span><span class="o">).</span><span class="na">create</span><span class="o">(</span><span class="n">modelClass</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="c1">// 将创建的 ViewModel 存入 ViewModelStore
-</span><span class="c1"></span>    <span class="n">mViewModelStore</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">viewModel</span><span class="o">);</span>
-    <span class="k">return</span> <span class="o">(</span><span class="n">T</span><span class="o">)</span> <span class="n">viewModel</span><span class="o">;</span>
-<span class="o">}</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// this-&gt;LauncherApplicationWrapper
+</span><span class="c1"></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">attachBaseContext</span><span class="o">(</span><span class="n">Context</span> <span class="n">paramContext</span><span class="o">){</span>
+ <span class="n">local_0</span> <span class="o">=</span> <span class="k">this</span>
+ <span class="n">local_1</span> <span class="o">=</span> <span class="n">paramContext</span>
+ <span class="n">local_2</span> <span class="o">=</span> <span class="kc">null</span>
+ <span class="n">local_3</span> <span class="o">=</span> <span class="n">ldc_0</span>
+ <span class="n">local_4</span> <span class="o">=</span> <span class="n">LauncherApplication</span><span class="o">.</span><span class="na">mCureentProcessStartupTime</span>
+ <span class="n">sInstance</span> <span class="o">=</span> <span class="k">this</span>
+ <span class="n">mBaseContext</span> <span class="o">=</span> <span class="n">paramContext</span>
+ <span class="n">mMainHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Handler</span><span class="o">()</span>
+ <span class="n">mSharedPreferenceWrapper</span> <span class="o">=</span> <span class="n">SharedPreferenceWrapper</span><span class="o">.</span><span class="na">createInstance</span><span class="o">(</span><span class="n">mBaseContext</span>    <span class="o">)</span>
+ <span class="n">ContextHolder</span><span class="o">.</span><span class="na">setContext</span><span class="o">(</span><span class="n">mLauncherApplication</span><span class="o">)</span>
+ <span class="n">DataProvider</span><span class="o">.</span><span class="na">putData</span><span class="o">(</span><span class="s">&#34;process_launch_time&#34;</span><span class="o">,</span> <span class="n">mCurrentProcessStartupTime</span><span class="o">)</span>
+ <span class="n">StartServiceController</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">setApplicationWrapper</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
+ <span class="n">mPackageName</span> <span class="o">=</span> <span class="n">mLauncherApplication</span><span class="o">.</span><span class="na">getPackageName</span><span class="o">()</span>
+ <span class="k">if</span><span class="o">(</span><span class="n">mPackageName</span> <span class="n">equals</span> <span class="err">&#39;</span><span class="n">com</span><span class="o">.</span><span class="na">eg</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">AlipayGphone</span><span class="err">&#39;</span><span class="o">){</span>
+     <span class="n">SystemUtil</span><span class="o">.</span><span class="na">IS_ALIPAY</span> <span class="o">=</span> <span class="kc">true</span>
+ <span class="o">}</span>
+ <span class="n">mProcessInfo</span> <span class="o">=</span> <span class="n">ProcessInfo</span><span class="o">(</span><span class="n">mLauncherApplication</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">getProcessName</span><span class="o">())</span>
+ <span class="k">if</span><span class="o">(!</span><span class="n">mProcessInfo</span><span class="o">.</span><span class="na">isMainProcess</span><span class="o">){</span>
+     <span class="n">跳到</span> <span class="n">243</span> <span class="n">行执行</span>
+ <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+     <span class="n">local13</span> <span class="o">=</span> <span class="n">SharedPreferenceWrapper</span><span class="o">.</span><span class="na">getDefaultSharedPreference</span><span class="o">(</span><span class="n">ContextHelper</span><span class="o">.</span><span class="na">getContex</span>    <span class="nf">t</span><span class="o">())</span>
+     <span class="k">if</span><span class="o">(</span><span class="n">local13</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="err">&#39;</span><span class="n">iop_preload_library_at_launch</span><span class="err">&#39;</span><span class="o">,</span> <span class="err">&#39;</span><span class="n">no</span><span class="err">&#39;</span><span class="o">)</span> <span class="o">==</span> <span class="err">&#39;</span><span class="n">yes</span><span class="err">&#39;</span><span class="o">){</span>
+        <span class="n">loadLibraryInPathClassLoader</span><span class="o">()</span>
+     <span class="o">}</span>
+     <span class="n">local14</span> <span class="o">=</span> <span class="n">local13</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="err">&#39;</span><span class="n">iop_binder_thread_pool_num</span><span class="err">&#39;</span><span class="o">,</span> <span class="sc">&#39;0&#39;</span><span class="o">)</span>
+     <span class="k">if</span><span class="o">(</span><span class="n">local14</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+         <span class="n">跳到</span> <span class="n">4821</span> <span class="n">行执行</span>
+      <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+         <span class="n">local14</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">local14</span><span class="o">)</span>
+          <span class="k">if</span><span class="o">(</span><span class="n">local14</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                  <span class="n">startBinderThread</span><span class="o">(</span><span class="n">local14</span><span class="o">)</span>
+          <span class="o">}</span>
+          <span class="n">hookSpFinishersAbove26</span><span class="o">(</span><span class="n">ContextHelper</span><span class="o">.</span><span class="na">getContext</span><span class="o">())</span>
+          <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">mProcessInfo</span><span class="o">.</span><span class="na">isLiteProcess</span><span class="o">()){</span>
+                  <span class="n">local15</span> <span class="o">=</span> <span class="n">65516</span>
+                  <span class="nf">setThreadPriority</span><span class="o">(</span><span class="n">local15</span><span class="o">)</span>
+                  <span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">mProcessInfo</span><span class="o">.</span><span class="na">isMainProcess</span><span class="o">()){</span>
+                          <span class="n">跳到293行</span>
+                          <span class="nf">if</span><span class="o">(</span><span class="n">checkStrategy</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">mLauncherApplication</span><span class="o">)){</span>
+                                  <span class="k">if</span><span class="o">(</span><span class="n">ProfileUtil</span><span class="o">.</span><span class="na">DUMP_PROFILE</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">ProfileUtil</span><span class="o">.</span><span class="na">DUMP_START2S</span>    <span class="n">CAN_PROFILE</span><span class="o">){</span>
+                                          <span class="n">ProfileUtile</span><span class="o">.</span><span class="na">iniSO</span><span class="o">(</span><span class="n">mLauncherApplication</span><span class="o">)</span>
+                                          <span class="n">replaceJitCompileMethod</span><span class="o">()</span>
+                                          <span class="n">replaceProcessProfilingInfo</span><span class="o">()</span>
+                                          <span class="n">replaceJitAddSamples</span><span class="o">()</span>
+                                          <span class="n">setReplaceAddSampleCount</span><span class="o">(</span><span class="n">6666</span><span class="o">,</span> <span class="n">1</span><span class="o">)</span>
+                                          <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="na">mProcessInfo</span><span class="o">.</span><span class="na">isLiteProcess</span><span class="o">()){</span>
+                                                  <span class="n">stopDumpProfileDelayed</span><span class="o">(</span><span class="n">mLauncherApplicat</span>    <span class="n">ion</span><span class="o">)</span>
+                                          <span class="o">}</span>
+                                  <span class="o">}</span>
+                          <span class="o">}</span>
+                          <span class="k">if</span><span class="o">(</span><span class="n">ProfileUtil</span><span class="o">.</span><span class="na">RESTORE_PROFILE</span><span class="o">){</span>
+                                  <span class="n">restorePrimaryProf</span><span class="o">(</span><span class="n">mLauncherApplication</span><span class="o">)</span>
+                          <span class="o">}</span>
+                          <span class="k">if</span><span class="o">(</span><span class="n">ProfileUtil</span><span class="o">.</span><span class="na">TRY_COMPILE</span><span class="o">){</span>
+                                  <span class="n">profileCompile</span><span class="o">(</span><span class="n">mLauncherApplication</span><span class="o">)</span>
+                          <span class="o">}</span>
+                  <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+                          <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="na">mProcessInfo</span><span class="o">.</span><span class="na">isLiteProcess</span><span class="o">()){</span>
+                                  <span class="n">跳到393行</span>
+                          <span class="o">}</span>
+                  <span class="o">}</span>
+          <span class="o">}</span>
+          <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="na">mProcessInfo</span><span class="o">.</span><span class="na">isMainProcess</span><span class="o">()){</span>
+                  <span class="n">跳到273行</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="viewmodelstoreowner">ViewModelStoreOwner</h3>
-<p>ViewModelStoreOwner 是一个接口，它声明了一个 <code>getViewModelStore</code> 方法需要实现类实现。</p>
-<blockquote>
-<p>实现此接口的类的职责是保留其拥有的 ViewModelStore 在配置更改期间不会被销毁。</p>
-</blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ViewModelStoreOwner</span> <span class="o">{</span>
-
-    <span class="nd">@NonNull</span>
-    <span class="n">ViewModelStore</span> <span class="nf">getViewModelStore</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
 </div>
-</div><h3 id="componentactivity">ComponentActivity</h3>
-<p>ComponentActivity 是 androidx.activity 包中增加的，FragmentActivity 继承自它。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ComponentActivity</span> <span class="kd">extends</span> <span class="n">androidx</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">app</span><span class="o">.</span><span class="na">ComponentActivity</span> <span class="kd">implements</span>
-        <span class="n">LifecycleOwner</span><span class="o">,</span>
-        <span class="n">ViewModelStoreOwner</span><span class="o">,</span>
-        <span class="n">HasDefaultViewModelProviderFactory</span><span class="o">,</span>
-        <span class="n">SavedStateRegistryOwner</span><span class="o">,</span>
-        <span class="n">OnBackPressedDispatcherOwner</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>ComponentActivity 中与 ViewModel 有关的两个变量:</p>
-<p><code>ViewModelStore mViewModelStore;</code></p>
-<p>表示当前 Activity 的 ViewModelStore, 一个 Activity 拥有一个 ViewModelStore</p>
-<p><code>ViewModelProvider.Factory mDefaultFactory;</code></p>
-<p>创建 ViewModel 的工厂实现，ComponentActivity 中使用的是 <em>SavedStateViewModelFactory</em>, <em>SavedStateViewModelFactory</em> 与 Activity 的重建相关。</p>
-<p><code>ViewModelStore getViewModelStore();</code></p>
-<p>ComponentActivity 中实现了</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">ViewModelStore</span> <span class="nf">getViewModelStore</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">// 如果 mViewModelStore 还未赋值，则创建一个实例赋值给它
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">mViewModelStore</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 与 Activity 重建时恢复数据有关，后面会再详谈
-</span><span class="c1"></span>        <span class="n">NonConfigurationInstances</span> <span class="n">nc</span> <span class="o">=</span> <span class="o">(</span><span class="n">NonConfigurationInstances</span><span class="o">)</span> <span class="n">getLastNonConfigurationInstance</span><span class="o">();</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">nc</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">mViewModelStore</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="na">viewModelStore</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">mViewModelStore</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 创建 ViewModelStore, 赋值给 ComponentActivity 的 mViewModelStore 变量
-</span><span class="c1"></span>            <span class="n">mViewModelStore</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ViewModelStore</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">mViewModelStore</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="viewmodelstore-的创建">ViewModelStore 的创建</h2>
-<p>ViewModelStore 是负责储存 ViewModel 的，所以一般是需要先有个容器，才能存 ViewModel。而 ViewModelStore 又是由 ViewModelStoreOwner 提供的。</p>
-<p>我通过在 ViewModeStoreOwner 的 getViewModelStore 方法打断点查看方法栈的调用过程。通过几次断点，我发现 FragmentActivity 和非 FragmentActivity 的创建时机是有所区别的，所以后面分开看待。</p>
-<h3 id="fragmentactivity">FragmentActivity</h3>
-<p>先看 FragmentActivity 的调用栈:</p>
-<pre>
-getViewModelStore:262, ComponentActivity (androidx.activity)
-getViewModelStore:887, FragmentActivity$HostCallbacks (androidx.fragment.app)
-attachController:3022, FragmentManager (androidx.fragment.app)
-attachHost:116, FragmentController (androidx.fragment.app)
-onCreate:283, FragmentActivity (androidx.fragment.app)
-onCreate:18, ViewModelActivity
-performCreate:7136, Activity (android.app)
-performCreate:7127, Activity (android.app)
-callActivityOnCreate:1271, Instrumentation (android.app)
-performLaunchActivity:2893, ActivityThread (android.app)
-handleLaunchActivity:3048, ActivityThread (android.app)
-</pre>
-<p>从调用栈可看出一个 FragmentActivity 会在 onCreate 时调用到 <code>getViewModelStore</code>。</p>
-<p>至此能得出：只要是继承自 FragmentActivity 的 Activity(比如: AppCompatActivity) 就会在 onCreate 时创建 ViewModelStore 实例，并用自己的 <code>mViewModelStore</code> 变量引用到。</p>
-<p>那么为何 FragmentActivity 在 onCreate 时就需要创建 ViewModelStore 呢?</p>
-<p>看调用栈能发现 <code>getViewModelStore</code> 方法是在 FragmentManager 的 <code>attachController</code> 方法中调用的：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">void</span> <span class="nf">attachController</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">FragmentHostCallback</span><span class="o">&lt;?&gt;</span> <span class="n">host</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">FragmentContainer</span> <span class="n">container</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">mHost</span> <span class="o">=</span> <span class="n">host</span><span class="o">;</span>
-    <span class="c1">// Get the FragmentManagerViewModel
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">parent</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">mNonConfig</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="na">mFragmentManager</span><span class="o">.</span><span class="na">getChildNonConfig</span><span class="o">(</span><span class="n">parent</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">host</span> <span class="k">instanceof</span> <span class="n">ViewModelStoreOwner</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 没有嵌套 Fragment 的 Fragment 会走到这里
-</span><span class="c1"></span>        <span class="n">ViewModelStore</span> <span class="n">viewModelStore</span> <span class="o">=</span> <span class="o">((</span><span class="n">ViewModelStoreOwner</span><span class="o">)</span> <span class="n">host</span><span class="o">).</span><span class="na">getViewModelStore</span><span class="o">();</span>
-        <span class="n">mNonConfig</span> <span class="o">=</span> <span class="n">FragmentManagerViewModel</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">viewModelStore</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="n">mNonConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FragmentManagerViewModel</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">static</span> <span class="n">FragmentManagerViewModel</span> <span class="nf">getInstance</span><span class="o">(</span><span class="n">ViewModelStore</span> <span class="n">viewModelStore</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 创建 FragmentManagerViewModel, viewModelProvider 的 get 内部会把 ViewModel 添加到 ViewModelStore
-</span><span class="c1"></span>    <span class="n">ViewModelProvider</span> <span class="n">viewModelProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ViewModelProvider</span><span class="o">(</span><span class="n">viewModelStore</span><span class="o">,</span> <span class="n">FACTORY</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">viewModelProvider</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">FragmentManagerViewModel</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>原因找到了: FragmentActivity 在 onCreate 里就调用了 <code>getViewModelStore</code>, 是为了让 FragmentManagerViewModel 尽早的添加到 Activity 的 ViewModelStore 中。</p>
-<h3 id="其他-activity">其他 Activity</h3>
-<p>没有继承自 FragmentActivity 的 Activity 在 onCreate 里不会创建 ViewModelStore， 而是等到有用到的地方才会创建。<br />
-比如我在自己的 Activity 的 onCreate post 一个 Runnable, 然后按照 ViewModel 文档的描述, 通过 ViewModelProvider 获取 ViewModel:</p>
-<pre><code>runOnUiThread {
-    val mMode = ViewModelProvider(this).get(MMode::class.java)
-}
-</code></pre><p>执行之后时的栈为:</p>
-<pre>
-getViewModelStore:262, ComponentActivity (androidx.activity)
-&lt;init&gt;:94, ViewModelProvider (androidx.lifecycle)
-run:20, ViewModelActivity$onCreate$1 
-runOnUiThread:6282, Activity (android.app)
-</pre>
-<p><img src="https://image.youcute.cn/blog/get_viewModel.png" alt="ViewModelProvider 与 ViewModel" /></p>
-<hr />
-<p>所以 ViewModelStore 的创建时机在基于 FragmentActivity 的 Activity 和 基于 ComponentActivity 的 Activity 上有所区别。在 FragmentActivity 上是在 onCreate 中创建；在 ComponentActivity 上是在利用 ViewModelProvider 获取 ViewModel 时再创建。</p>
-<p>总的来说 ViewModelStore 就是 ComponentActivity 里的一个成员字段，且只会创建一次。</p>
-<p>再看 ViewModelProvider，它其实只是一个用来访问 ViewModelStore 的门面，它内部没有存任何数据。所以每次要获取 ViewModel 时都是创建一个新的 ViewModelProvider 实例。</p>
-<h2 id="viewmodel-的重建保留">ViewModel 的重建保留</h2>
-<p>ViewModel 要实现和 <code>onSaveInstanceState</code> 方法同样的功效，那它就需要在 Activity(或Fragment) 销毁时保留内部的数据，待 Activity 重建时恢复数据。</p>
-<p>前面提到过，Jetpack 中的库都是基于现有 SDK 实现进行的封装，不会修改 SDK 已有的实现。ViewModel 要实现重建保留的功能，肯定需要一个时机来做保留的动作。我们知道 SDK 已有的实现中，一个 Activity 在因为配置改变而要销毁重建时一定会调用的一个方法就是<code>onSaveInstanceState</code>，所以先去检查下 ComponentActivity 在这个方法中有没有动什么手脚。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onSaveInstanceState</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Bundle</span> <span class="n">outState</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">Lifecycle</span> <span class="n">lifecycle</span> <span class="o">=</span> <span class="n">getLifecycle</span><span class="o">();</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">lifecycle</span> <span class="k">instanceof</span> <span class="n">LifecycleRegistry</span><span class="o">)</span> <span class="o">{</span>
-        <span class="o">((</span><span class="n">LifecycleRegistry</span><span class="o">)</span> <span class="n">lifecycle</span><span class="o">).</span><span class="na">setCurrentState</span><span class="o">(</span><span class="n">Lifecycle</span><span class="o">.</span><span class="na">State</span><span class="o">.</span><span class="na">CREATED</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="kd">super</span><span class="o">.</span><span class="na">onSaveInstanceState</span><span class="o">(</span><span class="n">outState</span><span class="o">);</span>
-    <span class="n">mSavedStateRegistryController</span><span class="o">.</span><span class="na">performSave</span><span class="o">(</span><span class="n">outState</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>发现没有与 ViewModel 相关的，于是这条路不通了。无路可走时造路走，最后大法 <em>Find Usage</em>，找出使用到 <code>mViewModelStore</code> 的地方，看看有什么特殊没有。</p>
-<pre>
-Field
-    mViewModelStore
-Found usages  (6 usages found)
-    ComponentActivity  (6 usages found)
-        onRetainNonConfigurationInstance()  (1 usage found)
-            183 ViewModelStore viewModelStore = mViewModelStore;
-        getViewModelStore()  (5 usages found)
-            266 if (mViewModelStore == null) {
-            271 mViewModelStore = nc.viewModelStore;
-            273 if (mViewModelStore == null) {
-            274 mViewModelStore = new ViewModelStore();
-            277 return mViewModelStore;
-</pre>
-<p>发现除了 getViewModelStore，另外一个使用的方法是 <em>onRetainNonConfigurationInstance()</em> ,继续查找这个方法的使用方：</p>
-<pre>
-Method
-    onRetainNonConfigurationInstance()
-Found usages  (9 usages found)
-    Activity.java  (6 usages found)
-        2422 Object activity = onRetainNonConfigurationInstance();
-    LocalActivityManager.java  (1 usage found)
-        615 Object instance = r.activity.onRetainNonConfigurationInstance();
-</pre>
-<p>Activity 的 retainNonConfigurationInstances 方法调用了子类的 <em>onRetainNonConfigurationInstance()</em> 方法:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">NonConfigurationInstances</span> <span class="nf">retainNonConfigurationInstances</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">//需要 Activity 子类实现的 onRetainNonConfigurationInstance 方法
-</span><span class="c1"></span>    <span class="n">Object</span> <span class="n">activity</span> <span class="o">=</span> <span class="n">onRetainNonConfigurationInstance</span><span class="o">();</span>
-
-    <span class="n">NonConfigurationInstances</span> <span class="n">nci</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NonConfigurationInstances</span><span class="o">();</span>
-    <span class="n">nci</span><span class="o">.</span><span class="na">activity</span> <span class="o">=</span> <span class="n">activity</span><span class="o">;</span>
-    <span class="n">nci</span><span class="o">.</span><span class="na">children</span> <span class="o">=</span> <span class="n">children</span><span class="o">;</span>
-    <span class="n">nci</span><span class="o">.</span><span class="na">fragments</span> <span class="o">=</span> <span class="n">fragments</span><span class="o">;</span>
-    <span class="n">nci</span><span class="o">.</span><span class="na">loaders</span> <span class="o">=</span> <span class="n">loaders</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">mVoiceInteractor</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">mVoiceInteractor</span><span class="o">.</span><span class="na">retainInstance</span><span class="o">();</span>
-        <span class="n">nci</span><span class="o">.</span><span class="na">voiceInteractor</span> <span class="o">=</span> <span class="n">mVoiceInteractor</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">nci</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>在查找 Activity 的 retaionNonConfigurationInstances 方法的调用者，Android Studio 显示找不到了。因为它的调用者是 ActivityThread(@hide 注释的)，那就进入 ActivityThread 搜索看看。</p>
-<p>在 ActivityThread 的 <em>performDestroyActivity</em> 找到了调用：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">ActivityClientRecord</span> <span class="nf">performDestroyActivity</span><span class="o">(</span><span class="n">IBinder</span> <span class="n">token</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">finishing</span><span class="o">,</span> <span class="kt">int</span> <span class="n">configChanges</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">getNonConfigInstance</span><span class="o">,</span> <span class="n">String</span> <span class="n">reason</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 从 mActivities 中获取 token 对应的 ActivityClientRecord
-</span><span class="c1"></span>    <span class="n">ActivityClientRecord</span> <span class="n">r</span> <span class="o">=</span> <span class="n">mActivities</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
-    <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Activity</span><span class="o">&gt;</span> <span class="n">activityClass</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">r</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">//...
-</span><span class="c1"></span>        <span class="c1">// 如果参数 getNonConfigInstance 为 true
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">getNonConfigInstance</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">try</span> <span class="o">{</span>
-                <span class="c1">// 将 ViewModelStore 存入 ActivityClientRecord 的 lastNonConfiguratinInstances 字段中
-</span><span class="c1"></span>                <span class="n">r</span><span class="o">.</span><span class="na">lastNonConfigurationInstances</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="na">activity</span><span class="o">.</span><span class="na">retainNonConfigurationInstances</span><span class="o">();</span>
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span>
-        <span class="o">}</span>
-        <span class="c1">//...
-</span><span class="c1"></span>    <span class="o">}</span>
-    <span class="n">mActivities</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">r</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>那么这个 <code>getNonConfigInstance</code> 参数是在哪里赋值为 <code>true</code> 的呢?</p>
-<p><img src="https://image.youcute.cn/Fgh9Y0_C1a-W8DGvwpK731ifvnIq" alt="getNonConfigInstance写入" /></p>
-<p>通过定位发现：在 <em>ActivityThread.H</em> 收到 <em>RELAUNCH_ACTIVITY</em> 消息时，会走到 <em>performDestroyActivity</em> 方法，并且 在 RELAUNCH_ACTIVITY 消息的消费链上 <em>handleRelaunchActivityInner</em> 方法会把 <code>getNonConfingInstance</code> 赋值为 <code>true</code>。</p>
-<p>在 Activity <em>destroy</em> 执行完之后，立马会执行 <em>handleLaunchActivity</em> 方法去重建 Activity。</p>
-<p><img src="https://image.youcute.cn/FsQgETVwNvuq93rgHuoPxW2OdZk4" alt="getNonConfigInstance读取" /></p>
-<p>在创建了新的 Activity 对象之后，就会把 <code>lastNonConfigurationInstances</code> 写入到 Activity 的字段中。因为这里的 <code>lastNonConfigurationInstances</code> 一直是存在 <em>ActivityClientRecord</em> (代码中的<code>r</code>)中的，而 <em>ActivityClientRecord</em> 是维护在 ActivityThread 中的，所以 Activity 对象的销毁和重建不会影响 ActivityThread 中的 ActivityClientRecord 对象，也正是因为这样 ActivityClientRecord 才能持有独立与 Activity 生命周期之外的数据。</p>
-<p>通过上面知道 <code>lastNonConfigurationInstances</code> 在 ComponentActivity 中存储的实际是 Activity 的 ViewModelStore 对象。所以 ViewModelStore 靠着 ActivityClientRecord 就实现了与 Activity 生命周期的无关性。</p>
-
     </article>
     
     
@@ -2500,17 +2158,17 @@ Found usages  (9 usages found)
 <nav class="pagination-single">
   
     
-      <a href="https://blog.jiyang.site/posts/2020-01-06-android-binder/" class="pagination-single__left">
+      <a href="https://blog.jiyang.site/posts/2020-03-28-%E5%AE%9E%E7%8E%B0rpi-os-b-%E7%90%86%E8%A7%A3linux%E5%86%85%E6%A0%B8%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B/" class="pagination-single__left">
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
         </div>
-        <div class="pagination-single__left-title">Android Binder</div>      
+        <div class="pagination-single__left-title">树莓派OS-#0x01-理解Linux内核的初始化流程</div>      
       </a>
     
     <div class="grow"></div>
     
-      <a href="https://blog.jiyang.site/posts/2020-01-20-%E4%BD%BF%E7%94%A8java%E8%A7%A3%E6%9E%90class%E5%AD%97%E8%8A%82%E7%A0%81%E7%BB%93%E6%9E%84/" class="pagination-single__right">      
-        <div class="pagination-single__right-title">使用Java解析class字节码结构</div>
+      <a href="https://blog.jiyang.site/posts/2020-04-10-textview-%E5%B8%83%E5%B1%80%E5%8E%9F%E7%90%86/" class="pagination-single__right">      
+        <div class="pagination-single__right-title">TextView 的布局细节</div>
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
         </div>
@@ -2892,25 +2550,23 @@ document.addEventListener('DOMContentLoaded', function () {
     <nav id="TableOfContents">
   <ul>
     <li><a href="#背景">背景</a></li>
-    <li><a href="#先摊牌">先摊牌</a></li>
-    <li><a href="#分析入口">分析入口</a>
+    <li><a href="#定位耗时方法">定位耗时方法</a>
       <ul>
-        <li><a href="#核心数据结构">核心数据结构</a>
-          <ul>
-            <li><a href="#viewmodel">ViewModel</a></li>
-            <li><a href="#viewmodelstore">ViewModelStore</a></li>
-            <li><a href="#viewmodelprovider">ViewModelProvider</a></li>
-            <li><a href="#viewmodelstoreowner">ViewModelStoreOwner</a></li>
-            <li><a href="#componentactivity">ComponentActivity</a></li>
-          </ul>
-        </li>
-        <li><a href="#viewmodelstore-的创建">ViewModelStore 的创建</a>
-          <ul>
-            <li><a href="#fragmentactivity">FragmentActivity</a></li>
-            <li><a href="#其他-activity">其他 Activity</a></li>
-          </ul>
-        </li>
-        <li><a href="#viewmodel-的重建保留">ViewModel 的重建保留</a></li>
+        <li><a href="#冷启动-tracing">冷启动 Tracing</a></li>
+      </ul>
+    </li>
+    <li><a href="#主要问题">主要问题</a></li>
+    <li><a href="#解决方向">解决方向</a>
+      <ul>
+        <li><a href="#延迟初始化">延迟初始化</a></li>
+        <li><a href="#登录与非登录库区分">登录与非登录库区分</a></li>
+        <li><a href="#轻量化登录判断">轻量化登录判断</a></li>
+        <li><a href="#不同进程区别对待">不同进程区别对待</a></li>
+      </ul>
+    </li>
+    <li><a href="#其他方案">其他方案</a>
+      <ul>
+        <li><a href="#支付宝">支付宝</a></li>
       </ul>
     </li>
   </ul>

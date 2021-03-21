@@ -12,7 +12,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Mon, 08 Mar 2021 21:13:34 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 21 Mar 2021 20:34:57 +0800</lastBuildDate>
     
         <atom:link href="https://blog.jiyang.site/index.xml" rel="self" type="application/rss+xml" />
     
@@ -38,6 +38,36 @@
         
       
 
+      
+      <item>
+        <title>通过分析mobile Ffmpeg解析如何优雅的集成ffmpeg到Android应用中</title>
+        <link>https://blog.jiyang.site/posts/mobile_ffmpeg_compile/</link>
+        <pubDate>Sun, 21 Mar 2021 20:34:57 +0800</pubDate>
+        
+        <atom:modified>Sun, 21 Mar 2021 20:34:57 +0800</atom:modified>
+        <guid>https://blog.jiyang.site/posts/mobile_ffmpeg_compile/</guid>
+        <description>背景 FFmpeg 是一个开源的、强大的音视频工具库，平常情况下的使用方法一般是利用编译好的 ffmpeg 程序，在 PC 上使用，需要不同的功能时只需传递不同的参数即可，而</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>FFmpeg</category>
+            
+          
+        
+        
+          
+            
+              <category>Android</category>
+            
+          
+        
+        
+      </item>
       
       <item>
         <title>音频波形图绘制</title>
@@ -386,6 +416,30 @@
       </item>
       
       <item>
+        <title>记最近做的冷启动耗时优化</title>
+        <link>https://blog.jiyang.site/posts/2020-03-28-%E8%AE%B0%E6%9C%80%E8%BF%91%E5%81%9A%E7%9A%84%E5%86%B7%E5%90%AF%E5%8A%A8%E8%80%97%E6%97%B6%E4%BC%98%E5%8C%96/</link>
+        <pubDate>Sat, 28 Mar 2020 19:39:43 +0000</pubDate>
+        
+        <atom:modified>Sat, 28 Mar 2020 19:39:43 +0000</atom:modified>
+        <guid>https://blog.jiyang.site/posts/2020-03-28-%E8%AE%B0%E6%9C%80%E8%BF%91%E5%81%9A%E7%9A%84%E5%86%B7%E5%90%AF%E5%8A%A8%E8%80%97%E6%97%B6%E4%BC%98%E5%8C%96/</guid>
+        <description>背景 最近公司 Client Infra 开始专项整治各业务线的应用启动耗时，我负责和架构组同事对接我们业务组的启动耗时优化工作。 整个优化工作大致的流程如下: 定位耗时</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>Android</category>
+            
+          
+        
+        
+      </item>
+      
+      <item>
         <title>树莓派OS-#0x01-理解Linux内核的初始化流程</title>
         <link>https://blog.jiyang.site/posts/2020-03-28-%E5%AE%9E%E7%8E%B0rpi-os-b-%E7%90%86%E8%A7%A3linux%E5%86%85%E6%A0%B8%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B/</link>
         <pubDate>Sat, 28 Mar 2020 14:23:25 +0000</pubDate>
@@ -643,6 +697,34 @@
           
             
               <category>Android</category>
+            
+          
+        
+        
+      </item>
+      
+      <item>
+        <title>Android Binder</title>
+        <link>https://blog.jiyang.site/posts/2020-01-06-android-binder/</link>
+        <pubDate>Mon, 06 Jan 2020 23:03:06 +0000</pubDate>
+        
+        <atom:modified>Mon, 06 Jan 2020 23:03:06 +0000</atom:modified>
+        <guid>https://blog.jiyang.site/posts/2020-01-06-android-binder/</guid>
+        <description>一篇对 Android 主要的 IPC 机制(Binder) 的记录，理解自一份 RUB(https://en.wikipedia.org/wiki/Ruhr_Univ</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>Android</category>
+            
+          
+            
+              <category>读书笔记</category>
             
           
         
@@ -2666,72 +2748,6 @@
               <category>Android</category>
             
           
-        
-        
-      </item>
-      
-      <item>
-        <title>OpenGL-ES-Line</title>
-        <link>https://blog.jiyang.site/posts/2017-07-01-opengl-es-line/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2017-07-01-opengl-es-line/</guid>
-        <description>绘制了x,y坐标轴 绘制了4条直线 一些函数说明: gl.glLoadIdentity(): 将当前画布矩阵的状态回归初始状态。 因为Translate``Rotate等操作都是基于当前画</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>Python笔记-基础</title>
-        <link>https://blog.jiyang.site/posts/2017-03-24-python%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2017-03-24-python%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80/</guid>
-        <description>Python数据类型 Number 数字 int 有符号整数 long 长整形，也可以代表十六进制或八进制 float 浮点型 complex 复数 String 字符串 list 列表 按索引存取 1 list = [&amp;#39;item1&amp;#39;, 2, &amp;#39;3&amp;#39;, 4, 5] 元组 只读列表</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Python</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>QQ-Friends-Word-Cloud</title>
-        <link>https://blog.jiyang.site/posts/2018-02-10-qq-friends-word-cloud/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2018-02-10-qq-friends-word-cloud/</guid>
-        <description>实现方法 Chrome headless 模式结合 selenium webDriver 实现通过扫描二维码登录 QZone 获取 Cookie 携带登录成功的 cookie 和 token 访问好友空间 遍历好友所有说说， 解析数据存入数据库 使用 jieba 分词和 wordcloud 词云</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
         
         
       </item>
