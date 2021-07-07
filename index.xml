@@ -12,7 +12,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Sun, 21 Mar 2021 20:34:57 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 02 Jul 2021 09:08:07 +0800</lastBuildDate>
     
         <atom:link href="https://blog.jiyang.site/index.xml" rel="self" type="application/rss+xml" />
     
@@ -38,6 +38,32 @@
         
       
 
+      
+      <item>
+        <title>Android Opengl OES 纹理渲染到 GL_TEXTURE_2D</title>
+        <link>https://blog.jiyang.site/posts/android_opengl_oes_to_2d/</link>
+        <pubDate>Fri, 02 Jul 2021 09:08:07 +0800</pubDate>
+        
+        <atom:modified>Fri, 02 Jul 2021 09:08:07 +0800</atom:modified>
+        <guid>https://blog.jiyang.site/posts/android_opengl_oes_to_2d/</guid>
+        <description>背景 在客户端中存在一种应用场景：需要将 MediaCodec 或者 Camera 产生的图像，通过 OpenGL 交给算法做特效，由于算法可能是基于普通的 Texture2D 纹理实现的，而 Android 上更常用的则是 GL_TEXTURE_EXTERNAL_OES 纹</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+          
+            
+          
+        
+        
+          
+            
+          
+        
+        
+      </item>
       
       <item>
         <title>通过分析mobile Ffmpeg解析如何优雅的集成ffmpeg到Android应用中</title>
@@ -2722,30 +2748,6 @@
           
             
               <category>Java</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>OkHttp拦截器使用</title>
-        <link>https://blog.jiyang.site/posts/2017-08-23-okhttp%E6%8B%A6%E6%88%AA%E5%99%A8%E4%BD%BF%E7%94%A8/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://blog.jiyang.site/posts/2017-08-23-okhttp%E6%8B%A6%E6%88%AA%E5%99%A8%E4%BD%BF%E7%94%A8/</guid>
-        <description>在Android上进行网络请求时，经常需要维持登录之后的session和cookie状态。session和cookie是加在HTTP请求的h</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
             
           
         
