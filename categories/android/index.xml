@@ -255,30 +255,6 @@
       </item>
       
       <item>
-        <title>记最近做的冷启动耗时优化</title>
-        <link>https://blog.jiyang.site/posts/2020-03-28-%E8%AE%B0%E6%9C%80%E8%BF%91%E5%81%9A%E7%9A%84%E5%86%B7%E5%90%AF%E5%8A%A8%E8%80%97%E6%97%B6%E4%BC%98%E5%8C%96/</link>
-        <pubDate>Sat, 28 Mar 2020 19:39:43 +0000</pubDate>
-        
-        <atom:modified>Sat, 28 Mar 2020 19:39:43 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2020-03-28-%E8%AE%B0%E6%9C%80%E8%BF%91%E5%81%9A%E7%9A%84%E5%86%B7%E5%90%AF%E5%8A%A8%E8%80%97%E6%97%B6%E4%BC%98%E5%8C%96/</guid>
-        <description>背景 最近公司 Client Infra 开始专项整治各业务线的应用启动耗时，我负责和架构组同事对接我们业务组的启动耗时优化工作。 整个优化工作大致的流程如下: 定位耗时</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
         <title>让 Annotation Processor 支持增量编译</title>
         <link>https://blog.jiyang.site/posts/2020-03-24-%E8%AE%A9annotation-processor-%E6%94%AF%E6%8C%81%E5%A2%9E%E9%87%8F%E7%BC%96%E8%AF%91/</link>
         <pubDate>Tue, 24 Mar 2020 21:08:39 +0000</pubDate>
@@ -368,34 +344,6 @@
           
             
               <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>Android Binder</title>
-        <link>https://blog.jiyang.site/posts/2020-01-06-android-binder/</link>
-        <pubDate>Mon, 06 Jan 2020 23:03:06 +0000</pubDate>
-        
-        <atom:modified>Mon, 06 Jan 2020 23:03:06 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2020-01-06-android-binder/</guid>
-        <description>一篇对 Android 主要的 IPC 机制(Binder) 的记录，理解自一份 RUB(https://en.wikipedia.org/wiki/Ruhr_Univ</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-            
-              <category>读书笔记</category>
             
           
         
