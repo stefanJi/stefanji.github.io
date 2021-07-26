@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Kotlin on Yang Blog</title>
-    <link>https://blog.jiyang.site/categories/kotlin/</link>
+    <link>https://jiyang.site/categories/kotlin/</link>
     <description>Recent content in Kotlin on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sun, 10 May 2020 23:14:27 +0800</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/categories/kotlin/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/categories/kotlin/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>Kotlin 协程的实现原理简析</title>
-        <link>https://blog.jiyang.site/posts/kotlin-coroutine-inner/</link>
+        <link>https://jiyang.site/posts/kotlin-coroutine-inner/</link>
         <pubDate>Sun, 10 May 2020 23:14:27 +0800</pubDate>
         
         <atom:modified>Sun, 10 May 2020 23:14:27 +0800</atom:modified>
-        <guid>https://blog.jiyang.site/posts/kotlin-coroutine-inner/</guid>
+        <guid>https://jiyang.site/posts/kotlin-coroutine-inner/</guid>
         <description>背景: 使用 Kotlin Coroutine 的使用方法，参照官方文档食用即可。这里只简单给出一些概念。 suspend ​使用 suspend 表示函数支持挂起操作，目的在于告诉编译器，该方法可能产生阻</description>
         
         <dc:creator>Yang</dc:creator>
@@ -44,11 +44,11 @@
       
       <item>
         <title>Kotlin 必须要知道的 inline noinline crossinline</title>
-        <link>https://blog.jiyang.site/posts/2019-04-30-kotlin-inline-noinline-crossinline/</link>
+        <link>https://jiyang.site/posts/2019-04-30-kotlin-inline-noinline-crossinline/</link>
         <pubDate>Tue, 30 Apr 2019 10:55:41 +0000</pubDate>
         
         <atom:modified>Tue, 30 Apr 2019 10:55:41 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2019-04-30-kotlin-inline-noinline-crossinline/</guid>
+        <guid>https://jiyang.site/posts/2019-04-30-kotlin-inline-noinline-crossinline/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -68,11 +68,11 @@
       
       <item>
         <title>Kotlin let run apply with 方法</title>
-        <link>https://blog.jiyang.site/posts/2018-09-19-kotlin-let-run-apply-with%E6%96%B9%E6%B3%95/</link>
+        <link>https://jiyang.site/posts/2018-09-19-kotlin-let-run-apply-with%E6%96%B9%E6%B3%95/</link>
         <pubDate>Wed, 19 Sep 2018 10:55:40 +0000</pubDate>
         
         <atom:modified>Wed, 19 Sep 2018 10:55:40 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2018-09-19-kotlin-let-run-apply-with%E6%96%B9%E6%B3%95/</guid>
+        <guid>https://jiyang.site/posts/2018-09-19-kotlin-let-run-apply-with%E6%96%B9%E6%B3%95/</guid>
         <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 class Test { data class Man(val name: String, val argOne: String = &amp;#34;456&amp;#34;) private val argOne = &amp;#34;123&amp;#34; fun print() { Man(&amp;#34;stefan&amp;#34;).let { println(it.name) // it 代表 let 的调用方: Man println(this.argOne) //123 this</description>
         
         <dc:creator>Yang</dc:creator>

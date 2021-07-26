@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Tags on Yang Blog</title>
-    <link>https://blog.jiyang.site/tags/</link>
+    <link>https://jiyang.site/tags/</link>
     <description>Recent content in Tags on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sun, 21 Mar 2021 20:34:57 +0800</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/tags/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/tags/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>FFmpeg</title>
-        <link>https://blog.jiyang.site/tags/ffmpeg/</link>
+        <link>https://jiyang.site/tags/ffmpeg/</link>
         <pubDate>Sun, 21 Mar 2021 20:34:57 +0800</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/ffmpeg/</guid>
+        <guid>https://jiyang.site/tags/ffmpeg/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -38,11 +38,11 @@
       
       <item>
         <title>Audio</title>
-        <link>https://blog.jiyang.site/tags/audio/</link>
+        <link>https://jiyang.site/tags/audio/</link>
         <pubDate>Mon, 08 Mar 2021 21:13:34 +0800</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/audio/</guid>
+        <guid>https://jiyang.site/tags/audio/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -56,11 +56,11 @@
       
       <item>
         <title>MediaCodec</title>
-        <link>https://blog.jiyang.site/tags/mediacodec/</link>
+        <link>https://jiyang.site/tags/mediacodec/</link>
         <pubDate>Sat, 05 Sep 2020 22:41:45 +0800</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/mediacodec/</guid>
+        <guid>https://jiyang.site/tags/mediacodec/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -74,11 +74,11 @@
       
       <item>
         <title>Video</title>
-        <link>https://blog.jiyang.site/tags/video/</link>
+        <link>https://jiyang.site/tags/video/</link>
         <pubDate>Sat, 05 Sep 2020 22:41:45 +0800</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/video/</guid>
+        <guid>https://jiyang.site/tags/video/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -92,11 +92,11 @@
       
       <item>
         <title>DWARF</title>
-        <link>https://blog.jiyang.site/tags/dwarf/</link>
+        <link>https://jiyang.site/tags/dwarf/</link>
         <pubDate>Sun, 14 Jun 2020 21:03:54 +0800</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/dwarf/</guid>
+        <guid>https://jiyang.site/tags/dwarf/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -110,11 +110,11 @@
       
       <item>
         <title>ELF</title>
-        <link>https://blog.jiyang.site/tags/elf/</link>
+        <link>https://jiyang.site/tags/elf/</link>
         <pubDate>Sun, 14 Jun 2020 21:03:54 +0800</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/elf/</guid>
+        <guid>https://jiyang.site/tags/elf/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -128,11 +128,11 @@
       
       <item>
         <title>Signal</title>
-        <link>https://blog.jiyang.site/tags/signal/</link>
+        <link>https://jiyang.site/tags/signal/</link>
         <pubDate>Sun, 14 Jun 2020 21:03:54 +0800</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/signal/</guid>
+        <guid>https://jiyang.site/tags/signal/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -146,11 +146,11 @@
       
       <item>
         <title>代码工程</title>
-        <link>https://blog.jiyang.site/tags/%E4%BB%A3%E7%A0%81%E5%B7%A5%E7%A8%8B/</link>
+        <link>https://jiyang.site/tags/%E4%BB%A3%E7%A0%81%E5%B7%A5%E7%A8%8B/</link>
         <pubDate>Sun, 14 Jun 2020 00:08:04 +0800</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/%E4%BB%A3%E7%A0%81%E5%B7%A5%E7%A8%8B/</guid>
+        <guid>https://jiyang.site/tags/%E4%BB%A3%E7%A0%81%E5%B7%A5%E7%A8%8B/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -164,11 +164,11 @@
       
       <item>
         <title>RPI_OS</title>
-        <link>https://blog.jiyang.site/tags/rpi_os/</link>
+        <link>https://jiyang.site/tags/rpi_os/</link>
         <pubDate>Mon, 04 May 2020 09:10:45 +0800</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/rpi_os/</guid>
+        <guid>https://jiyang.site/tags/rpi_os/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -182,11 +182,11 @@
       
       <item>
         <title>TLS</title>
-        <link>https://blog.jiyang.site/tags/tls/</link>
+        <link>https://jiyang.site/tags/tls/</link>
         <pubDate>Sun, 15 Mar 2020 13:23:43 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/tls/</guid>
+        <guid>https://jiyang.site/tags/tls/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -200,11 +200,11 @@
       
       <item>
         <title>BFS</title>
-        <link>https://blog.jiyang.site/tags/bfs/</link>
+        <link>https://jiyang.site/tags/bfs/</link>
         <pubDate>Thu, 30 Jan 2020 20:35:12 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/bfs/</guid>
+        <guid>https://jiyang.site/tags/bfs/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -218,11 +218,11 @@
       
       <item>
         <title>ARP</title>
-        <link>https://blog.jiyang.site/tags/arp/</link>
+        <link>https://jiyang.site/tags/arp/</link>
         <pubDate>Fri, 27 Dec 2019 20:33:51 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/arp/</guid>
+        <guid>https://jiyang.site/tags/arp/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -236,11 +236,11 @@
       
       <item>
         <title>ICMP</title>
-        <link>https://blog.jiyang.site/tags/icmp/</link>
+        <link>https://jiyang.site/tags/icmp/</link>
         <pubDate>Sun, 15 Dec 2019 22:25:43 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/icmp/</guid>
+        <guid>https://jiyang.site/tags/icmp/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -254,11 +254,11 @@
       
       <item>
         <title>内存泄漏</title>
-        <link>https://blog.jiyang.site/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</link>
+        <link>https://jiyang.site/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</link>
         <pubDate>Fri, 01 Nov 2019 21:18:19 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</guid>
+        <guid>https://jiyang.site/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -272,11 +272,11 @@
       
       <item>
         <title>堆</title>
-        <link>https://blog.jiyang.site/tags/%E5%A0%86/</link>
+        <link>https://jiyang.site/tags/%E5%A0%86/</link>
         <pubDate>Thu, 24 Oct 2019 22:41:02 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/%E5%A0%86/</guid>
+        <guid>https://jiyang.site/tags/%E5%A0%86/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -290,11 +290,11 @@
       
       <item>
         <title>树</title>
-        <link>https://blog.jiyang.site/tags/%E6%A0%91/</link>
+        <link>https://jiyang.site/tags/%E6%A0%91/</link>
         <pubDate>Thu, 24 Oct 2019 22:41:02 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/%E6%A0%91/</guid>
+        <guid>https://jiyang.site/tags/%E6%A0%91/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -308,11 +308,11 @@
       
       <item>
         <title>计划</title>
-        <link>https://blog.jiyang.site/tags/%E8%AE%A1%E5%88%92/</link>
+        <link>https://jiyang.site/tags/%E8%AE%A1%E5%88%92/</link>
         <pubDate>Mon, 31 Dec 2018 16:58:43 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/%E8%AE%A1%E5%88%92/</guid>
+        <guid>https://jiyang.site/tags/%E8%AE%A1%E5%88%92/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -326,11 +326,11 @@
       
       <item>
         <title>Nginx</title>
-        <link>https://blog.jiyang.site/tags/nginx/</link>
+        <link>https://jiyang.site/tags/nginx/</link>
         <pubDate>Thu, 27 Dec 2018 08:46:40 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/nginx/</guid>
+        <guid>https://jiyang.site/tags/nginx/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -344,11 +344,11 @@
       
       <item>
         <title>Rx</title>
-        <link>https://blog.jiyang.site/tags/rx/</link>
+        <link>https://jiyang.site/tags/rx/</link>
         <pubDate>Fri, 17 Aug 2018 21:24:42 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/rx/</guid>
+        <guid>https://jiyang.site/tags/rx/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -362,11 +362,11 @@
       
       <item>
         <title>缓存算法</title>
-        <link>https://blog.jiyang.site/tags/%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95/</link>
+        <link>https://jiyang.site/tags/%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95/</link>
         <pubDate>Wed, 24 May 2017 00:00:00 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95/</guid>
+        <guid>https://jiyang.site/tags/%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -380,11 +380,11 @@
       
       <item>
         <title>雷电</title>
-        <link>https://blog.jiyang.site/tags/%E9%9B%B7%E7%94%B5/</link>
+        <link>https://jiyang.site/tags/%E9%9B%B7%E7%94%B5/</link>
         <pubDate>Wed, 01 Apr 2015 22:20:00 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/%E9%9B%B7%E7%94%B5/</guid>
+        <guid>https://jiyang.site/tags/%E9%9B%B7%E7%94%B5/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -398,11 +398,11 @@
       
       <item>
         <title>二叉树</title>
-        <link>https://blog.jiyang.site/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/</link>
+        <link>https://jiyang.site/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/</guid>
+        <guid>https://jiyang.site/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -416,11 +416,11 @@
       
       <item>
         <title>数组</title>
-        <link>https://blog.jiyang.site/tags/%E6%95%B0%E7%BB%84/</link>
+        <link>https://jiyang.site/tags/%E6%95%B0%E7%BB%84/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/%E6%95%B0%E7%BB%84/</guid>
+        <guid>https://jiyang.site/tags/%E6%95%B0%E7%BB%84/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -434,11 +434,11 @@
       
       <item>
         <title>链表</title>
-        <link>https://blog.jiyang.site/tags/%E9%93%BE%E8%A1%A8/</link>
+        <link>https://jiyang.site/tags/%E9%93%BE%E8%A1%A8/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/tags/%E9%93%BE%E8%A1%A8/</guid>
+        <guid>https://jiyang.site/tags/%E9%93%BE%E8%A1%A8/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>

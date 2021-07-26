@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Categories on Yang Blog</title>
-    <link>https://blog.jiyang.site/categories/</link>
+    <link>https://jiyang.site/categories/</link>
     <description>Recent content in Categories on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sun, 21 Mar 2021 20:34:57 +0800</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/categories/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/categories/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>Android</title>
-        <link>https://blog.jiyang.site/categories/android/</link>
+        <link>https://jiyang.site/categories/android/</link>
         <pubDate>Sun, 21 Mar 2021 20:34:57 +0800</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/android/</guid>
+        <guid>https://jiyang.site/categories/android/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -38,11 +38,11 @@
       
       <item>
         <title>读书笔记</title>
-        <link>https://blog.jiyang.site/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+        <link>https://jiyang.site/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Sun, 14 Jun 2020 00:08:04 +0800</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+        <guid>https://jiyang.site/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -56,11 +56,11 @@
       
       <item>
         <title>libc</title>
-        <link>https://blog.jiyang.site/categories/libc/</link>
+        <link>https://jiyang.site/categories/libc/</link>
         <pubDate>Sat, 30 May 2020 21:53:39 +0800</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/libc/</guid>
+        <guid>https://jiyang.site/categories/libc/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -74,11 +74,11 @@
       
       <item>
         <title>Kotlin</title>
-        <link>https://blog.jiyang.site/categories/kotlin/</link>
+        <link>https://jiyang.site/categories/kotlin/</link>
         <pubDate>Sun, 10 May 2020 23:14:27 +0800</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/kotlin/</guid>
+        <guid>https://jiyang.site/categories/kotlin/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -92,11 +92,11 @@
       
       <item>
         <title>操作系统</title>
-        <link>https://blog.jiyang.site/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+        <link>https://jiyang.site/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
         <pubDate>Mon, 04 May 2020 09:10:45 +0800</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+        <guid>https://jiyang.site/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -110,11 +110,11 @@
       
       <item>
         <title>计算机网络</title>
-        <link>https://blog.jiyang.site/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
+        <link>https://jiyang.site/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
         <pubDate>Sun, 15 Mar 2020 13:23:43 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid>
+        <guid>https://jiyang.site/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -128,11 +128,11 @@
       
       <item>
         <title>JVM</title>
-        <link>https://blog.jiyang.site/categories/jvm/</link>
+        <link>https://jiyang.site/categories/jvm/</link>
         <pubDate>Tue, 03 Mar 2020 21:17:54 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/jvm/</guid>
+        <guid>https://jiyang.site/categories/jvm/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -146,11 +146,11 @@
       
       <item>
         <title>算法</title>
-        <link>https://blog.jiyang.site/categories/%E7%AE%97%E6%B3%95/</link>
+        <link>https://jiyang.site/categories/%E7%AE%97%E6%B3%95/</link>
         <pubDate>Thu, 30 Jan 2020 20:35:12 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/%E7%AE%97%E6%B3%95/</guid>
+        <guid>https://jiyang.site/categories/%E7%AE%97%E6%B3%95/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -164,11 +164,11 @@
       
       <item>
         <title>Java</title>
-        <link>https://blog.jiyang.site/categories/java/</link>
+        <link>https://jiyang.site/categories/java/</link>
         <pubDate>Mon, 20 Jan 2020 17:59:51 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/java/</guid>
+        <guid>https://jiyang.site/categories/java/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -182,11 +182,11 @@
       
       <item>
         <title>Linux</title>
-        <link>https://blog.jiyang.site/categories/linux/</link>
+        <link>https://jiyang.site/categories/linux/</link>
         <pubDate>Sun, 05 Jan 2020 11:15:35 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/linux/</guid>
+        <guid>https://jiyang.site/categories/linux/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -200,11 +200,11 @@
       
       <item>
         <title>cpp</title>
-        <link>https://blog.jiyang.site/categories/cpp/</link>
+        <link>https://jiyang.site/categories/cpp/</link>
         <pubDate>Sun, 27 Oct 2019 14:34:11 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/cpp/</guid>
+        <guid>https://jiyang.site/categories/cpp/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -218,11 +218,11 @@
       
       <item>
         <title>数据结构</title>
-        <link>https://blog.jiyang.site/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+        <link>https://jiyang.site/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
         <pubDate>Thu, 24 Oct 2019 22:41:02 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+        <guid>https://jiyang.site/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -236,11 +236,11 @@
       
       <item>
         <title>Flutter</title>
-        <link>https://blog.jiyang.site/categories/flutter/</link>
+        <link>https://jiyang.site/categories/flutter/</link>
         <pubDate>Sun, 20 Oct 2019 20:35:05 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/flutter/</guid>
+        <guid>https://jiyang.site/categories/flutter/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -254,11 +254,11 @@
       
       <item>
         <title>设计模式</title>
-        <link>https://blog.jiyang.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+        <link>https://jiyang.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
         <pubDate>Sat, 29 Jun 2019 14:22:44 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+        <guid>https://jiyang.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -272,11 +272,11 @@
       
       <item>
         <title>Ubuntu</title>
-        <link>https://blog.jiyang.site/categories/ubuntu/</link>
+        <link>https://jiyang.site/categories/ubuntu/</link>
         <pubDate>Sat, 25 May 2019 09:26:27 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/ubuntu/</guid>
+        <guid>https://jiyang.site/categories/ubuntu/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -290,11 +290,11 @@
       
       <item>
         <title>Dart</title>
-        <link>https://blog.jiyang.site/categories/dart/</link>
+        <link>https://jiyang.site/categories/dart/</link>
         <pubDate>Fri, 15 Mar 2019 22:45:42 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/dart/</guid>
+        <guid>https://jiyang.site/categories/dart/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -308,11 +308,11 @@
       
       <item>
         <title>个人</title>
-        <link>https://blog.jiyang.site/categories/%E4%B8%AA%E4%BA%BA/</link>
+        <link>https://jiyang.site/categories/%E4%B8%AA%E4%BA%BA/</link>
         <pubDate>Mon, 31 Dec 2018 16:58:43 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/%E4%B8%AA%E4%BA%BA/</guid>
+        <guid>https://jiyang.site/categories/%E4%B8%AA%E4%BA%BA/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -326,11 +326,11 @@
       
       <item>
         <title>图像处理</title>
-        <link>https://blog.jiyang.site/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
+        <link>https://jiyang.site/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
         <pubDate>Fri, 14 Dec 2018 23:00:30 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</guid>
+        <guid>https://jiyang.site/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -344,11 +344,11 @@
       
       <item>
         <title>树莓派</title>
-        <link>https://blog.jiyang.site/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
+        <link>https://jiyang.site/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
         <pubDate>Sun, 22 Jul 2018 21:31:44 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</guid>
+        <guid>https://jiyang.site/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -362,11 +362,11 @@
       
       <item>
         <title>Python</title>
-        <link>https://blog.jiyang.site/categories/python/</link>
+        <link>https://jiyang.site/categories/python/</link>
         <pubDate>Mon, 28 May 2018 00:32:41 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/python/</guid>
+        <guid>https://jiyang.site/categories/python/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -380,11 +380,11 @@
       
       <item>
         <title>Chrome</title>
-        <link>https://blog.jiyang.site/categories/chrome/</link>
+        <link>https://jiyang.site/categories/chrome/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/chrome/</guid>
+        <guid>https://jiyang.site/categories/chrome/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -398,11 +398,11 @@
       
       <item>
         <title>Git</title>
-        <link>https://blog.jiyang.site/categories/git/</link>
+        <link>https://jiyang.site/categories/git/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/git/</guid>
+        <guid>https://jiyang.site/categories/git/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -416,11 +416,11 @@
       
       <item>
         <title>IOS</title>
-        <link>https://blog.jiyang.site/categories/ios/</link>
+        <link>https://jiyang.site/categories/ios/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/categories/ios/</guid>
+        <guid>https://jiyang.site/categories/ios/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>

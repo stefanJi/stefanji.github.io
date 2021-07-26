@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Linux on Yang Blog</title>
-    <link>https://blog.jiyang.site/categories/linux/</link>
+    <link>https://jiyang.site/categories/linux/</link>
     <description>Recent content in Linux on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sun, 05 Jan 2020 11:15:35 +0000</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>理解Linux内部网络实现之关键数据结构 net_device</title>
-        <link>https://blog.jiyang.site/posts/2020-01-05-%E7%90%86%E8%A7%A3linux%E5%86%85%E9%83%A8%E7%BD%91%E7%BB%9C%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%85%B3%E9%94%AE%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B-net_device/</link>
+        <link>https://jiyang.site/posts/2020-01-05-%E7%90%86%E8%A7%A3linux%E5%86%85%E9%83%A8%E7%BD%91%E7%BB%9C%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%85%B3%E9%94%AE%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B-net_device/</link>
         <pubDate>Sun, 05 Jan 2020 11:15:35 +0000</pubDate>
         
         <atom:modified>Sun, 05 Jan 2020 11:15:35 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2020-01-05-%E7%90%86%E8%A7%A3linux%E5%86%85%E9%83%A8%E7%BD%91%E7%BB%9C%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%85%B3%E9%94%AE%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B-net_device/</guid>
+        <guid>https://jiyang.site/posts/2020-01-05-%E7%90%86%E8%A7%A3linux%E5%86%85%E9%83%A8%E7%BD%91%E7%BB%9C%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%85%B3%E9%94%AE%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B-net_device/</guid>
         <description>Understanding Linux Networking internal 系列之 Critical Data Structures 背景 在 Linux 的网络栈实现代码中，引用到了一些数据结构。要理解 Linux 内部的网络实现，需要先理清这些数据结构的作用。关键数据结构主要</description>
         
         <dc:creator>Yang</dc:creator>
@@ -52,11 +52,11 @@
       
       <item>
         <title>理解Linux内部网络实现之关键数据结构 sk_buff</title>
-        <link>https://blog.jiyang.site/posts/2020-01-02-%E7%90%86%E8%A7%A3linux%E5%86%85%E9%83%A8%E7%BD%91%E7%BB%9C%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%85%B3%E9%94%AE%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B-sk_buff/</link>
+        <link>https://jiyang.site/posts/2020-01-02-%E7%90%86%E8%A7%A3linux%E5%86%85%E9%83%A8%E7%BD%91%E7%BB%9C%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%85%B3%E9%94%AE%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B-sk_buff/</link>
         <pubDate>Thu, 02 Jan 2020 23:49:09 +0000</pubDate>
         
         <atom:modified>Thu, 02 Jan 2020 23:49:09 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2020-01-02-%E7%90%86%E8%A7%A3linux%E5%86%85%E9%83%A8%E7%BD%91%E7%BB%9C%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%85%B3%E9%94%AE%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B-sk_buff/</guid>
+        <guid>https://jiyang.site/posts/2020-01-02-%E7%90%86%E8%A7%A3linux%E5%86%85%E9%83%A8%E7%BD%91%E7%BB%9C%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%85%B3%E9%94%AE%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B-sk_buff/</guid>
         <description>Understanding Linux Networking internal 系列之 Critical Data Structures 背景 在 Linux 的网络栈实现代码中，引用到了一些数据结构。要理解 Linux 内部的网络实现，需要先理清这些数据结构的作用。关键数据结构主要</description>
         
         <dc:creator>Yang</dc:creator>
@@ -84,11 +84,11 @@
       
       <item>
         <title>为服务器配置自动更新SSL证书</title>
-        <link>https://blog.jiyang.site/posts/2018-12-27-%E4%B8%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0ssl%E8%AF%81%E4%B9%A6/</link>
+        <link>https://jiyang.site/posts/2018-12-27-%E4%B8%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0ssl%E8%AF%81%E4%B9%A6/</link>
         <pubDate>Thu, 27 Dec 2018 08:46:40 +0000</pubDate>
         
         <atom:modified>Thu, 27 Dec 2018 08:46:40 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2018-12-27-%E4%B8%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0ssl%E8%AF%81%E4%B9%A6/</guid>
+        <guid>https://jiyang.site/posts/2018-12-27-%E4%B8%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0ssl%E8%AF%81%E4%B9%A6/</guid>
         <description>&lt;p&gt;以我 youcute.cn 为例，首先安装 &lt;code&gt;acme&lt;/code&gt; 脚本 &lt;a href=&#34;https://github.com/Neilpang/acme.sh&#34;&gt;https://github.com/Neilpang/acme.sh&lt;/a&gt;。然后生成证书，将证书拷贝到相应的目录。&lt;/p&gt;</description>
         
         <dc:creator>Yang</dc:creator>
@@ -114,11 +114,11 @@
       
       <item>
         <title>Linux 权限 124</title>
-        <link>https://blog.jiyang.site/posts/2018-05-21-linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90124/</link>
+        <link>https://jiyang.site/posts/2018-05-21-linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90124/</link>
         <pubDate>Mon, 21 May 2018 01:59:41 +0000</pubDate>
         
         <atom:modified>Mon, 21 May 2018 01:59:41 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2018-05-21-linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90124/</guid>
+        <guid>https://jiyang.site/posts/2018-05-21-linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90124/</guid>
         <description>&lt;h2 id=&#34;权限字符&#34;&gt;权限字符&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -147,11 +147,11 @@
       
       <item>
         <title>resolv.conf和hosts</title>
-        <link>https://blog.jiyang.site/posts/2017-12-23-resolv.conf%E5%92%8Chosts/</link>
+        <link>https://jiyang.site/posts/2017-12-23-resolv.conf%E5%92%8Chosts/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/posts/2017-12-23-resolv.conf%E5%92%8Chosts/</guid>
+        <guid>https://jiyang.site/posts/2017-12-23-resolv.conf%E5%92%8Chosts/</guid>
         <description>less /etc/hosts 127.0.0.1 localhost 127.0.1.1 PC-UserName less /etc/resolv.conf nameserver 127.0.1.1 nameserver 172.22.0.1 每当任何应用程序在Linux操作系统中执行DNS查找时，它都会在“/ etc / hosts”和“/etc/resovl.co</description>
         
         <dc:creator>Yang</dc:creator>
@@ -171,11 +171,11 @@
       
       <item>
         <title>Ssh-Keep-alive</title>
-        <link>https://blog.jiyang.site/posts/2017-12-06-ssh-keep-alive/</link>
+        <link>https://jiyang.site/posts/2017-12-06-ssh-keep-alive/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         
-        <guid>https://blog.jiyang.site/posts/2017-12-06-ssh-keep-alive/</guid>
+        <guid>https://jiyang.site/posts/2017-12-06-ssh-keep-alive/</guid>
         <description>通过客户端和服务端以指定时间间隔(小于超时时间)发送空数据包来避免SSH连接超时。 在客户端或服务端一侧进行如下配置即可 在客户端避免超时 编辑 Linux</description>
         
         <dc:creator>Yang</dc:creator>

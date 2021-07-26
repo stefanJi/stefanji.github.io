@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>内存泄漏 on Yang Blog</title>
-    <link>https://blog.jiyang.site/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</link>
+    <link>https://jiyang.site/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</link>
     <description>Recent content in 内存泄漏 on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Fri, 01 Nov 2019 21:18:19 +0000</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>记一次 DialogFragment 造成的内存泄漏</title>
-        <link>https://blog.jiyang.site/posts/2019-11-01-%E8%AE%B0%E4%B8%80%E6%AC%A1-dialogfragment-%E9%80%A0%E6%88%90%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</link>
+        <link>https://jiyang.site/posts/2019-11-01-%E8%AE%B0%E4%B8%80%E6%AC%A1-dialogfragment-%E9%80%A0%E6%88%90%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</link>
         <pubDate>Fri, 01 Nov 2019 21:18:19 +0000</pubDate>
         
         <atom:modified>Fri, 01 Nov 2019 21:18:19 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2019-11-01-%E8%AE%B0%E4%B8%80%E6%AC%A1-dialogfragment-%E9%80%A0%E6%88%90%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</guid>
+        <guid>https://jiyang.site/posts/2019-11-01-%E8%AE%B0%E4%B8%80%E6%AC%A1-dialogfragment-%E9%80%A0%E6%88%90%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</guid>
         <description>&lt;p&gt;最近 Leak Canrray 检测出了 Activity/ReportFragment 被泄漏。发现引用其的 GC Root 竟然是一个 HandlerThread。&lt;/p&gt;</description>
         
         <dc:creator>Yang</dc:creator>

@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>树 on Yang Blog</title>
-    <link>https://blog.jiyang.site/tags/%E6%A0%91/</link>
+    <link>https://jiyang.site/tags/%E6%A0%91/</link>
     <description>Recent content in 树 on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Thu, 24 Oct 2019 22:41:02 +0000</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/tags/%E6%A0%91/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/tags/%E6%A0%91/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>小根堆-大根堆</title>
-        <link>https://blog.jiyang.site/posts/2019-10-24-%E5%B0%8F%E6%A0%B9%E5%A0%86/</link>
+        <link>https://jiyang.site/posts/2019-10-24-%E5%B0%8F%E6%A0%B9%E5%A0%86/</link>
         <pubDate>Thu, 24 Oct 2019 22:41:02 +0000</pubDate>
         
         <atom:modified>Thu, 24 Oct 2019 22:41:02 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2019-10-24-%E5%B0%8F%E6%A0%B9%E5%A0%86/</guid>
+        <guid>https://jiyang.site/posts/2019-10-24-%E5%B0%8F%E6%A0%B9%E5%A0%86/</guid>
         <description>&lt;p&gt;理解堆的定义, 使用堆实现一个优先级队列, 查看 &lt;code&gt;java.util.Timer&lt;/code&gt; 中的小根堆实现&lt;/p&gt;</description>
         
         <dc:creator>Yang</dc:creator>

@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>TLS on Yang Blog</title>
-    <link>https://blog.jiyang.site/tags/tls/</link>
+    <link>https://jiyang.site/tags/tls/</link>
     <description>Recent content in TLS on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sun, 15 Mar 2020 13:23:43 +0000</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/tags/tls/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/tags/tls/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>当我尝试自己实现TLS时，我遇到了这些问题</title>
-        <link>https://blog.jiyang.site/posts/2020-03-15-%E5%BD%93%E6%88%91%E5%B0%9D%E8%AF%95%E8%87%AA%E5%B7%B1%E5%AE%9E%E7%8E%B0tls%E6%97%B6%E6%88%91%E9%81%87%E5%88%B0%E4%BA%86%E8%BF%99%E4%BA%9B%E9%97%AE%E9%A2%98/</link>
+        <link>https://jiyang.site/posts/2020-03-15-%E5%BD%93%E6%88%91%E5%B0%9D%E8%AF%95%E8%87%AA%E5%B7%B1%E5%AE%9E%E7%8E%B0tls%E6%97%B6%E6%88%91%E9%81%87%E5%88%B0%E4%BA%86%E8%BF%99%E4%BA%9B%E9%97%AE%E9%A2%98/</link>
         <pubDate>Sun, 15 Mar 2020 13:23:43 +0000</pubDate>
         
         <atom:modified>Sun, 15 Mar 2020 13:23:43 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2020-03-15-%E5%BD%93%E6%88%91%E5%B0%9D%E8%AF%95%E8%87%AA%E5%B7%B1%E5%AE%9E%E7%8E%B0tls%E6%97%B6%E6%88%91%E9%81%87%E5%88%B0%E4%BA%86%E8%BF%99%E4%BA%9B%E9%97%AE%E9%A2%98/</guid>
+        <guid>https://jiyang.site/posts/2020-03-15-%E5%BD%93%E6%88%91%E5%B0%9D%E8%AF%95%E8%87%AA%E5%B7%B1%E5%AE%9E%E7%8E%B0tls%E6%97%B6%E6%88%91%E9%81%87%E5%88%B0%E4%BA%86%E8%BF%99%E4%BA%9B%E9%97%AE%E9%A2%98/</guid>
         <description>花费接近一周的业余时间，基本实现了基于 TLS 1.2 的通信过程。在这期间遇到了许多问题，在此记录。 实现的源码在: https://github.com/stefanJi/CNP/tree/master/TLSImpl 字节序问题 由于我代码使用基于 JVM 的语言</description>
         
         <dc:creator>Yang</dc:creator>
@@ -50,11 +50,11 @@
       
       <item>
         <title>HTTPS 的 TLS 握手</title>
-        <link>https://blog.jiyang.site/posts/2019-11-05-https-%E7%9A%84-tls-%E6%8F%A1%E6%89%8B/</link>
+        <link>https://jiyang.site/posts/2019-11-05-https-%E7%9A%84-tls-%E6%8F%A1%E6%89%8B/</link>
         <pubDate>Tue, 05 Nov 2019 16:30:30 +0000</pubDate>
         
         <atom:modified>Tue, 05 Nov 2019 16:30:30 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2019-11-05-https-%E7%9A%84-tls-%E6%8F%A1%E6%89%8B/</guid>
+        <guid>https://jiyang.site/posts/2019-11-05-https-%E7%9A%84-tls-%E6%8F%A1%E6%89%8B/</guid>
         <description>&lt;p&gt;通过 Wireshark 抓包理解 HTTPS 的 SSL/TLS 握手&lt;/p&gt;</description>
         
         <dc:creator>Yang</dc:creator>

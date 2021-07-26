@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>FFmpeg on Yang Blog</title>
-    <link>https://blog.jiyang.site/tags/ffmpeg/</link>
+    <link>https://jiyang.site/tags/ffmpeg/</link>
     <description>Recent content in FFmpeg on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sun, 21 Mar 2021 20:34:57 +0800</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/tags/ffmpeg/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/tags/ffmpeg/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>通过分析mobile Ffmpeg解析如何优雅的集成ffmpeg到Android应用中</title>
-        <link>https://blog.jiyang.site/posts/mobile_ffmpeg_compile/</link>
+        <link>https://jiyang.site/posts/mobile_ffmpeg_compile/</link>
         <pubDate>Sun, 21 Mar 2021 20:34:57 +0800</pubDate>
         
         <atom:modified>Sun, 21 Mar 2021 20:34:57 +0800</atom:modified>
-        <guid>https://blog.jiyang.site/posts/mobile_ffmpeg_compile/</guid>
+        <guid>https://jiyang.site/posts/mobile_ffmpeg_compile/</guid>
         <description>背景 FFmpeg 是一个开源的、强大的音视频工具库，平常情况下的使用方法一般是利用编译好的 ffmpeg 程序，在 PC 上使用，需要不同的功能时只需传递不同的参数即可，而</description>
         
         <dc:creator>Yang</dc:creator>
@@ -50,11 +50,11 @@
       
       <item>
         <title>Compile And Run FFmpeg Examples</title>
-        <link>https://blog.jiyang.site/posts/compile-and-run-ffmpeg-examples/</link>
+        <link>https://jiyang.site/posts/compile-and-run-ffmpeg-examples/</link>
         <pubDate>Thu, 26 Nov 2020 22:20:19 +0800</pubDate>
         
         <atom:modified>Thu, 26 Nov 2020 22:20:19 +0800</atom:modified>
-        <guid>https://blog.jiyang.site/posts/compile-and-run-ffmpeg-examples/</guid>
+        <guid>https://jiyang.site/posts/compile-and-run-ffmpeg-examples/</guid>
         <description>FFmpeg 的源码仓库在 doc/examples 目录中提供了一些基本的 FFmpeg Api 使用方法。但是在我想运行这些例子时，却尝试了很久才编译出来可运行的例子。因为 FFmpeg 的 readme 中只大概提到了如</description>
         
         <dc:creator>Yang</dc:creator>
@@ -78,11 +78,11 @@
       
       <item>
         <title>Android 上 FFMpeg 和 MediaCodec 视频解码效率对比</title>
-        <link>https://blog.jiyang.site/posts/android-ffmpeg-vs-mediacodec-video-decode/</link>
+        <link>https://jiyang.site/posts/android-ffmpeg-vs-mediacodec-video-decode/</link>
         <pubDate>Sat, 05 Sep 2020 22:41:45 +0800</pubDate>
         
         <atom:modified>Sat, 05 Sep 2020 22:41:45 +0800</atom:modified>
-        <guid>https://blog.jiyang.site/posts/android-ffmpeg-vs-mediacodec-video-decode/</guid>
+        <guid>https://jiyang.site/posts/android-ffmpeg-vs-mediacodec-video-decode/</guid>
         <description>视频编码格式为: H264, 封装格式为: mp4 外部参考: 手机CPU性能天梯图 手机Soc性能排行榜 能耗对比: 解码1080P 编码1080P 左边是硬件Codec</description>
         
         <dc:creator>Yang</dc:creator>

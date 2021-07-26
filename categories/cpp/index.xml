@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>cpp on Yang Blog</title>
-    <link>https://blog.jiyang.site/categories/cpp/</link>
+    <link>https://jiyang.site/categories/cpp/</link>
     <description>Recent content in cpp on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sun, 27 Oct 2019 14:34:11 +0000</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/categories/cpp/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/categories/cpp/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>关于 std::move</title>
-        <link>https://blog.jiyang.site/posts/2019-10-27-%E5%85%B3%E4%BA%8E-std-move/</link>
+        <link>https://jiyang.site/posts/2019-10-27-%E5%85%B3%E4%BA%8E-std-move/</link>
         <pubDate>Sun, 27 Oct 2019 14:34:11 +0000</pubDate>
         
         <atom:modified>Sun, 27 Oct 2019 14:34:11 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2019-10-27-%E5%85%B3%E4%BA%8E-std-move/</guid>
+        <guid>https://jiyang.site/posts/2019-10-27-%E5%85%B3%E4%BA%8E-std-move/</guid>
         <description>&lt;p&gt;最近在看一些框架的 c++ 源码中, 发现它们在许多函数传参时会使用 &lt;code&gt;std::move&lt;/code&gt; 调用, 于是想弄清这个目的是什么.&lt;/p&gt;</description>
         
         <dc:creator>Yang</dc:creator>

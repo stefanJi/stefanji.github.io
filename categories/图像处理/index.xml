@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>图像处理 on Yang Blog</title>
-    <link>https://blog.jiyang.site/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
+    <link>https://jiyang.site/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
     <description>Recent content in 图像处理 on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Fri, 14 Dec 2018 23:00:30 +0000</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>图像处理基础</title>
-        <link>https://blog.jiyang.site/posts/2018-12-14-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80/</link>
+        <link>https://jiyang.site/posts/2018-12-14-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80/</link>
         <pubDate>Fri, 14 Dec 2018 23:00:30 +0000</pubDate>
         
         <atom:modified>Fri, 14 Dec 2018 23:00:30 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2018-12-14-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80/</guid>
+        <guid>https://jiyang.site/posts/2018-12-14-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80/</guid>
         <description>图像的数字化过程 图像的数字化主要分两个过程，采样和量化。 采样 用多少点来描述一张图像 例如一张 600x400 尺寸的图, 会采样 240000 个点, 又叫 24 万像素 量化 把采样点</description>
         
         <dc:creator>Yang</dc:creator>

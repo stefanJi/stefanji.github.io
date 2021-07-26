@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>个人 on Yang Blog</title>
-    <link>https://blog.jiyang.site/categories/%E4%B8%AA%E4%BA%BA/</link>
+    <link>https://jiyang.site/categories/%E4%B8%AA%E4%BA%BA/</link>
     <description>Recent content in 个人 on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Mon, 31 Dec 2018 16:58:43 +0000</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/categories/%E4%B8%AA%E4%BA%BA/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/categories/%E4%B8%AA%E4%BA%BA/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>2019年度计划</title>
-        <link>https://blog.jiyang.site/posts/2018-12-31-2019%E5%B9%B4%E5%BA%A6%E8%AE%A1%E5%88%92/</link>
+        <link>https://jiyang.site/posts/2018-12-31-2019%E5%B9%B4%E5%BA%A6%E8%AE%A1%E5%88%92/</link>
         <pubDate>Mon, 31 Dec 2018 16:58:43 +0000</pubDate>
         
         <atom:modified>Mon, 31 Dec 2018 16:58:43 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2018-12-31-2019%E5%B9%B4%E5%BA%A6%E8%AE%A1%E5%88%92/</guid>
+        <guid>https://jiyang.site/posts/2018-12-31-2019%E5%B9%B4%E5%BA%A6%E8%AE%A1%E5%88%92/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>
@@ -50,11 +50,11 @@
       
       <item>
         <title>一个罐子，一堂人生哲学</title>
-        <link>https://blog.jiyang.site/posts/2018-08-05-%E4%B8%80%E4%B8%AA%E7%BD%90%E5%AD%90%E4%B8%80%E5%A0%82%E4%BA%BA%E7%94%9F%E5%93%B2%E5%AD%A6/</link>
+        <link>https://jiyang.site/posts/2018-08-05-%E4%B8%80%E4%B8%AA%E7%BD%90%E5%AD%90%E4%B8%80%E5%A0%82%E4%BA%BA%E7%94%9F%E5%93%B2%E5%AD%A6/</link>
         <pubDate>Sun, 05 Aug 2018 14:07:07 +0000</pubDate>
         
         <atom:modified>Sun, 05 Aug 2018 14:07:07 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2018-08-05-%E4%B8%80%E4%B8%AA%E7%BD%90%E5%AD%90%E4%B8%80%E5%A0%82%E4%BA%BA%E7%94%9F%E5%93%B2%E5%AD%A6/</guid>
+        <guid>https://jiyang.site/posts/2018-08-05-%E4%B8%80%E4%B8%AA%E7%BD%90%E5%AD%90%E4%B8%80%E5%A0%82%E4%BA%BA%E7%94%9F%E5%93%B2%E5%AD%A6/</guid>
         <description>&lt;p&gt;大学的第一堂哲学课，教授拿出一个空的&lt;code&gt;透明罐子&lt;/code&gt;。说：“人的一生都要活一次，虽然对于广大的宇宙来说我们不过是一个小小过客，但我们有能力去完成任何事情。真的，任何事情。如果，我们善用时间的话。”&lt;/p&gt;</description>
         
         <dc:creator>Yang</dc:creator>
@@ -80,11 +80,11 @@
       
       <item>
         <title>拍摄闪电⚡️</title>
-        <link>https://blog.jiyang.site/posts/2015-04-01-%E6%8B%8D%E6%91%84%E9%97%AA%E7%94%B5%EF%B8%8F/</link>
+        <link>https://jiyang.site/posts/2015-04-01-%E6%8B%8D%E6%91%84%E9%97%AA%E7%94%B5%EF%B8%8F/</link>
         <pubDate>Wed, 01 Apr 2015 22:20:00 +0000</pubDate>
         
         <atom:modified>Wed, 01 Apr 2015 22:20:00 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2015-04-01-%E6%8B%8D%E6%91%84%E9%97%AA%E7%94%B5%EF%B8%8F/</guid>
+        <guid>https://jiyang.site/posts/2015-04-01-%E6%8B%8D%E6%91%84%E9%97%AA%E7%94%B5%EF%B8%8F/</guid>
         <description>拍了 100 多张之后，终于拍到了几张闪电。</description>
         
         <dc:creator>Yang</dc:creator>

@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>代码工程 on Yang Blog</title>
-    <link>https://blog.jiyang.site/tags/%E4%BB%A3%E7%A0%81%E5%B7%A5%E7%A8%8B/</link>
+    <link>https://jiyang.site/tags/%E4%BB%A3%E7%A0%81%E5%B7%A5%E7%A8%8B/</link>
     <description>Recent content in 代码工程 on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sun, 14 Jun 2020 00:08:04 +0800</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/tags/%E4%BB%A3%E7%A0%81%E5%B7%A5%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/tags/%E4%BB%A3%E7%A0%81%E5%B7%A5%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>GNU C 避免宏定义产生副作用</title>
-        <link>https://blog.jiyang.site/posts/gnu-c-%E9%81%BF%E5%85%8D%E5%AE%8F%E5%AE%9A%E4%B9%89%E4%BA%A7%E7%94%9F%E5%89%AF%E4%BD%9C%E7%94%A8/</link>
+        <link>https://jiyang.site/posts/gnu-c-%E9%81%BF%E5%85%8D%E5%AE%8F%E5%AE%9A%E4%B9%89%E4%BA%A7%E7%94%9F%E5%89%AF%E4%BD%9C%E7%94%A8/</link>
         <pubDate>Sun, 14 Jun 2020 00:08:04 +0800</pubDate>
         
         <atom:modified>Sun, 14 Jun 2020 00:08:04 +0800</atom:modified>
-        <guid>https://blog.jiyang.site/posts/gnu-c-%E9%81%BF%E5%85%8D%E5%AE%8F%E5%AE%9A%E4%B9%89%E4%BA%A7%E7%94%9F%E5%89%AF%E4%BD%9C%E7%94%A8/</guid>
+        <guid>https://jiyang.site/posts/gnu-c-%E9%81%BF%E5%85%8D%E5%AE%8F%E5%AE%9A%E4%B9%89%E4%BA%A7%E7%94%9F%E5%89%AF%E4%BD%9C%E7%94%A8/</guid>
         <description>在编写 c/c++ 代码时，我们通常使用 #define 定义一些宏，然后编译器在 预处理 阶段会把用到宏的地方替换为宏的内容，由于宏的替换完全是一种文本替换，所以在一些情</description>
         
         <dc:creator>Yang</dc:creator>

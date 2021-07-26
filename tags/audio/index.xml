@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Audio on Yang Blog</title>
-    <link>https://blog.jiyang.site/tags/audio/</link>
+    <link>https://jiyang.site/tags/audio/</link>
     <description>Recent content in Audio on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Mon, 08 Mar 2021 21:13:34 +0800</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/tags/audio/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/tags/audio/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>音频波形图绘制</title>
-        <link>https://blog.jiyang.site/posts/audio_waveform/</link>
+        <link>https://jiyang.site/posts/audio_waveform/</link>
         <pubDate>Mon, 08 Mar 2021 21:13:34 +0800</pubDate>
         
         <atom:modified>Mon, 08 Mar 2021 21:13:34 +0800</atom:modified>
-        <guid>https://blog.jiyang.site/posts/audio_waveform/</guid>
+        <guid>https://jiyang.site/posts/audio_waveform/</guid>
         <description>背景 最近需要上线一个音乐编辑功能，需要展示音乐的波形图(如下图)。 期待效果 初步效果 首先这样的波形图，是根据音频在采样点的采样值来绘制的。像 mp3</description>
         
         <dc:creator>Yang</dc:creator>

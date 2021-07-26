@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>BFS on Yang Blog</title>
-    <link>https://blog.jiyang.site/tags/bfs/</link>
+    <link>https://jiyang.site/tags/bfs/</link>
     <description>Recent content in BFS on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Thu, 30 Jan 2020 20:35:12 +0000</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/tags/bfs/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/tags/bfs/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>打开转盘锁</title>
-        <link>https://blog.jiyang.site/posts/2020-01-30-%E6%89%93%E5%BC%80%E8%BD%AC%E7%9B%98%E9%94%81/</link>
+        <link>https://jiyang.site/posts/2020-01-30-%E6%89%93%E5%BC%80%E8%BD%AC%E7%9B%98%E9%94%81/</link>
         <pubDate>Thu, 30 Jan 2020 20:35:12 +0000</pubDate>
         
         <atom:modified>Thu, 30 Jan 2020 20:35:12 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2020-01-30-%E6%89%93%E5%BC%80%E8%BD%AC%E7%9B%98%E9%94%81/</guid>
+        <guid>https://jiyang.site/posts/2020-01-30-%E6%89%93%E5%BC%80%E8%BD%AC%E7%9B%98%E9%94%81/</guid>
         <description>问题 你有一个带有四个圆形拨轮的转盘锁。每个拨轮都有10个数字： &amp;lsquo;0&amp;rsquo;, &amp;lsquo;1&amp;rsquo;, &amp;lsquo;2&amp;rsquo;, &amp;lsquo;3&amp;rsquo;, &amp;lsquo;4&amp;rsquo;, &amp;lsquo;5&amp;rsquo;, &amp;lsquo;6&amp;rsquo;, &amp;lsquo;7&amp;rsquo;, &amp;lsquo;8&amp;rsquo;, &amp;lsquo;9&amp;rsquo; 。每个拨轮可以自由旋转：例如把 &amp;lsquo;9&amp;rsquo; 变为 &amp;lsquo;0&amp;rs</description>
         
         <dc:creator>Yang</dc:creator>
@@ -50,11 +50,11 @@
       
       <item>
         <title>岛屿数量</title>
-        <link>https://blog.jiyang.site/posts/2019-12-03-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/</link>
+        <link>https://jiyang.site/posts/2019-12-03-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/</link>
         <pubDate>Tue, 03 Dec 2019 10:03:12 +0000</pubDate>
         
         <atom:modified>Tue, 03 Dec 2019 10:03:12 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2019-12-03-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/</guid>
+        <guid>https://jiyang.site/posts/2019-12-03-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F/</guid>
         <description>&lt;p&gt;给定一个由 &amp;lsquo;1&amp;rsquo;（陆地）和 &amp;lsquo;0&amp;rsquo;（水）组成的的二维网格，计算岛屿的数量。一个岛被水包围，并且它是通过水平方向或垂直方向上相邻的陆地连接而成的。你可以假设网格的四个边均被水包围&lt;/p&gt;</description>
         
         <dc:creator>Yang</dc:creator>
@@ -80,11 +80,11 @@
       
       <item>
         <title>BFS 广度优先搜索</title>
-        <link>https://blog.jiyang.site/posts/2019-11-30-bfs-%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/</link>
+        <link>https://jiyang.site/posts/2019-11-30-bfs-%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/</link>
         <pubDate>Sat, 30 Nov 2019 14:29:33 +0000</pubDate>
         
         <atom:modified>Sat, 30 Nov 2019 14:29:33 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2019-11-30-bfs-%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/</guid>
+        <guid>https://jiyang.site/posts/2019-11-30-bfs-%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/</guid>
         <description>&lt;p&gt;之前看过的 BFS(Breadth First Search), 最近遇到类似问题时却没有想起. 在此再回顾一下, 并留下记录. 好记性毕竟不如坏笔头.&lt;/p&gt;</description>
         
         <dc:creator>Yang</dc:creator>

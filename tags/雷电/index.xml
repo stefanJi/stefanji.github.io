@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>雷电 on Yang Blog</title>
-    <link>https://blog.jiyang.site/tags/%E9%9B%B7%E7%94%B5/</link>
+    <link>https://jiyang.site/tags/%E9%9B%B7%E7%94%B5/</link>
     <description>Recent content in 雷电 on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Wed, 01 Apr 2015 22:20:00 +0000</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/tags/%E9%9B%B7%E7%94%B5/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/tags/%E9%9B%B7%E7%94%B5/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>拍摄闪电⚡️</title>
-        <link>https://blog.jiyang.site/posts/2015-04-01-%E6%8B%8D%E6%91%84%E9%97%AA%E7%94%B5%EF%B8%8F/</link>
+        <link>https://jiyang.site/posts/2015-04-01-%E6%8B%8D%E6%91%84%E9%97%AA%E7%94%B5%EF%B8%8F/</link>
         <pubDate>Wed, 01 Apr 2015 22:20:00 +0000</pubDate>
         
         <atom:modified>Wed, 01 Apr 2015 22:20:00 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2015-04-01-%E6%8B%8D%E6%91%84%E9%97%AA%E7%94%B5%EF%B8%8F/</guid>
+        <guid>https://jiyang.site/posts/2015-04-01-%E6%8B%8D%E6%91%84%E9%97%AA%E7%94%B5%EF%B8%8F/</guid>
         <description>拍了 100 多张之后，终于拍到了几张闪电。</description>
         
         <dc:creator>Yang</dc:creator>

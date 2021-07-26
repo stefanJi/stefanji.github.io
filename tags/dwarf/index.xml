@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>DWARF on Yang Blog</title>
-    <link>https://blog.jiyang.site/tags/dwarf/</link>
+    <link>https://jiyang.site/tags/dwarf/</link>
     <description>Recent content in DWARF on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Sun, 14 Jun 2020 21:03:54 +0800</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/tags/dwarf/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/tags/dwarf/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>Android 处理 Native Crash</title>
-        <link>https://blog.jiyang.site/posts/collect-android-so-crash/</link>
+        <link>https://jiyang.site/posts/collect-android-so-crash/</link>
         <pubDate>Sun, 14 Jun 2020 21:03:54 +0800</pubDate>
         
         <atom:modified>Sun, 14 Jun 2020 21:03:54 +0800</atom:modified>
-        <guid>https://blog.jiyang.site/posts/collect-android-so-crash/</guid>
+        <guid>https://jiyang.site/posts/collect-android-so-crash/</guid>
         <description>在 Android 上，native 层的代码出现问题时，系统内核将会发送一些信号到应用进程，应用进程可以通过自定义信号的处理过程来实现 native crash 的收集等工作。 Linux 信</description>
         
         <dc:creator>Yang</dc:creator>

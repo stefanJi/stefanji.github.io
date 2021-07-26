@@ -7,24 +7,24 @@
   xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>缓存算法 on Yang Blog</title>
-    <link>https://blog.jiyang.site/tags/%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95/</link>
+    <link>https://jiyang.site/tags/%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95/</link>
     <description>Recent content in 缓存算法 on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
     <lastBuildDate>Wed, 24 May 2017 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://blog.jiyang.site/tags/%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jiyang.site/tags/%E7%BC%93%E5%AD%98%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     
 
       
       <item>
         <title>LruCache缓存机制实现原理</title>
-        <link>https://blog.jiyang.site/posts/2017-05-24-lrucache%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</link>
+        <link>https://jiyang.site/posts/2017-05-24-lrucache%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</link>
         <pubDate>Wed, 24 May 2017 00:00:00 +0000</pubDate>
         
         <atom:modified>Wed, 24 May 2017 00:00:00 +0000</atom:modified>
-        <guid>https://blog.jiyang.site/posts/2017-05-24-lrucache%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</guid>
+        <guid>https://jiyang.site/posts/2017-05-24-lrucache%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</guid>
         <description>LRU 算法描述 当序列达到设置的内存上限时, 丢弃序列中最近最少使用的元素. LruCache Android SDK 提供的使用了(Least Recently Used)最近最少使用算法的缓存类. 编写</description>
         
         <dc:creator>Yang</dc:creator>
