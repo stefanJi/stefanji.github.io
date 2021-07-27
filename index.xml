@@ -12,7 +12,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Thu, 15 Jul 2021 09:42:27 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 26 Jul 2021 09:53:58 +0800</lastBuildDate>
     
         <atom:link href="https://jiyang.site/index.xml" rel="self" type="application/rss+xml" />
     
@@ -38,6 +38,32 @@
         
       
 
+      
+      <item>
+        <title>SwiftUI Picker 支持不同类型数据</title>
+        <link>https://jiyang.site/posts/swiftui-picker-%E6%94%AF%E6%8C%81%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E6%95%B0%E6%8D%AE/</link>
+        <pubDate>Mon, 26 Jul 2021 09:53:58 +0800</pubDate>
+        
+        <atom:modified>Mon, 26 Jul 2021 09:53:58 +0800</atom:modified>
+        <guid>https://jiyang.site/posts/swiftui-picker-%E6%94%AF%E6%8C%81%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E6%95%B0%E6%8D%AE/</guid>
+        <description></description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+          
+            
+          
+        
+        
+          
+            
+          
+        
+        
+      </item>
       
       <item>
         <title>SwiftUI 学习路线</title>
@@ -2722,30 +2748,6 @@
           
             
               <category>Java</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>OkHttp拦截器使用</title>
-        <link>https://jiyang.site/posts/2017-08-23-okhttp%E6%8B%A6%E6%88%AA%E5%99%A8%E4%BD%BF%E7%94%A8/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://jiyang.site/posts/2017-08-23-okhttp%E6%8B%A6%E6%88%AA%E5%99%A8%E4%BD%BF%E7%94%A8/</guid>
-        <description>在Android上进行网络请求时，经常需要维持登录之后的session和cookie状态。session和cookie是加在HTTP请求的h</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
             
           
         
