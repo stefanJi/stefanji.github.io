@@ -1696,6 +1696,15 @@ if (!doNotTrack) {
       <p><img src="video_render.png" alt="Android Video Render With Unity" /></p>
 <p>上图描述了这样的一个场景：通过 Android MediaCodec 将视频解码，解码的过程中通过 Unity Engine 在视频的每帧添加一些特殊的效果。<br />
 (The above figure describes such a scene: the video is decoded through Android MediaCodec, and some special effects are added to each frame of the video through the Unity Engine during the decoding process.)</p>
+<p>这个流程中：</p>
+<ul>
+<li>涉及了多线程模式下，如何利用 OpenGL 的 share context</li>
+<li>如何将 OES 纹理上的内容渲染到 GL_TEXTURE_2D</li>
+<li>如何让 MediaCodec 将解码出的视频帧内容绘制到 OES 纹理上</li>
+</ul>
+<blockquote>
+<p>如有问题，可以通过本站内的联系方式与我交流。</p>
+</blockquote>
 
     </article>
     
