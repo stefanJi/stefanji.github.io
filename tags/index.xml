@@ -12,11 +12,47 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Sun, 21 Mar 2021 20:34:57 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 28 Jul 2021 21:32:56 +0800</lastBuildDate>
     
         <atom:link href="https://jiyang.site/tags/index.xml" rel="self" type="application/rss+xml" />
     
 
+      
+      <item>
+        <title>MediaCodec</title>
+        <link>https://jiyang.site/tags/mediacodec/</link>
+        <pubDate>Wed, 28 Jul 2021 21:32:56 +0800</pubDate>
+        
+        
+        <guid>https://jiyang.site/tags/mediacodec/</guid>
+        <description></description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>SwiftUI</title>
+        <link>https://jiyang.site/tags/swiftui/</link>
+        <pubDate>Mon, 26 Jul 2021 09:53:58 +0800</pubDate>
+        
+        
+        <guid>https://jiyang.site/tags/swiftui/</guid>
+        <description></description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
       <item>
         <title>FFmpeg</title>
@@ -43,24 +79,6 @@
         
         
         <guid>https://jiyang.site/tags/audio/</guid>
-        <description></description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-        
-      </item>
-      
-      <item>
-        <title>MediaCodec</title>
-        <link>https://jiyang.site/tags/mediacodec/</link>
-        <pubDate>Sat, 05 Sep 2020 22:41:45 +0800</pubDate>
-        
-        
-        <guid>https://jiyang.site/tags/mediacodec/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>

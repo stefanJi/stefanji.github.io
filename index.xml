@@ -12,7 +12,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Mon, 26 Jul 2021 09:53:58 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 28 Jul 2021 21:49:04 +0800</lastBuildDate>
     
         <atom:link href="https://jiyang.site/index.xml" rel="self" type="application/rss+xml" />
     
@@ -40,7 +40,63 @@
 
       
       <item>
-        <title>SwiftUI Picker 支持不同类型数据</title>
+        <title>研发团队工作流总结</title>
+        <link>https://jiyang.site/posts/dev_team_flow/</link>
+        <pubDate>Wed, 28 Jul 2021 21:49:04 +0800</pubDate>
+        
+        <atom:modified>Wed, 28 Jul 2021 21:49:04 +0800</atom:modified>
+        <guid>https://jiyang.site/posts/dev_team_flow/</guid>
+        <description>上图为经历了几次版本迭代延期交付之后，总结出的迭代流程，风险监控贯穿整个研发期，而且指定了「版本负责人」承担这部分责任，避免华而不实，没有落</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+          
+            
+          
+        
+        
+          
+            
+          
+        
+        
+      </item>
+      
+      <item>
+        <title>Android MediaCodec OpenGL Video Render &amp;&amp; Unity</title>
+        <link>https://jiyang.site/posts/android_mediacodec_opengl_video_render_with_unity/</link>
+        <pubDate>Wed, 28 Jul 2021 21:32:56 +0800</pubDate>
+        
+        <atom:modified>Wed, 28 Jul 2021 21:32:56 +0800</atom:modified>
+        <guid>https://jiyang.site/posts/android_mediacodec_opengl_video_render_with_unity/</guid>
+        <description>上图描述了这样的一个场景：通过 Android MediaCodec 将视频解码，解码的过程中通过 Unity Engine 在视频的每帧添加一些特殊的效果。 (The above figure describes such a scene: the video is decoded through Android MediaCodec, and some special effects are added to</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>MediaCodec</category>
+            
+          
+        
+        
+          
+            
+              <category>Android</category>
+            
+          
+        
+        
+      </item>
+      
+      <item>
+        <title>SwiftUI Picker Implementation</title>
         <link>https://jiyang.site/posts/swiftui_picker/</link>
         <pubDate>Mon, 26 Jul 2021 09:53:58 +0800</pubDate>
         
@@ -55,10 +111,14 @@
         
           
             
+              <category>SwiftUI</category>
+            
           
         
         
           
+            
+              <category>iOS</category>
             
           
         
@@ -81,10 +141,14 @@
         
           
             
+              <category>SwiftUI</category>
+            
           
         
         
           
+            
+              <category>iOS</category>
             
           
         
@@ -2700,54 +2764,6 @@
           
             
               <category>算法</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>IntentFilter匹配规则</title>
-        <link>https://jiyang.site/posts/2017-08-05-intentfilter%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://jiyang.site/posts/2017-08-05-intentfilter%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99/</guid>
-        <description>Activity的启动方式分为两种: 显式启动 通过指明启动的Activity类 隐式启动 通过Intent匹配目标组件的IntentFilter中</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>Java 单例实现</title>
-        <link>https://jiyang.site/posts/2017-08-19-%E5%8D%95%E4%BE%8B%E5%88%86%E6%9E%90/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://jiyang.site/posts/2017-08-19-%E5%8D%95%E4%BE%8B%E5%88%86%E6%9E%90/</guid>
-        <description>单例常见实现方式 饿汉式：在类被加载时就初始化单例 懒汉式：在需要的地方才初始化单例 饿汉式加载问题 传统的在类加载时就创建单例的方法存在一些问题：</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Java</category>
             
           
         
