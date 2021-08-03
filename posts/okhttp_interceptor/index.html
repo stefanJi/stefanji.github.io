@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>OpenGL-ES-Line – Yang Blog</title>
+    <title>OkHttp拦截器使用 – Yang Blog</title>
     
 
 
@@ -653,7 +653,7 @@
     
     var baseurl = JSON.parse("\"https://jiyang.site/\"");
     
-    var permalink = JSON.parse("\"https://jiyang.site/posts/2017-07-01-opengl-es-line/\"");
+    var permalink = JSON.parse("\"https://jiyang.site/posts/okhttp_interceptor/\"");
     
     var langprefix = JSON.parse("\"\"");
     var searchResults = null;
@@ -1334,8 +1334,8 @@
 
 
 <meta property="og:site_name" content="Yang Blog">
-<meta property="og:title" content="OpenGL-ES-Line">
-<meta property="og:url" content="https://jiyang.site/posts/2017-07-01-opengl-es-line/">
+<meta property="og:title" content="OkHttp拦截器使用">
+<meta property="og:url" content="https://jiyang.site/posts/okhttp_interceptor/">
 <meta property="og:type" content="article">
 <meta property="og:description" content="Ji Yang(YangJi) blog.">
 
@@ -1348,7 +1348,7 @@
 
 <meta name="apple-mobile-web-app-status-bar-style" content="#fff">
 
-<link rel="canonical" href="https://jiyang.site/posts/2017-07-01-opengl-es-line/">
+<link rel="canonical" href="https://jiyang.site/posts/okhttp_interceptor/">
 
 <link rel="manifest" href="/manifest.json">
 
@@ -1362,11 +1362,11 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "OpenGL-ES-Line",
+    "headline": "OkHttp拦截器使用",
     "datePublished": "0001-01-01T00:00:00Z",
     "dateModified": "0001-01-01T00:00:00Z",
-    "url" : "https://jiyang.site/posts/2017-07-01-opengl-es-line/",
-    "description": "绘制了x,y坐标轴 绘制了4条直线 一些函数说明: gl.glLoadIdentity(): 将当前画布矩阵的状态回归初始状态。 因为Translate``Rotate等操作都是基于当前画",
+    "url" : "https://jiyang.site/posts/okhttp_interceptor/",
+    "description": "在Android上进行网络请求时，经常需要维持登录之后的session和cookie状态。session和cookie是加在HTTP请求的h",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://jiyang.site/"
@@ -1651,7 +1651,7 @@ if (!doNotTrack) {
   
   <li  class="is-active" >
     
-      <span>OpenGL-ES-Line</span>
+      <span>OkHttp拦截器使用</span>
     
   </li>
   
@@ -1663,7 +1663,7 @@ if (!doNotTrack) {
   <div class="single ">
     <div class="single__nojs">This page looks best with JavaScript enabled</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
-    <h2 class="single__title" data-ani="true">OpenGL-ES-Line</h2>
+    <h2 class="single__title" data-ani="true">OkHttp拦截器使用</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
@@ -1686,54 +1686,42 @@ if (!doNotTrack) {
     </div>
     <article class="single__contents" data-dir="ltr" data-ani="true">
       
-      <ul>
-<li>绘制了x,y坐标轴</li>
-<li>绘制了4条直线</li>
-</ul>
-<p>一些函数说明:</p>
-<ol>
-<li>
-<p><code>gl.glLoadIdentity()</code>:<br />
-将当前画布矩阵的状态回归初始状态。</p>
-<p>因为<code>Translate``Rotate</code>等操作都是基于当前画布矩阵的状态，如果在每次调用<code>Translate</code>之前不使用<code>glLoadIdentity()</code>,画布则会一直移动。</p>
-</li>
-<li>
-<p><code>gl.glTranslatef(0, 0, -4)</code>:<br />
-将画布后移4个单位。</p>
-</li>
-<li>
-<p><code>gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertex)</code>:设置顶点</p>
-<p>参数说明:</p>
+      <blockquote>
+<p>在Android上进行网络请求时，经常需要维持登录之后的session和cookie状态。session和cookie是加在<code>HTTP</code>请求的<code>header</code>里的。可以通过从header中获取，进行请求时手动添加登录获取的cookie。</p>
+</blockquote>
+<p>OkHttp提供的拦截器可以添加，删除或替换请求标头。 还可以转换具有一个请求的正文。例如，如果您连接到的Web服务器支持压缩，就可以使用应用程序拦截器添加请求体压缩。</p>
+<p><img src="https://image.youcute.cn/17-8-23/55803730.jpg" alt="OkHttp Interceptor" /></p>
+<blockquote>
+<p>square的一张图</p>
+</blockquote>
+<p>OkHttp提供了一个拦截器接口<code>Interceptor</code>和两种添加拦截器的方式：</p>
 <ul>
-<li>每个顶点的坐标个数(只能是2,3,4中的一个，默认值是4)</li>
-<li>每个顶点的数据类型(可取常量:GL_BYTE, GL_SHORT,GL_FIXED,GL_FLOAT)</li>
-<li>连续顶点之间的排列方式(如果为0，数组中的顶点就会被认为是按照紧凑方式排列的，默认值为0)</li>
-<li>数组的首地址（Android中就是数组名）</li>
+<li>Application Interceptor</li>
+<li>NetWork Interceptor</li>
 </ul>
-</li>
-<li>
-<p><code>gl.glDrawArrays(GL10.GL_LINE_STRIP, 0, 4)</code>:绘制函数</p>
-<p>参数说明:</p>
+<p>两者最大的区别就是在一次网络访问中拦截的次数和拦截到的信息。</p>
+<h2 id="interceptors-调用时序图">Interceptors 调用时序图</h2>
+<p><img src=".interceptors.png" alt="" /></p>
+<h2 id="application-interceptor">Application Interceptor</h2>
 <ul>
-<li>绘制方式：
+<li>不必担心中间响应，如重定向和重试。</li>
+<li>总是调用一次，即使是从缓存中提供的HTTP响应。</li>
+<li>遵守应用程序的原始意图。OkHttp注入的标题，如If-None-Match，不会生效。</li>
+<li>允许短路，不调用Chain.proceed（）。</li>
+<li>允许重试并多次调用Chain.proceed（）。</li>
+</ul>
+<h2 id="network-interceptor">NetWork Interceptor</h2>
 <ul>
-<li>GL_POINTS:点</li>
-<li>GL_LINES：线，2点构成的独立的线</li>
-<li>GL_LINE_LOOP：线，所有点连接的线，首尾相接</li>
-<li>GL_LINE_STRIP：线，所有点连接的线，首尾不相接</li>
-<li>GL_TRIANGLES：三角形，3点构成的独立的三角形</li>
-<li>GL_TRIANGLE_STRIP：三角形，<a href="http://blog.csdn.net/xiajun07061225/article/details/7455283">详见</a></li>
-<li>GL_TRIANGLE_FAN：三角形，<a href="http://blog.csdn.net/xiajun07061225/article/details/7455283">详见</a></li>
+<li>能够对重定向和重试等中间响应进行操作。</li>
+<li>对于缓存网络短路的响应不被调用。</li>
+<li>观察数据，就像通过网络传输一样。</li>
+<li>访问携带请求的连接。</li>
 </ul>
-</li>
-<li>从数组缓存中的哪一位开始绘制，一般为0</li>
-<li>数组中顶点的数量</li>
-</ul>
-</li>
-</ol>
-<center>	
-<img src="https://image.youcute.cn/17-7-1/36513770.jpg"  class="materialboxed" width="50%">
-</center>
+<h2 id="使用拦截器自动储存和添加cookie">使用拦截器自动储存和添加cookie</h2>
+<blockquote>
+<p>OkHttp 有提供 CookieJar 辅助存储 cookie</p>
+</blockquote>
+<p>OkHttp提供了<code>Interceptors</code>拦截器可以很方便的实现类似<code>cookie</code>本地化维持的操作。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -1769,56 +1757,40 @@ if (!doNotTrack) {
 </span><span class="lnt">31
 </span><span class="lnt">32
 </span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kt">void</span> <span class="nf">drawLine</span><span class="o">(</span><span class="n">GL10</span> <span class="n">gl</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">//画坐标轴
-</span><span class="c1"></span>    <span class="kt">float</span><span class="o">[]</span> <span class="n">vertexArr1</span> <span class="o">=</span> <span class="o">{</span>
-            <span class="o">-</span><span class="n">1</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span>
-            <span class="n">1</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span>
-            <span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="n">1</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span>
-            <span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="o">-</span><span class="n">1</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">0f</span>
-    <span class="o">};</span>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">class</span> <span class="nc">AddCookiesInterceptor</span> <span class="kd">implements</span> <span class="n">Interceptor</span> <span class="o">{</span>
 
-    <span class="n">ByteBuffer</span> <span class="n">byteBuffer</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocateDirect</span><span class="o">(</span><span class="n">vertexArr1</span><span class="o">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">4</span><span class="o">);</span>
-    <span class="n">byteBuffer</span><span class="o">.</span><span class="na">order</span><span class="o">(</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">nativeOrder</span><span class="o">());</span>
-    <span class="n">FloatBuffer</span> <span class="n">floatBuffer1</span> <span class="o">=</span> <span class="n">byteBuffer</span><span class="o">.</span><span class="na">asFloatBuffer</span><span class="o">();</span>
-    <span class="n">floatBuffer1</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">vertexArr1</span><span class="o">);</span>
-    <span class="n">floatBuffer1</span><span class="o">.</span><span class="na">position</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
-    <span class="n">gl</span><span class="o">.</span><span class="na">glColor4f</span><span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="n">1</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">);</span>
-    <span class="n">gl</span><span class="o">.</span><span class="na">glLineWidth</span><span class="o">(</span><span class="n">5</span><span class="o">.</span><span class="na">0f</span><span class="o">);</span>
-    <span class="n">gl</span><span class="o">.</span><span class="na">glLoadIdentity</span><span class="o">();</span>
-    <span class="n">gl</span><span class="o">.</span><span class="na">glTranslatef</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="o">-</span><span class="n">4</span><span class="o">);</span>
-    <span class="n">gl</span><span class="o">.</span><span class="na">glEnableClientState</span><span class="o">(</span><span class="n">GL10</span><span class="o">.</span><span class="na">GL_VERTEX_ARRAY</span><span class="o">);</span>
-    <span class="n">gl</span><span class="o">.</span><span class="na">glVertexPointer</span><span class="o">(</span><span class="n">3</span><span class="o">,</span> <span class="n">GL10</span><span class="o">.</span><span class="na">GL_FLOAT</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">floatBuffer1</span><span class="o">);</span>
-    <span class="n">gl</span><span class="o">.</span><span class="na">glDrawArrays</span><span class="o">(</span><span class="n">GL10</span><span class="o">.</span><span class="na">GL_LINES</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span>
-    <span class="n">gl</span><span class="o">.</span><span class="na">glDisableClientState</span><span class="o">(</span><span class="n">GL10</span><span class="o">.</span><span class="na">GL_VERTEX_ARRAY</span><span class="o">);</span>
-
-    <span class="c1">//4条线
-</span><span class="c1"></span>    <span class="kt">float</span><span class="o">[]</span> <span class="n">vertexArr2</span> <span class="o">=</span> <span class="o">{</span>
-            <span class="o">-</span><span class="n">0</span><span class="o">.</span><span class="na">5f</span><span class="o">,</span> <span class="o">-</span><span class="n">0</span><span class="o">.</span><span class="na">5f</span><span class="o">,</span> <span class="n">0f</span><span class="o">,</span>
-            <span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="o">.</span><span class="na">5f</span><span class="o">,</span> <span class="n">0f</span><span class="o">,</span>
-            <span class="n">0</span><span class="o">.</span><span class="na">5f</span><span class="o">,</span> <span class="o">-</span><span class="n">0</span><span class="o">.</span><span class="na">5f</span><span class="o">,</span> <span class="n">0f</span><span class="o">,</span>
-            <span class="n">0</span><span class="o">.</span><span class="na">9f</span><span class="o">,</span> <span class="o">-</span><span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="n">0f</span><span class="o">,</span>
-    <span class="o">};</span>
-    <span class="n">byteBuffer</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocateDirect</span><span class="o">(</span><span class="n">vertexArr2</span><span class="o">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">4</span><span class="o">);</span>
-    <span class="n">byteBuffer</span><span class="o">.</span><span class="na">order</span><span class="o">(</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">nativeOrder</span><span class="o">());</span>
-    <span class="n">FloatBuffer</span> <span class="n">floatBuffer2</span> <span class="o">=</span> <span class="n">byteBuffer</span><span class="o">.</span><span class="na">asFloatBuffer</span><span class="o">();</span>
-    <span class="n">floatBuffer2</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">vertexArr2</span><span class="o">);</span>
-    <span class="n">floatBuffer2</span><span class="o">.</span><span class="na">position</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
-    <span class="n">gl</span><span class="o">.</span><span class="na">glColor4f</span><span class="o">(</span><span class="n">1</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">);</span>
-    <span class="n">gl</span><span class="o">.</span><span class="na">glLineWidth</span><span class="o">(</span><span class="n">20</span><span class="o">.</span><span class="na">0f</span><span class="o">);</span>
-    <span class="n">gl</span><span class="o">.</span><span class="na">glEnableClientState</span><span class="o">(</span><span class="n">GL10</span><span class="o">.</span><span class="na">GL_VERTEX_ARRAY</span><span class="o">);</span>
-    <span class="n">gl</span><span class="o">.</span><span class="na">glVertexPointer</span><span class="o">(</span><span class="n">3</span><span class="o">,</span> <span class="n">GL10</span><span class="o">.</span><span class="na">GL_FLOAT</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">floatBuffer2</span><span class="o">);</span>
-    <span class="n">gl</span><span class="o">.</span><span class="na">glDrawArrays</span><span class="o">(</span><span class="n">GL10</span><span class="o">.</span><span class="na">GL_LINE_STRIP</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Response</span> <span class="nf">intercept</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Chain</span> <span class="n">chain</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="c1">//get cached cookie from local
+</span><span class="c1"></span>        <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">cookies</span> <span class="o">=</span> <span class="o">(</span><span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;)</span> <span class="n">SharedPrefsUtils</span>
+                <span class="o">.</span><span class="na">getStringSetPreference</span><span class="o">(</span>
+                        <span class="n">AccessApplication</span><span class="o">.</span><span class="na">getGlobalContext</span><span class="o">(),</span>
+                        <span class="n">C</span><span class="o">.</span><span class="na">SP_COOKIE</span><span class="o">);</span>
+        <span class="c1">//add cached cookie into request
+</span><span class="c1"></span>        <span class="n">Request</span><span class="o">.</span><span class="na">Builder</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="na">request</span><span class="o">().</span><span class="na">newBuilder</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">cookies</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">cookie</span> <span class="o">:</span> <span class="n">cookies</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">builder</span><span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="s">&#34;Cookie&#34;</span><span class="o">,</span> <span class="n">cookie</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">Request</span> <span class="n">request</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">build</span><span class="o">();</span>
+        <span class="c1">//get response
+</span><span class="c1"></span>        <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="na">proceed</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+        <span class="c1">//save response cookie to local cache
+</span><span class="c1"></span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">newCookies</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">headers</span><span class="o">(</span><span class="s">&#34;Set-Cookie&#34;</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">newCookies</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">cookie</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">header</span> <span class="o">:</span> <span class="n">newCookies</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">cookie</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">header</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="n">SharedPrefsUtils</span><span class="o">.</span><span class="na">setStringSetPreference</span><span class="o">(</span>
+                    <span class="n">AccessApplication</span><span class="o">.</span><span class="na">getGlobalContext</span><span class="o">(),</span>
+                    <span class="n">C</span><span class="o">.</span><span class="na">SP_COOKIE</span><span class="o">,</span> <span class="n">cookie</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">;</span>
+    <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
@@ -2182,17 +2154,17 @@ if (!doNotTrack) {
 <nav class="pagination-single">
   
     
-      <a href="https://jiyang.site/posts/2017-03-24-python%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80/" class="pagination-single__left">
+      <a href="https://jiyang.site/posts/2017-07-01-opengl-es-line/" class="pagination-single__left">
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
         </div>
-        <div class="pagination-single__left-title">Python笔记-基础</div>      
+        <div class="pagination-single__left-title">OpenGL-ES-Line</div>      
       </a>
     
     <div class="grow"></div>
     
-      <a href="https://jiyang.site/posts/okhttp_interceptor/" class="pagination-single__right">      
-        <div class="pagination-single__right-title">OkHttp拦截器使用</div>
+      <a href="https://jiyang.site/posts/2017-08-19-%E5%8D%95%E4%BE%8B%E5%88%86%E6%9E%90/" class="pagination-single__right">      
+        <div class="pagination-single__right-title">Java 单例实现</div>
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
         </div>
@@ -2571,7 +2543,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
   </div>
   <div class="toc " data-dir="ltr" data-folding="false" data-ani="true">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#interceptors-调用时序图">Interceptors 调用时序图</a></li>
+        <li><a href="#application-interceptor">Application Interceptor</a></li>
+        <li><a href="#network-interceptor">NetWork Interceptor</a></li>
+        <li><a href="#使用拦截器自动储存和添加cookie">使用拦截器自动储存和添加cookie</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
 </section>
 
