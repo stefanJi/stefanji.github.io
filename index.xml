@@ -12,7 +12,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>©{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Wed, 28 Jul 2021 21:49:04 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 03 Aug 2021 14:15:19 +0800</lastBuildDate>
     
         <atom:link href="https://jiyang.site/index.xml" rel="self" type="application/rss+xml" />
     
@@ -38,6 +38,36 @@
         
       
 
+      
+      <item>
+        <title>理解 EGL</title>
+        <link>https://jiyang.site/posts/understand_egl/</link>
+        <pubDate>Tue, 03 Aug 2021 14:15:19 +0800</pubDate>
+        
+        <atom:modified>Tue, 03 Aug 2021 14:15:19 +0800</atom:modified>
+        <guid>https://jiyang.site/posts/understand_egl/</guid>
+        <description>EGL https://www.khronos.org/registry/EGL/ ​EGL 是 Khronos 的渲染 API（如 OpenGL ES 或 OpenVG）与底层原生平台窗口系统之间的接口。 它处理图形上下文管理、surface/buffer 绑定</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>EGL</category>
+            
+          
+        
+        
+          
+            
+              <category>OpenGL</category>
+            
+          
+        
+        
+      </item>
       
       <item>
         <title>研发团队工作流总结</title>
@@ -2740,30 +2770,6 @@
           
             
               <category>Java</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>DNA合成问题</title>
-        <link>https://jiyang.site/posts/2017-08-24-dna%E5%90%88%E6%88%90%E9%97%AE%E9%A2%98/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://jiyang.site/posts/2017-08-24-dna%E5%90%88%E6%88%90%E9%97%AE%E9%A2%98/</guid>
-        <description>DNA分子是以4种脱氧核苷酸为单位连接而成的长链，这4种脱氧核苷酸分别含有A,T,C,G四种碱基。 碱基互补配对原则：A和T是配对的，C和G是</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>算法</category>
             
           
         

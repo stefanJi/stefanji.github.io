@@ -2,11 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://jiyang.site/categories/</loc>
+    <lastmod>2021-08-03T14:15:19+08:00</lastmod>
+  </url><url>
+    <loc>https://jiyang.site/tags/egl/</loc>
+    <lastmod>2021-08-03T14:15:19+08:00</lastmod>
+  </url><url>
+    <loc>https://jiyang.site/categories/opengl/</loc>
+    <lastmod>2021-08-03T14:15:19+08:00</lastmod>
+  </url><url>
     <loc>https://jiyang.site/posts/</loc>
-    <lastmod>2021-07-28T21:49:04+08:00</lastmod>
+    <lastmod>2021-08-03T14:15:19+08:00</lastmod>
+  </url><url>
+    <loc>https://jiyang.site/tags/</loc>
+    <lastmod>2021-08-03T14:15:19+08:00</lastmod>
   </url><url>
     <loc>https://jiyang.site/</loc>
-    <lastmod>2021-07-28T21:49:04+08:00</lastmod>
+    <lastmod>2021-08-03T14:15:19+08:00</lastmod>
+  </url><url>
+    <loc>https://jiyang.site/posts/understand_egl/</loc>
+    <lastmod>2021-08-03T14:15:19+08:00</lastmod>
   </url><url>
     <loc>https://jiyang.site/posts/dev_team_flow/</loc>
     <lastmod>2021-07-28T21:49:04+08:00</lastmod>
@@ -17,13 +32,7 @@
     <loc>https://jiyang.site/posts/android_mediacodec_opengl_video_render_with_unity/</loc>
     <lastmod>2021-07-28T21:32:56+08:00</lastmod>
   </url><url>
-    <loc>https://jiyang.site/categories/</loc>
-    <lastmod>2021-07-28T21:32:56+08:00</lastmod>
-  </url><url>
     <loc>https://jiyang.site/tags/mediacodec/</loc>
-    <lastmod>2021-07-28T21:32:56+08:00</lastmod>
-  </url><url>
-    <loc>https://jiyang.site/tags/</loc>
     <lastmod>2021-07-28T21:32:56+08:00</lastmod>
   </url><url>
     <loc>https://jiyang.site/categories/ios/</loc>
