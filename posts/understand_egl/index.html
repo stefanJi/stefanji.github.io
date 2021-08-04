@@ -1673,7 +1673,7 @@ if (!doNotTrack) {
 <div class="single__infos">
   <time class="single__info" title="Written At">📅&nbsp;Aug 3, 2021 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;6&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;7&nbsp;min read </span>
   
   <span class="single__info">
     
@@ -2190,8 +2190,181 @@ if (!doNotTrack) {
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="创建屏幕上的渲染区域">创建屏幕上的渲染区域</h3>
-<h3 id="创建屏幕外的渲染区域">创建屏幕外的渲染区域</h3>
-<h3 id="创建渲染上下文">创建渲染上下文</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// C function EGLSurface eglCreateWindowSurface ( EGLDisplay dpy, EGLConfig config, EGLNativeWindowType win, const EGLint *attrib_list )
+</span><span class="c1"></span><span class="kd">private</span> <span class="kd">static</span> <span class="kd">native</span> <span class="n">EGLSurface</span> <span class="nf">eglCreateWindowSurface</span><span class="o">(</span>
+    <span class="n">EGLDisplay</span> <span class="n">dpy</span><span class="o">,</span>
+    <span class="n">EGLConfig</span> <span class="n">config</span><span class="o">,</span>
+    <span class="n">Object</span> <span class="n">win</span><span class="o">,</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">attrib_list</span><span class="o">,</span>
+    <span class="kt">int</span> <span class="n">offset</span>
+<span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>eglCreateWindowSurface</code> 函数用于创建 EGL 窗口 Surface。<br />
+<code>eglCreateWindowSurface()</code> 将「窗口对象」(<code>win</code>)作为参数，在 Android 上，该对象是 Surface。<br />
+Surface 是 BufferQueue 的生产方端。消费方（SurfaceView、SurfaceTexture、TextureView 或 ImageReader）创建 Surface。当调用 <code>eglCreateWindowSurface()</code> 时，EGL 将创建一个新的 EGLSurface 对象，并将其连接到窗口对象的 BufferQueue 的生产方接口。此后，渲染到该 EGLSurface 会导致一个缓冲区离开队列、进行渲染，然后排队等待消费方使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 示例
+</span><span class="c1"></span><span class="kt">int</span><span class="o">[]</span> <span class="n">surfaceAttribs</span> <span class="o">=</span> <span class="o">{</span>
+        <span class="n">EGL14</span><span class="o">.</span><span class="na">EGL_NONE</span>
+<span class="o">};</span>
+
+<span class="n">mEGLSurface</span> <span class="o">=</span> <span class="n">EGL14</span><span class="o">.</span><span class="na">eglCreateWindowSurface</span><span class="o">(</span><span class="n">mEGLDisplay</span><span class="o">,</span> <span class="n">configs</span><span class="o">[</span><span class="n">0</span><span class="o">],</span> <span class="n">mSurface</span><span class="o">,</span> <span class="n">surfaceAttribs</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
+<span class="n">checkEglError</span><span class="o">(</span><span class="s">&#34;eglCreateWindowSurface&#34;</span><span class="o">);</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">mEGLSurface</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;surface was null&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="创建屏幕外的渲染区域">创建屏幕外的渲染区域</h3>
+<p>除了可以用 OpenGL ES 3.0 在屏幕上的窗口渲染之外，还可以渲染离屏缓冲区(<em>pbuffer</em>)。<em>pbuffer</em> 可以利用 OpenGL ES 中的任何硬件加速，<em>pbuffer</em> 常用于生成纹理贴图。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// C function EGLSurface eglCreatePbufferSurface ( EGLDisplay dpy, EGLConfig config, const EGLint *attrib_list )
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">native</span> <span class="n">EGLSurface</span> <span class="nf">eglCreatePbufferSurface</span><span class="o">(</span>
+    <span class="n">EGLDisplay</span> <span class="n">dpy</span><span class="o">,</span>
+    <span class="n">EGLConfig</span> <span class="n">config</span><span class="o">,</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">attrib_list</span><span class="o">,</span>
+    <span class="kt">int</span> <span class="n">offset</span>
+<span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>eglCreatePbufferSurface</code> 用于创建 Pbuffer。和 Window Surface 一样，Pbuffer 支持所有 OpenGL ES 渲染机制，主要区别在于：无法在屏幕上显示 Pbuffer，渲染完成后，一般是从 Pbuffer 将数据复制到程序或者将 Pbuffer 的绑定更改为纹理。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 示例
+</span><span class="c1"></span><span class="kt">int</span><span class="o">[]</span> <span class="n">surfaceAttribs</span> <span class="o">=</span> <span class="o">{</span>
+        <span class="n">EGL14</span><span class="o">.</span><span class="na">EGL_WIDTH</span><span class="o">,</span> <span class="n">width</span><span class="o">,</span>
+        <span class="n">EGL14</span><span class="o">.</span><span class="na">EGL_HEIGHT</span><span class="o">,</span> <span class="n">height</span><span class="o">,</span>
+        <span class="n">EGL14</span><span class="o">.</span><span class="na">EGL_NONE</span>
+<span class="o">};</span>
+<span class="n">mEGLSurface</span> <span class="o">=</span> <span class="n">EGL14</span><span class="o">.</span><span class="na">eglCreatePbufferSurface</span><span class="o">(</span><span class="n">mEGLDisplay</span><span class="o">,</span> <span class="n">configs</span><span class="o">[</span><span class="n">0</span><span class="o">],</span> <span class="n">surfaceAttribs</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
+<span class="n">checkEglError</span><span class="o">(</span><span class="s">&#34;eglCreatePbufferSurface&#34;</span><span class="o">);</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">mEGLSurface</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;surface was null&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="创建渲染上下文">创建渲染上下文</h3>
+<p>渲染上下文是 OpenGL ES 的内部数据结构，包含 OpenGL 操作需要的所有状态信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// C function EGLContext eglCreateContext ( EGLDisplay dpy, EGLConfig config, EGLContext share_context, const EGLint *attrib_list )
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">native</span> <span class="n">EGLContext</span> <span class="nf">eglCreateContext</span><span class="o">(</span>
+    <span class="n">EGLDisplay</span> <span class="n">dpy</span><span class="o">,</span>
+    <span class="n">EGLConfig</span> <span class="n">config</span><span class="o">,</span>
+    <span class="n">EGLContext</span> <span class="n">share_context</span><span class="o">,</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">attrib_list</span><span class="o">,</span>
+    <span class="kt">int</span> <span class="n">offset</span>
+<span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>eglCreateContext</code> 函数负责创建上下文 Context。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 示例
+</span><span class="c1"></span><span class="kt">int</span><span class="o">[]</span> <span class="n">attrib_list</span> <span class="o">=</span> <span class="o">{</span>
+        <span class="n">EGL14</span><span class="o">.</span><span class="na">EGL_CONTEXT_CLIENT_VERSION</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span>
+        <span class="n">EGL14</span><span class="o">.</span><span class="na">EGL_NONE</span>
+<span class="o">};</span>
+<span class="n">mEGLContext</span> <span class="o">=</span> <span class="n">EGL14</span><span class="o">.</span><span class="na">eglCreateContext</span><span class="o">(</span><span class="n">mEGLDisplay</span><span class="o">,</span> <span class="n">configs</span><span class="o">[</span><span class="n">0</span><span class="o">],</span> <span class="n">shareContext</span><span class="o">,</span> <span class="n">attrib_list</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
+<span class="n">checkEglError</span><span class="o">(</span><span class="s">&#34;eglCreateContext&#34;</span><span class="o">);</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">mEGLContext</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;null context&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当一个程序中存在多个 EGLContext 时，在执行渲染前，需要将特定的 EGLContext 和渲染 Surface 进行关联。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// C function EGLBoolean eglMakeCurrent ( EGLDisplay dpy, EGLSurface draw, EGLSurface read, EGLContext ctx )
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">native</span> <span class="kt">boolean</span> <span class="nf">eglMakeCurrent</span><span class="o">(</span>
+    <span class="n">EGLDisplay</span> <span class="n">dpy</span><span class="o">,</span>
+    <span class="n">EGLSurface</span> <span class="n">draw</span><span class="o">,</span>
+    <span class="n">EGLSurface</span> <span class="n">read</span><span class="o">,</span>
+    <span class="n">EGLContext</span> <span class="n">ctx</span>
+<span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>eglMakeCurrent</code> 函数就是执行这个过程的，通常叫做指定当前上下文。</p>
 <h2 id="android">Android</h2>
 <h3 id="eglsurface-和-opengl-es">EGLSurface 和 OpenGL ES</h3>
 <p>为了创建 OpenGL ES 上下文并为 OpenGL ES 渲染提供窗口系统，Android 使用 EGL 库。OpenGL ES 调用用于渲染纹理多边形，而 EGL 调用用于将渲染放到屏幕上。在使用 OpenGL ES 进行绘制之前，您需要创建 OpenGL 上下文。在 EGL 中，这意味着要创建一个 EGLContext 和一个 EGLSurface。 OpenGL ES 操作适用于当前上下文，该上下文通过线程局部存储(ThreadLocal)访问，而不是作为参数进行传递。渲染代码应该在当前 OpenGL ES 线程（而不是界面线程）上执行。</p>
