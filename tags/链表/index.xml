@@ -10,7 +10,7 @@
     <link>https://jiyang.site/tags/%E9%93%BE%E8%A1%A8/</link>
     <description>Recent content in 链表 on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh</language>
+    <language>en</language>
     <copyright>©2023, All Rights Reserved</copyright>
     
         <atom:link href="https://jiyang.site/tags/%E9%93%BE%E8%A1%A8/index.xml" rel="self" type="application/rss+xml" />
@@ -18,13 +18,13 @@
 
       
       <item>
-        <title>链表问题</title>
-        <link>https://jiyang.site/posts/2017-08-12-%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98/</link>
+        <title>双向链表C&#43;&#43;实现</title>
+        <link>https://jiyang.site/posts/2017-05-31-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8c&#43;&#43;%E5%AE%9E%E7%8E%B0/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         
-        <guid>https://jiyang.site/posts/2017-08-12-%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98/</guid>
-        <description>链表逆序 从尾到头打印节点 2018-04-16更新: 递归逆序链表 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 class LinkNode(object): def __init__(self, val, next=None): self.val = val self.next = next def</description>
+        <guid>https://jiyang.site/posts/2017-05-31-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8c&#43;&#43;%E5%AE%9E%E7%8E%B0/</guid>
+        <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 #ifndef LinkList_hpp #define LinkList_hpp typedef struct Node{ int data; Node* next; Node* pre; }Node; class LinkList{ private: Node *head; Node *tail; int length; public: LinkList(); //分配内存，构建节点 Node* makeNode(); /</description>
         
         <dc:creator>Yang</dc:creator>
         
@@ -48,13 +48,13 @@
       </item>
       
       <item>
-        <title>双向链表C&#43;&#43;实现</title>
-        <link>https://jiyang.site/posts/2017-05-31-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8c&#43;&#43;%E5%AE%9E%E7%8E%B0/</link>
+        <title>链表问题</title>
+        <link>https://jiyang.site/posts/2017-08-12-%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         
-        <guid>https://jiyang.site/posts/2017-05-31-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8c&#43;&#43;%E5%AE%9E%E7%8E%B0/</guid>
-        <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 #ifndef LinkList_hpp #define LinkList_hpp typedef struct Node{ int data; Node* next; Node* pre; }Node; class LinkList{ private: Node *head; Node *tail; int length; public: LinkList(); //分配内存，构建节点 Node* makeNode(); /</description>
+        <guid>https://jiyang.site/posts/2017-08-12-%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98/</guid>
+        <description>链表逆序 从尾到头打印节点 2018-04-16更新: 递归逆序链表 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 class LinkNode(object): def __init__(self, val, next=None): self.val = val self.next = next def</description>
         
         <dc:creator>Yang</dc:creator>
         

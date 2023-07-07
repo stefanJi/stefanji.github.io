@@ -10,7 +10,7 @@
     <link>https://jiyang.site/categories/android/</link>
     <description>Recent content in Android on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh</language>
+    <language>en</language>
     <copyright>©2023, All Rights Reserved</copyright>
     <lastBuildDate>Wed, 28 Jul 2021 21:32:56 +0800</lastBuildDate>
     
@@ -1091,13 +1091,13 @@
       </item>
       
       <item>
-        <title>Android消息机制</title>
-        <link>https://jiyang.site/posts/2017-06-08-android%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1handler%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/</link>
+        <title>Android性能优化</title>
+        <link>https://jiyang.site/posts/2017-08-18-android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         
-        <guid>https://jiyang.site/posts/2017-06-08-android%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1handler%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/</guid>
-        <description>在非UI线程使用Handler进行线程通信时，一般都需要进行3个步骤： 创建Looper Looper.prepar() 创建Handler 启动消息循环Looper.loop</description>
+        <guid>https://jiyang.site/posts/2017-08-18-android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</guid>
+        <description>Android程序不能无限制的使用设备的内存和CPU。正如经典所说，设备的资源不是给程序员用的，是给用户用的。在编写程序时，应该经常注意内存</description>
         
         <dc:creator>Yang</dc:creator>
         
@@ -1115,13 +1115,13 @@
       </item>
       
       <item>
-        <title>Android性能优化</title>
-        <link>https://jiyang.site/posts/2017-08-18-android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
+        <title>Android消息机制</title>
+        <link>https://jiyang.site/posts/2017-06-08-android%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1handler%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         
-        <guid>https://jiyang.site/posts/2017-08-18-android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</guid>
-        <description>Android程序不能无限制的使用设备的内存和CPU。正如经典所说，设备的资源不是给程序员用的，是给用户用的。在编写程序时，应该经常注意内存</description>
+        <guid>https://jiyang.site/posts/2017-06-08-android%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1handler%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/</guid>
+        <description>在非UI线程使用Handler进行线程通信时，一般都需要进行3个步骤： 创建Looper Looper.prepar() 创建Handler 启动消息循环Looper.loop</description>
         
         <dc:creator>Yang</dc:creator>
         
@@ -1287,13 +1287,13 @@
       </item>
       
       <item>
-        <title>分析实现Android自定义View之递增直方图</title>
-        <link>https://jiyang.site/posts/2016-12-30-%E5%88%86%E6%9E%90%E5%AE%9E%E7%8E%B0android%E8%87%AA%E5%AE%9A%E4%B9%89view%E4%B9%8B%E9%80%92%E5%A2%9E%E7%9B%B4%E6%96%B9%E5%9B%BE/</link>
+        <title>分析实现Android自定义View之扇形图</title>
+        <link>https://jiyang.site/posts/2016-12-25-%E5%88%86%E6%9E%90%E5%AE%9E%E7%8E%B0android%E8%87%AA%E5%AE%9A%E4%B9%89view%E4%B9%8B%E6%89%87%E5%BD%A2%E5%9B%BE/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         
-        <guid>https://jiyang.site/posts/2016-12-30-%E5%88%86%E6%9E%90%E5%AE%9E%E7%8E%B0android%E8%87%AA%E5%AE%9A%E4%B9%89view%E4%B9%8B%E9%80%92%E5%A2%9E%E7%9B%B4%E6%96%B9%E5%9B%BE/</guid>
-        <description>继上次分析实现Android自定义View之扇形图之后，自己又画了下面的这个递增直方图，本来是想做个静态的直方图就完了，结果想想静态的没啥趣</description>
+        <guid>https://jiyang.site/posts/2016-12-25-%E5%88%86%E6%9E%90%E5%AE%9E%E7%8E%B0android%E8%87%AA%E5%AE%9A%E4%B9%89view%E4%B9%8B%E6%89%87%E5%BD%A2%E5%9B%BE/</guid>
+        <description>继承View基类，画了这样的扇形图 直接来步骤吧 (参考了GcsSloop的教程) 1.分析 自定义View需要认真的分析下，里面还是会用到一些数学</description>
         
         <dc:creator>Yang</dc:creator>
         
@@ -1311,13 +1311,13 @@
       </item>
       
       <item>
-        <title>分析实现Android自定义View之扇形图</title>
-        <link>https://jiyang.site/posts/2016-12-25-%E5%88%86%E6%9E%90%E5%AE%9E%E7%8E%B0android%E8%87%AA%E5%AE%9A%E4%B9%89view%E4%B9%8B%E6%89%87%E5%BD%A2%E5%9B%BE/</link>
+        <title>分析实现Android自定义View之递增直方图</title>
+        <link>https://jiyang.site/posts/2016-12-30-%E5%88%86%E6%9E%90%E5%AE%9E%E7%8E%B0android%E8%87%AA%E5%AE%9A%E4%B9%89view%E4%B9%8B%E9%80%92%E5%A2%9E%E7%9B%B4%E6%96%B9%E5%9B%BE/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         
-        <guid>https://jiyang.site/posts/2016-12-25-%E5%88%86%E6%9E%90%E5%AE%9E%E7%8E%B0android%E8%87%AA%E5%AE%9A%E4%B9%89view%E4%B9%8B%E6%89%87%E5%BD%A2%E5%9B%BE/</guid>
-        <description>继承View基类，画了这样的扇形图 直接来步骤吧 (参考了GcsSloop的教程) 1.分析 自定义View需要认真的分析下，里面还是会用到一些数学</description>
+        <guid>https://jiyang.site/posts/2016-12-30-%E5%88%86%E6%9E%90%E5%AE%9E%E7%8E%B0android%E8%87%AA%E5%AE%9A%E4%B9%89view%E4%B9%8B%E9%80%92%E5%A2%9E%E7%9B%B4%E6%96%B9%E5%9B%BE/</guid>
+        <description>继上次分析实现Android自定义View之扇形图之后，自己又画了下面的这个递增直方图，本来是想做个静态的直方图就完了，结果想想静态的没啥趣</description>
         
         <dc:creator>Yang</dc:creator>
         

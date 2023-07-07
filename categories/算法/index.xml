@@ -10,7 +10,7 @@
     <link>https://jiyang.site/categories/%E7%AE%97%E6%B3%95/</link>
     <description>Recent content in 算法 on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh</language>
+    <language>en</language>
     <copyright>©2023, All Rights Reserved</copyright>
     <lastBuildDate>Thu, 30 Jan 2020 20:35:12 +0000</lastBuildDate>
     
@@ -240,6 +240,30 @@
       </item>
       
       <item>
+        <title>循环单词问题</title>
+        <link>https://jiyang.site/posts/2017-07-24-%E5%BE%AA%E7%8E%AF%E5%8D%95%E8%AF%8D%E9%97%AE%E9%A2%98/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        
+        <guid>https://jiyang.site/posts/2017-07-24-%E5%BE%AA%E7%8E%AF%E5%8D%95%E8%AF%8D%E9%97%AE%E9%A2%98/</guid>
+        <description>如果一个单词通过循环右移获得的单词，我们称这些单词都为一种循环单词。 例如：picture 和 turepic 就是属于同一种循环单词。 现在给出n个单词，需要统</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>算法</category>
+            
+          
+        
+        
+      </item>
+      
+      <item>
         <title>斐波拉契数列</title>
         <link>https://jiyang.site/posts/2017-08-12-%E6%96%90%E6%B3%A2%E6%8B%89%E5%A5%91%E6%95%B0%E5%88%97/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -247,6 +271,30 @@
         
         <guid>https://jiyang.site/posts/2017-08-12-%E6%96%90%E6%B3%A2%E6%8B%89%E5%A5%91%E6%95%B0%E5%88%97/</guid>
         <description>斐波拉契数列的第n项 斐波拉契数列: a(0) = 0 a(1) = 1 a(2) = 1 a(n) = a(n-1) + a(n-2) 递归实现 1 2 3 4 5 6 7 8 long fab1(int n) { if (n &amp;lt; 3) { return 1; } return fab1(n - 2) + fab1(n - 1); } 「遍历数组」</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>算法</category>
+            
+          
+        
+        
+      </item>
+      
+      <item>
+        <title>求最大公约数、幂运算</title>
+        <link>https://jiyang.site/posts/2017-10-24-%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0-%E5%B9%82%E8%BF%90%E7%AE%97-%E9%98%B6%E4%B9%98/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        
+        <guid>https://jiyang.site/posts/2017-10-24-%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0-%E5%B9%82%E8%BF%90%E7%AE%97-%E9%98%B6%E4%B9%98/</guid>
+        <description>求两个数的最大公约数 1 2 3 4 5 6 7 8 long gcd(long m, long n) { while (n != 0) { long ren = m % n; m = n; n = ren; } return m; } 幂运算 时间复杂度为O(logN)的算法 1 2 3 4 5 6</description>
         
         <dc:creator>Yang</dc:creator>
         
@@ -295,54 +343,6 @@
         
         <guid>https://jiyang.site/posts/2017-07-24-%E8%BF%9E%E7%BB%AD%E6%95%B4%E6%95%B0/</guid>
         <description>牛牛的好朋友羊羊在纸上写了n+1个整数，羊羊接着抹除掉了一个整数，给牛牛猜他抹除掉的数字是什么。牛牛知道羊羊写的整数神排序之后是一串连续的正</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>算法</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>求最大公约数、幂运算</title>
-        <link>https://jiyang.site/posts/2017-10-24-%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0-%E5%B9%82%E8%BF%90%E7%AE%97-%E9%98%B6%E4%B9%98/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://jiyang.site/posts/2017-10-24-%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0-%E5%B9%82%E8%BF%90%E7%AE%97-%E9%98%B6%E4%B9%98/</guid>
-        <description>求两个数的最大公约数 1 2 3 4 5 6 7 8 long gcd(long m, long n) { while (n != 0) { long ren = m % n; m = n; n = ren; } return m; } 幂运算 时间复杂度为O(logN)的算法 1 2 3 4 5 6</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>算法</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>循环单词问题</title>
-        <link>https://jiyang.site/posts/2017-07-24-%E5%BE%AA%E7%8E%AF%E5%8D%95%E8%AF%8D%E9%97%AE%E9%A2%98/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://jiyang.site/posts/2017-07-24-%E5%BE%AA%E7%8E%AF%E5%8D%95%E8%AF%8D%E9%97%AE%E9%A2%98/</guid>
-        <description>如果一个单词通过循环右移获得的单词，我们称这些单词都为一种循环单词。 例如：picture 和 turepic 就是属于同一种循环单词。 现在给出n个单词，需要统</description>
         
         <dc:creator>Yang</dc:creator>
         
