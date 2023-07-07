@@ -1724,7 +1724,7 @@ if (!doNotTrack) {
 <!-- more -->
 <h1 id="arp-协议概述">ARP 协议概述</h1>
 <p>ARP(Address Resolution Protocol) 地址解析协议是用来通过网络层地址(IP地址)去寻找数据链路层地址(MAC地址)的网络传输协议.</p>
-<p>在以太网(Ethernet)协议中规定，<strong>同一局域网中</strong>的一台主机要和另一台主机进行直接通信，必须要知道目标主机的 MAC 地址。而在 TCP/IP 协议中，网络层和传输层只关心目标主机的IP地址。这就导致在以太网中使用 IP 协议时，数据链路层的以太网协议接到上层IP协议提供的数据中，只包含目的主机的IP地址。于是需要一种方法，根据目的主机的IP地址，获得其MAC地址。这就是 ARP 协议要做的事情。所谓地址解析（address resolution）就是主机在发送帧前将目标IP地址转换成目标MAC地址的过程。另外，当发送主机和目的主机<strong>不在同一个局域网中时</strong>，即便知道对方的MAC地址，两者也不能直接通信，必须经过路由转发才可以。所以此时，发送主机通过ARP协议获得的将不是目的主机的真实MAC地址，而是一台可以通往局域网外的路由器的MAC地址。于是此后发送主机发往目的主机的所有帧，都将发往该路由器，通过它向外发送。这种情况称为委托ARP或ARP代理（ARP Proxy）。—— <a href="https://zh.wikipedia.org/wiki/%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AE">地址解析协议</a></p>
+<p>在以太网(Ethernet)协议中规定，<strong>同一局域网中</strong>的一台主机要和另一台主机进行直接通信，必须要知道目标主机的 MAC 地址。而在 TCP/IP 协议中，网络层和传输层只关心目标主机的IP地址。这就导致在以太网中使用 IP 协议时，数据链路层的以太网协议接到上层IP协议提供的数据中，只包含目的主机的IP地址。于是需要一种方法，根据目的主机的IP地址，获得其MAC地址。这就是 ARP 协议要做的事情。所谓地址解析（address resolution）就是主机在发送帧前将目标IP地址转换成目标MAC地址的过程。另外，当发送主机和目的主机<strong>不在同一个局域网中时</strong>，即便知道对方的MAC地址，两者也不能直接通信，必须经过路由转发才可以。所以此时，发送主机通过ARP协议获得的将不是目的主机的真实MAC地址，而是一台可以通往局域网外的路由器的MAC地址。于是此后发送主机发往目的主机的所有帧，都将发往该路由器，通过它向外发送。这种情况称为委托ARP或ARP代理（ARP Proxy）。—— <a href="https://zh.wikipedia.org/wiki/%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AE" target="_blank">地址解析协议</a></p>
 <h2 id="报文格式">报文格式</h2>
 <p><img src="https://image.youcute.cn/image/blog/ARP.png" alt="ARP 报文格式" /></p>
 <p>以太网首部: net/ethernet.h</p>
@@ -1810,9 +1810,9 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="实现">实现</h1>
-<p>在 Linux 系统上, 可以通过 <code>PF_PACKET</code> 创建由用户态程序收发数据链接层数据的 Packet Socket, 从而发送完全自定义的 ARP 报文。但是在基于 BSD 的系统(比如 MacOS) 上, 是不支持 <code>PF_PACKET</code> 类型的 Socket 的，这时候就要利用 BPF(Berkeley Packet Filter)<strong>伯克利包过滤器</strong>来实现原始链路层数据的收发. —— <a href="https://zh.wikipedia.org/wiki/BPF">BPF</a></p>
+<p>在 Linux 系统上, 可以通过 <code>PF_PACKET</code> 创建由用户态程序收发数据链接层数据的 Packet Socket, 从而发送完全自定义的 ARP 报文。但是在基于 BSD 的系统(比如 MacOS) 上, 是不支持 <code>PF_PACKET</code> 类型的 Socket 的，这时候就要利用 BPF(Berkeley Packet Filter)<strong>伯克利包过滤器</strong>来实现原始链路层数据的收发. —— <a href="https://zh.wikipedia.org/wiki/BPF" target="_blank">BPF</a></p>
 <h2 id="berkeley-packet-filter">Berkeley Packet Filter</h2>
-<p>数据包过滤器显示为字符特殊设备 <code>/dev/bpfN</code>(N为0~N, 一台机器上可能会提供多个 bpf 文件)。打开设备后，必须使用 <code>ioctl</code> 调用并结合 <code>BIOCSETIF</code>, 将文件描述符绑定到特定的网络接口。给定的接口可以由多个侦听器共享，并且每个描述符下面的过滤器将看到相同的数据包流。&mdash; <a href="https://www.freebsd.org/cgi/man.cgi?query=bpf">man bpf</a></p>
+<p>数据包过滤器显示为字符特殊设备 <code>/dev/bpfN</code>(N为0~N, 一台机器上可能会提供多个 bpf 文件)。打开设备后，必须使用 <code>ioctl</code> 调用并结合 <code>BIOCSETIF</code>, 将文件描述符绑定到特定的网络接口。给定的接口可以由多个侦听器共享，并且每个描述符下面的过滤器将看到相同的数据包流。&mdash; <a href="https://www.freebsd.org/cgi/man.cgi?query=bpf" target="_blank">man bpf</a></p>
 <p><img src="https://image.youcute.cn/image/blog/ls_dev_bpf.png" alt="ls /dev/bpf" /></p>
 <h2 id="打开-bpf-设备">打开 BPF 设备</h2>
 <div class="highlight"><div class="chroma">
@@ -2333,7 +2333,7 @@ Dest ip address: 192.168.31.77
 </tbody>
 </table>
 <h1 id="完整源码">完整源码</h1>
-<p><a href="https://github.com/stefanJi/NetUtitily/blob/master/src/arp.cpp">https://github.com/stefanJi/NetUtitily/blob/master/src/arp.cpp</a></p>
+<p><a href="https://github.com/stefanJi/NetUtitily/blob/master/src/arp.cpp" target="_blank">https://github.com/stefanJi/NetUtitily/blob/master/src/arp.cpp</a></p>
 
     </article>
     

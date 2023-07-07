@@ -2256,7 +2256,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">       00000000000005ed  <span class="m">0000000000000000</span>           <span class="m">0</span>     <span class="m">0</span>     <span class="m">1</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>那这些 Section 我们应该如何从 ELF 文件(我们这里是 so)中读取呢? 在查找读取方式的过程中，我发现了一个新名词 <a href="https://en.wikipedia.org/wiki/DWARF">DWARF</a>。原来 <em>ELF</em> 文件中的调试信息都是按照一种叫 <em>DWARF</em> 的标准来读写的。http://dwarfstd.org/ 的维护网站上详细介绍了这个标准。</p>
+</div><p>那这些 Section 我们应该如何从 ELF 文件(我们这里是 so)中读取呢? 在查找读取方式的过程中，我发现了一个新名词 <a href="https://en.wikipedia.org/wiki/DWARF" target="_blank">DWARF</a>。原来 <em>ELF</em> 文件中的调试信息都是按照一种叫 <em>DWARF</em> 的标准来读写的。http://dwarfstd.org/ 的维护网站上详细介绍了这个标准。</p>
 <p>通过 <em>readelf</em> 的 <code>--debug-dump</code> 方式，我们可以输出对应 Section 的内容:</p>
 <h5 id="debug_line">debug_line</h5>
 <p><code>--debug-dump=decodedline</code>: 会解码输出 <code>.debug_line</code> 的内容，储存着某行代码在编译之后的内存地址</p>
@@ -2326,13 +2326,13 @@ if (!doNotTrack) {
 <p>Breakpad 的几大部分:</p>
 <ul>
 <li><strong>client</strong> 是开发者应该引用的一个库。通过它可以捕获当前线程的状态、当前加载的可执行文件和共享库的标识去生成 <em>minidump</em> 文件。开发者可以配置 client，使其在发生崩溃或显式请求时生成 <em>minidump</em> 文件</li>
-<li><strong>symbol dumper</strong> 程序：它读取编译器生成的调试信息，并以 <a href="https://chromium.googlesource.com/breakpad/breakpad/+/master/docs/symbol_files.md">Breakpad 自己的格式</a>生成符号文件</li>
+<li><strong>symbol dumper</strong> 程序：它读取编译器生成的调试信息，并以 <a href="https://chromium.googlesource.com/breakpad/breakpad/&#43;/master/docs/symbol_files.md" target="_blank">Breakpad 自己的格式</a>生成符号文件</li>
 <li><strong>processor</strong> 程序：它读取 <em>minidump</em> 文件，为 <em>minidump</em> 文件对应的可执行文件和共享库找到匹配的符号文件，并生成可读的 C/C++ 调用栈。</li>
 </ul>
 <h1 id="参考">参考</h1>
 <ul>
-<li><a href="https://zh.wikipedia.org/wiki/Unix%E4%BF%A1%E5%8F%B7">Unix信号</a></li>
-<li><a href="https://www.kymjs.com/code/2018/08/22/01/">Android Native Crash</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/Unix%E4%BF%A1%E5%8F%B7" target="_blank">Unix信号</a></li>
+<li><a href="https://www.kymjs.com/code/2018/08/22/01/" target="_blank">Android Native Crash</a></li>
 </ul>
 
     </article>

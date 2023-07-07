@@ -1850,7 +1850,7 @@ if (!doNotTrack) {
 </div>
 </div><h3 id="数据链接层-packet-socket">数据链接层 Packet Socket</h3>
 <blockquote>
-<p>Pakcet Socket 只有 Linux 支持: <a href="http://man7.org/linux/man-pages/man7/packet.7.html">http://man7.org/linux/man-pages/man7/packet.7.html</a><br />
+<p>Pakcet Socket 只有 Linux 支持: <a href="http://man7.org/linux/man-pages/man7/packet.7.html" target="_blank">http://man7.org/linux/man-pages/man7/packet.7.html</a><br />
 Mac OS 等基于 BSD 的系统则要使用 Berkeley Packet Filter 实现对原始链路层封包的收发</p>
 </blockquote>
 <p>通过 Raw Socket, 我们已经能够自由定制网络层及以上各层的数据包了, 这时如果还想自己定制更底层<em>网络接口层</em>的数据包, <code>domain</code> 参数就需要使用 <code>PF_PACKET</code>. 使用这种 Socket 就能够访问底层的网卡数据了.只有 <code>SOCK_RAW</code> 和 <code>SOCK_DGRAM</code> 两种 <code>type</code> 参数支持 Packet Socket.</p>
@@ -1867,7 +1867,7 @@ Mac OS 等基于 BSD 的系统则要使用 Berkeley Packet Filter 实现对原�
 <p>接下来利用 <strong>Raw Socket</strong> 发送网络层上的 ICMP 报文到目标主机, 从而模拟实现 <code>ping</code> 命令</p>
 <h2 id="icmp-协议">ICMP 协议</h2>
 <blockquote>
-<p><a href="https://tools.ietf.org/html/rfc792">https://tools.ietf.org/html/rfc792</a></p>
+<p><a href="https://tools.ietf.org/html/rfc792" target="_blank">https://tools.ietf.org/html/rfc792</a></p>
 </blockquote>
 <p>ICMP 消息有多种类型, 因此其数据结构中定义了几种共用体.<br />
 在数据中位于第一个字节的是 Type, <code>ping</code> 中则是发送发送 Echo  Request 消息, 响应方回复 Echo Reply 消息. 他俩的结构一样, 只是 Type 的值不同:</p>
@@ -2407,8 +2407,8 @@ Echo or Echo Reply Message
 </div>
 </div><h1 id="参考">参考</h1>
 <ul>
-<li><a href="https://zh.wikipedia.org/wiki/Berkeley%E5%A5%97%E6%8E%A5%E5%AD%97">伯克利套接字</a></li>
-<li><a href="https://medium.com/@c_bata_/how-to-write-cross-platform-packet-capture-using-raw-socket-and-bpf-bab3b614bc03">https://medium.com/@c_bata_/how-to-write-cross-platform-packet-capture-using-raw-socket-and-bpf-bab3b614bc03</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/Berkeley%E5%A5%97%E6%8E%A5%E5%AD%97" target="_blank">伯克利套接字</a></li>
+<li><a href="https://medium.com/@c_bata_/how-to-write-cross-platform-packet-capture-using-raw-socket-and-bpf-bab3b614bc03" target="_blank">https://medium.com/@c_bata_/how-to-write-cross-platform-packet-capture-using-raw-socket-and-bpf-bab3b614bc03</a></li>
 </ul>
 
     </article>

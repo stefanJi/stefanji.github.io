@@ -1722,7 +1722,7 @@ if (!doNotTrack) {
 <p>在客户端中存在一种应用场景：需要将 MediaCodec 或者 Camera 产生的图像，通过 OpenGL 交给算法做特效，由于算法可能是基于普通的 Texture2D 纹理实现的，而 Android 上更常用的则是 <em>GL_TEXTURE_EXTERNAL_OES</em> 纹理，算法一般都是基于 OpenGL 而不是 OpenGLES 环境实现的，所以就需要客户端这边做一个转换工作。这个转换工作当然最好是在 GPU 中能完成的，因为如果通过 CPU 从 OES 纹理中读出图像数据，再提交到 2D 纹理中，这一来一回，即浪费 CPU 页占有了内存，很不划算。所以就出现了这篇文章，如何利用 OpenGL 将 OES 纹理渲染到普通 2D 纹理上。</p>
 <h1 id="gl_texture_external_oes-纹理">GL_TEXTURE_EXTERNAL_OES 纹理</h1>
 <blockquote>
-<p>首先，简单了解下什么是 OES 纹理 <a href="https://source.android.google.cn/devices/graphics/arch-st?hl=zh-c">https://source.android.google.cn/devices/graphics/arch-st?hl=zh-c</a></p>
+<p>首先，简单了解下什么是 OES 纹理 <a href="https://source.android.google.cn/devices/graphics/arch-st?hl=zh-c" target="_blank">https://source.android.google.cn/devices/graphics/arch-st?hl=zh-c</a></p>
 </blockquote>
 <p>外部 GLES 纹理 (GL_TEXTURE_EXTERNAL_OES) 与传统 GLES 纹理 (GL_TEXTURE_2D) 的区别如下：</p>
 <ul>

@@ -1740,7 +1740,7 @@ if (!doNotTrack) {
 <h2 id="init-进程的入口">init 进程的入口</h2>
 <p>在 Android 内核加载完成后，它会执行 init 进程的入口函数 <code>main</code>，<code>main</code> 函数中会解析 <code>init.rc</code> 配置文件到 Action Service 对象中，然后执行 Actions 中的命令。</p>
 <blockquote>
-<p><code>init.rc</code> 是按照 <a href="https://android.googlesource.com/platform/system/core/+/master/init/README.md">Android Init Language</a> 语法编写的脚本。</p>
+<p><code>init.rc</code> 是按照 <a href="https://android.googlesource.com/platform/system/core/&#43;/master/init/README.md" target="_blank">Android Init Language</a> 语法编写的脚本。</p>
 </blockquote>
 <p>在 init 进程在执行 <code>main</code> 方法时，会解析执行 <code>/init.rc</code> 脚本，<code>init.rc</code> 脚本中会 <code>import</code> 与 zygote 相关的 <code>init.${ro.zygote}.rc</code> 脚本:</p>
 <blockquote>
@@ -2608,8 +2608,8 @@ ZygoteInit -&gt; ZygoteServer: closeServerSocket
 </ol>
 <h2 id="参考">参考</h2>
 <ul>
-<li><a href="https://zh.wikipedia.org/wiki/">https://zh.wikipedia.org/wiki/</a>文件描述符</li>
-<li>Linux POLL: <a href="http://man7.org/linux/man-pages/man2/poll.2.html">http://man7.org/linux/man-pages/man2/poll.2.html</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/" target="_blank">https://zh.wikipedia.org/wiki/</a>文件描述符</li>
+<li>Linux POLL: <a href="http://man7.org/linux/man-pages/man2/poll.2.html" target="_blank">http://man7.org/linux/man-pages/man2/poll.2.html</a></li>
 </ul>
     </article>
     

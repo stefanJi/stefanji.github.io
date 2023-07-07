@@ -1723,7 +1723,7 @@ if (!doNotTrack) {
       <p><img src="https://image.youcute.cn/FvP8y2SiUGxGMbaJD8YKbDMHtswP" alt="本文概览" /></p>
 <h1 id="exception-level">Exception Level</h1>
 <blockquote>
-<p><a href="https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/exception-levels">https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/exception-levels</a></p>
+<p><a href="https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/exception-levels" target="_blank">https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/exception-levels</a></p>
 </blockquote>
 <p>在 ARMv8 处理器中，处理器的运行总是发生在 4 个异常级别之中的一个。异常级别决定了权限级别(<em>privilege level</em>)，每个异常级别(<em>ELn</em>)都有对应的权限级别(<em>PLn</em>)。<em>n</em> 的值越大，权限也就越大。</p>
 <p><img src="https://image.youcute.cn/Fvxlyxs-cYCdCItyHtgPAZU4G5uD" alt="ARM Exception Levels" /></p>
@@ -1731,7 +1731,7 @@ if (!doNotTrack) {
 <ul>
 <li><em>EL0</em>: Normal user applications</li>
 <li><em>EL1</em>: Operating system kernel typically described as privileged</li>
-<li><em>EL2</em>: <a href="https://zh.wikipedia.org/wiki/Hypervisor">Hypervisor</a></li>
+<li><em>EL2</em>: <a href="https://zh.wikipedia.org/wiki/Hypervisor" target="_blank">Hypervisor</a></li>
 <li><em>EL3</em>: Low-level firmware, including the Secure Monitor</li>
 </ul>
 <table>
@@ -1756,13 +1756,13 @@ if (!doNotTrack) {
 </tr>
 <tr>
 <td align="center">EL3</td>
-<td align="left">EL3 提供了切换 <a href="https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/armv8-security-model">Scurity 状态</a>的能力。</td>
+<td align="left">EL3 提供了切换 <a href="https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/armv8-security-model" target="_blank">Scurity 状态</a>的能力。</td>
 </tr>
 </tbody>
 </table>
 <h1 id="获得当前-el">获得当前 EL</h1>
 <blockquote>
-<p><a href="https://developer.arm.com/docs/ddi0595/g/aarch64-system-registers/currentel">https://developer.arm.com/docs/ddi0595/g/aarch64-system-registers/currentel</a></p>
+<p><a href="https://developer.arm.com/docs/ddi0595/g/aarch64-system-registers/currentel" target="_blank">https://developer.arm.com/docs/ddi0595/g/aarch64-system-registers/currentel</a></p>
 </blockquote>
 <p>可以通过系统寄存器 <code>CurrentEL</code> 获取处理器当前的 <em>Exception Level</em>。</p>
 <p>AArch64 架构下 <code>CurrentEL</code> 用 64 位表示，其中第 [3:2] 位表示 EL，[63:4] 和 [1:0] 都是保留位。</p>
@@ -1851,7 +1851,7 @@ if (!doNotTrack) {
 <ul>
 <li><code>svc</code>: Supervisor Call 指令使用户模式程序可以请求 OS 服务</li>
 <li><code>hvc</code>: Hypervisor Call 指令使来宾 OS 可以请求系统管理程序服务。</li>
-<li><code>smc</code>: 通过 Secure monitor Call 指令，普通世界可以请求安全世界服务。(<a href="https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/armv8-security-model">security model 参考</a>)</li>
+<li><code>smc</code>: 通过 Secure monitor Call 指令，普通世界可以请求安全世界服务。(<a href="https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/armv8-security-model" target="_blank">security model 参考</a>)</li>
 </ul>
 <p>如果异常是由于在 EL0 执行指令而生成的，则会将其视为 EL1 的异常。如果是在任何其他 EL 执行指令导致生成异常，则异常级别保持不变。</p>
 </li>
@@ -1862,11 +1862,11 @@ if (!doNotTrack) {
 </blockquote>
 <p>也就是说程序只有在处理异常的过程中，才能切换异常级别。</p>
 <ul>
-<li>当处理器从较高的异常级别移至较低的异常级别时，执行状态(<a href="https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/execution-state">Execution State</a>)可以保持不变，也可以从 <em>AArch64</em> 切换到 <em>AArch32</em> 。</li>
+<li>当处理器从较高的异常级别移至较低的异常级别时，执行状态(<a href="https://developer.arm.com/docs/ddi0488/d/programmers-model/armv8-architecture-concepts/execution-state" target="_blank">Execution State</a>)可以保持不变，也可以从 <em>AArch64</em> 切换到 <em>AArch32</em> 。</li>
 <li>相反，当从较低的异常级别移到较高的异常级别时，执行状态可以保持不变或从 <em>AArch32</em> 切换到 <em>AArch64</em> 。</li>
 </ul>
 <p><img src="https://image.youcute.cn/FjYOamWo2mTfnHtmRMjYLC9W0JhA" alt="异常流程" /></p>
-<p>当应用程序发生异常时，处理器会到一个异常表去查找分派代码然后执行分派代码(异常表包含每种异常类型对应的分派代码)，分派代码选择并调用适当的函数来处理异常。分派代码执行完成后，返回到高级别的处理程序，该处理程序执行 <a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289871515.htm"><code>ERET</code></a> 指令返回到应用程序。</p>
+<p>当应用程序发生异常时，处理器会到一个异常表去查找分派代码然后执行分派代码(异常表包含每种异常类型对应的分派代码)，分派代码选择并调用适当的函数来处理异常。分派代码执行完成后，返回到高级别的处理程序，该处理程序执行 <a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289871515.htm" target="_blank">&lt;code&gt;ERET&lt;/code&gt;</a> 指令返回到应用程序。</p>
 <h3 id="相关寄存器">相关寄存器</h3>
 <p>当处理异常时，会涉及几个寄存器的操作:</p>
 <ol>

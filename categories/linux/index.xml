@@ -89,7 +89,7 @@
         
         <atom:modified>Thu, 27 Dec 2018 08:46:40 +0000</atom:modified>
         <guid>https://jiyang.site/posts/2018-12-27-%E4%B8%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0ssl%E8%AF%81%E4%B9%A6/</guid>
-        <description>&lt;p&gt;以我 youcute.cn 为例，首先安装 &lt;code&gt;acme&lt;/code&gt; 脚本 &lt;a href=&#34;https://github.com/Neilpang/acme.sh&#34;&gt;https://github.com/Neilpang/acme.sh&lt;/a&gt;。然后生成证书，将证书拷贝到相应的目录。&lt;/p&gt;</description>
+        <description>&lt;p&gt;以我 youcute.cn 为例，首先安装 &lt;code&gt;acme&lt;/code&gt; 脚本 &lt;a href=&#34;https://github.com/Neilpang/acme.sh&#34; target=&#34;_blank&#34;&gt;https://github.com/Neilpang/acme.sh&lt;/a&gt;。然后生成证书，将证书拷贝到相应的目录。&lt;/p&gt;</description>
         
         <dc:creator>Yang</dc:creator>
         

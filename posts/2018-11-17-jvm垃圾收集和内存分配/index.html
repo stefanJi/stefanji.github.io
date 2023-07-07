@@ -1374,7 +1374,7 @@
     "datePublished": "2018-11-17T21:40:35Z",
     "dateModified": "2018-11-17T21:40:35Z",
     "url" : "https://jiyang.site/posts/2018-11-17-jvm%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%92%8C%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/",
-    "description": "\u003cblockquote\u003e \u003cp\u003e参考 \u003ca href=\"https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html\"\u003eJava Garbage Collection Basics\u003c/a\u003e 和 《周志明. 深入理解Java虚拟机》\u003c/p\u003e \u003c/blockquote\u003e",
+    "description": "\u003cblockquote\u003e \u003cp\u003e参考 \u003ca href=\"https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html\" target=\"_blank\"\u003eJava Garbage Collection Basics\u003c/a\u003e 和 《周志明. 深入理解Java虚拟机》\u003c/p\u003e \u003c/blockquote\u003e",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://jiyang.site/"
@@ -1714,7 +1714,7 @@ if (!doNotTrack) {
     <article class="single__contents" data-dir="ltr" data-ani="true">
       
       <blockquote>
-<p>参考 <a href="https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html">Java Garbage Collection Basics</a> 和 《周志明. 深入理解Java虚拟机》</p>
+<p>参考 <a href="https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html" target="_blank">Java Garbage Collection Basics</a> 和 《周志明. 深入理解Java虚拟机》</p>
 </blockquote>
 <p>Jvm 内存运行时区域的各个部分中：程序计数器、 虚拟机栈、本地方法栈 3 个区域随线程而生，随线程而灭；栈中的栈帧随着方法的进入和退出而有条不紊地执行着出栈和入栈操作。每一个栈帧中分配多少内存基本上是在类结构确定下来时就已知的（尽管在运行期会由JIT编译器进行一些优化，但大体上可以认为是编译期可知的），因此这几个区域的内存分配和回收都具备确定性，在这几个区域内就不需要过多考虑回收的问题，因为方法结束或者线程结束时，内存自然就跟随着回收了。而堆和方法区则不一样，一个接口中的多个实现类需要的内存可能不一样，一个方法中的多个分支需要的内存也可能不一样，我们只有在程序处于运行期间时才能知道会创建哪些对象，这部分内存的分配和回收都是动态的，垃圾收集器所关注的是这部分内存。</p>
 <h1 id="hotspot-虚拟机内存分区">HotSpot 虚拟机内存分区</h1>

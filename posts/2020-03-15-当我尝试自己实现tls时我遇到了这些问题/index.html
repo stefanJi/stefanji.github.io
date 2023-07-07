@@ -1722,7 +1722,7 @@ if (!doNotTrack) {
       
       <p>花费接近一周的业余时间，基本实现了基于 TLS 1.2 的通信过程。在这期间遇到了许多问题，在此记录。</p>
 <!-- more -->
-<p>实现的源码在: <a href="https://github.com/stefanJi/CNP/tree/master/TLSImpl">https://github.com/stefanJi/CNP/tree/master/TLSImpl</a></p>
+<p>实现的源码在: <a href="https://github.com/stefanJi/CNP/tree/master/TLSImpl" target="_blank">https://github.com/stefanJi/CNP/tree/master/TLSImpl</a></p>
 <h1 id="字节序问题">字节序问题</h1>
 <p>由于我代码使用基于 JVM 的语言写的，所以所有数字类型都是带符号的，也就是 signed 类型。但是 TLS 层的数据都是 unsigned 类型的数字，这就导致数据从 Socket 流走到 JVM 层之后会由于 JVM 的语言没有 unsigned 类型出现数字越界的问题。<br />
 比如一个 u_char, 值是 128，由于它大于了 127，走到 Java 这边之后，byte 的范围是 -128~127，就会被解析为 -128 。(128=11111111, bit位的首位在 signed 类型时表示符号位，首位为 1 表示这是一个负数，负数在 JVM 中又是以补码形式存储，所以 11111111 转化为原码之后就是 10000000 =&gt; 128，加上负数就变成 -128 了)。</p>
@@ -1766,7 +1766,7 @@ if (!doNotTrack) {
 <p>RFC 作为计算机领域的协议标准，是非常值得仔细阅读的文档。但是由于自己英文水平不高，面对一些词句有时需要很久才能理解通顺。</p>
 <p>我的经验是一定要仔细浏览目录，目录涵盖了 RFC 文档的脉络，而且最好两个 tab 对照着来看，一个看大纲，一个看内容，防止看内容时忘记当前的上下文。</p>
 <h2 id="理解-rfc-中对数据结构的描述">理解 RFC 中对数据结构的描述</h2>
-<p>RFC 中对数据结构的描述也需要注意，其所描述的结构并就是代码对应的结构，也是因为 RFC 是语言无关的文档，所以 RFC 文档一般都会有一个 <em>Presentation Language</em> 章节来说明文档本身的表达规范，理解表达规范对理解 RFC 的主体章节及其重要。比如: <a href="https://tools.ietf.org/html/rfc5246#section-4">https://tools.ietf.org/html/rfc5246#section-4</a> 章节就是对应 TLS v1.2 RFC 中的表达语言规范。</p>
+<p>RFC 中对数据结构的描述也需要注意，其所描述的结构并就是代码对应的结构，也是因为 RFC 是语言无关的文档，所以 RFC 文档一般都会有一个 <em>Presentation Language</em> 章节来说明文档本身的表达规范，理解表达规范对理解 RFC 的主体章节及其重要。比如: <a href="https://tools.ietf.org/html/rfc5246#section-4" target="_blank">https://tools.ietf.org/html/rfc5246#section-4</a> 章节就是对应 TLS v1.2 RFC 中的表达语言规范。</p>
 <h1 id="理解-io">理解 IO</h1>
 <h2 id="理解-inputstream-read-的含义">理解 InputStream read 的含义</h2>
 <p>Socket 本质是操作系统向上层应用提供的一套访问操作系统网络栈实现的接口。网络数据从网卡到达之后，先是存在操作系统的网络栈实现的缓存中。通过 Socket 获取的 Input Output Stream 实际是读操作系统内核中的缓存数据的读写。<code>read</code> 读取数据时，操作系统会先判断当前缓存中是否还有数据可被读取，如果有就返回给应用；如果没有，则等待网卡数据到来之后再返回给应用，这也是 <code>read</code> 是一个阻塞调用的本质。</p>
@@ -1815,7 +1815,7 @@ if (!doNotTrack) {
 </tr>
 </tbody>
 </table>
-<p>查看一个加密套件代表的信息可以到 <a href="https://ciphersuite.info/">https://ciphersuite.info/</a> 搜索。</p>
+<p>查看一个加密套件代表的信息可以到 <a href="https://ciphersuite.info/" target="_blank">https://ciphersuite.info/</a> 搜索。</p>
 <h2 id="长长的名字代表啥">长长的名字代表啥</h2>
 <p>RFC 给常见的加密套件做了一套命名，它们的名字其实就代表着它们的算法组合。常见的加密套件：</p>
 <pre tabindex="0"><code>TLS_ECDH_ECDSA_WITH_NULL_SHA           = { 0xC0, 0x01 }

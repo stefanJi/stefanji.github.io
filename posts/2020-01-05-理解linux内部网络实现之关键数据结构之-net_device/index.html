@@ -1722,11 +1722,11 @@ if (!doNotTrack) {
 <li>struct <code>net_device</code>: 在 Linux 内核中，这个数据结构将用来代表网络设备。它会包含设备的硬件和软件配置信息。</li>
 <li>在 Linux 的网络实现中，核心数据结构还有<code>struct sock</code>, 它被用来储存 socket 的信息。但是 Socket 其实是内核为用户态程序提供的一组 Api, 用来访问内核的网络栈实现，所以它不属于内核内部的网络实现，也就不再这里介绍了。</li>
 </ul>
-<p>本文将着重理解 <code>net_device</code> 数据结构，<a href="https://blog.jiyang.site/2020/01/02/%E7%90%86%E8%A7%A3Linux%E5%86%85%E9%83%A8%E7%BD%91%E7%BB%9C%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%85%B3%E9%94%AE%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B-sk_buff/">上一文</a>为对 <code>sk_buff</code> 的理解。</p>
+<p>本文将着重理解 <code>net_device</code> 数据结构，<a href="https://blog.jiyang.site/2020/01/02/%E7%90%86%E8%A7%A3Linux%E5%86%85%E9%83%A8%E7%BD%91%E7%BB%9C%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%85%B3%E9%94%AE%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B-sk_buff/" target="_blank">上一文</a>为对 <code>sk_buff</code> 的理解。</p>
 <h1 id="net_device">net_device</h1>
 <p>net_device 数据结构储存着与网络设备有关的所有信息。无论真实设备还是虚拟设备，每个设备都一种这样的结构。系统上所有设备的 <code>net_device</code> 信息会被放到一个全局的列表中，全局指针 <code>dev_base</code> 指向这个列表。<code>net_device</code> 定义在 <em>include/linux/netdevice.h</em>。</p>
 <p><code>net_device</code> 结构体里的字段相当多并且有许多属于不同功能特有的字段和属于不同层的字段。</p>
-<p>网络设备可以根据类型（比如：<a href="https://zh.wikipedia.org/wiki/%E7%BD%91%E5%8D%A1">以太网卡</a>和<a href="https://zh.wikipedia.org/wiki/%E4%BB%A4%E7%89%8C%E7%8E%AF">令牌环网</a>卡）进行分类。对于相同类型的所有设备，net_device 的某些字段被设置为相同的值；对于不同型号的设备则必须将某些字段设置为不同值。因此，几乎对于每种类型，Linux 提供了一个通用的函数来初始化参数，这些参数的值在所有型号的设备中都保持不变。每个设备驱动程序除了设置其驱动的设备具有唯一值的那些字段外，也会调用这个函数来初始化通用的参数。当然驱动程序也能够重写已经被内核初始化了的字段。</p>
+<p>网络设备可以根据类型（比如：<a href="https://zh.wikipedia.org/wiki/%E7%BD%91%E5%8D%A1" target="_blank">以太网卡</a>和<a href="https://zh.wikipedia.org/wiki/%E4%BB%A4%E7%89%8C%E7%8E%AF" target="_blank">令牌环网</a>卡）进行分类。对于相同类型的所有设备，net_device 的某些字段被设置为相同的值；对于不同型号的设备则必须将某些字段设置为不同值。因此，几乎对于每种类型，Linux 提供了一个通用的函数来初始化参数，这些参数的值在所有型号的设备中都保持不变。每个设备驱动程序除了设置其驱动的设备具有唯一值的那些字段外，也会调用这个函数来初始化通用的参数。当然驱动程序也能够重写已经被内核初始化了的字段。</p>
 <p><code>net_device</code> 结构体中的字段大致可以分为以下几类：</p>
 <ul>
 <li>Configuration 与配置相关的字段</li>
@@ -1762,11 +1762,11 @@ if (!doNotTrack) {
 <p>比如我们笔记本电脑上的网卡其实支持双绞线(就是用水晶头的那个接口)和同轴电缆两种网络接入方式，双绞线和同轴电缆在我们电脑上会被分配两个端口号，网卡在工作时就需要知道自己要从哪个端口去读写数据。</p>
 </blockquote>
 <p><strong>unsigned char dma</strong></p>
-<p>设备使用的<a href="https://zh.wikipedia.org/wiki/%E7%9B%B4%E6%8E%A5%E8%A8%98%E6%86%B6%E9%AB%94%E5%AD%98%E5%8F%96">DMA</a>通道。从内核获取和是否 DMA 通道，需要使用 <code>request_dma</code> 和 <code>free_dma</code> 函数。启用或关闭已经获取的 DMA 通道，需要使用 <code>enable_dma</code> 和 <code>disable_dma</code> 函数。DMA 并非适用于所有设备，因为某些总线没有使用它。</p>
+<p>设备使用的<a href="https://zh.wikipedia.org/wiki/%E7%9B%B4%E6%8E%A5%E8%A8%98%E6%86%B6%E9%AB%94%E5%AD%98%E5%8F%96" target="_blank">DMA</a>通道。从内核获取和是否 DMA 通道，需要使用 <code>request_dma</code> 和 <code>free_dma</code> 函数。启用或关闭已经获取的 DMA 通道，需要使用 <code>enable_dma</code> 和 <code>disable_dma</code> 函数。DMA 并非适用于所有设备，因为某些总线没有使用它。</p>
 <p><strong>unsigned short flags</strong><br />
 <strong>unsigned short gflags</strong><br />
 <strong>unsigned short priv_flags</strong></p>
-<p><code>flags</code> 标志位字段，其中的某些位表示网络设备的功能（例如 <a href="http://man7.org/linux/man-pages/man7/netdevice.7.html">IFF_MULTICAST</a>），其他位表示设备的状态（例如 <code>IFF_UP</code> 或 <code>IFF_ RUNNING</code>）。设备驱动程序通常在初始化时设置功能，状态标志的管理则通过内核对外部事件的响应进行。</p>
+<p><code>flags</code> 标志位字段，其中的某些位表示网络设备的功能（例如 <a href="http://man7.org/linux/man-pages/man7/netdevice.7.html" target="_blank">IFF_MULTICAST</a>），其他位表示设备的状态（例如 <code>IFF_UP</code> 或 <code>IFF_ RUNNING</code>）。设备驱动程序通常在初始化时设置功能，状态标志的管理则通过内核对外部事件的响应进行。</p>
 <pre>
 ~$ ifconfig lo
 lo        Link encap:Local Loopback
@@ -1813,7 +1813,7 @@ lo        Link encap:Local Loopback
 </tbody>
 </table>
 <p>以太网 MTU 值得聊下。以太网帧规范将最大有效负载大小定义为 1500 字节。有时，你会发现以太网 MTU 定义为 1518 或 1514：第一个是包含报头的以太网帧的最大大小，第二个是包含报头，但不包括帧校验序列（校验和的4个字节）的最大大小。</p>
-<p>1998年，Alteon Networks 提出了一项将以太网帧的最大有效负载增加到 9KB 的倡议。后来，该提案通过<a href="https://zh.wikipedia.org/wiki/%E4%BA%92%E8%81%94%E7%BD%91%E5%B7%A5%E7%A8%8B%E4%BB%BB%E5%8A%A1%E7%BB%84">IETF</a> Internet 草案正式化，但<a href="https://zh.wikipedia.org/wiki/%E7%94%B5%E6%B0%94%E7%94%B5%E5%AD%90%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%AD%A6%E4%BC%9A">IEEE</a>从未接受。在 IEEE 规范中，超过 1500 字节的帧通常称为巨型帧，并与千兆以太网一起使用以提高吞吐量（这是因为较大的帧意味着用于大型数据传输的帧减少，中断次数减少，因此CPU使用率降低，标头开销减少等）。要讨论增加以太网 MTU 的好处以及IEEE 为什么不同意此扩展的标准化，可以搜索白皮书 &ldquo;Use of Extended Frame Sizes in Ethernet Networks&rdquo;。<a href="https://tools.ietf.org/html/draft-ietf-isis-ext-eth-01">Extended Ethernet Frame Size Support</a> 下面也有 IEEE 不同意扩展到 9KB 的回复。</p>
+<p>1998年，Alteon Networks 提出了一项将以太网帧的最大有效负载增加到 9KB 的倡议。后来，该提案通过<a href="https://zh.wikipedia.org/wiki/%E4%BA%92%E8%81%94%E7%BD%91%E5%B7%A5%E7%A8%8B%E4%BB%BB%E5%8A%A1%E7%BB%84" target="_blank">IETF</a> Internet 草案正式化，但<a href="https://zh.wikipedia.org/wiki/%E7%94%B5%E6%B0%94%E7%94%B5%E5%AD%90%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%AD%A6%E4%BC%9A" target="_blank">IEEE</a>从未接受。在 IEEE 规范中，超过 1500 字节的帧通常称为巨型帧，并与千兆以太网一起使用以提高吞吐量（这是因为较大的帧意味着用于大型数据传输的帧减少，中断次数减少，因此CPU使用率降低，标头开销减少等）。要讨论增加以太网 MTU 的好处以及IEEE 为什么不同意此扩展的标准化，可以搜索白皮书 &ldquo;Use of Extended Frame Sizes in Ethernet Networks&rdquo;。<a href="https://tools.ietf.org/html/draft-ietf-isis-ext-eth-01" target="_blank">Extended Ethernet Frame Size Support</a> 下面也有 IEEE 不同意扩展到 9KB 的回复。</p>
 <p><strong>unsigned short type</strong></p>
 <p>设备属于的类别。</p>
 <p><strong>unsigned short hard_header_len</strong></p>
@@ -1824,9 +1824,9 @@ lo        Link encap:Local Loopback
 <strong>unsigned char addr_len</strong></p>
 <p><code>dev_addr</code> 是设备链路层的地址；地址的长度（以字节为单位）由<code>addr_len</code>给出。<code>addr_ len</code>的值取决于设备的类型。以太网设备的地址为6个字节。</p>
 <p><strong>int promiscuity</strong></p>
-<p>表示设备是否开启<a href="https://zh.wikipedia.org/wiki/%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F">混杂模式</a>。</p>
+<p>表示设备是否开启<a href="https://zh.wikipedia.org/wiki/%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F" target="_blank">混杂模式</a>。</p>
 <h3 id="接口类型和端口">接口类型和端口</h3>
-<p>有些设备带有不止一个连接器（最常见的组合是 BNC(<a href="https://zh.wikipedia.org/wiki/BNC%E8%BF%9E%E6%8E%A5%E5%99%A8">同轴电缆</a>)和 <a href="https://zh.wikipedia.org/wiki/8P8C">RJ45</a>(双绞线水晶头)），并允许用户根据自己的需要选择其中之一。此参数用于设置设备的端口类型。如果配置命令没有强制设备驱动程序选择特定的端口类型，则只需选择默认端口类型。</p>
+<p>有些设备带有不止一个连接器（最常见的组合是 BNC(<a href="https://zh.wikipedia.org/wiki/BNC%E8%BF%9E%E6%8E%A5%E5%99%A8" target="_blank">同轴电缆</a>)和 <a href="https://zh.wikipedia.org/wiki/8P8C" target="_blank">RJ45</a>(双绞线水晶头)），并允许用户根据自己的需要选择其中之一。此参数用于设置设备的端口类型。如果配置命令没有强制设备驱动程序选择特定的端口类型，则只需选择默认端口类型。</p>
 <p>在某些情况下，单个设备驱动程序可以处理不同类型的接口。在这种情况下，接口可以通过简单地按特定顺序尝试所有端口类型来发现要使用的端口类型。</p>
 <p>这段代码显示了一个设备驱动程序如何根据配置方式来设置接口型号：</p>
 <div class="highlight"><div class="chroma">
@@ -1852,7 +1852,7 @@ lo        Link encap:Local Loopback
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="混杂模式">混杂模式</h3>
-<p>混杂模式的解释可以看 <a href="https://zh.wikipedia.org/wiki/%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F">wiki</a>。</p>
+<p>混杂模式的解释可以看 <a href="https://zh.wikipedia.org/wiki/%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F" target="_blank">wiki</a>。</p>
 <p>可以注意到 <code>net_device</code> 中的 <code>promiscuity</code> 是一个 int 类型，并不是一个常见的用 char 来表示布尔的变量。用 int 的原因是：<code>promiscuity</code> 字段其实是开启混杂模式的计数器。因为可能多个程序会要求设备开启混杂模式。进入混杂模式时，计数器都会递增；离开混杂模式时，计数器都会递减。直到计数器为零，设备才会关闭混杂模式。函数 <code>set_promiscuity</code> 用来管理混杂模式。</p>
 <p>只要 <code>promiscuity</code> 不为0，<code>flags</code> 的 <code>IFF_PROMISC</code> 位标志也将置1，并由配置接口的函数检查。</p>
 <h2 id="statistics">Statistics</h2>
@@ -1938,7 +1938,7 @@ lo        Link encap:Local Loopback
 <strong>struct list_head poll_list</strong><br />
 <strong>int quota</strong><br />
 <strong>int weight</strong></p>
-<p>由 <a href="https://www.ibm.com/developerworks/cn/linux/l-napi/index.html">NAPI</a> 功能使用</p>
+<p>由 <a href="https://www.ibm.com/developerworks/cn/linux/l-napi/index.html" target="_blank">NAPI</a> 功能使用</p>
 <p>*<em>const struct iw_handler_def <em>wireless_handlers</em></em><br />
 *<em>struct iw_public_data <em>wireless_data</em></em></p>
 <p>无线设备使用的其他参数和函数指针</p>

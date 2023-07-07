@@ -1721,7 +1721,7 @@ if (!doNotTrack) {
 <h2 id="step-2-bootloader">Step 2: Bootloader</h2>
 <p>Bootloader (引导加载程序)是一个在 Android 之前运行的小程序。 它不是 Android 系统的一部分。 引导加载程序是制造商放置锁定和限制的地方。引导程序分两个阶段执行。 在第一阶段，它检测外部 RAM 并加载程序。在第二阶段，为内核启动做准备，引导加载程序设置网络，内存等。</p>
 <p>Bootloader 位置:</p>
-<p><a href="https://android.googlesource.com/platform/bootable/bootloader/legacy/+/b1fde5cd7d5158b8e6876139ca76a341d0e49708/usbloader"><android source>/bootable/bootloader/legacy/usbloader</a></p>
+<p><a href="https://android.googlesource.com/platform/bootable/bootloader/legacy/&#43;/b1fde5cd7d5158b8e6876139ca76a341d0e49708/usbloader" target="_blank">&lt;android source&gt;/bootable/bootloader/legacy/usbloader</a></p>
 <h2 id="step-3-kernel">Step 3: Kernel</h2>
 <p>Android内核的启动方式与 Linux 内核类似。随着内核的启动，开始设置缓存，受保护的内存，调度和加载驱动程序。当内核完成系统设置时，它会在系统文件中查找 init 文件。</p>
 <p>Linux 和 Android 内核有什么区别？下面是 Android Project 对 Linux 内核所做的更改/插件列表：</p>
@@ -1744,10 +1744,10 @@ if (!doNotTrack) {
 <li>运行 init.rc 脚本</li>
 </ol>
 <ul>
-<li>init进程可以在：<a href="https://android.googlesource.com/platform/system/core/+/master/init/">/system/core/+/master/init/</a> 找到</li>
-<li>Init.rc文件可以在：<a href="https://android.googlesource.com/platform/system/core/+/master/rootdir/">/system/core/+/master/rootdir/</a> 找到</li>
+<li>init进程可以在：<a href="https://android.googlesource.com/platform/system/core/&#43;/master/init/" target="_blank">/system/core/&#43;/master/init/</a> 找到</li>
+<li>Init.rc文件可以在：<a href="https://android.googlesource.com/platform/system/core/&#43;/master/rootdir/" target="_blank">/system/core/&#43;/master/rootdir/</a> 找到</li>
 </ul>
-<p>Android 具有 init.rc 文件的特定格式和规则。<a href="https://community.nxp.com/docs/DOC-102537">init.rc中的内容及其用途。</a></p>
+<p>Android 具有 init.rc 文件的特定格式和规则。<a href="https://community.nxp.com/docs/DOC-102537" target="_blank">init.rc中的内容及其用途。</a></p>
 <h2 id="step-5-zygote-and-dalvikart">Step 5: Zygote and Dalvik/ART</h2>
 <p>在 Java 中，我们知道单独的虚拟机实例将在内存中被每个应用程序单独使用，但在 Android 的情况下，VM 应尽可能快地运行应用程序。但是，如果多个应用程序启动 Dalvik（VM）的多个实例会发生什么？它将消耗大量内存。</p>
 <p>为了解决这个问题，Android OS 有一个名为 <code>Zygote</code> 的系统。 Zygote 支持跨进程共享 Dalvik VM 的代码，实现更低的内存占用和最短的启动时间。 Zygote 是一个从系统启动开始就启动的虚拟机进程。 Zygote 会预加载并初始化核心库类。</p>

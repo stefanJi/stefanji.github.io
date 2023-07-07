@@ -1952,7 +1952,7 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 <p>通过以上实验也部分验证了官方的说法，但是官方对 Layout 的介绍中没有提及 BoringLayout 和 StaticLayout 的区别。于是需要去他们各自的文档中去详细了解。</p>
 <h3 id="boringlayout">BoringLayout</h3>
 <blockquote>
-<p>官方介绍：<a href="https://developer.android.com/reference/android/text/BoringLayout">BoringLayout</a> 是一种非常简单的 Layout 实现，用于从左到右的单行文本。你可能永远都不想自己做一个。 如果这样做，请确保首先调用 <code>isBoring(CharSequence，TextPaint)</code> 以确保文本符合条件。</p>
+<p>官方介绍：<a href="https://developer.android.com/reference/android/text/BoringLayout" target="_blank">BoringLayout</a> 是一种非常简单的 Layout 实现，用于从左到右的单行文本。你可能永远都不想自己做一个。 如果这样做，请确保首先调用 <code>isBoring(CharSequence，TextPaint)</code> 以确保文本符合条件。</p>
 </blockquote>
 <p>所以使用 BoringLayout 的场景是：</p>
 <ul>
@@ -1975,7 +1975,7 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><a href="https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/text/BoringLayout.java;l=282">isBoring</a> 方法会返回一个 <a href="https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/text/BoringLayout.java;l=480">BoringLayout.Metrics</a> 对象，如果返回了 null，则说明目标文本不符合使用 BoringLayout 的条件。</p>
+</div><p><a href="https://cs.android.com/android/platform/superproject/&#43;/master:frameworks/base/core/java/android/text/BoringLayout.java;l=282" target="_blank">isBoring</a> 方法会返回一个 <a href="https://cs.android.com/android/platform/superproject/&#43;/master:frameworks/base/core/java/android/text/BoringLayout.java;l=480" target="_blank">BoringLayout.Metrics</a> 对象，如果返回了 null，则说明目标文本不符合使用 BoringLayout 的条件。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -2140,7 +2140,7 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>measure 最终会调用到 <em>TextPaint#getRunAdvance</em> 去获取文本占用的宽。对于 <em>TextPaint</em> 如何去测量文本占用的宽，这里不再深入。其对应的 native 实现在 <a href="https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/jni/android/graphics/Paint.cpp;l=532?q=nGetRunAdvance">Paint.cpp</a> 中。</p>
+</div><p>measure 最终会调用到 <em>TextPaint#getRunAdvance</em> 去获取文本占用的宽。对于 <em>TextPaint</em> 如何去测量文本占用的宽，这里不再深入。其对应的 native 实现在 <a href="https://cs.android.com/android/platform/superproject/&#43;/master:frameworks/base/core/jni/android/graphics/Paint.cpp;l=532?q=nGetRunAdvance" target="_blank">Paint.cpp</a> 中。</p>
 <h3 id="staticlayout">StaticLayout</h3>
 <p><em>StaticLayout</em> 中主要做了测量文本需要多少行的工作。</p>
 <p>在测量过程中会对 <em>StaticLayout</em> 中的成员变量 <code>mLineCount</code> 进行 <code>++</code> 操作。</p>

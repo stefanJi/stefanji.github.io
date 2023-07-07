@@ -1753,16 +1753,16 @@ nameserver 4.4.4.4
 它监听的本地地址，&ndash;listen-address=127.0.1.1 (ubuntu12.04及之前的版本 是 127.0.0.1)， 这个地址是一个本地回环地址而真实的dns服务器地址，是被这个服务管理维护着的由一张图表示就是：<br />
 local process -&gt; local dnsmasq -&gt; router -&gt; ISP dns</p>
 <p>Dnsmasq 提供 DNS 缓存和 DHCP 服务功能。作为域名解析服务器(DNS)，dnsmasq可以通过缓存 DNS 请求来提高对访问过的网址的连接速度。作为DHCP 服务器，dnsmasq 可以用于为局域网电脑分配内网ip地址和提供路由。DNS和DHCP两个功能可以同时或分别单独实现。dnsmasq轻量且易配置，适用于个人用户或少于50台主机的网络。此外它还自带了一个 PXE 服务器。</p>
-<p><a href="https://wiki.archlinux.org/index.php/Dnsmasq_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">https://wiki.archlinux.org/index.php/Dnsmasq_(简体中文)</a></p>
+<p><a href="https://wiki.archlinux.org/index.php/Dnsmasq_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29" target="_blank">https://wiki.archlinux.org/index.php/Dnsmasq_(简体中文)</a></p>
 <p>比如ISP分配的DNS server是220.250.64.26，则dnsmasq会将客户端向127.0.0.1:53发出的DNS请求，转发到220.250.64.26:53 。</p>
 <hr />
 <p>参考:</p>
 <ul>
 <li>
-<p><a href="http://www.looklinux.com/etchosts-vs-etcresolv-conf-in-linux/">http://www.looklinux.com/etchosts-vs-etcresolv-conf-in-linux/</a></p>
+<p><a href="http://www.looklinux.com/etchosts-vs-etcresolv-conf-in-linux/" target="_blank">http://www.looklinux.com/etchosts-vs-etcresolv-conf-in-linux/</a></p>
 </li>
 <li>
-<p><a href="https://www.jianshu.com/p/8f36fe09e39e">https://www.jianshu.com/p/8f36fe09e39e</a></p>
+<p><a href="https://www.jianshu.com/p/8f36fe09e39e" target="_blank">https://www.jianshu.com/p/8f36fe09e39e</a></p>
 </li>
 </ul>
 

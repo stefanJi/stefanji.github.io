@@ -1715,7 +1715,7 @@ if (!doNotTrack) {
       
       <p><img src="https://image.youcute.cn/FlTdIzchzNTr9PPR7aSFS7kI46xV" alt="大纲" /></p>
 <h1 id="背景-使用">背景: 使用</h1>
-<p>Kotlin Coroutine 的使用方法，参照<a href="https://kotlinlang.org/docs/reference/coroutines/coroutines-guide.html">官方文档</a>食用即可。这里只简单给出一些概念。</p>
+<p>Kotlin Coroutine 的使用方法，参照<a href="https://kotlinlang.org/docs/reference/coroutines/coroutines-guide.html" target="_blank">官方文档</a>食用即可。这里只简单给出一些概念。</p>
 <h2 id="suspend">suspend</h2>
 <p>​使用 suspend 表示函数支持挂起操作，目的在于告诉编译器，该方法可能产生阻塞(因为普通方法也能使用 suspend 标记，但是实际不会起作用)。suspend 方法会被编译为继承 SuspendLambda 的类</p>
 <h2 id="创建协程">创建协程</h2>
@@ -1736,7 +1736,7 @@ if (!doNotTrack) {
 <h2 id="结构化并发">结构化并发</h2>
 <p>​将多个协程放到一个可以管理的空间里面，这个空间的名字就叫 CoroutineScope。通过 Scope 就能够统一的管理内部的协程，方便对多个协程整体上做取消(cancel)、等待结果(join)等操作。</p>
 <h1 id="实现原理">实现原理</h1>
-<p>Kotlin 的协程实现属于<a href="https://zh.wikipedia.org/wiki/%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%BC%96%E7%A8%8B">有限状态机编程</a>, 有限状态机编程是<a href="https://zh.wikipedia.org/wiki/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B">编程范式</a>的一种。是指利用有限状态机来进行编程实现。</p>
+<p>Kotlin 的协程实现属于<a href="https://zh.wikipedia.org/wiki/%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%BC%96%E7%A8%8B" target="_blank">有限状态机编程</a>, 有限状态机编程是<a href="https://zh.wikipedia.org/wiki/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B" target="_blank">编程范式</a>的一种。是指利用有限状态机来进行编程实现。</p>
 <p>Kotlin 在 JVM 上实现的协程机制，本身没有超脱出 JVM 的范畴，也不能够超脱，所以代码本质还是运行在操作系统级别的线程上的。所以 Kotlin Coroutine 的实现就是要在 JVM 上实现一套代码(任务)的挂起和恢复机制，而挂起和恢复刚好能抽取为两种状态，于是要实现代码运行的挂起和恢复的需求，就转变为了实现一种控制状态转移的需求。而有限状态下的编程，使用有限状态机编程范式再合适不过了。</p>
 <p>Kotlin 协程本质还是运行在线程上的，所以如果从代码的运行角度来看，并没有太多的魔法，代码的运行机制和传统一样，虚拟机按行读取指令和操作数，然后执行操作。所以 Kotlin 协程的魔法更多是在编译期就开始了。</p>
 <h2 id="执行的最小单元-codeblock">​执行的最小单元 CodeBlock</h2>

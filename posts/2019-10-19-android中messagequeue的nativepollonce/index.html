@@ -1718,7 +1718,7 @@ if (!doNotTrack) {
 <code>MessageQueue</code> 中获取下一条消息时会执行一个 native 调用 <code>nativePollOnce</code>, 翻看 Android 系统源码发现有内容.</p>
 <h2 id="来自高手的解释">来自高手的解释</h2>
 <blockquote>
-<p>首先, 先梭哈一把 stackoverflow 上高手对这个问题(<a href="https://stackoverflow.com/questions/38818642/android-what-is-message-queue-native-poll-once-in-android">android - what is message queue native poll once in android?</a>)的回答原文:</p>
+<p>首先, 先梭哈一把 stackoverflow 上高手对这个问题(<a href="https://stackoverflow.com/questions/38818642/android-what-is-message-queue-native-poll-once-in-android" target="_blank">android - what is message queue native poll once in android?</a>)的回答原文:</p>
 </blockquote>
 <p>Short answer:</p>
 <p>The nativePollOnce method is used to &ldquo;wait&rdquo; till the next Message becomes available. If the time spent during this call is long, your main (UI) thread has no real work to do and waits for next events to process. There&rsquo;s no need to worry about that.</p>

@@ -1754,12 +1754,12 @@ if (!doNotTrack) {
 </div>
 </div><p>与内核初始化过程最相关的几个源码目录是：</p>
 <ul>
-<li><a href="https://github.com/torvalds/linux/tree/v4.14/arch">arch</a> 包含许多子目录，每个子目录对应的一种处理器架构</li>
-<li><a href="https://github.com/torvalds/linux/tree/v4.14/init">init</a> 包含<code>start_kernel</code>和其他与内核初始化相关的函数。内核将由与处理器体系对应的代码引导。然后处理器会执行 <code>start_kernel</code> 函数，该函数负责常见的内核初始化工作，这些工作是与处理器体系结构无关的，是内核的起点</li>
-<li><a href="https://github.com/torvalds/linux/tree/v4.14/kernel">kernel</a> Linux内核的核心，几乎所有主要的内核子系统都在此实现</li>
-<li><a href="https://github.com/torvalds/linux/tree/v4.14/mm">mm</a> 与内存管理相关的方法和数据结构都定义在此文件夹中</li>
-<li><a href="https://github.com/torvalds/linux/tree/v4.14/drivers">drivers</a> 包含所有外设的驱动实现，此文件夹是内核代码中最大的一个</li>
-<li><a href="https://github.com/torvalds/linux/tree/v4.14/fs">fs</a> 包含各种文件系统的实现</li>
+<li><a href="https://github.com/torvalds/linux/tree/v4.14/arch" target="_blank">arch</a> 包含许多子目录，每个子目录对应的一种处理器架构</li>
+<li><a href="https://github.com/torvalds/linux/tree/v4.14/init" target="_blank">init</a> 包含<code>start_kernel</code>和其他与内核初始化相关的函数。内核将由与处理器体系对应的代码引导。然后处理器会执行 <code>start_kernel</code> 函数，该函数负责常见的内核初始化工作，这些工作是与处理器体系结构无关的，是内核的起点</li>
+<li><a href="https://github.com/torvalds/linux/tree/v4.14/kernel" target="_blank">kernel</a> Linux内核的核心，几乎所有主要的内核子系统都在此实现</li>
+<li><a href="https://github.com/torvalds/linux/tree/v4.14/mm" target="_blank">mm</a> 与内存管理相关的方法和数据结构都定义在此文件夹中</li>
+<li><a href="https://github.com/torvalds/linux/tree/v4.14/drivers" target="_blank">drivers</a> 包含所有外设的驱动实现，此文件夹是内核代码中最大的一个</li>
+<li><a href="https://github.com/torvalds/linux/tree/v4.14/fs" target="_blank">fs</a> 包含各种文件系统的实现</li>
 </ul>
 <h1 id="编译规则">编译规则</h1>
 <p>Linux 也是使用 <em>make</em> 工具去编译内核源码，但是它的 <em>Makefile</em> 比较复杂。同时 Linux 还开发了基于 <em>make</em> 的 <em>kbuild</em> 编译系统。</p>
@@ -1802,7 +1802,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="err"></span>		<span class="err">gcc</span> <span class="err">$(flag)</span> <span class="err">-o</span> <span class="err">$@</span> <span class="err">$&lt;
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>flag</code> 是一个配置变量，就有可能进行了修改，但是由于 make 判断到 <code>%.c</code> 文件没有发生修改，于是在重新编译时，实际不会去执行 <code>gcc $(flag) -o...</code>命令，而是直接使用上一次的 <code>%.o</code> 产物。这种情况就可能与我们的期望不一致了，所以 Linux 引入了<a href="https://github.com/torvalds/linux/blob/v4.14/scripts/Kbuild.include#L264">if_changed</a> 方法去增加了对命令是否修改的检测。上面的构建配置就可以修改为下面这样：</p>
+</div><p><code>flag</code> 是一个配置变量，就有可能进行了修改，但是由于 make 判断到 <code>%.c</code> 文件没有发生修改，于是在重新编译时，实际不会去执行 <code>gcc $(flag) -o...</code>命令，而是直接使用上一次的 <code>%.o</code> 产物。这种情况就可能与我们的期望不一致了，所以 Linux 引入了<a href="https://github.com/torvalds/linux/blob/v4.14/scripts/Kbuild.include#L264" target="_blank">if_changed</a> 方法去增加了对命令是否修改的检测。上面的构建配置就可以修改为下面这样：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1818,7 +1818,7 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>修改之后的构建配置表示：为每一个<code>.c</code>文件执行<code>if_changed</code>函数(并把<code>compile</code>作为参数传递给它)去生成<code>.c</code>文件对应的<code>.o</code>文件。<br />
-<code>if_changed</code>函数会检查<code>compile</code>变量(<code>if_changed</code>会自动添加一个<code>cmd_</code>前缀)的值与上一次编译相比是否发生了修改，如果发生了修改，就会执行<code>compile</code>引用的命令，进而进行重新编译。<code>FORCE</code> 则是一个特别的依赖文件，使用 <a href="https://www.gnu.org/software/make/manual/html_node/Force-Targets.html">FORCE</a> 表示强制让 <code>make</code> 在构建时总是执行构建配置下的命令。</p>
+<code>if_changed</code>函数会检查<code>compile</code>变量(<code>if_changed</code>会自动添加一个<code>cmd_</code>前缀)的值与上一次编译相比是否发生了修改，如果发生了修改，就会执行<code>compile</code>引用的命令，进而进行重新编译。<code>FORCE</code> 则是一个特别的依赖文件，使用 <a href="https://www.gnu.org/software/make/manual/html_node/Force-Targets.html" target="_blank">FORCE</a> 表示强制让 <code>make</code> 在构建时总是执行构建配置下的命令。</p>
 <p>于是使用 <code>FORCE</code> 和 <code>if_changed</code>，就能避免<em>make</em>忽略了命令的修改而不触发重新编译。</p>
 </li>
 </ul>
@@ -1879,22 +1879,22 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">     +<span class="k">$(</span>call if_changed,link-vmlinux<span class="k">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>去除 <em>if_changed</em> 的干扰，替换 <code>$&lt;</code> 和 <code>$@</code> 之后，意思就是 vmlinux 的构建会执行 <em>cmd_link_vmlinux</em> 命令。 <em>cmd_link_linux</em> 对应的命令就是执行 <a href="https://github.com/torvalds/linux/blob/v4.14/scripts/link-vmlinux.sh">scripts/link-vmlinux.sh</a>，然后再执行处理器架构对应的 <em>ARCH_POSTLINK</em>。</p>
+</div><p>去除 <em>if_changed</em> 的干扰，替换 <code>$&lt;</code> 和 <code>$@</code> 之后，意思就是 vmlinux 的构建会执行 <em>cmd_link_vmlinux</em> 命令。 <em>cmd_link_linux</em> 对应的命令就是执行 <a href="https://github.com/torvalds/linux/blob/v4.14/scripts/link-vmlinux.sh" target="_blank">scripts/link-vmlinux.sh</a>，然后再执行处理器架构对应的 <em>ARCH_POSTLINK</em>。</p>
 </li>
 <li>
 <p>当 <em>link-vmlinux.sh</em> 执行时，假设所有依赖的目标文件都已经编译出来了。这些依赖的目标文件位置存放在 <code>$(KBUILD_VMLINUX_INIT)</code>，<code>$(KBUILD_VMLINUX_MAIN)</code>，<code>$(KBUILD_VMLINUX_LIBS)</code> 中(来自 link-vmlinux.sh的注释)。</p>
 </li>
 <li>
-<p><em>link-vmlinux.sh</em> 脚本首先会将所有可用的目标文件一起编译为一个 <em>thin archive</em>(<a href="https://github.com/torvalds/linux/blob/v4.14/scripts/link-vmlinux.sh#L253">archive_builtih方法</a>)。<em>thin archive</em> 是一个特别的目标文件，它包含了一系列目标文件的引用和目标文件们的符号表的合并。生成的 <em>thin archive</em> 作为 <em>build-in.o</em> 文件存放，并且 <em>build-in.o</em> 文件的格式能够被 <em>linker</em> 识别，所以它的使用方法和普通的目标文件一样。(<em>thin archive</em> 是 <a href="https://github.com/torvalds/linux/blob/v4.14/scripts/link-vmlinux.sh#L56">archive_build</a> 函数利用 <a href="https://sourceware.org/binutils/docs/binutils/ar.html">ar</a> 工具生成的。）</p>
+<p><em>link-vmlinux.sh</em> 脚本首先会将所有可用的目标文件一起编译为一个 <em>thin archive</em>(<a href="https://github.com/torvalds/linux/blob/v4.14/scripts/link-vmlinux.sh#L253" target="_blank">archive_builtih方法</a>)。<em>thin archive</em> 是一个特别的目标文件，它包含了一系列目标文件的引用和目标文件们的符号表的合并。生成的 <em>thin archive</em> 作为 <em>build-in.o</em> 文件存放，并且 <em>build-in.o</em> 文件的格式能够被 <em>linker</em> 识别，所以它的使用方法和普通的目标文件一样。(<em>thin archive</em> 是 <a href="https://github.com/torvalds/linux/blob/v4.14/scripts/link-vmlinux.sh#L56" target="_blank">archive_build</a> 函数利用 <a href="https://sourceware.org/binutils/docs/binutils/ar.html" target="_blank">ar</a> 工具生成的。）</p>
 </li>
 <li>
-<p>接着会调用 <a href="https://github.com/torvalds/linux/blob/v4.14/scripts/link-vmlinux.sh#L69">modpost_link</a> 方法。这个方法调用 <em>linker</em> 去生成 <em>vmlinux.o</em> 文件，这个文件会被用于执行 <a href="https://github.com/torvalds/linux/blob/v4.14/lib/Kconfig.debug#L308">Section missmatch analysis</a>，该分析由<a href="https://github.com/torvalds/linux/tree/v4.14/scripts/mod">modpost</a> 程序执行，并在 <a href="https://github.com/torvalds/linux/blob/v4.14/scripts/link-vmlinux.sh#L260">link-vmlinux.sh#L260</a> 触发。</p>
+<p>接着会调用 <a href="https://github.com/torvalds/linux/blob/v4.14/scripts/link-vmlinux.sh#L69" target="_blank">modpost_link</a> 方法。这个方法调用 <em>linker</em> 去生成 <em>vmlinux.o</em> 文件，这个文件会被用于执行 <a href="https://github.com/torvalds/linux/blob/v4.14/lib/Kconfig.debug#L308" target="_blank">Section missmatch analysis</a>，该分析由<a href="https://github.com/torvalds/linux/tree/v4.14/scripts/mod" target="_blank">modpost</a> 程序执行，并在 <a href="https://github.com/torvalds/linux/blob/v4.14/scripts/link-vmlinux.sh#L260" target="_blank">link-vmlinux.sh#L260</a> 触发。</p>
 </li>
 <li>
-<p>接着会生成内核符号表。它会包含所有函数和全局变量，以及它们在 <em>vmlinux</em> 二进制文件中的位置信息。主要的工作在 <a href="https://github.com/torvalds/linux/blob/v4.14/scripts/link-vmlinux.sh#L146">kallsyms</a> 函数中完成。它首先使用 <a href="https://sourceware.org/binutils/docs/binutils/nm.html">nm</a> 从 <em>vmlinux.o</em> 中导出所有符号。然后使用 <a href="https://github.com/torvalds/linux/blob/v4.14/scripts/kallsyms.c">scripts/kallsyms</a> 生成一个包含所有符号信息，且按照一种能被内核理解的特定格式编码的汇编文件(symbols.S)。接下来 <em>symbols.S</em> 被编译，并和原始的 <em>vmlinux</em> 文件链接在一起。来自内核符号表的信息用于在运行时生成 <em>/proc/kallsyms</em> 文件。</p>
+<p>接着会生成内核符号表。它会包含所有函数和全局变量，以及它们在 <em>vmlinux</em> 二进制文件中的位置信息。主要的工作在 <a href="https://github.com/torvalds/linux/blob/v4.14/scripts/link-vmlinux.sh#L146" target="_blank">kallsyms</a> 函数中完成。它首先使用 <a href="https://sourceware.org/binutils/docs/binutils/nm.html" target="_blank">nm</a> 从 <em>vmlinux.o</em> 中导出所有符号。然后使用 <a href="https://github.com/torvalds/linux/blob/v4.14/scripts/kallsyms.c" target="_blank">scripts/kallsyms</a> 生成一个包含所有符号信息，且按照一种能被内核理解的特定格式编码的汇编文件(symbols.S)。接下来 <em>symbols.S</em> 被编译，并和原始的 <em>vmlinux</em> 文件链接在一起。来自内核符号表的信息用于在运行时生成 <em>/proc/kallsyms</em> 文件。</p>
 </li>
 <li>
-<p>最终，<em>vmlinux</em> 文件生成，<em>System.map</em> 也会被生成。<em>System.map</em> 文件包含的信息和 <em>/proc/kallsyms</em> 一样，区别在与 <em>System.map</em> 是编译期生成的，用来在内核出现错误 Crash 时(<a href="https://en.wikipedia.org/wiki/Linux_kernel_oops">linux kernel oops</a>)，根据内存地址查找对应的符号信息。</p>
+<p>最终，<em>vmlinux</em> 文件生成，<em>System.map</em> 也会被生成。<em>System.map</em> 文件包含的信息和 <em>/proc/kallsyms</em> 一样，区别在与 <em>System.map</em> 是编译期生成的，用来在内核出现错误 Crash 时(<a href="https://en.wikipedia.org/wiki/Linux_kernel_oops" target="_blank">linux kernel oops</a>)，根据内存地址查找对应的符号信息。</p>
 <p><em>/proc/kallsyms</em> 虚拟文件:</p>
 <blockquote>
 <p>kallsyms: Extract all kernel symbols for debugging</p>
@@ -1960,7 +1960,7 @@ ffffffff8140cef0 T clear_page
 </div><p>开始定义的 <em>init-y</em>，<em>drivers-y</em> 等变量包含了所有需要编译到内核中的源码文件目录路径，然后经过 <code>patsubst</code> 函数处理后，这些变量会变为 <em>init/build-in.o</em> 这样的路径。</p>
 <p>接着，在 <em>export</em> 部分，不同目录下的 <em>build-in.o</em> 被分类到了 KBUILD_VMLINUX_*** 中。</p>
 <p>最后，所有 <em>build-in.o</em> 文件被聚合到 <code>vmlinux-deps</code> 变量中。这也解释了为什么 <code>vmlinux</code> 最终其实是依赖了所有子目录的 <em>build-in.o</em> 文件。</p>
-<p><a href="https://www.gnu.org/software/make/manual/html_node/Text-Functions.html">patsubst</a> 是 make 的函数，用来替换文本。比如 <em>init-y</em> 的初始值是 <em>init/</em>，那么经过 <code>patsubst</code> 处理之后：</p>
+<p><a href="https://www.gnu.org/software/make/manual/html_node/Text-Functions.html" target="_blank">patsubst</a> 是 make 的函数，用来替换文本。比如 <em>init-y</em> 的初始值是 <em>init/</em>，那么经过 <code>patsubst</code> 处理之后：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -2033,9 +2033,9 @@ ffffffff8140cef0 T clear_page
 </code></pre><p>这段脚本描述了在 ELF 文件中, <em>text</em> 域将会在 <code>0x1000000</code>内存地址开始存放, <em>data</em> 域在 <code>0x8000000</code> 开始存放，<em>bss</em> 域则紧跟 <em>data</em> 域之后。</p>
 <p>Linker Script 脚本中的每行代表一个 <em>Output Section</em>，每行开头的<code>.</code>号是 <em>Location Counter</em>，表示当前行的开始内存地址。<em>Location Counter</em> 会随着 <em>Output Section</em> 占用的内存增加。</p>
 <p>这里的第二行定义了 Section <em>.text</em>。冒号是必需的语法。在 Output Section 名称后面的花括号中，放置在此 Output Section 中的 Input Section 的名称。<code>*</code>是与任何文件名匹配的通配符。表达式 <code>*（.text)</code> 表示所有输入文件中的 <em>.text</em> input section 都会被放置在这个区域。</p>
-<p>详细可参考<a href="https://sourceware.org/binutils/docs/ld/Simple-Example.html#Simple-Example">Simple Linker Script Example</a>。</p>
+<p>详细可参考<a href="https://sourceware.org/binutils/docs/ld/Simple-Example.html#Simple-Example" target="_blank">Simple Linker Script Example</a>。</p>
 <h2 id="linux-linker-script">Linux Linker Script</h2>
-<p>Linux <em>arm64</em> 架构对应的 link script(<a href="https://github.com/torvalds/linux/blob/v4.14/arch/arm64/kernel/vmlinux.lds.S">vmlinux.lds.S</a>) 是一个模版文件，该模板文件利用一些宏去替换其实际值，来构建实际的 linker script，这样就能让在不同体系的处理器之间读取和移植能够变得更加容易。</p>
+<p>Linux <em>arm64</em> 架构对应的 link script(<a href="https://github.com/torvalds/linux/blob/v4.14/arch/arm64/kernel/vmlinux.lds.S" target="_blank">vmlinux.lds.S</a>) 是一个模版文件，该模板文件利用一些宏去替换其实际值，来构建实际的 linker script，这样就能让在不同体系的处理器之间读取和移植能够变得更加容易。</p>
 <pre tabindex="0"><code>SECTIONS
 {
 	. = KIMAGE_VADDR + TEXT_OFFSET;
@@ -2046,7 +2046,7 @@ ffffffff8140cef0 T clear_page
 	}
 	...
 }
-</code></pre><p>上面是 <em>vmlinux.lds.S</em> 的相关部分，内核代码的入口应该放在 <em>.head.text</em> Section 中。通过在内核代码中搜索能发现，在 <a href="https://github.com/torvalds/linux/blob/v4.14/include/linux/init.h#L90">include/linux/int.h</a>中定义了一个宏 <code>_HEAD</code>，这个宏的值是 <code>.section &quot;.head.text&quot;,&quot;ax&quot;</code>。在 <a href="https://github.com/torvalds/linux/blob/v4.14/arch/arm64/kernel/head.S#L72">arm64/kernel/head.S</a> 中会用到这个宏去定义 linker 规则。这个规则中用到了<a href="https://sourceware.org/binutils/docs/ld/Entry-Point.html#Entry-Point">ENTRY</a>去定义了程序执行的第一个指令。</p>
+</code></pre><p>上面是 <em>vmlinux.lds.S</em> 的相关部分，内核代码的入口应该放在 <em>.head.text</em> Section 中。通过在内核代码中搜索能发现，在 <a href="https://github.com/torvalds/linux/blob/v4.14/include/linux/init.h#L90" target="_blank">include/linux/int.h</a>中定义了一个宏 <code>_HEAD</code>，这个宏的值是 <code>.section &quot;.head.text&quot;,&quot;ax&quot;</code>。在 <a href="https://github.com/torvalds/linux/blob/v4.14/arch/arm64/kernel/head.S#L72" target="_blank">arm64/kernel/head.S</a> 中会用到这个宏去定义 linker 规则。这个规则中用到了<a href="https://sourceware.org/binutils/docs/ld/Entry-Point.html#Entry-Point" target="_blank">ENTRY</a>去定义了程序执行的第一个指令。</p>
 <pre tabindex="0"><code>ENTRY(stext)
 </code></pre><blockquote>
 <p><em>ENTRY(symbol)</em> 是 Linker Script 设置 entry point 的命令，<code>symbol</code> 就是需要执行的方法符号。</p>
@@ -2068,13 +2068,13 @@ ffffffff8140cef0 T clear_page
 	bl	__cpu_setup			// initialise processor
 	b	__primary_switch
 ENDPROC(stext)
-</code></pre><p><a href="https://github.com/torvalds/linux/blob/v4.14/arch/arm64/kernel/head.S#L136">preserve_boot_args</a> 方法用来存储 bootloader 传递给内核的参数。详细可参考<a href="https://github.com/s-matyukevich/raspberry-pi-os/blob/master/docs/lesson02/linux.md#preserve_boot_args">preserve_boot_args</a>。</p>
-<p><a href="https://github.com/torvalds/linux/blob/v4.14/arch/arm64/kernel/head.S#L386">el2_setup</a> 设置处理器的异常级别在 <code>EL1</code>。</p>
+</code></pre><p><a href="https://github.com/torvalds/linux/blob/v4.14/arch/arm64/kernel/head.S#L136" target="_blank">preserve_boot_args</a> 方法用来存储 bootloader 传递给内核的参数。详细可参考<a href="https://github.com/s-matyukevich/raspberry-pi-os/blob/master/docs/lesson02/linux.md#preserve_boot_args" target="_blank">preserve_boot_args</a>。</p>
+<p><a href="https://github.com/torvalds/linux/blob/v4.14/arch/arm64/kernel/head.S#L386" target="_blank">el2_setup</a> 设置处理器的异常级别在 <code>EL1</code>。</p>
 <h1 id="参考">参考</h1>
 <ul>
-<li><a href="https://github.com/torvalds/linux/blob/v4.14/Documentation/kbuild/makefiles.txt">https://github.com/torvalds/linux/blob/v4.14/Documentation/kbuild/makefiles.txt</a></li>
-<li><a href="https://github.com/s-matyukevich/raspberry-pi-os/blob/master/docs/lesson01/linux/build-system.md">https://github.com/s-matyukevich/raspberry-pi-os/blob/master/docs/lesson01/linux/build-system.md</a></li>
-<li><a href="https://sourceware.org/binutils/docs/ld/Simple-Example.html#Simple-Example">https://sourceware.org/binutils/docs/ld/Simple-Example.html#Simple-Example</a></li>
+<li><a href="https://github.com/torvalds/linux/blob/v4.14/Documentation/kbuild/makefiles.txt" target="_blank">https://github.com/torvalds/linux/blob/v4.14/Documentation/kbuild/makefiles.txt</a></li>
+<li><a href="https://github.com/s-matyukevich/raspberry-pi-os/blob/master/docs/lesson01/linux/build-system.md" target="_blank">https://github.com/s-matyukevich/raspberry-pi-os/blob/master/docs/lesson01/linux/build-system.md</a></li>
+<li><a href="https://sourceware.org/binutils/docs/ld/Simple-Example.html#Simple-Example" target="_blank">https://sourceware.org/binutils/docs/ld/Simple-Example.html#Simple-Example</a></li>
 </ul>
 
     </article>

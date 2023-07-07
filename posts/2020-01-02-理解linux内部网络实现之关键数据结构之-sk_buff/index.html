@@ -1843,7 +1843,7 @@ if (!doNotTrack) {
 <p>*<em>struct net_device <em>input_dev</em></em></p>
 <p>表示数据包到来的设备。当数据包是在本地生成的，其值是 NULL。</p>
 <p>*<em>struct net_device <em>real_dev</em></em></p>
-<p>该字段仅对虚拟设备有意义，代表与虚拟设备关联的实际设备。 例如，Bonding（将两个或多个网络接口组合或合并为一个接口） 和 <a href="https://zh.wikipedia.org/zh-cn/%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91">VLAN(virtual local area network)</a> 接口使用它来记住从何处接收到真实设备入口流量。</p>
+<p>该字段仅对虚拟设备有意义，代表与虚拟设备关联的实际设备。 例如，Bonding（将两个或多个网络接口组合或合并为一个接口） 和 <a href="https://zh.wikipedia.org/zh-cn/%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91" target="_blank">VLAN(virtual local area network)</a> 接口使用它来记住从何处接收到真实设备入口流量。</p>
 <p><strong>union {&hellip;} h</strong><br />
 <strong>union {&hellip;} nh</strong><br />
 <strong>union {&hellip;} mac</strong></p>
@@ -1930,9 +1930,9 @@ if (!doNotTrack) {
 <p><strong>unsigned short protocol</strong></p>
 <p>从 L2 处的网卡设备驱动程序的角度来看，这是在更高层次上使用的协议。典型协议有 IP，IPv6和ARP。完整列表可在 <em>include/linux/if_ether.h</em> 中找到。由于每个协议都有其自己的处理传入数据包的处理函数，因此驱动程序使用此字段来通知其上一层使用什么处理函数。每个驱动程序都调用 <code>netif_rx</code> 来调用上层网络层的处理函数，因此必须在调用该函数之前初始化协议字段。</p>
 <p><strong>unsigned short security</strong></p>
-<p>表示数据包的安全级别。 该字段最初是为与 <a href="https://zh.wikipedia.org/wiki/IPsec">IPsec</a> 一起使用而引入的。</p>
+<p>表示数据包的安全级别。 该字段最初是为与 <a href="https://zh.wikipedia.org/wiki/IPsec" target="_blank">IPsec</a> 一起使用而引入的。</p>
 <h2 id="feature-specific-fields">Feature-Specific Fields</h2>
-<p>Linux内核是模块化的，允许你选择要包括的内容和要忽略的内容。因此，只有在编译内核时开启支持像 <a href="https://zh.wikipedia.org/wiki/Netfilter">Netfilter</a> 或 <a href="https://zh.wikipedia.org/wiki/%E6%9C%8D%E5%8A%A1%E8%B4%A8%E9%87%8F">QoS</a> 之类的特定功能的情况下，某些字段才会包含在 sk_buff 数据结构中：</p>
+<p>Linux内核是模块化的，允许你选择要包括的内容和要忽略的内容。因此，只有在编译内核时开启支持像 <a href="https://zh.wikipedia.org/wiki/Netfilter" target="_blank">Netfilter</a> 或 <a href="https://zh.wikipedia.org/wiki/%E6%9C%8D%E5%8A%A1%E8%B4%A8%E9%87%8F" target="_blank">QoS</a> 之类的特定功能的情况下，某些字段才会包含在 sk_buff 数据结构中：</p>
 <p>unsigned long nfmark<br />
 __u32 nfcache<br />
 __u32 nfctinfo<br />
@@ -1940,7 +1940,7 @@ struct nf_conntrack *nfct unsigned int nfdebug<br />
 struct nf_bridge_info *nf_bridge</p>
 <p>这些参数由Netfilter使用。</p>
 <p>union {&hellip;} private</p>
-<p>高性能并行接口<a href="https://en.wikipedia.org/wiki/HIPPI">HIPPI</a>使用此共用体。</p>
+<p>高性能并行接口<a href="https://en.wikipedia.org/wiki/HIPPI" target="_blank">HIPPI</a>使用此共用体。</p>
 <p>__u32 tc_index<br />
 __u32 tc_verd<br />
 __u32 tc_classid</p>
@@ -2019,7 +2019,7 @@ __u32 tc_classid</p>
 <p><img src="https://image.youcute.cn/image/blog/skb_reserve_in_travering.png" alt="skb_reserve 在发送数据时" /></p>
 <ol>
 <li>当要求 TCP 传输某些数据时，它会按照某些条件（TCP Max Segment Size(mss)，对分散收集 I/O 支持等）分配一个缓冲区。</li>
-<li>TCP 在缓冲区的头部保留（通过调用 <code>skb_reserve</code>）足够的空间，以容纳所有层（TCP，IP，Link 层）的所有协议头。参数 <code>MAX_TCP_HEADER</code> 是所有级别的所有协议头的总和，并考虑到最坏的情况：因为 TCP 层不知道将使用哪种类型的接口进行传输，因此它为每个层保留最大的标头。它甚至考虑到多个 IP 协议头的可能性（因为当内核编译为支持 <em><a href="https://en.wikipedia.org/wiki/IP_in_IP">IP in IP</a></em> 时，你可以拥有多个IP 协议头）。</li>
+<li>TCP 在缓冲区的头部保留（通过调用 <code>skb_reserve</code>）足够的空间，以容纳所有层（TCP，IP，Link 层）的所有协议头。参数 <code>MAX_TCP_HEADER</code> 是所有级别的所有协议头的总和，并考虑到最坏的情况：因为 TCP 层不知道将使用哪种类型的接口进行传输，因此它为每个层保留最大的标头。它甚至考虑到多个 IP 协议头的可能性（因为当内核编译为支持 <em><a href="https://en.wikipedia.org/wiki/IP_in_IP" target="_blank">IP in IP</a></em> 时，你可以拥有多个IP 协议头）。</li>
 <li>TCP 的 payload （应用层传输的数据）被复制到缓冲区中。请注意上图只是个例子。TCP 的 payload 可以被不同地组织；例如，可以将其存储为片段。</li>
 <li>TCP 层添加它的协议头。</li>
 <li>TCP 层将缓冲区移交给 IP 层，IP层也添加协议头。</li>
@@ -2095,7 +2095,7 @@ __u32 tc_classid</p>
 </div>
 </div><h3 id="克隆和拷贝">克隆和拷贝</h3>
 <p>当相同的缓冲区需要由不同的消费者处理，并且他们可能更改 sk_buff 结构中的内容（协议头的<code>h</code>和 <code>nh</code> 指针等 Layout 字段）时，为了提高效率，内核并没有克隆缓冲区的结构和数据域，而是仅复制 sk_buff 的结构，并使用引用计数进行操作，以避免过早释放共享数据块。<code>skb_clone</code> 函数负责拷贝一个 buffer。</p>
-<p>使用克隆的一种情况是，需要将入口数据包分发给多个接收者，例如协议处理程序和一个或多个网络分接头（<a href="https://en.wikipedia.org/wiki/Network_tap">Network taps</a>）。</p>
+<p>使用克隆的一种情况是，需要将入口数据包分发给多个接收者，例如协议处理程序和一个或多个网络分接头（<a href="https://en.wikipedia.org/wiki/Network_tap" target="_blank">Network taps</a>）。</p>
 <p>sk_buff 克隆不会链接到任何链表，也没有引用套接字所有者。克隆和原始缓冲区中的 <code>skb-&gt;cloned</code> 字段均设置为1。在克隆中将 <code>skb-&gt;users</code> 设置为1，以便第一次尝试删除它（被克隆的 sk_buff）时会成功，并且数据域的引用数（dataref）递增（因为现在有一个新的 sk_buff 指向了）。</p>
 <p><code>skb_clone</code> 会调用 <code>__skb_clone</code>:</p>
 <div class="highlight"><div class="chroma">
@@ -2189,7 +2189,7 @@ __u32 tc_classid</p>
 </div><p>可以看到其实现是定义了一个宏，预处理编译之后 skb_queue_walk 就会被替换为上面的代码，因为 sk_buff 的队列是一个双向链表，去过遍历到了头节点，说明遍历完成了。</p>
 <p>操作队列的所有函数都必须保证是原子操作。也就是说，它们必须获取 sk_buff_head 结构提供的队列自旋锁。否则，它们可能会被异步事件中断，这些异步事件会使队列中的元素入队或出队，例如到期计时器调用的函数会导致争用条件。</p>
 <blockquote>
-<p>本文大部分内容出自:《Understanding Linux Network Internals》 <a href="https://itbook.store/books/9780596002558">https://itbook.store/books/9780596002558</a></p>
+<p>本文大部分内容出自:《Understanding Linux Network Internals》 <a href="https://itbook.store/books/9780596002558" target="_blank">https://itbook.store/books/9780596002558</a></p>
 </blockquote>
 
     </article>

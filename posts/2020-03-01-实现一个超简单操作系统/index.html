@@ -1724,9 +1724,9 @@ if (!doNotTrack) {
 <!-- more -->
 <p><img src="https://image.youcute.cn/FhAEHW19wYa4vAHamHvW_VK6T6pX" alt="本文概览" /></p>
 <blockquote>
-<p>内容参考自 <a href="https://github.com/s-matyukevich/raspberry-pi-os">https://github.com/s-matyukevich/raspberry-pi-os</a></p>
+<p>内容参考自 <a href="https://github.com/s-matyukevich/raspberry-pi-os" target="_blank">https://github.com/s-matyukevich/raspberry-pi-os</a></p>
 </blockquote>
-<p>这个简易系统运行起来将只会做一件事情: 支持通过串口通信。项目结构基本和 <a href="https://github.com/stefanJi/raspberry-pi-os/tree/master/src/lesson01">raspberry-pi-os lesson01</a>相同，我额外增加了继电器控制部分。</p>
+<p>这个简易系统运行起来将只会做一件事情: 支持通过串口通信。项目结构基本和 <a href="https://github.com/stefanJi/raspberry-pi-os/tree/master/src/lesson01" target="_blank">raspberry-pi-os lesson01</a>相同，我额外增加了继电器控制部分。</p>
 <table>
 <thead>
 <tr>
@@ -1877,7 +1877,7 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="linker-脚本">linker 脚本</h1>
-<p>linker 脚本的目的是：定义如何将目标文件存放到 .elf 文件中的规则。<a href="https://sourceware.org/binutils/docs/ld/Scripts.html#Scripts">linker script的详解</a>.</p>
+<p>linker 脚本的目的是：定义如何将目标文件存放到 .elf 文件中的规则。<a href="https://sourceware.org/binutils/docs/ld/Scripts.html#Scripts" target="_blank">linker script的详解</a>.</p>
 <pre tabindex="0"><code>SECTIONS
 {
     .text.boot : { *(.text.boot) }
@@ -1951,14 +1951,14 @@ if (!doNotTrack) {
 <p>汇编命令</p>
 </blockquote>
 <ul>
-<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289881054.htm">mrs</a>: 移动 PSR 寄存器的值到通用寄存器</li>
-<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289863017.htm">and</a>: 与操作</li>
-<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289867296.htm">cbz</a>: 如果是0，则跳到后面的 label 执行</li>
-<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289863797.htm">b</a>: 跳到 label 执行</li>
-<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289862147.htm">adr</a>: 在目标寄存器中为存储映射中定义的标签生成相对于寄存器的地址</li>
-<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289908389.htm">sub</a>: 做减法</li>
-<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289865686.htm">bl</a>: 执行跳转到 label 对应的链接</li>
-<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289878994.htm">move</a>: 拷贝值到寄存器</li>
+<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289881054.htm" target="_blank">mrs</a>: 移动 PSR 寄存器的值到通用寄存器</li>
+<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289863017.htm" target="_blank">and</a>: 与操作</li>
+<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289867296.htm" target="_blank">cbz</a>: 如果是0，则跳到后面的 label 执行</li>
+<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289863797.htm" target="_blank">b</a>: 跳到 label 执行</li>
+<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289862147.htm" target="_blank">adr</a>: 在目标寄存器中为存储映射中定义的标签生成相对于寄存器的地址</li>
+<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289908389.htm" target="_blank">sub</a>: 做减法</li>
+<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289865686.htm" target="_blank">bl</a>: 执行跳转到 label 对应的链接</li>
+<li><a href="http://www.keil.com/support/man/docs/armasm/armasm_dom1361289878994.htm" target="_blank">move</a>: 拷贝值到寄存器</li>
 </ul>
 <h2 id="kernel_main-方法"><code>kernel_main</code> 方法</h2>
 <blockquote>
@@ -2012,9 +2012,9 @@ if (!doNotTrack) {
 <p>为了控制外部设备，还需要了解下树莓派的外设在底层是如何让工作的。</p>
 </blockquote>
 <p>树莓派 3B、B+ 使用的主板是 <code>BCM2837 ARM 主板</code>。<br />
-BCM2837 是一种简单的 <a href="https://en.wikipedia.org/wiki/System_on_a_chip">SOC (System on a chip)</a> 主板。在这种主板上访问外部设备都是通过内存映射寄存器实现。<br />
+BCM2837 是一种简单的 <a href="https://en.wikipedia.org/wiki/System_on_a_chip" target="_blank">SOC (System on a chip)</a> 主板。在这种主板上访问外部设备都是通过内存映射寄存器实现。<br />
 ARM 上内存的物理地址从 0x00000000 开始。物理内存地址从<code>0x3F000000</code>到<code>0x3FFFFFFF</code>为外设保留。外设的总线地址设置为映射到从<code>0x7E000000</code>开始的外设总线地址范围。因此，假设一个外设在总线上的地址是<code>0x7Ennnnnn</code>，那么外设在物理内存上的地址将是<code>0x3Fnnnnnn</code>。</p>
-<p>一个设备寄存器就是一个32位的内存区域。每个设备寄存器中每一位的含义都在 <a href="https://github.com/raspberrypi/documentation/files/1888662/BCM2837-ARM-Peripherals.-.Revised.-.V2-1.pdf">BCM2837 ARM 主板外设文档</a>中有描述。</p>
+<p>一个设备寄存器就是一个32位的内存区域。每个设备寄存器中每一位的含义都在 <a href="https://github.com/raspberrypi/documentation/files/1888662/BCM2837-ARM-Peripherals.-.Revised.-.V2-1.pdf" target="_blank">BCM2837 ARM 主板外设文档</a>中有描述。</p>
 <p>为了向一个 GPIO 针脚外设写入高低电压，会涉及 BCM 主板外设部分的两个概念。</p>
 <ul>
 <li>Alternate function</li>
@@ -2121,8 +2121,8 @@ ARM 上内存的物理地址从 0x00000000 开始。物理内存地址从<code>0
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="uart-配置">UART 配置</h3>
-<p><a href="https://zh.wikipedia.org/wiki/UART">UART串口通信</a></p>
-<p>UART 串口通信属于外设辅助，BCM 主板支持三种 Aux 通信, mini UART 和 2个 <a href="https://en.wikipedia.org/wiki/Serial_Peripheral_Interface">SPI</a> master. 要使用这些外设辅助功能，也是通过修改寄存器的值，寄存器在总线上的位置和寄存器对应的功能如下:</p>
+<p><a href="https://zh.wikipedia.org/wiki/UART" target="_blank">UART串口通信</a></p>
+<p>UART 串口通信属于外设辅助，BCM 主板支持三种 Aux 通信, mini UART 和 2个 <a href="https://en.wikipedia.org/wiki/Serial_Peripheral_Interface" target="_blank">SPI</a> master. 要使用这些外设辅助功能，也是通过修改寄存器的值，寄存器在总线上的位置和寄存器对应的功能如下:</p>
 <p><img src="https://image.youcute.cn/FnrKVkbLgY7KNSH6dC98ifzN6PrK" alt="Auxiliary" /></p>
 <p>比如要让主板支持 Aux 通信。需要先修改 AUX_ENABLES 寄存器的值为 1.</p>
 <p>根据文档可知 AUX_ENABLES 寄存器在总线上的地址为 <code>0x7E215004</code>, 那么对应到物理内存上就是 <code>0x3F2154004</code>, 所以定义 <code>AUX_ENABLES</code> 宏为:</p>
@@ -2194,7 +2194,7 @@ ARM 上内存的物理地址从 0x00000000 开始。物理内存地址从<code>0
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>上面每行代码的详细解释以及数据发送和接收的实现可以到<a href="https://github.com/stefanji/raspberry-pi-os/blob/master/docs/lesson01/rpi-os.md#initializing-the-mini-uart">initializing-the-mini-uart</a>查看。</p>
+</div><p>上面每行代码的详细解释以及数据发送和接收的实现可以到<a href="https://github.com/stefanji/raspberry-pi-os/blob/master/docs/lesson01/rpi-os.md#initializing-the-mini-uart" target="_blank">initializing-the-mini-uart</a>查看。</p>
 <h1 id="启动树莓派">启动树莓派</h1>
 <p>树莓派的启动流程:</p>
 <ol>
