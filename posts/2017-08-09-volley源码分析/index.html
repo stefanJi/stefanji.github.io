@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh" dir="ltr">
 
 <head prefix="og: http://ogp.me/ns#">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.3ce954c8aea3b69cc5e6f734d8273ba4cd48d3a7987dbdca145849bc4b8fc296.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -663,6 +663,12 @@
     
     var enableSearch = JSON.parse("true");
     
+    var searchDistance = JSON.parse("null");
+    
+    var searchThreshold = JSON.parse("null");
+    
+    var searchContent = JSON.parse("null");
+    
     var enableSearchHighlight = JSON.parse("true");
     
     var searchResultPosition = JSON.parse("null");
@@ -686,12 +692,13 @@
         xhr.onload = function () {
           if (xhr.status === 200) {
             fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
-              keys: sectionType.includes('publication') ? ['title', 'abstract'] : ['title', 'description', 'content'],
+              keys: sectionType.includes('publication') ? ['title', 'abstract'] : 
+                searchContent ? ['title', 'description', 'content'] : ['title', 'description'],
               includeMatches: enableSearchHighlight,
               shouldSort: true, 
-              threshold: 0.4, 
+              threshold: searchThreshold ? searchThreshold : 0.4, 
               location: 0, 
-              distance: 100, 
+              distance: searchDistance ? searchDistance : 100, 
               maxPatternLength: 32,
               minMatchCharLength: 1,
               isCaseSensitive: false, 
@@ -715,7 +722,7 @@
       var a = document.createElement('a');
       a.innerHTML = obj.item.title;
       a.setAttribute('class', 'search-result__item--title');
-      a.setAttribute('href', obj.item.permalink);
+      a.setAttribute('href', obj.item.uri);
 
       var descDiv = document.createElement('div');
       descDiv.setAttribute('class', 'search-result__item--desc');
@@ -1315,7 +1322,8 @@
     }
   
   });
-</script>    
+</script>
+    
     
 
 
@@ -1339,7 +1347,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="Ji Yang(YangJi) blog. Android,OpenGL,iOS,Flutter,Network,Teac">
 
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.115.1">
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1393,7 +1401,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
   
 <script type="application/javascript">
 var doNotTrack = false;
@@ -1450,7 +1457,7 @@ if (!doNotTrack) {
     &nbsp;&nbsp;
     
     
-      <a href="/" title="Home" rel="home" class="navbar__title-link">
+      <a href="/" title="主页" rel="home" class="navbar__title-link">
         <h6 class="navbar__title">YangBlog</h6>
       </a>
     
@@ -1497,7 +1504,7 @@ if (!doNotTrack) {
 
 <div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
   <div class="mobile-search__top">
-    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="搜索" class="mobile-search__top--input"/>
     <div id="search-mobile-close" class="mobile-search__top--icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
     </div>
@@ -1518,59 +1525,23 @@ if (!doNotTrack) {
   <ul dir="ltr">
     
     
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="/categories">category</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item active">
-          <a href="/posts">posts</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="https://life.jiyang.site">about</a>
-        </li>
-      
-      
-    
 
     
       <li class="navbarm__menu--item ">
         <a href="/tags" class="navbarm__menu--term" data-index="0">
-          Tags
+          标签
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/categories" class="navbarm__menu--term" data-index="1">
-          Categories
+          分类
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/series" class="navbarm__menu--term" data-index="2">
-          Series
+          系列
         </a>
       </li>
     
@@ -1615,30 +1586,6 @@ if (!doNotTrack) {
 
   
   
-  
-  
-  
-  
-  
-  <a href="/categories" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">category</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="/posts" class="navbar__menu-item navbar__slide-down active" dir="ltr" data-ani="true">posts</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="https://life.jiyang.site" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">about</a>
-  
-  
 </div>
 </nav>
             
@@ -1681,16 +1628,16 @@ if (!doNotTrack) {
   
   
   <div class="single ">
-    <div class="single__nojs">This page looks best with JavaScript enabled</div>
+    <div class="single__nojs">Please enable Javascript to view the contents</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
     <h2 class="single__title" data-ani="true">Volley Source Code</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Jan 1, 0001 </time>
+  <time class="single__info" title="创建日期">📅&nbsp;0001年01月01日 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;9&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="阅读时长"> ☕&nbsp;9&nbsp;分钟 </span>
   
   <span class="single__info">
     
@@ -1712,7 +1659,7 @@ if (!doNotTrack) {
 <h1 id="先看实现request抽象类的stringrequest">先看实现Request抽象类的StringRequest</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1731,24 +1678,24 @@ if (!doNotTrack) {
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StringRequest</span> <span class="kd">extends</span> <span class="n">Request</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="n">Listener</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mListener</span><span class="o">;</span>
-
-    <span class="cm">/**
-</span><span class="cm">     * Creates a new request with the given method.
-</span><span class="cm">     *
-</span><span class="cm">     * @param method the request {@link Method} to use
-</span><span class="cm">     * @param url URL to fetch the string at
-</span><span class="cm">     * @param listener Listener to receive the String response
-</span><span class="cm">     * @param errorListener Error listener, or null to ignore errors
-</span><span class="cm">     */</span>
-    <span class="kd">public</span> <span class="nf">StringRequest</span><span class="o">(</span><span class="kt">int</span> <span class="n">method</span><span class="o">,</span> <span class="n">String</span> <span class="n">url</span><span class="o">,</span> <span class="n">Listener</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">listener</span><span class="o">,</span>
-            <span class="n">ErrorListener</span> <span class="n">errorListener</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">(</span><span class="n">method</span><span class="o">,</span> <span class="n">url</span><span class="o">,</span> <span class="n">errorListener</span><span class="o">);</span>
-        <span class="n">mListener</span> <span class="o">=</span> <span class="n">listener</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StringRequest</span> <span class="kd">extends</span> <span class="n">Request</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Listener</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mListener</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * Creates a new request with the given method.
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param method the request {@link Method} to use
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param url URL to fetch the string at
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param listener Listener to receive the String response
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param errorListener Error listener, or null to ignore errors
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">StringRequest</span><span class="o">(</span><span class="kt">int</span> <span class="n">method</span><span class="o">,</span> <span class="n">String</span> <span class="n">url</span><span class="o">,</span> <span class="n">Listener</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">listener</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ErrorListener</span> <span class="n">errorListener</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">method</span><span class="o">,</span> <span class="n">url</span><span class="o">,</span> <span class="n">errorListener</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mListener</span> <span class="o">=</span> <span class="n">listener</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Request有3个参数：</p>
 <ul>
@@ -1761,7 +1708,7 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 <p>然后根据响应结结果header里的编码格式构造一个String对象，最后使用封装了最终请求的Response类构造一个代表成功的response返回。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1776,25 +1723,25 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Override</span>
-<span class="kd">protected</span> <span class="n">Response</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">parseNetworkResponse</span><span class="o">(</span><span class="n">NetworkResponse</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">String</span> <span class="n">parsed</span><span class="o">;</span>
-    <span class="k">try</span> <span class="o">{</span>
-	    <span class="c1">//根据编码格式构造字符串
-</span><span class="c1"></span>        <span class="n">parsed</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">data</span><span class="o">,</span> <span class="n">HttpHeaderParser</span><span class="o">.</span><span class="na">parseCharset</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">headers</span><span class="o">));</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UnsupportedEncodingException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-	    <span class="c1">//如果格式不支持编码，就构造一个默认的UTF-8编码的字符串
-</span><span class="c1"></span>        <span class="n">parsed</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">data</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="k">return</span> <span class="n">Response</span><span class="o">.</span><span class="na">success</span><span class="o">(</span><span class="n">parsed</span><span class="o">,</span> <span class="n">HttpHeaderParser</span><span class="o">.</span><span class="na">parseCacheHeaders</span><span class="o">(</span><span class="n">response</span><span class="o">));</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="n">Response</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">parseNetworkResponse</span><span class="o">(</span><span class="n">NetworkResponse</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">parsed</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	    <span class="c1">//根据编码格式构造字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">parsed</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">data</span><span class="o">,</span> <span class="n">HttpHeaderParser</span><span class="o">.</span><span class="na">parseCharset</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">headers</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UnsupportedEncodingException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	    <span class="c1">//如果格式不支持编码，就构造一个默认的UTF-8编码的字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">parsed</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">data</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Response</span><span class="o">.</span><span class="na">success</span><span class="o">(</span><span class="n">parsed</span><span class="o">,</span> <span class="n">HttpHeaderParser</span><span class="o">.</span><span class="na">parseCacheHeaders</span><span class="o">(</span><span class="n">response</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>NetworkResponse封装了具体的请求内容：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1813,24 +1760,24 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NetworkResponse</span> <span class="kd">implements</span> <span class="n">Serializable</span><span class="o">{</span>
-    <span class="cm">/**
-</span><span class="cm">     * @param statusCode the HTTP status code
-</span><span class="cm">     * @param data Response body
-</span><span class="cm">     * @param headers Headers returned with this response, or null for none
-</span><span class="cm">     * @param notModified True if the server returned a 304 and the data was already in cache
-</span><span class="cm">     * @param networkTimeMs Round-trip network time to receive network response
-</span><span class="cm">     */</span>
-    <span class="kd">public</span> <span class="nf">NetworkResponse</span><span class="o">(</span><span class="kt">int</span> <span class="n">statusCode</span><span class="o">,</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">headers</span><span class="o">,</span>
-            <span class="kt">boolean</span> <span class="n">notModified</span><span class="o">,</span> <span class="kt">long</span> <span class="n">networkTimeMs</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">statusCode</span> <span class="o">=</span> <span class="n">statusCode</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">notModified</span> <span class="o">=</span> <span class="n">notModified</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">networkTimeMs</span> <span class="o">=</span> <span class="n">networkTimeMs</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NetworkResponse</span> <span class="kd">implements</span> <span class="n">Serializable</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param statusCode the HTTP status code
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param data Response body
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param headers Headers returned with this response, or null for none
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param notModified True if the server returned a 304 and the data was already in cache
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param networkTimeMs Round-trip network time to receive network response
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">NetworkResponse</span><span class="o">(</span><span class="kt">int</span> <span class="n">statusCode</span><span class="o">,</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">headers</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">boolean</span> <span class="n">notModified</span><span class="o">,</span> <span class="kt">long</span> <span class="n">networkTimeMs</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">statusCode</span> <span class="o">=</span> <span class="n">statusCode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">notModified</span> <span class="o">=</span> <span class="n">notModified</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">networkTimeMs</span> <span class="o">=</span> <span class="n">networkTimeMs</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>StringReqeust 负责封装请求</li>
@@ -1842,7 +1789,7 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 <p><code>Volley.newRequestQueue</code>有几个重载方法，最终都会执行这个：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1872,35 +1819,35 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">RequestQueue</span> <span class="nf">newRequestQueue</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="n">HttpStack</span> <span class="n">stack</span><span class="o">,</span> <span class="kt">int</span> <span class="n">maxDiskCacheBytes</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">File</span> <span class="n">cacheDir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">context</span><span class="o">.</span><span class="na">getCacheDir</span><span class="o">(),</span> <span class="n">DEFAULT_CACHE_DIR</span><span class="o">);</span>
-    <span class="n">String</span> <span class="n">userAgent</span> <span class="o">=</span> <span class="s">&#34;volley/0&#34;</span><span class="o">;</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="n">String</span> <span class="n">packageName</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getPackageName</span><span class="o">();</span>
-        <span class="n">PackageInfo</span> <span class="n">info</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getPackageManager</span><span class="o">().</span><span class="na">getPackageInfo</span><span class="o">(</span><span class="n">packageName</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
-        <span class="n">userAgent</span> <span class="o">=</span> <span class="n">packageName</span> <span class="o">+</span> <span class="s">&#34;/&#34;</span> <span class="o">+</span> <span class="n">info</span><span class="o">.</span><span class="na">versionCode</span><span class="o">;</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NameNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="o">}</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">stack</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&gt;=</span> <span class="n">9</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HurlStack</span><span class="o">();</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HttpClientStack</span><span class="o">(</span><span class="n">AndroidHttpClient</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">userAgent</span><span class="o">));</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="n">Network</span> <span class="n">network</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BasicNetwork</span><span class="o">(</span><span class="n">stack</span><span class="o">);</span>
-    
-    <span class="n">RequestQueue</span> <span class="n">queue</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">maxDiskCacheBytes</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">1</span><span class="o">){</span>
-    	<span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RequestQueue</span><span class="o">(</span><span class="k">new</span> <span class="n">DiskBasedCache</span><span class="o">(</span><span class="n">cacheDir</span><span class="o">),</span> <span class="n">network</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">else</span><span class="o">{</span>  
-    	<span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RequestQueue</span><span class="o">(</span><span class="k">new</span> <span class="n">DiskBasedCache</span><span class="o">(</span><span class="n">cacheDir</span><span class="o">,</span> <span class="n">maxDiskCacheBytes</span><span class="o">),</span> <span class="n">network</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="n">queue</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-    <span class="k">return</span> <span class="n">queue</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">RequestQueue</span> <span class="nf">newRequestQueue</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="n">HttpStack</span> <span class="n">stack</span><span class="o">,</span> <span class="kt">int</span> <span class="n">maxDiskCacheBytes</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">File</span> <span class="n">cacheDir</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">context</span><span class="o">.</span><span class="na">getCacheDir</span><span class="o">(),</span> <span class="n">DEFAULT_CACHE_DIR</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">userAgent</span> <span class="o">=</span> <span class="s">&#34;volley/0&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">packageName</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getPackageName</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PackageInfo</span> <span class="n">info</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getPackageManager</span><span class="o">().</span><span class="na">getPackageInfo</span><span class="o">(</span><span class="n">packageName</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">userAgent</span> <span class="o">=</span> <span class="n">packageName</span> <span class="o">+</span> <span class="s">&#34;/&#34;</span> <span class="o">+</span> <span class="n">info</span><span class="o">.</span><span class="na">versionCode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NameNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">stack</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&gt;=</span> <span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HurlStack</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HttpClientStack</span><span class="o">(</span><span class="n">AndroidHttpClient</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">userAgent</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Network</span> <span class="n">network</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BasicNetwork</span><span class="o">(</span><span class="n">stack</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">RequestQueue</span> <span class="n">queue</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">maxDiskCacheBytes</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">    	<span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RequestQueue</span><span class="o">(</span><span class="k">new</span> <span class="n">DiskBasedCache</span><span class="o">(</span><span class="n">cacheDir</span><span class="o">),</span> <span class="n">network</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="o">{</span>  
+</span></span><span class="line"><span class="cl">    	<span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RequestQueue</span><span class="o">(</span><span class="k">new</span> <span class="n">DiskBasedCache</span><span class="o">(</span><span class="n">cacheDir</span><span class="o">,</span> <span class="n">maxDiskCacheBytes</span><span class="o">),</span> <span class="n">network</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">queue</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">queue</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中执行了一些对象的创建工作：</p>
 <ol>
@@ -1915,7 +1862,7 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 <p>RequestQueue有3个构造函数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1936,26 +1883,26 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//最终调用
-</span><span class="c1"></span><span class="kd">public</span> <span class="nf">RequestQueue</span><span class="o">(</span><span class="n">Cache</span> <span class="n">cache</span><span class="o">,</span> <span class="n">Network</span> <span class="n">network</span><span class="o">,</span> <span class="kt">int</span> <span class="n">threadPoolSize</span><span class="o">,</span>
-        <span class="n">ResponseDelivery</span> <span class="n">delivery</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">mCache</span> <span class="o">=</span> <span class="n">cache</span><span class="o">;</span>
-    <span class="n">mNetwork</span> <span class="o">=</span> <span class="n">network</span><span class="o">;</span>
-    <span class="n">mDispatchers</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NetworkDispatcher</span><span class="o">[</span><span class="n">threadPoolSize</span><span class="o">];</span>
-    <span class="n">mDelivery</span> <span class="o">=</span> <span class="n">delivery</span><span class="o">;</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="nf">RequestQueue</span><span class="o">(</span><span class="n">Cache</span> <span class="n">cache</span><span class="o">,</span> <span class="n">Network</span> <span class="n">network</span><span class="o">,</span> <span class="kt">int</span> <span class="n">threadPoolSize</span><span class="o">)</span> <span class="o">{</span>
-	<span class="c1">//会调用最终的构造函数
-</span><span class="c1"></span>    <span class="k">this</span><span class="o">(</span><span class="n">cache</span><span class="o">,</span> <span class="n">network</span><span class="o">,</span> <span class="n">threadPoolSize</span><span class="o">,</span>
-            <span class="k">new</span> <span class="n">ExecutorDelivery</span><span class="o">(</span><span class="k">new</span> <span class="n">Handler</span><span class="o">(</span><span class="n">Looper</span><span class="o">.</span><span class="na">getMainLooper</span><span class="o">())));</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="nf">RequestQueue</span><span class="o">(</span><span class="n">Cache</span> <span class="n">cache</span><span class="o">,</span> <span class="n">Network</span> <span class="n">network</span><span class="o">)</span> <span class="o">{</span>
-	<span class="c1">//会调用第二个
-</span><span class="c1"></span>    <span class="k">this</span><span class="o">(</span><span class="n">cache</span><span class="o">,</span> <span class="n">network</span><span class="o">,</span> <span class="n">DEFAULT_NETWORK_THREAD_POOL_SIZE</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//最终调用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="nf">RequestQueue</span><span class="o">(</span><span class="n">Cache</span> <span class="n">cache</span><span class="o">,</span> <span class="n">Network</span> <span class="n">network</span><span class="o">,</span> <span class="kt">int</span> <span class="n">threadPoolSize</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ResponseDelivery</span> <span class="n">delivery</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mCache</span> <span class="o">=</span> <span class="n">cache</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mNetwork</span> <span class="o">=</span> <span class="n">network</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mDispatchers</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NetworkDispatcher</span><span class="o">[</span><span class="n">threadPoolSize</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mDelivery</span> <span class="o">=</span> <span class="n">delivery</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">RequestQueue</span><span class="o">(</span><span class="n">Cache</span> <span class="n">cache</span><span class="o">,</span> <span class="n">Network</span> <span class="n">network</span><span class="o">,</span> <span class="kt">int</span> <span class="n">threadPoolSize</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//会调用最终的构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="o">(</span><span class="n">cache</span><span class="o">,</span> <span class="n">network</span><span class="o">,</span> <span class="n">threadPoolSize</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">ExecutorDelivery</span><span class="o">(</span><span class="k">new</span> <span class="n">Handler</span><span class="o">(</span><span class="n">Looper</span><span class="o">.</span><span class="na">getMainLooper</span><span class="o">())));</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">RequestQueue</span><span class="o">(</span><span class="n">Cache</span> <span class="n">cache</span><span class="o">,</span> <span class="n">Network</span> <span class="n">network</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//会调用第二个
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="o">(</span><span class="n">cache</span><span class="o">,</span> <span class="n">network</span><span class="o">,</span> <span class="n">DEFAULT_NETWORK_THREAD_POOL_SIZE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>三个构造函数最终都是调用最上面那个。第二个构造函数，则是创建了一个<code>ExecutorDelivery</code>对象，并在创建时传入了拥有UI线程的<code>handler</code>。<br />
 可见<code>ExecutorDelivery</code>是与主线程打交道的工具。</p>
@@ -1967,7 +1914,7 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 <p>NetworkDispatcher继承Thread。RequestQueue在创建时，创建了一个NetworkDispatcher数组，实际就是创建了一个线程数组。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1981,23 +1928,23 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NetworkDispatcher</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
-    <span class="cm">/** The queue of requests to service. */</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="n">BlockingQueue</span><span class="o">&lt;</span><span class="n">Request</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">mQueue</span><span class="o">;</span>
-    <span class="cm">/** The network interface for processing requests. */</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Network</span> <span class="n">mNetwork</span><span class="o">;</span>
-    <span class="cm">/** The cache to write to. */</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Cache</span> <span class="n">mCache</span><span class="o">;</span>
-    <span class="cm">/** For posting responses and errors. */</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="n">ResponseDelivery</span> <span class="n">mDelivery</span><span class="o">;</span>
-    <span class="cm">/** Used for telling us to die. */</span>
-    <span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">mQuit</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NetworkDispatcher</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/** The queue of requests to service. */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">BlockingQueue</span><span class="o">&lt;</span><span class="n">Request</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">mQueue</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/** The network interface for processing requests. */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Network</span> <span class="n">mNetwork</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/** The cache to write to. */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Cache</span> <span class="n">mCache</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/** For posting responses and errors. */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">ResponseDelivery</span> <span class="n">mDelivery</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/** Used for telling us to die. */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">mQuit</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>NetworkDispatcher拥有：</p>
 <ul>
-<li>BlockingQueue&lt;Request&lt;?&raquo; 一个保存者Request的阻塞队列</li>
+<li>BlockingQueue&lt;Request<?>&gt; 一个保存者Request的阻塞队列</li>
 <li>Network 执行网络访问，并返回结果</li>
 <li>Cache 本地缓存</li>
 <li>ResponseDelivery 负责与UI线程打交道。ReqeustQueue在创建时，创建的ExecutorDelivery就是一个实现了ResponseDelivery接口的类。</li>
@@ -2006,7 +1953,7 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 <p>NetworkDispatcher既然继承自Thread，那么就实现了run方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2074,73 +2021,73 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 </span><span class="lnt">66
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">Process</span><span class="o">.</span><span class="na">setThreadPriority</span><span class="o">(</span><span class="n">Process</span><span class="o">.</span><span class="na">THREAD_PRIORITY_BACKGROUND</span><span class="o">);</span>
-    <span class="n">Request</span><span class="o">&lt;?&gt;</span> <span class="n">request</span><span class="o">;</span>
-    <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">long</span> <span class="n">startTimeMs</span> <span class="o">=</span> <span class="n">SystemClock</span><span class="o">.</span><span class="na">elapsedRealtime</span><span class="o">();</span>
-        <span class="c1">// release previous request object to avoid leaking request object when mQueue is drained.
-</span><span class="c1"></span>        <span class="n">request</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="c1">// Take a request from the queue.
-</span><span class="c1"></span>            <span class="n">request</span> <span class="o">=</span> <span class="n">mQueue</span><span class="o">.</span><span class="na">take</span><span class="o">();</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// We may have been interrupted because it was time to quit.
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">mQuit</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">return</span><span class="o">;</span>
-            <span class="o">}</span>
-            <span class="k">continue</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="n">request</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="s">&#34;network-queue-take&#34;</span><span class="o">);</span>
-
-            <span class="c1">// If the request was cancelled already, do not perform the
-</span><span class="c1"></span>            <span class="c1">// network request.
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">isCanceled</span><span class="o">())</span> <span class="o">{</span>
-                <span class="n">request</span><span class="o">.</span><span class="na">finish</span><span class="o">(</span><span class="s">&#34;network-discard-cancelled&#34;</span><span class="o">);</span>
-                <span class="k">continue</span><span class="o">;</span>
-            <span class="o">}</span>
-
-            <span class="n">addTrafficStatsTag</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
-
-            <span class="c1">// Perform the network request.
-</span><span class="c1"></span>            <span class="n">NetworkResponse</span> <span class="n">networkResponse</span> <span class="o">=</span> <span class="n">mNetwork</span><span class="o">.</span><span class="na">performRequest</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
-            <span class="n">request</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="s">&#34;network-http-complete&#34;</span><span class="o">);</span>
-
-            <span class="c1">// If the server returned 304 AND we delivered a response already,
-</span><span class="c1"></span>            <span class="c1">// we&#39;re done -- don&#39;t deliver a second identical response.
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">networkResponse</span><span class="o">.</span><span class="na">notModified</span> <span class="o">&amp;&amp;</span> <span class="n">request</span><span class="o">.</span><span class="na">hasHadResponseDelivered</span><span class="o">())</span> <span class="o">{</span>
-                <span class="n">request</span><span class="o">.</span><span class="na">finish</span><span class="o">(</span><span class="s">&#34;not-modified&#34;</span><span class="o">);</span>
-                <span class="k">continue</span><span class="o">;</span>
-            <span class="o">}</span>
-
-            <span class="c1">// Parse the response here on the worker thread.
-</span><span class="c1"></span>            <span class="n">Response</span><span class="o">&lt;?&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">parseNetworkResponse</span><span class="o">(</span><span class="n">networkResponse</span><span class="o">);</span>
-            <span class="n">request</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="s">&#34;network-parse-complete&#34;</span><span class="o">);</span>
-
-            <span class="c1">// Write to cache if applicable.
-</span><span class="c1"></span>            <span class="c1">// TODO: Only update cache metadata instead of entire record for 304s.
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">shouldCache</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">response</span><span class="o">.</span><span class="na">cacheEntry</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">mCache</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getCacheKey</span><span class="o">(),</span> <span class="n">response</span><span class="o">.</span><span class="na">cacheEntry</span><span class="o">);</span>
-                <span class="n">request</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="s">&#34;network-cache-written&#34;</span><span class="o">);</span>
-            <span class="o">}</span>
-
-            <span class="c1">// Post the response back.
-</span><span class="c1"></span>            <span class="n">request</span><span class="o">.</span><span class="na">markDelivered</span><span class="o">();</span>
-            <span class="n">mDelivery</span><span class="o">.</span><span class="na">postResponse</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">VolleyError</span> <span class="n">volleyError</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">volleyError</span><span class="o">.</span><span class="na">setNetworkTimeMs</span><span class="o">(</span><span class="n">SystemClock</span><span class="o">.</span><span class="na">elapsedRealtime</span><span class="o">()</span> <span class="o">-</span> <span class="n">startTimeMs</span><span class="o">);</span>
-            <span class="n">parseAndDeliverNetworkError</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">volleyError</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">VolleyLog</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">e</span><span class="o">,</span> <span class="s">&#34;Unhandled exception %s&#34;</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-            <span class="n">VolleyError</span> <span class="n">volleyError</span> <span class="o">=</span> <span class="k">new</span> <span class="n">VolleyError</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
-            <span class="n">volleyError</span><span class="o">.</span><span class="na">setNetworkTimeMs</span><span class="o">(</span><span class="n">SystemClock</span><span class="o">.</span><span class="na">elapsedRealtime</span><span class="o">()</span> <span class="o">-</span> <span class="n">startTimeMs</span><span class="o">);</span>
-            <span class="n">mDelivery</span><span class="o">.</span><span class="na">postError</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">volleyError</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Process</span><span class="o">.</span><span class="na">setThreadPriority</span><span class="o">(</span><span class="n">Process</span><span class="o">.</span><span class="na">THREAD_PRIORITY_BACKGROUND</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Request</span><span class="o">&lt;?&gt;</span> <span class="n">request</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">long</span> <span class="n">startTimeMs</span> <span class="o">=</span> <span class="n">SystemClock</span><span class="o">.</span><span class="na">elapsedRealtime</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// release previous request object to avoid leaking request object when mQueue is drained.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">request</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// Take a request from the queue.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">request</span> <span class="o">=</span> <span class="n">mQueue</span><span class="o">.</span><span class="na">take</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// We may have been interrupted because it was time to quit.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">mQuit</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">request</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="s">&#34;network-queue-take&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// If the request was cancelled already, do not perform the
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// network request.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">isCanceled</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">request</span><span class="o">.</span><span class="na">finish</span><span class="o">(</span><span class="s">&#34;network-discard-cancelled&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">continue</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">addTrafficStatsTag</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// Perform the network request.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">NetworkResponse</span> <span class="n">networkResponse</span> <span class="o">=</span> <span class="n">mNetwork</span><span class="o">.</span><span class="na">performRequest</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">request</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="s">&#34;network-http-complete&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// If the server returned 304 AND we delivered a response already,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// we&#39;re done -- don&#39;t deliver a second identical response.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">networkResponse</span><span class="o">.</span><span class="na">notModified</span> <span class="o">&amp;&amp;</span> <span class="n">request</span><span class="o">.</span><span class="na">hasHadResponseDelivered</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">request</span><span class="o">.</span><span class="na">finish</span><span class="o">(</span><span class="s">&#34;not-modified&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">continue</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// Parse the response here on the worker thread.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">Response</span><span class="o">&lt;?&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">parseNetworkResponse</span><span class="o">(</span><span class="n">networkResponse</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">request</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="s">&#34;network-parse-complete&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// Write to cache if applicable.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// TODO: Only update cache metadata instead of entire record for 304s.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">shouldCache</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">response</span><span class="o">.</span><span class="na">cacheEntry</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">mCache</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getCacheKey</span><span class="o">(),</span> <span class="n">response</span><span class="o">.</span><span class="na">cacheEntry</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">request</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="s">&#34;network-cache-written&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// Post the response back.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">request</span><span class="o">.</span><span class="na">markDelivered</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mDelivery</span><span class="o">.</span><span class="na">postResponse</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">VolleyError</span> <span class="n">volleyError</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">volleyError</span><span class="o">.</span><span class="na">setNetworkTimeMs</span><span class="o">(</span><span class="n">SystemClock</span><span class="o">.</span><span class="na">elapsedRealtime</span><span class="o">()</span> <span class="o">-</span> <span class="n">startTimeMs</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">parseAndDeliverNetworkError</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">volleyError</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">VolleyLog</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">e</span><span class="o">,</span> <span class="s">&#34;Unhandled exception %s&#34;</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">VolleyError</span> <span class="n">volleyError</span> <span class="o">=</span> <span class="k">new</span> <span class="n">VolleyError</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">volleyError</span><span class="o">.</span><span class="na">setNetworkTimeMs</span><span class="o">(</span><span class="n">SystemClock</span><span class="o">.</span><span class="na">elapsedRealtime</span><span class="o">()</span> <span class="o">-</span> <span class="n">startTimeMs</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mDelivery</span><span class="o">.</span><span class="na">postError</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">volleyError</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol>
 <li>设置当前线程的优先级为后台线程</li>
@@ -2163,7 +2110,7 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 <p>ExecutorDelivery类的<code>postResponse</code>方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2175,23 +2122,23 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">postResponse</span><span class="o">(</span><span class="n">Request</span><span class="o">&lt;?&gt;</span> <span class="n">request</span><span class="o">,</span> <span class="n">Response</span><span class="o">&lt;?&gt;</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">postResponse</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-<span class="o">}</span>
-
-<span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">postResponse</span><span class="o">(</span><span class="n">Request</span><span class="o">&lt;?&gt;</span> <span class="n">request</span><span class="o">,</span> <span class="n">Response</span><span class="o">&lt;?&gt;</span> <span class="n">response</span><span class="o">,</span> <span class="n">Runnable</span> <span class="n">runnable</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">request</span><span class="o">.</span><span class="na">markDelivered</span><span class="o">();</span>
-    <span class="n">request</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="s">&#34;post-response&#34;</span><span class="o">);</span>
-    <span class="n">mResponsePoster</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">ResponseDeliveryRunnable</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">runnable</span><span class="o">));</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">postResponse</span><span class="o">(</span><span class="n">Request</span><span class="o">&lt;?&gt;</span> <span class="n">request</span><span class="o">,</span> <span class="n">Response</span><span class="o">&lt;?&gt;</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">postResponse</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">postResponse</span><span class="o">(</span><span class="n">Request</span><span class="o">&lt;?&gt;</span> <span class="n">request</span><span class="o">,</span> <span class="n">Response</span><span class="o">&lt;?&gt;</span> <span class="n">response</span><span class="o">,</span> <span class="n">Runnable</span> <span class="n">runnable</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">request</span><span class="o">.</span><span class="na">markDelivered</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">request</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="s">&#34;post-response&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mResponsePoster</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">ResponseDeliveryRunnable</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">,</span> <span class="n">runnable</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>postResponse 方法调用了 <code>mResponsePoster</code>的<code>execute()</code>方法，并传入了一个<code>Runnable</code>对象。</p>
 <p>mResponsePoster 对象是一个 <code>Executor</code>对象，并在 ExecutorDelivery 并创建时就创建。它的<code>execute</code>方法，就是调用	RequestQueue在创建 ExecutorDelivery 传入的拥有UI线程的Looper的<code>handler</code>的<code>post(Runnable)</code>方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2202,21 +2149,21 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">ExecutorDelivery</span><span class="o">(</span><span class="kd">final</span> <span class="n">Handler</span> <span class="n">handler</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// Make an Executor that just wraps the handler.
-</span><span class="c1"></span>    <span class="n">mResponsePoster</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Executor</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="n">Runnable</span> <span class="n">command</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">handler</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="n">command</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">};</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">ExecutorDelivery</span><span class="o">(</span><span class="kd">final</span> <span class="n">Handler</span> <span class="n">handler</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Make an Executor that just wraps the handler.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">mResponsePoster</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Executor</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="n">Runnable</span> <span class="n">command</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">handler</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="n">command</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">};</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>handler post 的runnable对象是一个内部类：在 run 方法里调用了<code>	Request</code>对象的<code>deliverResponse</code> <code>deliverError</code> <code>finish</code>方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2254,48 +2201,48 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 </span><span class="lnt">36
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">class</span> <span class="nc">ResponseDeliveryRunnable</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Request</span> <span class="n">mRequest</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Response</span> <span class="n">mResponse</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Runnable</span> <span class="n">mRunnable</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="nf">ResponseDeliveryRunnable</span><span class="o">(</span><span class="n">Request</span> <span class="n">request</span><span class="o">,</span> <span class="n">Response</span> <span class="n">response</span><span class="o">,</span> <span class="n">Runnable</span> <span class="n">runnable</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">mRequest</span> <span class="o">=</span> <span class="n">request</span><span class="o">;</span>
-        <span class="n">mResponse</span> <span class="o">=</span> <span class="n">response</span><span class="o">;</span>
-        <span class="n">mRunnable</span> <span class="o">=</span> <span class="n">runnable</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">&#34;unchecked&#34;</span><span class="o">)</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-        <span class="c1">// If this request has canceled, finish it and don&#39;t deliver.
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mRequest</span><span class="o">.</span><span class="na">isCanceled</span><span class="o">())</span> <span class="o">{</span>
-            <span class="n">mRequest</span><span class="o">.</span><span class="na">finish</span><span class="o">(</span><span class="s">&#34;canceled-at-delivery&#34;</span><span class="o">);</span>
-            <span class="k">return</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="c1">// Deliver a normal response or error, depending.
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mResponse</span><span class="o">.</span><span class="na">isSuccess</span><span class="o">())</span> <span class="o">{</span>
-            <span class="n">mRequest</span><span class="o">.</span><span class="na">deliverResponse</span><span class="o">(</span><span class="n">mResponse</span><span class="o">.</span><span class="na">result</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="n">mRequest</span><span class="o">.</span><span class="na">deliverError</span><span class="o">(</span><span class="n">mResponse</span><span class="o">.</span><span class="na">error</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="c1">// If this is an intermediate response, add a marker, otherwise we&#39;re done
-</span><span class="c1"></span>        <span class="c1">// and the request can be finished.
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mResponse</span><span class="o">.</span><span class="na">intermediate</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">mRequest</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="s">&#34;intermediate-response&#34;</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="n">mRequest</span><span class="o">.</span><span class="na">finish</span><span class="o">(</span><span class="s">&#34;done&#34;</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="c1">// If we have been provided a post-delivery runnable, run it.
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mRunnable</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">mRunnable</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
-        <span class="o">}</span>
-   <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">class</span> <span class="nc">ResponseDeliveryRunnable</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Request</span> <span class="n">mRequest</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Response</span> <span class="n">mResponse</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Runnable</span> <span class="n">mRunnable</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">ResponseDeliveryRunnable</span><span class="o">(</span><span class="n">Request</span> <span class="n">request</span><span class="o">,</span> <span class="n">Response</span> <span class="n">response</span><span class="o">,</span> <span class="n">Runnable</span> <span class="n">runnable</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mRequest</span> <span class="o">=</span> <span class="n">request</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mResponse</span> <span class="o">=</span> <span class="n">response</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mRunnable</span> <span class="o">=</span> <span class="n">runnable</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">&#34;unchecked&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// If this request has canceled, finish it and don&#39;t deliver.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mRequest</span><span class="o">.</span><span class="na">isCanceled</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mRequest</span><span class="o">.</span><span class="na">finish</span><span class="o">(</span><span class="s">&#34;canceled-at-delivery&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Deliver a normal response or error, depending.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mResponse</span><span class="o">.</span><span class="na">isSuccess</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mRequest</span><span class="o">.</span><span class="na">deliverResponse</span><span class="o">(</span><span class="n">mResponse</span><span class="o">.</span><span class="na">result</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mRequest</span><span class="o">.</span><span class="na">deliverError</span><span class="o">(</span><span class="n">mResponse</span><span class="o">.</span><span class="na">error</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// If this is an intermediate response, add a marker, otherwise we&#39;re done
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// and the request can be finished.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mResponse</span><span class="o">.</span><span class="na">intermediate</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mRequest</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="s">&#34;intermediate-response&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mRequest</span><span class="o">.</span><span class="na">finish</span><span class="o">(</span><span class="s">&#34;done&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// If we have been provided a post-delivery runnable, run it.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mRunnable</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mRunnable</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">   <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>经过这样的转化，相当于<code>Request</code>的几个方法就是在UI线程执行了：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2310,20 +2257,20 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//Requset自己实现的deliverError
-</span><span class="c1"></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">deliverError</span><span class="o">(</span><span class="n">VolleyError</span> <span class="n">error</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">mErrorListener</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">mErrorListener</span><span class="o">.</span><span class="na">onErrorResponse</span><span class="o">(</span><span class="n">error</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="c1">//StringRequest实现的Request的抽象方法deliverResponse
-</span><span class="c1"></span><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">deliverResponse</span><span class="o">(</span><span class="n">String</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">mListener</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">mListener</span><span class="o">.</span><span class="na">onResponse</span><span class="o">(</span><span class="n">response</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//Requset自己实现的deliverError
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">deliverError</span><span class="o">(</span><span class="n">VolleyError</span> <span class="n">error</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">mErrorListener</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mErrorListener</span><span class="o">.</span><span class="na">onErrorResponse</span><span class="o">(</span><span class="n">error</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//StringRequest实现的Request的抽象方法deliverResponse
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">deliverResponse</span><span class="o">(</span><span class="n">String</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">mListener</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mListener</span><span class="o">.</span><span class="na">onResponse</span><span class="o">(</span><span class="n">response</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Requset的<code>deliver</code>方法实际就是调用的在创建Request的时候，传入的Listener接口的方法。</p>
 <hr />
@@ -2334,7 +2281,7 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 <p>ReqeustQueue的<code>add</code>操作就是将请求添加到请求队列中。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2366,37 +2313,37 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// Process requests in the order they are added.
-</span><span class="c1"></span><span class="n">request</span><span class="o">.</span><span class="na">setSequence</span><span class="o">(</span><span class="n">getSequenceNumber</span><span class="o">());</span>
-<span class="n">request</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="s">&#34;add-to-queue&#34;</span><span class="o">);</span>
-<span class="c1">// If the request is uncacheable, skip the cache queue and go straight to the network.
-</span><span class="c1"></span><span class="k">if</span> <span class="o">(!</span><span class="n">request</span><span class="o">.</span><span class="na">shouldCache</span><span class="o">())</span> <span class="o">{</span>
-    <span class="n">mNetworkQueue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">request</span><span class="o">;</span>
-<span class="o">}</span>
-<span class="c1">// Insert request into stage if there&#39;s already a request with the same cache key in flight.
-</span><span class="c1"></span><span class="kd">synchronized</span> <span class="o">(</span><span class="n">mWaitingRequests</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">String</span> <span class="n">cacheKey</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getCacheKey</span><span class="o">();</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">mWaitingRequests</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">cacheKey</span><span class="o">))</span> <span class="o">{</span>
-        <span class="c1">// There is already a request in flight. Queue up.
-</span><span class="c1"></span>        <span class="n">Queue</span><span class="o">&lt;</span><span class="n">Request</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">stagedRequests</span> <span class="o">=</span> <span class="n">mWaitingRequests</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">cacheKey</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">stagedRequests</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">stagedRequests</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Request</span><span class="o">&lt;?&gt;&gt;();</span>
-        <span class="o">}</span>
-        <span class="n">stagedRequests</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
-        <span class="n">mWaitingRequests</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">cacheKey</span><span class="o">,</span> <span class="n">stagedRequests</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">VolleyLog</span><span class="o">.</span><span class="na">DEBUG</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">VolleyLog</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="s">&#34;Request for cacheKey=%s is in flight, putting on hold.&#34;</span><span class="o">,</span> <span class="n">cacheKey</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="c1">// Insert &#39;null&#39; queue for this cacheKey, indicating there is now a request in
-</span><span class="c1"></span>        <span class="c1">// flight.
-</span><span class="c1"></span>        <span class="n">mWaitingRequests</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">cacheKey</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-        <span class="n">mCacheQueue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">request</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Process requests in the order they are added.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">request</span><span class="o">.</span><span class="na">setSequence</span><span class="o">(</span><span class="n">getSequenceNumber</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">request</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="s">&#34;add-to-queue&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// If the request is uncacheable, skip the cache queue and go straight to the network.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="o">(!</span><span class="n">request</span><span class="o">.</span><span class="na">shouldCache</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mNetworkQueue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">request</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Insert request into stage if there&#39;s already a request with the same cache key in flight.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">synchronized</span> <span class="o">(</span><span class="n">mWaitingRequests</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">cacheKey</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getCacheKey</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">mWaitingRequests</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">cacheKey</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// There is already a request in flight. Queue up.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Queue</span><span class="o">&lt;</span><span class="n">Request</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">stagedRequests</span> <span class="o">=</span> <span class="n">mWaitingRequests</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">cacheKey</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">stagedRequests</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stagedRequests</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Request</span><span class="o">&lt;?&gt;&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stagedRequests</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mWaitingRequests</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">cacheKey</span><span class="o">,</span> <span class="n">stagedRequests</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">VolleyLog</span><span class="o">.</span><span class="na">DEBUG</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">VolleyLog</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="s">&#34;Request for cacheKey=%s is in flight, putting on hold.&#34;</span><span class="o">,</span> <span class="n">cacheKey</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Insert &#39;null&#39; queue for this cacheKey, indicating there is now a request in
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// flight.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">mWaitingRequests</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">cacheKey</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mCacheQueue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">request</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>如果加入的请求没有被缓存过，就直接加入到消息队列。直接加入不用获取消息队列的锁。因为消息队列是个<code>BlockingQueue</code>，本就支持并发操作。而且即使<code>add</code>操作是在UI线程，也不会阻塞UI线程，因为<br />
@@ -2600,7 +2547,7 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
     
 <div class="donation">
   <div class="donation__message">
-    Support the author with
+    您的鼓励是我最大的动力
   </div>
   <div class="donation__icons">
     
@@ -2651,7 +2598,7 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
   </div>
   <div class="whoami__contents">
     <div class="whoami__written-by">
-      WRITTEN BY
+      作者
     </div>
     <div class="whoami__title">
       
@@ -2750,11 +2697,11 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 <nav class="pagination-single">
   
     
-      <a href="https://jiyang.site/posts/2018-04-07-%E4%BA%8C%E5%8F%89%E6%A0%91-b&#43;%E6%A0%91-avl%E6%A0%91-%E7%BA%A2%E9%BB%91%E6%A0%91-%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91/" class="pagination-single__left">
+      <a href="https://jiyang.site/posts/2017-02-26-%E4%BB%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8-to-do%E7%BA%AA%E5%BD%95%E6%80%BB%E7%BB%93%E5%85%A5%E9%97%A8ios%E7%AC%AC%E4%B8%80%E8%AF%BE/" class="pagination-single__left">
         <div class="pagination-single__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
         </div>
-        <div class="pagination-single__left-title">二叉树-B&#43;树-AVL树-红黑树-哈夫曼树</div>      
+        <div class="pagination-single__left-title">从第一个应用-To-Do，纪录总结入门IOS第一课</div>      
       </a>
     
     <div class="grow"></div>
@@ -2837,7 +2784,7 @@ StringRequest实现了parseNetworkResponse方法。这个方法会传入一个Ne
 </div>
 
 
-<script defer src="/js/swipe.min.989e074dfb92ce7f57a92c1df7027f88b53c50a54fd9ad450a673a64aa91bfa4.js"></script>
+<script defer src="/js/swipe.min.feb438efb7ca009ecd7fc2ac3ad2fced4840990b2798d81f87137f2dc6281f05.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
@@ -3110,7 +3057,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <span class="icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
   </span>
-  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="搜索" autocomplete="off">
   <div id="search-results" class="dropdown">
     <div id="search-menu" class="dropdown-menu" role="menu">
     </div>
@@ -3130,7 +3077,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section class="sidebar hide">
   <script>document.querySelector('.sidebar').classList.remove('hide')</script>
   <div class="toc__flexbox" data-position="fixed">
-    <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
+    <h6 class="toc__title" data-ani="true">目录</h6>
     
       <label class="switch" data-ani="true">
         <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
@@ -3532,7 +3479,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.trigger.classList.add('tooltipped');
       e.trigger.classList.add('tooltipped-s');
     });
-    // =================================================================
+    
 
 
 
@@ -3750,6 +3697,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
+      
+      
+        
+        
+          
+            
+          
+        
+      
+        
+      
+    
   </div>
 </div>
 
@@ -3860,7 +3819,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2022, All Rights Reserved
+                    ©2023, All Rights Reserved
                 
             </p>
         

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh" dir="ltr">
 
 <head prefix="og: http://ogp.me/ns#">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.3ce954c8aea3b69cc5e6f734d8273ba4cd48d3a7987dbdca145849bc4b8fc296.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -663,6 +663,12 @@
     
     var enableSearch = JSON.parse("true");
     
+    var searchDistance = JSON.parse("null");
+    
+    var searchThreshold = JSON.parse("null");
+    
+    var searchContent = JSON.parse("null");
+    
     var enableSearchHighlight = JSON.parse("true");
     
     var searchResultPosition = JSON.parse("null");
@@ -686,12 +692,13 @@
         xhr.onload = function () {
           if (xhr.status === 200) {
             fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
-              keys: sectionType.includes('publication') ? ['title', 'abstract'] : ['title', 'description', 'content'],
+              keys: sectionType.includes('publication') ? ['title', 'abstract'] : 
+                searchContent ? ['title', 'description', 'content'] : ['title', 'description'],
               includeMatches: enableSearchHighlight,
               shouldSort: true, 
-              threshold: 0.4, 
+              threshold: searchThreshold ? searchThreshold : 0.4, 
               location: 0, 
-              distance: 100, 
+              distance: searchDistance ? searchDistance : 100, 
               maxPatternLength: 32,
               minMatchCharLength: 1,
               isCaseSensitive: false, 
@@ -715,7 +722,7 @@
       var a = document.createElement('a');
       a.innerHTML = obj.item.title;
       a.setAttribute('class', 'search-result__item--title');
-      a.setAttribute('href', obj.item.permalink);
+      a.setAttribute('href', obj.item.uri);
 
       var descDiv = document.createElement('div');
       descDiv.setAttribute('class', 'search-result__item--desc');
@@ -1315,7 +1322,8 @@
     }
   
   });
-</script>    
+</script>
+    
     
 
 
@@ -1339,7 +1347,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="在工作中最近的一个业务上，每次新加一个同一类的功能时，发现会创建许多类似的类，写类似的代码。就思考能否通过模板的方式提高新建同类功能的效率，于是通过搜索发现 IDE 支持的 FreeMaker.">
 
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.115.1">
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1393,7 +1401,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
   
 <script type="application/javascript">
 var doNotTrack = false;
@@ -1450,7 +1457,7 @@ if (!doNotTrack) {
     &nbsp;&nbsp;
     
     
-      <a href="/" title="Home" rel="home" class="navbar__title-link">
+      <a href="/" title="主页" rel="home" class="navbar__title-link">
         <h6 class="navbar__title">YangBlog</h6>
       </a>
     
@@ -1497,7 +1504,7 @@ if (!doNotTrack) {
 
 <div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
   <div class="mobile-search__top">
-    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="搜索" class="mobile-search__top--input"/>
     <div id="search-mobile-close" class="mobile-search__top--icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
     </div>
@@ -1518,59 +1525,23 @@ if (!doNotTrack) {
   <ul dir="ltr">
     
     
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="/categories">category</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item active">
-          <a href="/posts">posts</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="https://life.jiyang.site">about</a>
-        </li>
-      
-      
-    
 
     
       <li class="navbarm__menu--item ">
         <a href="/tags" class="navbarm__menu--term" data-index="0">
-          Tags
+          标签
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/categories" class="navbarm__menu--term" data-index="1">
-          Categories
+          分类
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/series" class="navbarm__menu--term" data-index="2">
-          Series
+          系列
         </a>
       </li>
     
@@ -1615,30 +1586,6 @@ if (!doNotTrack) {
 
   
   
-  
-  
-  
-  
-  
-  <a href="/categories" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">category</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="/posts" class="navbar__menu-item navbar__slide-down active" dir="ltr" data-ani="true">posts</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="https://life.jiyang.site" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">about</a>
-  
-  
 </div>
 </nav>
             
@@ -1681,16 +1628,16 @@ if (!doNotTrack) {
   
   
   <div class="single ">
-    <div class="single__nojs">This page looks best with JavaScript enabled</div>
+    <div class="single__nojs">Please enable Javascript to view the contents</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
     <h2 class="single__title" data-ani="true">使用Android Studio Code 模板提高编码效率</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Jun 23, 2019 </time>
+  <time class="single__info" title="创建日期">📅&nbsp;2019年06月23日 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;8&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="阅读时长"> ☕&nbsp;8&nbsp;分钟 </span>
   
   <span class="single__info">
     
@@ -1716,10 +1663,10 @@ if (!doNotTrack) {
 <h2 id="单文件模板">单文件模板</h2>
 <p>通过打开 Android Stuidio -&gt; File -&gt; New -&gt; Edit File Templates 窗口，就能查看预置的单文件模板，也能添加自己的单文件模板。</p>
 <p>例如，添加一个 <code>Kotlin</code> <code>data class</code> 模板:</p>
-<pre><code>#if (${PACKAGE_NAME} &amp;&amp; ${PACKAGE_NAME} != &quot;&quot;)package ${PACKAGE_NAME}
+<pre tabindex="0"><code>#if (${PACKAGE_NAME} &amp;&amp; ${PACKAGE_NAME} != &#34;&#34;)package ${PACKAGE_NAME}
 
 #end
-#parse(&quot;File Header.java&quot;)
+#parse(&#34;File Header.java&#34;)
 data class ${NAME} {
 }
 </code></pre><h1 id="什么是多文件模板">什么是多文件模板</h1>
@@ -1732,7 +1679,7 @@ data class ${NAME} {
 <li>预览然后执行项目的添加/更改。</li>
 </ol>
 <p>其对应的文件结构为:</p>
-<pre><code>├── globals.xml.ftl
+<pre tabindex="0"><code>├── globals.xml.ftl
 ├── recipe.xml.ftl
 ├── recipe_fragment.xml.ftl
 ├── root
@@ -1754,7 +1701,7 @@ data class ${NAME} {
 <p>有关 FreeMarker 的更多文档，请参阅文档。 特别是关于字符串操作的引用。https://freemarker.apache.org/docs/index.html</p>
 <h2 id="目录结构">目录结构</h2>
 <p>模板是包含许多 XML 和 FreeMarker 文件的目录。 有两个必需文件是 template.xml和recipe.xml.ftl。模板源文件（PNG 文件，模板化 Java 和 XML 文件等）属于 <code>root/</code> 的子目录。 下面是模板的示例目录结构：</p>
-<pre><code>MyTemplate - 根目录
+<pre tabindex="0"><code>MyTemplate - 根目录
 ├── globals.xml.ftl - 可选的全局变量
 ├── recipe.xml.ftl - 说明/脚本（要复制的文件等）
 ├── root - 源文件（与输出项目一起处理/复制/合并）
@@ -1777,7 +1724,7 @@ data class ${NAME} {
 <p>例如 Android Studio 提供的 Basic Activity 模板:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1813,41 +1760,41 @@ data class ${NAME} {
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
-<span class="nt">&lt;template</span>
-        <span class="na">format=</span><span class="s">&#34;5&#34;</span>
-        <span class="na">revision=</span><span class="s">&#34;6&#34;</span>
-        <span class="na">name=</span><span class="s">&#34;Basic Activity&#34;</span>
-        <span class="na">minApi=</span><span class="s">&#34;9&#34;</span>
-        <span class="na">minBuildApi=</span><span class="s">&#34;14&#34;</span>
-        <span class="na">description=</span><span class="s">&#34;Creates a new basic activity with an app bar.&#34;</span><span class="nt">&gt;</span>
-
-    <span class="nt">&lt;category</span> <span class="na">value=</span><span class="s">&#34;Activity&#34;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;formfactor</span> <span class="na">value=</span><span class="s">&#34;Mobile&#34;</span><span class="nt">/&gt;</span>
-
-    <span class="nt">&lt;parameter</span>
-            <span class="na">id=</span><span class="s">&#34;activityClass&#34;</span>
-            <span class="na">name=</span><span class="s">&#34;Activity Name&#34;</span>
-            <span class="na">type=</span><span class="s">&#34;string&#34;</span>
-            <span class="na">constraints=</span><span class="s">&#34;class|unique|nonempty&#34;</span>
-            <span class="na">suggest=</span><span class="s">&#34;${layoutToActivity(layoutName)}&#34;</span>
-            <span class="na">default=</span><span class="s">&#34;MainActivity&#34;</span>
-            <span class="na">help=</span><span class="s">&#34;The name of the activity class to create&#34;</span><span class="nt">/&gt;</span>
-
-    <span class="nt">&lt;parameter</span>
-            <span class="na">id=</span><span class="s">&#34;layoutName&#34;</span>
-            <span class="na">name=</span><span class="s">&#34;Layout Name&#34;</span>
-            <span class="na">type=</span><span class="s">&#34;string&#34;</span>
-            <span class="na">constraints=</span><span class="s">&#34;layout|unique|nonempty&#34;</span>
-            <span class="na">suggest=</span><span class="s">&#34;${activityToLayout(activityClass)}&#34;</span>
-            <span class="na">default=</span><span class="s">&#34;activity_main&#34;</span>
-            <span class="na">help=</span><span class="s">&#34;The name of the layout to create for the activity&#34;</span><span class="nt">/&gt;</span>
-
-    <span class="nt">&lt;globals</span> <span class="na">file=</span><span class="s">&#34;globals.xml.ftl&#34;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;execute</span> <span class="na">file=</span><span class="s">&#34;recipe.xml.ftl&#34;</span><span class="nt">/&gt;</span>
-
-<span class="nt">&lt;/template&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;template</span>
+</span></span><span class="line"><span class="cl">        <span class="na">format=</span><span class="s">&#34;5&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">revision=</span><span class="s">&#34;6&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">name=</span><span class="s">&#34;Basic Activity&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">minApi=</span><span class="s">&#34;9&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">minBuildApi=</span><span class="s">&#34;14&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">description=</span><span class="s">&#34;Creates a new basic activity with an app bar.&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;category</span> <span class="na">value=</span><span class="s">&#34;Activity&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;formfactor</span> <span class="na">value=</span><span class="s">&#34;Mobile&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;parameter</span>
+</span></span><span class="line"><span class="cl">            <span class="na">id=</span><span class="s">&#34;activityClass&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">name=</span><span class="s">&#34;Activity Name&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">type=</span><span class="s">&#34;string&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">constraints=</span><span class="s">&#34;class|unique|nonempty&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">suggest=</span><span class="s">&#34;${layoutToActivity(layoutName)}&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">default=</span><span class="s">&#34;MainActivity&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">help=</span><span class="s">&#34;The name of the activity class to create&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;parameter</span>
+</span></span><span class="line"><span class="cl">            <span class="na">id=</span><span class="s">&#34;layoutName&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">name=</span><span class="s">&#34;Layout Name&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">type=</span><span class="s">&#34;string&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">constraints=</span><span class="s">&#34;layout|unique|nonempty&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">suggest=</span><span class="s">&#34;${activityToLayout(activityClass)}&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">default=</span><span class="s">&#34;activity_main&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="na">help=</span><span class="s">&#34;The name of the layout to create for the activity&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;globals</span> <span class="na">file=</span><span class="s">&#34;globals.xml.ftl&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;execute</span> <span class="na">file=</span><span class="s">&#34;recipe.xml.ftl&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/template&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="参数说明">参数说明</h4>
 <ul>
@@ -1915,17 +1862,17 @@ data class ${NAME} {
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;thumbs&gt;</span>
-  <span class="nt">&lt;thumb&gt;</span>template.png<span class="nt">&lt;/thumb&gt;</span>
-  <span class="nt">&lt;thumb</span> <span class="na">navType=</span><span class="s">&#34;tabs&#34;</span><span class="nt">&gt;</span>template_tabs.png<span class="nt">&lt;/thumb&gt;</span>
-<span class="nt">&lt;/thumbs&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;thumbs&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;thumb&gt;</span>template.png<span class="nt">&lt;/thumb&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;thumb</span> <span class="na">navType=</span><span class="s">&#34;tabs&#34;</span><span class="nt">&gt;</span>template_tabs.png<span class="nt">&lt;/thumb&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/thumbs&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><pre><code>如果 `navType` 模板参数的值为 `tabs` ，则模板的缩略图将显示 template_tabs.png，否则将显示template.png。
 </code></pre>
@@ -1934,7 +1881,7 @@ data class ${NAME} {
 <p>例如:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1942,13 +1889,13 @@ data class ${NAME} {
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;globals&gt;</span>
-    <span class="nt">&lt;global</span> <span class="na">id=</span><span class="s">&#34;srcOut&#34;</span> <span class="na">value=</span><span class="s">&#34;src/${slashedPackageName(packageName)}&#34;</span> <span class="nt">/&gt;</span>
-    <span class="c">&lt;!-- 将 activityName 转为小写，储存在 activityNameLower --&gt;</span>
-    <span class="nt">&lt;global</span> <span class="na">id=</span><span class="s">&#34;activityNameLower&#34;</span> <span class="na">value=</span><span class="s">&#34;${activityName?lower_case}&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;global</span> <span class="na">id=</span><span class="s">&#34;activityClass&#34;</span> <span class="na">value=</span><span class="s">&#34;${activityName}Activity&#34;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/globals&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;globals&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;global</span> <span class="na">id=</span><span class="s">&#34;srcOut&#34;</span> <span class="na">value=</span><span class="s">&#34;src/${slashedPackageName(packageName)}&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 将 activityName 转为小写，储存在 activityNameLower --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;global</span> <span class="na">id=</span><span class="s">&#34;activityNameLower&#34;</span> <span class="na">value=</span><span class="s">&#34;${activityName?lower_case}&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;global</span> <span class="na">id=</span><span class="s">&#34;activityClass&#34;</span> <span class="na">value=</span><span class="s">&#34;${activityName}Activity&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/globals&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="recipexmlftl">recipe.xml.ftl</h3>
 <p>配置 XML 文件，包含从此模板生成代码时应执行的各个指令。</p>
@@ -1956,7 +1903,7 @@ data class ${NAME} {
 <p>例子:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1991,40 +1938,40 @@ data class ${NAME} {
 </span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;recipe&gt;</span>
-    <span class="c">&lt;!-- runs FreeMarker, then copies from [template-directory]/root/ to [output-directory]. --&gt;</span>
-    <span class="nt">&lt;instantiate</span> <span class="na">from=</span><span class="s">&#34;AndroidManifest.xml.ftl&#34;</span> <span class="nt">/&gt;</span>
-    <span class="c">&lt;!-- automatically creates directories as needed --&gt;</span>
-    <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/drawable-hdpi&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/drawable-mdpi&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/drawable-xhdpi&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/values/dimens.xml&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/values/styles.xml&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/values-large/dimens.xml&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/menu/main.xml&#34;</span> <span class="na">to=</span><span class="s">&#34;res/menu/${activityNameLower}.xml&#34;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;instantiate</span> <span class="na">from=</span><span class="s">&#34;res/values/strings.xml.ftl&#34;</span> <span class="nt">/&gt;</span>
-    <span class="c">&lt;!-- Decide which layout to add --&gt;</span>
-    <span class="err">&lt;</span>#if navType?contains(&#34;pager&#34;)&gt;
-        <span class="nt">&lt;instantiate</span> <span class="na">from=</span><span class="s">&#34;res/layout/activity_pager.xml.ftl&#34;</span> <span class="na">to=</span><span class="s">&#34;res/layout/activity_${activityNameLower}.xml&#34;</span> <span class="nt">/&gt;</span>
-    <span class="err">&lt;</span>#elseif navType == &#34;tabs&#34; || navType == &#34;dropdown&#34;&gt;
-        <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/layout/activity_fragment_container.xml&#34;</span> <span class="na">to=</span><span class="s">&#34;res/layout/activity_${activityNameLower}.xml&#34;</span> <span class="nt">/&gt;</span>
-    <span class="err">&lt;</span>#else&gt;
-        <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/layout/activity_simple.xml&#34;</span> <span class="na">to=</span><span class="s">&#34;res/layout/activity_${activityNameLower}.xml&#34;</span> <span class="nt">/&gt;</span>
-    <span class="err">&lt;</span>/#if&gt;
-    <span class="c">&lt;!-- Decide which activity code to add --&gt;</span>
-    <span class="err">&lt;</span>#if navType == &#34;none&#34;&gt;
-        <span class="nt">&lt;instantiate</span> <span class="na">from=</span><span class="s">&#34;src/app_package/SimpleActivity.java.ftl&#34;</span> <span class="na">to=</span><span class="s">&#34;${srcOut}/${activityClass}.java&#34;</span> <span class="nt">/&gt;</span>
-    <span class="err">&lt;</span>#elseif navType == &#34;pager&#34;&gt;
-        <span class="nt">&lt;instantiate</span> <span class="na">from=</span><span class="s">&#34;src/app_package/PagerActivity.java.ftl&#34;</span> <span class="na">to=</span><span class="s">&#34;${srcOut}/${activityClass}.java&#34;</span> <span class="nt">/&gt;</span>
-    <span class="err">&lt;</span>#elseif navType == &#34;tabs&#34;&gt;
-        <span class="nt">&lt;instantiate</span> <span class="na">from=</span><span class="s">&#34;src/app_package/TabsActivity.java.ftl&#34;</span> <span class="na">to=</span><span class="s">&#34;${srcOut}/${activityClass}.java&#34;</span> <span class="nt">/&gt;</span>
-    <span class="err">&lt;</span>#elseif navType == &#34;dropdown&#34;&gt;
-        <span class="nt">&lt;instantiate</span> <span class="na">from=</span><span class="s">&#34;src/app_package/DropdownActivity.java.ftl&#34;</span> <span class="na">to=</span><span class="s">&#34;${srcOut}/${activityClass}.java&#34;</span> <span class="nt">/&gt;</span>
-    <span class="err">&lt;</span>/#if&gt;
-    <span class="c">&lt;!-- open the layout file when done --&gt;</span>
-    <span class="nt">&lt;open</span> <span class="na">file=</span><span class="s">&#34;res/layout/${activityNameLower}.xml&#34;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/recipe&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;recipe&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- runs FreeMarker, then copies from [template-directory]/root/ to [output-directory]. --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;instantiate</span> <span class="na">from=</span><span class="s">&#34;AndroidManifest.xml.ftl&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- automatically creates directories as needed --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/drawable-hdpi&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/drawable-mdpi&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/drawable-xhdpi&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/values/dimens.xml&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/values/styles.xml&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/values-large/dimens.xml&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/menu/main.xml&#34;</span> <span class="na">to=</span><span class="s">&#34;res/menu/${activityNameLower}.xml&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;instantiate</span> <span class="na">from=</span><span class="s">&#34;res/values/strings.xml.ftl&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- Decide which layout to add --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">&lt;</span>#if navType?contains(&#34;pager&#34;)&gt;
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;instantiate</span> <span class="na">from=</span><span class="s">&#34;res/layout/activity_pager.xml.ftl&#34;</span> <span class="na">to=</span><span class="s">&#34;res/layout/activity_${activityNameLower}.xml&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">&lt;</span>#elseif navType == &#34;tabs&#34; || navType == &#34;dropdown&#34;&gt;
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/layout/activity_fragment_container.xml&#34;</span> <span class="na">to=</span><span class="s">&#34;res/layout/activity_${activityNameLower}.xml&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">&lt;</span>#else&gt;
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;copy</span> <span class="na">from=</span><span class="s">&#34;res/layout/activity_simple.xml&#34;</span> <span class="na">to=</span><span class="s">&#34;res/layout/activity_${activityNameLower}.xml&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">&lt;</span>/#if&gt;
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- Decide which activity code to add --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">&lt;</span>#if navType == &#34;none&#34;&gt;
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;instantiate</span> <span class="na">from=</span><span class="s">&#34;src/app_package/SimpleActivity.java.ftl&#34;</span> <span class="na">to=</span><span class="s">&#34;${srcOut}/${activityClass}.java&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">&lt;</span>#elseif navType == &#34;pager&#34;&gt;
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;instantiate</span> <span class="na">from=</span><span class="s">&#34;src/app_package/PagerActivity.java.ftl&#34;</span> <span class="na">to=</span><span class="s">&#34;${srcOut}/${activityClass}.java&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">&lt;</span>#elseif navType == &#34;tabs&#34;&gt;
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;instantiate</span> <span class="na">from=</span><span class="s">&#34;src/app_package/TabsActivity.java.ftl&#34;</span> <span class="na">to=</span><span class="s">&#34;${srcOut}/${activityClass}.java&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">&lt;</span>#elseif navType == &#34;dropdown&#34;&gt;
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;instantiate</span> <span class="na">from=</span><span class="s">&#34;src/app_package/DropdownActivity.java.ftl&#34;</span> <span class="na">to=</span><span class="s">&#34;${srcOut}/${activityClass}.java&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">&lt;</span>/#if&gt;
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- open the layout file when done --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;open</span> <span class="na">file=</span><span class="s">&#34;res/layout/${activityNameLower}.xml&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/recipe&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="命令说明">命令说明</h4>
 <ul>
@@ -2280,7 +2227,7 @@ data class ${NAME} {
     
 <div class="donation">
   <div class="donation__message">
-    Support the author with
+    您的鼓励是我最大的动力
   </div>
   <div class="donation__icons">
     
@@ -2331,7 +2278,7 @@ data class ${NAME} {
   </div>
   <div class="whoami__contents">
     <div class="whoami__written-by">
-      WRITTEN BY
+      作者
     </div>
     <div class="whoami__title">
       
@@ -2517,7 +2464,7 @@ data class ${NAME} {
 </div>
 
 
-<script defer src="/js/swipe.min.989e074dfb92ce7f57a92c1df7027f88b53c50a54fd9ad450a673a64aa91bfa4.js"></script>
+<script defer src="/js/swipe.min.feb438efb7ca009ecd7fc2ac3ad2fced4840990b2798d81f87137f2dc6281f05.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
@@ -2790,7 +2737,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <span class="icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
   </span>
-  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="搜索" autocomplete="off">
   <div id="search-results" class="dropdown">
     <div id="search-menu" class="dropdown-menu" role="menu">
     </div>
@@ -2810,7 +2757,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section class="sidebar hide">
   <script>document.querySelector('.sidebar').classList.remove('hide')</script>
   <div class="toc__flexbox" data-position="fixed">
-    <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
+    <h6 class="toc__title" data-ani="true">目录</h6>
     
       <label class="switch" data-ani="true">
         <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
@@ -3248,7 +3195,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.trigger.classList.add('tooltipped');
       e.trigger.classList.add('tooltipped-s');
     });
-    // =================================================================
+    
 
 
 
@@ -3466,6 +3413,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
+      
+      
+        
+        
+          
+            
+          
+        
+      
+        
+      
+    
   </div>
 </div>
 
@@ -3576,7 +3535,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2022, All Rights Reserved
+                    ©2023, All Rights Reserved
                 
             </p>
         

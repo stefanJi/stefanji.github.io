@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh" dir="ltr">
 
 <head prefix="og: http://ogp.me/ns#">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.3ce954c8aea3b69cc5e6f734d8273ba4cd48d3a7987dbdca145849bc4b8fc296.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -663,6 +663,12 @@
     
     var enableSearch = JSON.parse("true");
     
+    var searchDistance = JSON.parse("null");
+    
+    var searchThreshold = JSON.parse("null");
+    
+    var searchContent = JSON.parse("null");
+    
     var enableSearchHighlight = JSON.parse("true");
     
     var searchResultPosition = JSON.parse("null");
@@ -686,12 +692,13 @@
         xhr.onload = function () {
           if (xhr.status === 200) {
             fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
-              keys: sectionType.includes('publication') ? ['title', 'abstract'] : ['title', 'description', 'content'],
+              keys: sectionType.includes('publication') ? ['title', 'abstract'] : 
+                searchContent ? ['title', 'description', 'content'] : ['title', 'description'],
               includeMatches: enableSearchHighlight,
               shouldSort: true, 
-              threshold: 0.4, 
+              threshold: searchThreshold ? searchThreshold : 0.4, 
               location: 0, 
-              distance: 100, 
+              distance: searchDistance ? searchDistance : 100, 
               maxPatternLength: 32,
               minMatchCharLength: 1,
               isCaseSensitive: false, 
@@ -715,7 +722,7 @@
       var a = document.createElement('a');
       a.innerHTML = obj.item.title;
       a.setAttribute('class', 'search-result__item--title');
-      a.setAttribute('href', obj.item.permalink);
+      a.setAttribute('href', obj.item.uri);
 
       var descDiv = document.createElement('div');
       descDiv.setAttribute('class', 'search-result__item--desc');
@@ -1315,7 +1322,8 @@
     }
   
   });
-</script>    
+</script>
+    
     
 
 
@@ -1341,7 +1349,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="通过使用 LruCache, 查看 LinkedHashMap 源码, 分析 LRU 算法的具体实现细节.">
 
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.115.1">
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1396,7 +1404,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
   
 <script type="application/javascript">
 var doNotTrack = false;
@@ -1453,7 +1460,7 @@ if (!doNotTrack) {
     &nbsp;&nbsp;
     
     
-      <a href="/" title="Home" rel="home" class="navbar__title-link">
+      <a href="/" title="主页" rel="home" class="navbar__title-link">
         <h6 class="navbar__title">YangBlog</h6>
       </a>
     
@@ -1500,7 +1507,7 @@ if (!doNotTrack) {
 
 <div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
   <div class="mobile-search__top">
-    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="搜索" class="mobile-search__top--input"/>
     <div id="search-mobile-close" class="mobile-search__top--icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
     </div>
@@ -1521,59 +1528,23 @@ if (!doNotTrack) {
   <ul dir="ltr">
     
     
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="/categories">category</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item active">
-          <a href="/posts">posts</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="https://life.jiyang.site">about</a>
-        </li>
-      
-      
-    
 
     
       <li class="navbarm__menu--item ">
         <a href="/tags" class="navbarm__menu--term" data-index="0">
-          Tags
+          标签
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/categories" class="navbarm__menu--term" data-index="1">
-          Categories
+          分类
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/series" class="navbarm__menu--term" data-index="2">
-          Series
+          系列
         </a>
       </li>
     
@@ -1618,30 +1589,6 @@ if (!doNotTrack) {
 
   
   
-  
-  
-  
-  
-  
-  <a href="/categories" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">category</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="/posts" class="navbar__menu-item navbar__slide-down active" dir="ltr" data-ani="true">posts</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="https://life.jiyang.site" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">about</a>
-  
-  
 </div>
 </nav>
             
@@ -1684,16 +1631,16 @@ if (!doNotTrack) {
   
   
   <div class="single ">
-    <div class="single__nojs">This page looks best with JavaScript enabled</div>
+    <div class="single__nojs">Please enable Javascript to view the contents</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
     <h2 class="single__title" data-ani="true">LruCache缓存机制实现原理</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;May 24, 2017 </time>
+  <time class="single__info" title="创建日期">📅&nbsp;2017年05月24日 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;4&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="阅读时长"> ☕&nbsp;4&nbsp;分钟 </span>
   
   <span class="single__info">
     
@@ -1722,7 +1669,7 @@ if (!doNotTrack) {
 <p>编写一个 LruCache, 用于缓存 Integer.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1734,21 +1681,21 @@ if (!doNotTrack) {
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerCache</span> <span class="kd">extends</span> <span class="n">LruCache</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="nf">IntegerCache</span><span class="o">(</span><span class="kt">int</span> <span class="n">maxSize</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">(</span><span class="n">maxSize</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">protected</span> <span class="kt">int</span> <span class="nf">sizeOf</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">SIZE</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerCache</span> <span class="kd">extends</span> <span class="n">LruCache</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">IntegerCache</span><span class="o">(</span><span class="kt">int</span> <span class="n">maxSize</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">maxSize</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">int</span> <span class="nf">sizeOf</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">SIZE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1760,22 +1707,22 @@ if (!doNotTrack) {
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 最大容量为 4 个 Integer
-</span><span class="c1"></span><span class="n">IntegerCache</span> <span class="n">ca</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IntegerCache</span><span class="o">(</span><span class="n">4</span> <span class="o">*</span> <span class="n">Integer</span><span class="o">.</span><span class="na">SIZE</span><span class="o">)</span>
-<span class="n">ca</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;1&#34;</span><span class="o">,</span> <span class="n">1</span><span class="o">);</span>
-<span class="n">ca</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;2&#34;</span><span class="o">,</span> <span class="n">2</span><span class="o">);</span>
-<span class="n">ca</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;3&#34;</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span>
-<span class="n">ca</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;4&#34;</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span>
-<span class="n">ca</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;4&#34;</span><span class="o">);</span>
-<span class="n">ca</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;5&#34;</span><span class="o">,</span> <span class="n">5</span><span class="o">);</span>
-<span class="n">ca</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;4&#34;</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span>
-<span class="n">ca</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;6&#34;</span><span class="o">,</span> <span class="n">6</span><span class="o">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 最大容量为 4 个 Integer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">IntegerCache</span> <span class="n">ca</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IntegerCache</span><span class="o">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">Integer</span><span class="o">.</span><span class="na">SIZE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ca</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;1&#34;</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ca</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;2&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ca</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;3&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ca</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;4&#34;</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ca</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;4&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ca</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;5&#34;</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ca</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;4&#34;</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ca</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;6&#34;</span><span class="o">,</span> <span class="mi">6</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>缓存中内容:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1786,22 +1733,22 @@ if (!doNotTrack) {
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="o">{</span><span class="n">1</span><span class="o">=</span><span class="n">1</span><span class="o">}</span>                <span class="c1">// put 1
-</span><span class="c1"></span><span class="o">{</span><span class="n">1</span><span class="o">=</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">=</span><span class="n">2</span><span class="o">}</span>           <span class="c1">// put 2
-</span><span class="c1"></span><span class="o">{</span><span class="n">1</span><span class="o">=</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">=</span><span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">=</span><span class="n">3</span><span class="o">}</span>      <span class="c1">// put 3
-</span><span class="c1"></span><span class="o">{</span><span class="n">1</span><span class="o">=</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">=</span><span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">=</span><span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">=</span><span class="n">4</span><span class="o">}</span> <span class="c1">// put 4
-</span><span class="c1"></span><span class="o">---</span>
-<span class="o">{</span><span class="n">1</span><span class="o">=</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">=</span><span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">=</span><span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">=</span><span class="n">4</span><span class="o">}</span> <span class="c1">// get 4
-</span><span class="c1"></span><span class="o">{</span><span class="n">2</span><span class="o">=</span><span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">=</span><span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">=</span><span class="n">4</span><span class="o">,</span> <span class="n">5</span><span class="o">=</span><span class="n">5</span><span class="o">}</span> <span class="c1">// put 5
-</span><span class="c1"></span><span class="o">{</span><span class="n">2</span><span class="o">=</span><span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">=</span><span class="n">3</span><span class="o">,</span> <span class="n">5</span><span class="o">=</span><span class="n">5</span><span class="o">,</span> <span class="n">4</span><span class="o">=</span><span class="n">4</span><span class="o">}</span> <span class="c1">// put 4
-</span><span class="c1"></span><span class="o">{</span><span class="n">3</span><span class="o">=</span><span class="n">3</span><span class="o">,</span> <span class="n">5</span><span class="o">=</span><span class="n">5</span><span class="o">,</span> <span class="n">4</span><span class="o">=</span><span class="n">4</span><span class="o">,</span> <span class="n">6</span><span class="o">=</span><span class="n">6</span><span class="o">}</span> <span class="c1">// put 6
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">{</span><span class="mi">1</span><span class="o">=</span><span class="mi">1</span><span class="o">}</span>                <span class="c1">// put 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">{</span><span class="mi">1</span><span class="o">=</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">=</span><span class="mi">2</span><span class="o">}</span>           <span class="c1">// put 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">{</span><span class="mi">1</span><span class="o">=</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">=</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">=</span><span class="mi">3</span><span class="o">}</span>      <span class="c1">// put 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">{</span><span class="mi">1</span><span class="o">=</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">=</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">=</span><span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">=</span><span class="mi">4</span><span class="o">}</span> <span class="c1">// put 4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">---</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="mi">1</span><span class="o">=</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">=</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">=</span><span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">=</span><span class="mi">4</span><span class="o">}</span> <span class="c1">// get 4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">{</span><span class="mi">2</span><span class="o">=</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">=</span><span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">=</span><span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">=</span><span class="mi">5</span><span class="o">}</span> <span class="c1">// put 5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">{</span><span class="mi">2</span><span class="o">=</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">=</span><span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">=</span><span class="mi">5</span><span class="o">,</span> <span class="mi">4</span><span class="o">=</span><span class="mi">4</span><span class="o">}</span> <span class="c1">// put 4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">{</span><span class="mi">3</span><span class="o">=</span><span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">=</span><span class="mi">5</span><span class="o">,</span> <span class="mi">4</span><span class="o">=</span><span class="mi">4</span><span class="o">,</span> <span class="mi">6</span><span class="o">=</span><span class="mi">6</span><span class="o">}</span> <span class="c1">// put 6
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>可见, 每次的 <code>get</code> 和 <code>put</code> 操作, 都会造成序列中的重排序, 最近使用的元素在末尾, 最近最少使用的元素在头部, 当容量超过限制时会移出最近最少使用的元素.</p>
 <h3 id="lrucache-的构造">LruCache 的构造</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1824,33 +1771,33 @@ if (!doNotTrack) {
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LruCache</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="c1">// 构造时就初始化的一个 LinkedHashMap
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">;</span>
-
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span><span class="o">;</span>          <span class="cm">/* 记录当前缓存占用的内存大小 */</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">maxSize</span><span class="o">;</span>       <span class="cm">/* 最多能缓存的内存大小 */</span>
-
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">putCount</span><span class="o">;</span>      <span class="cm">/* 记录 put 调用的次数 */</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">createCount</span><span class="o">;</span>   <span class="cm">/* 记录 create 调用的次数 */</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">evictionCount</span><span class="o">;</span> <span class="cm">/* 记录被丢弃的对象个数 */</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">hitCount</span><span class="o">;</span>      <span class="cm">/* 记录调用 get 时,缓存命中的次数 */</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">missCount</span><span class="o">;</span>     <span class="cm">/* 记录调用 get 时,缓存未命中的次数 */</span>
-
-    <span class="kd">public</span> <span class="nf">LruCache</span><span class="o">(</span><span class="kt">int</span> <span class="n">maxSize</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">maxSize</span> <span class="o">&lt;=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;maxSize &lt;= 0&#34;</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">maxSize</span> <span class="o">=</span> <span class="n">maxSize</span><span class="o">;</span>
-        <span class="c1">// 初始容量为0, 扩容系数为 0.75, 排序模式: true 表示按访问排序, false 表示按插入排序, SDK 实现里固定为 ture
-</span><span class="c1"></span>        <span class="k">this</span><span class="o">.</span><span class="na">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;(</span><span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">75f</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LruCache</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 构造时就初始化的一个 LinkedHashMap
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span><span class="o">;</span>          <span class="cm">/* 记录当前缓存占用的内存大小 */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">maxSize</span><span class="o">;</span>       <span class="cm">/* 最多能缓存的内存大小 */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">putCount</span><span class="o">;</span>      <span class="cm">/* 记录 put 调用的次数 */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">createCount</span><span class="o">;</span>   <span class="cm">/* 记录 create 调用的次数 */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">evictionCount</span><span class="o">;</span> <span class="cm">/* 记录被丢弃的对象个数 */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">hitCount</span><span class="o">;</span>      <span class="cm">/* 记录调用 get 时,缓存命中的次数 */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">missCount</span><span class="o">;</span>     <span class="cm">/* 记录调用 get 时,缓存未命中的次数 */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">LruCache</span><span class="o">(</span><span class="kt">int</span> <span class="n">maxSize</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">maxSize</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;maxSize &lt;= 0&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">maxSize</span> <span class="o">=</span> <span class="n">maxSize</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 初始容量为0, 扩容系数为 0.75, 排序模式: true 表示按访问排序, false 表示按插入排序, SDK 实现里固定为 ture
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">this</span><span class="o">.</span><span class="na">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;(</span><span class="mi">0</span><span class="o">,</span> <span class="mf">0.75f</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="lrucache-插入元素">LruCache 插入元素</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1870,30 +1817,30 @@ if (!doNotTrack) {
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="n">V</span> <span class="nf">put</span><span class="o">(</span><span class="n">K</span> <span class="n">key</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">V</span> <span class="n">previous</span><span class="o">;</span>
-    <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">putCount</span><span class="o">++;</span>
-        <span class="c1">// 内存占用记录增加
-</span><span class="c1"></span>        <span class="n">size</span> <span class="o">+=</span> <span class="n">safeSizeOf</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
-        <span class="c1">// 存入新的值, 并获取 key 对应的旧值
-</span><span class="c1"></span>        <span class="n">previous</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">previous</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 如果旧值存在, 就减去对应内存
-</span><span class="c1"></span>            <span class="n">size</span> <span class="o">-=</span> <span class="n">safeSizeOf</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">previous</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 如果 size &gt; maxSize, 就执行丢弃元素, 裁剪内存操作
-</span><span class="c1"></span>    <span class="n">trimToSize</span><span class="o">(</span><span class="n">maxSize</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">previous</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="n">V</span> <span class="nf">put</span><span class="o">(</span><span class="n">K</span> <span class="n">key</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">V</span> <span class="n">previous</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">putCount</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 内存占用记录增加
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">size</span> <span class="o">+=</span> <span class="n">safeSizeOf</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 存入新的值, 并获取 key 对应的旧值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">previous</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">previous</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 如果旧值存在, 就减去对应内存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">size</span> <span class="o">-=</span> <span class="n">safeSizeOf</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">previous</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 如果 size &gt; maxSize, 就执行丢弃元素, 裁剪内存操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">trimToSize</span><span class="o">(</span><span class="n">maxSize</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">previous</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="lurcache-获取缓存">LurCache 获取缓存</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1928,40 +1875,40 @@ if (!doNotTrack) {
 </span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="n">V</span> <span class="nf">get</span><span class="o">(</span><span class="n">K</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">V</span> <span class="n">mapValue</span><span class="o">;</span>
-    <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 从缓存中获取 key 对应的 value, 如果存在就直接返回
-</span><span class="c1"></span>        <span class="n">mapValue</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">mapValue</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">hitCount</span><span class="o">++;</span>
-            <span class="k">return</span> <span class="n">mapValue</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">missCount</span><span class="o">++;</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 如果缓存中没有, 就尝试创建一个对应对象, 该方法由子类实现, 可以返回 null
-</span><span class="c1"></span>    <span class="n">V</span> <span class="n">createdValue</span> <span class="o">=</span> <span class="n">create</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">createdValue</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 如果子类 create 返回了非 null 对象, 就把这个对象返回, 并插入到缓存中
-</span><span class="c1"></span>    <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">createCount</span><span class="o">++;</span>
-        <span class="n">mapValue</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">createdValue</span><span class="o">);</span>
-        <span class="c1">// 上面 get 时得到了 null 才会走到这, 怎么在插入时旧值又跑出来了 ?
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mapValue</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 这里应该是避免多线程访问时, 在 get 获取为 null 之后, 其他线程插入了对应的值, 所以这里把其他线程插入的值还原回去
-</span><span class="c1"></span>            <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">mapValue</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="c1">// 如果没有其他插入, 就把新创建的内存占用记账
-</span><span class="c1"></span>            <span class="n">size</span> <span class="o">+=</span> <span class="n">safeSizeOf</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">createdValue</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="o">...</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="n">V</span> <span class="nf">get</span><span class="o">(</span><span class="n">K</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">V</span> <span class="n">mapValue</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 从缓存中获取 key 对应的 value, 如果存在就直接返回
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">mapValue</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">mapValue</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">hitCount</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">mapValue</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">missCount</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 如果缓存中没有, 就尝试创建一个对应对象, 该方法由子类实现, 可以返回 null
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">V</span> <span class="n">createdValue</span> <span class="o">=</span> <span class="n">create</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">createdValue</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 如果子类 create 返回了非 null 对象, 就把这个对象返回, 并插入到缓存中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">createCount</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mapValue</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">createdValue</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 上面 get 时得到了 null 才会走到这, 怎么在插入时旧值又跑出来了 ?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mapValue</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 这里应该是避免多线程访问时, 在 get 获取为 null 之后, 其他线程插入了对应的值, 所以这里把其他线程插入的值还原回去
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">mapValue</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 如果没有其他插入, 就把新创建的内存占用记账
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">size</span> <span class="o">+=</span> <span class="n">safeSizeOf</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">createdValue</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>以上就是 <code>LruCache</code> 里主要的方法了, 看完也没发现与 LRU 算法有关的东西, 那 LRU 的具体实现肯定就在 <code>LinkedHashMap</code> 里了.</p>
 <h1 id="linkedhashmap-的实现">LinkedHashMap 的实现</h1>
@@ -1970,7 +1917,7 @@ if (!doNotTrack) {
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1979,19 +1926,19 @@ if (!doNotTrack) {
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// LinkedHashMap 的节点数据结构, 继承自 HashMap.Node
-</span><span class="c1"></span><span class="kd">static</span> <span class="kd">class</span> <span class="nc">LinkedHashMapEntry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">HashMap</span><span class="o">.</span><span class="na">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="n">LinkedHashMapEntry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">before</span><span class="o">,</span> <span class="n">after</span><span class="o">;</span>
-    <span class="n">LinkedHashMapEntry</span><span class="o">(</span><span class="kt">int</span> <span class="n">hash</span><span class="o">,</span> <span class="n">K</span> <span class="n">key</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">,</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">next</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">(</span><span class="n">hash</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="n">next</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// LinkedHashMap 的节点数据结构, 继承自 HashMap.Node
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">static</span> <span class="kd">class</span> <span class="nc">LinkedHashMapEntry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">HashMap</span><span class="o">.</span><span class="na">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LinkedHashMapEntry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">before</span><span class="o">,</span> <span class="n">after</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LinkedHashMapEntry</span><span class="o">(</span><span class="kt">int</span> <span class="n">hash</span><span class="o">,</span> <span class="n">K</span> <span class="n">key</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">,</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">next</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">hash</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="n">next</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="构造">构造</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2000,19 +1947,19 @@ if (!doNotTrack) {
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">LinkedHashMap</span><span class="o">(</span><span class="kt">int</span> <span class="n">initialCapacity</span><span class="o">,</span>
-                     <span class="kt">float</span> <span class="n">loadFactor</span><span class="o">,</span>
-                     <span class="kt">boolean</span> <span class="n">accessOrder</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kd">super</span><span class="o">(</span><span class="n">initialCapacity</span><span class="o">,</span> <span class="n">loadFactor</span><span class="o">);</span>
-    <span class="c1">// accessOrder 决定内部的排序顺序
-</span><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">accessOrder</span> <span class="o">=</span> <span class="n">accessOrder</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">LinkedHashMap</span><span class="o">(</span><span class="kt">int</span> <span class="n">initialCapacity</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="kt">float</span> <span class="n">loadFactor</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="kt">boolean</span> <span class="n">accessOrder</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">super</span><span class="o">(</span><span class="n">initialCapacity</span><span class="o">,</span> <span class="n">loadFactor</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// accessOrder 决定内部的排序顺序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">accessOrder</span> <span class="o">=</span> <span class="n">accessOrder</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="获取操作">获取操作</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2025,24 +1972,24 @@ if (!doNotTrack) {
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">e</span><span class="o">;</span>
-    <span class="c1">// 调用父类 HashMap 的方法
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">((</span><span class="n">e</span> <span class="o">=</span> <span class="n">getNode</span><span class="o">(</span><span class="n">hash</span><span class="o">(</span><span class="n">key</span><span class="o">),</span> <span class="n">key</span><span class="o">))</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
-        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="c1">// 如果按访问顺序排序为 ture, 则进行重排序
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">accessOrder</span><span class="o">)</span>
-        <span class="c1">// 将 e 移动到最后
-</span><span class="c1"></span>        <span class="n">afterNodeAccess</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">e</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">e</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 调用父类 HashMap 的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">((</span><span class="n">e</span> <span class="o">=</span> <span class="n">getNode</span><span class="o">(</span><span class="n">hash</span><span class="o">(</span><span class="n">key</span><span class="o">),</span> <span class="n">key</span><span class="o">))</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 如果按访问顺序排序为 ture, 则进行重排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">accessOrder</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 将 e 移动到最后
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">afterNodeAccess</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">e</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以看到, 重点就是 <code>afterNodeAccess</code> 这个方法.</p>
 <h3 id="访问-node-之后的排序操作">访问 node 之后的排序操作</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2069,32 +2016,32 @@ if (!doNotTrack) {
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">void</span> <span class="nf">afterNodeAccess</span><span class="o">(</span><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// move node to last
-</span><span class="c1"></span>    <span class="n">LinkedHashMapEntry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">last</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">accessOrder</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">last</span> <span class="o">=</span> <span class="n">tail</span><span class="o">)</span> <span class="o">!=</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">LinkedHashMapEntry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="o">(</span><span class="n">LinkedHashMapEntry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;)</span><span class="n">e</span><span class="o">,</span> <span class="cm">/* p 指向当前节点 e */</span>
-        <span class="n">b</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">before</span><span class="o">,</span>   <span class="cm">/* b 指向前一个节点 */</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">after</span><span class="o">;</span>    <span class="cm">/* a 指向后一个节点 */</span>
-        <span class="n">p</span><span class="o">.</span><span class="na">after</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="cm">/* 当前节点 after 置 null */</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
-            <span class="n">head</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
-        <span class="k">else</span>
-            <span class="n">b</span><span class="o">.</span><span class="na">after</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
-            <span class="n">a</span><span class="o">.</span><span class="na">before</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
-        <span class="k">else</span>
-            <span class="n">last</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">last</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
-            <span class="n">head</span> <span class="o">=</span> <span class="n">p</span><span class="o">;</span>
-        <span class="k">else</span> <span class="o">{</span>
-            <span class="n">p</span><span class="o">.</span><span class="na">before</span> <span class="o">=</span> <span class="n">last</span><span class="o">;</span>
-            <span class="n">last</span><span class="o">.</span><span class="na">after</span> <span class="o">=</span> <span class="n">p</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">tail</span> <span class="o">=</span> <span class="n">p</span><span class="o">;</span>
-        <span class="o">++</span><span class="n">modCount</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">afterNodeAccess</span><span class="o">(</span><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// move node to last
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">LinkedHashMapEntry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">last</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">accessOrder</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">last</span> <span class="o">=</span> <span class="n">tail</span><span class="o">)</span> <span class="o">!=</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">LinkedHashMapEntry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="o">(</span><span class="n">LinkedHashMapEntry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;)</span><span class="n">e</span><span class="o">,</span> <span class="cm">/* p 指向当前节点 e */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">before</span><span class="o">,</span>   <span class="cm">/* b 指向前一个节点 */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">after</span><span class="o">;</span>    <span class="cm">/* a 指向后一个节点 */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span><span class="o">.</span><span class="na">after</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="cm">/* 当前节点 after 置 null */</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">head</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="n">b</span><span class="o">.</span><span class="na">after</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">a</span><span class="o">.</span><span class="na">before</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="n">last</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">last</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">head</span> <span class="o">=</span> <span class="n">p</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="o">.</span><span class="na">before</span> <span class="o">=</span> <span class="n">last</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">last</span><span class="o">.</span><span class="na">after</span> <span class="o">=</span> <span class="n">p</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tail</span> <span class="o">=</span> <span class="n">p</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">++</span><span class="n">modCount</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="case-1-访问元素的前后存在元素">Case 1: 访问元素的前后存在元素</h4>
 <table>
@@ -2155,7 +2102,7 @@ if (!doNotTrack) {
 <p>LinkedHashMap 的 put 操作是直接调用父类 HashMap 的, HashMap 的 put 操作之后, 被插入的元素将会位于链表的尾部, 然后会调用 <code>afterNodeInsertion</code>, 该方法在 LinkedHashMap 中的实现:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2166,16 +2113,16 @@ if (!doNotTrack) {
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">void</span> <span class="nf">afterNodeInsertion</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">evict</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// possibly remove eldest
-</span><span class="c1"></span>    <span class="n">LinkedHashMapEntry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">first</span><span class="o">;</span>
-    <span class="c1">// 如果 removeEldestEntry 为 true, 则移出头部的元素
-</span><span class="c1"></span>    <span class="c1">// LinkedHashMap 中 removeEldestEntry 默认返回 false
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">evict</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">first</span> <span class="o">=</span> <span class="n">head</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">removeEldestEntry</span><span class="o">(</span><span class="n">first</span><span class="o">))</span> <span class="o">{</span>
-        <span class="n">K</span> <span class="n">key</span> <span class="o">=</span> <span class="n">first</span><span class="o">.</span><span class="na">key</span><span class="o">;</span>
-        <span class="n">removeNode</span><span class="o">(</span><span class="n">hash</span><span class="o">(</span><span class="n">key</span><span class="o">),</span> <span class="n">key</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">afterNodeInsertion</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">evict</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// possibly remove eldest
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">LinkedHashMapEntry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">first</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 如果 removeEldestEntry 为 true, 则移出头部的元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// LinkedHashMap 中 removeEldestEntry 默认返回 false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">evict</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">first</span> <span class="o">=</span> <span class="n">head</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">removeEldestEntry</span><span class="o">(</span><span class="n">first</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">K</span> <span class="n">key</span> <span class="o">=</span> <span class="n">first</span><span class="o">.</span><span class="na">key</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">removeNode</span><span class="o">(</span><span class="n">hash</span><span class="o">(</span><span class="n">key</span><span class="o">),</span> <span class="n">key</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>由于 <code>LinkedHashMap</code> 中 <code>removeEldestEntry</code> 默认返回 false, 所以 <code>LinkedHashMap</code> 的插入操作, 默认不会移出元素, 移出元素的操作实际在 <code>LruCache</code> 中的 <code>trimToSize</code> 实现.</p>
 <blockquote>
@@ -2186,7 +2133,7 @@ if (!doNotTrack) {
 <p><a href="http://androidxref.com/8.0.0_r4/xref/frameworks/base/core/java/android/util/LruCache.java#trimToSize">androidxref 上的源码实现</a>:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2215,34 +2162,34 @@ if (!doNotTrack) {
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">trimToSize</span><span class="o">(</span><span class="kt">int</span> <span class="n">maxSize</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">K</span> <span class="n">key</span><span class="o">;</span>
-        <span class="n">V</span> <span class="n">value</span><span class="o">;</span>
-        <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
-
-            <span class="k">if</span> <span class="o">(</span><span class="n">size</span> <span class="o">&lt;=</span> <span class="n">maxSize</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">break</span><span class="o">;</span>
-            <span class="o">}</span>
-
-            <span class="c1">// 该方法会返回 LinkedHashMap 的头节点
-</span><span class="c1"></span>            <span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">toEvict</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">eldest</span><span class="o">();</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">toEvict</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">break</span><span class="o">;</span>
-            <span class="o">}</span>
-
-            <span class="n">key</span> <span class="o">=</span> <span class="n">toEvict</span><span class="o">.</span><span class="na">getKey</span><span class="o">();</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="n">toEvict</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
-            <span class="c1">// 移出这个节点
-</span><span class="c1"></span>            <span class="n">map</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-            <span class="n">size</span> <span class="o">-=</span> <span class="n">safeSizeOf</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
-            <span class="n">evictionCount</span><span class="o">++;</span>
-        <span class="o">}</span>
-
-        <span class="n">entryRemoved</span><span class="o">(</span><span class="kc">true</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">trimToSize</span><span class="o">(</span><span class="kt">int</span> <span class="n">maxSize</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">K</span> <span class="n">key</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">V</span> <span class="n">value</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">size</span> <span class="o">&lt;=</span> <span class="n">maxSize</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// 该方法会返回 LinkedHashMap 的头节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">toEvict</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">eldest</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">toEvict</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">key</span> <span class="o">=</span> <span class="n">toEvict</span><span class="o">.</span><span class="na">getKey</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">value</span> <span class="o">=</span> <span class="n">toEvict</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 移出这个节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">map</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">size</span> <span class="o">-=</span> <span class="n">safeSizeOf</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">evictionCount</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">entryRemoved</span><span class="o">(</span><span class="kc">true</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="总结">总结</h1>
 <ul>
@@ -2448,7 +2395,7 @@ if (!doNotTrack) {
     
 <div class="donation">
   <div class="donation__message">
-    Support the author with
+    您的鼓励是我最大的动力
   </div>
   <div class="donation__icons">
     
@@ -2499,7 +2446,7 @@ if (!doNotTrack) {
   </div>
   <div class="whoami__contents">
     <div class="whoami__written-by">
-      WRITTEN BY
+      作者
     </div>
     <div class="whoami__title">
       
@@ -2685,7 +2632,7 @@ if (!doNotTrack) {
 </div>
 
 
-<script defer src="/js/swipe.min.989e074dfb92ce7f57a92c1df7027f88b53c50a54fd9ad450a673a64aa91bfa4.js"></script>
+<script defer src="/js/swipe.min.feb438efb7ca009ecd7fc2ac3ad2fced4840990b2798d81f87137f2dc6281f05.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
@@ -2958,7 +2905,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <span class="icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
   </span>
-  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="搜索" autocomplete="off">
   <div id="search-results" class="dropdown">
     <div id="search-menu" class="dropdown-menu" role="menu">
     </div>
@@ -2978,7 +2925,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section class="sidebar hide">
   <script>document.querySelector('.sidebar').classList.remove('hide')</script>
   <div class="toc__flexbox" data-position="fixed">
-    <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
+    <h6 class="toc__title" data-ani="true">目录</h6>
     
       <label class="switch" data-ani="true">
         <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
@@ -3405,7 +3352,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.trigger.classList.add('tooltipped');
       e.trigger.classList.add('tooltipped-s');
     });
-    // =================================================================
+    
 
 
 
@@ -3623,6 +3570,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
+      
+      
+        
+        
+          
+            
+          
+        
+      
+        
+      
+    
   </div>
 </div>
 
@@ -3733,7 +3692,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2022, All Rights Reserved
+                    ©2023, All Rights Reserved
                 
             </p>
         

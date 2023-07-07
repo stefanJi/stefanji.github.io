@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh" dir="ltr">
 
 <head prefix="og: http://ogp.me/ns#">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.3ce954c8aea3b69cc5e6f734d8273ba4cd48d3a7987dbdca145849bc4b8fc296.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -663,6 +663,12 @@
     
     var enableSearch = JSON.parse("true");
     
+    var searchDistance = JSON.parse("null");
+    
+    var searchThreshold = JSON.parse("null");
+    
+    var searchContent = JSON.parse("null");
+    
     var enableSearchHighlight = JSON.parse("true");
     
     var searchResultPosition = JSON.parse("null");
@@ -686,12 +692,13 @@
         xhr.onload = function () {
           if (xhr.status === 200) {
             fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
-              keys: sectionType.includes('publication') ? ['title', 'abstract'] : ['title', 'description', 'content'],
+              keys: sectionType.includes('publication') ? ['title', 'abstract'] : 
+                searchContent ? ['title', 'description', 'content'] : ['title', 'description'],
               includeMatches: enableSearchHighlight,
               shouldSort: true, 
-              threshold: 0.4, 
+              threshold: searchThreshold ? searchThreshold : 0.4, 
               location: 0, 
-              distance: 100, 
+              distance: searchDistance ? searchDistance : 100, 
               maxPatternLength: 32,
               minMatchCharLength: 1,
               isCaseSensitive: false, 
@@ -715,7 +722,7 @@
       var a = document.createElement('a');
       a.innerHTML = obj.item.title;
       a.setAttribute('class', 'search-result__item--title');
-      a.setAttribute('href', obj.item.permalink);
+      a.setAttribute('href', obj.item.uri);
 
       var descDiv = document.createElement('div');
       descDiv.setAttribute('class', 'search-result__item--desc');
@@ -1315,7 +1322,8 @@
     }
   
   });
-</script>    
+</script>
+    
     
 
 
@@ -1339,7 +1347,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="Understanding Linux Networking internal 系列之 Critical Data Structures">
 
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.115.1">
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1393,7 +1401,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
   
 <script type="application/javascript">
 var doNotTrack = false;
@@ -1450,7 +1457,7 @@ if (!doNotTrack) {
     &nbsp;&nbsp;
     
     
-      <a href="/" title="Home" rel="home" class="navbar__title-link">
+      <a href="/" title="主页" rel="home" class="navbar__title-link">
         <h6 class="navbar__title">YangBlog</h6>
       </a>
     
@@ -1497,7 +1504,7 @@ if (!doNotTrack) {
 
 <div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
   <div class="mobile-search__top">
-    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="搜索" class="mobile-search__top--input"/>
     <div id="search-mobile-close" class="mobile-search__top--icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
     </div>
@@ -1518,59 +1525,23 @@ if (!doNotTrack) {
   <ul dir="ltr">
     
     
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="/categories">category</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item active">
-          <a href="/posts">posts</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="https://life.jiyang.site">about</a>
-        </li>
-      
-      
-    
 
     
       <li class="navbarm__menu--item ">
         <a href="/tags" class="navbarm__menu--term" data-index="0">
-          Tags
+          标签
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/categories" class="navbarm__menu--term" data-index="1">
-          Categories
+          分类
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/series" class="navbarm__menu--term" data-index="2">
-          Series
+          系列
         </a>
       </li>
     
@@ -1615,30 +1586,6 @@ if (!doNotTrack) {
 
   
   
-  
-  
-  
-  
-  
-  <a href="/categories" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">category</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="/posts" class="navbar__menu-item navbar__slide-down active" dir="ltr" data-ani="true">posts</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="https://life.jiyang.site" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">about</a>
-  
-  
 </div>
 </nav>
             
@@ -1681,16 +1628,16 @@ if (!doNotTrack) {
   
   
   <div class="single ">
-    <div class="single__nojs">This page looks best with JavaScript enabled</div>
+    <div class="single__nojs">Please enable Javascript to view the contents</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
     <h2 class="single__title" data-ani="true">理解Linux内部网络实现之关键数据结构 sk_buff</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Jan 2, 2020 </time>
+  <time class="single__info" title="创建日期">📅&nbsp;2020年01月02日 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;15&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="阅读时长"> ☕&nbsp;15&nbsp;分钟 </span>
   
   <span class="single__info">
     
@@ -1734,7 +1681,7 @@ if (!doNotTrack) {
 <p>内核的网络代码提供了大量有用但不是必须的选项，例如防火墙，多播等功能。这些选项都需要内核数据结构中的其他字段。因此，<code>sk_buff</code> 使用 C 语言的预处理命令 <code>#ifdef</code> 来做条件编译。例如在 <code>sk_buff</code> 定义的后面部分:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1746,17 +1693,17 @@ if (!doNotTrack) {
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">sk_buff</span> <span class="p">{</span>
-<span class="c1">//......
-</span><span class="c1"></span>    <span class="cp">#ifdef CONFIG_NET_SCHED 
-</span><span class="cp"></span>        <span class="n">__u32</span> <span class="n">tc_index</span><span class="p">;</span>
-    <span class="cp">#ifdef CONFIG_NET_CLS_ACT 
-</span><span class="cp"></span>        <span class="n">__u32</span> <span class="n">tc_verd</span><span class="p">;</span>
-        <span class="n">__u32</span> <span class="n">tc_classid</span><span class="p">;</span>
-    <span class="cp">#endif
-</span><span class="cp"></span>    <span class="cp">#endif
-</span><span class="cp"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">sk_buff</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//......
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="cp">#ifdef CONFIG_NET_SCHED 
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>        <span class="n">__u32</span> <span class="n">tc_index</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cp">#ifdef CONFIG_NET_CLS_ACT 
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>        <span class="n">__u32</span> <span class="n">tc_verd</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">__u32</span> <span class="n">tc_classid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>通过在编译 Linux 时配置不同的编译选项，能够让编译出来的内核支持不同的功能。</p>
 <h2 id="layout-fields">Layout Fields</h2>
@@ -1764,7 +1711,7 @@ if (!doNotTrack) {
 <p>和任何双向链表类似，sk_buff 链表的每个节点也通过 <code>next</code> 和 <code>prev</code> 分别指向后继和前驱节点。但是 sk_buff 链表还要求：每个节点必须能够<strong>很快的</strong>找到整个链表的头节点。为了实现这个要求，一个额外的数据结构(<code>sk_buff_head</code>)被添加到链表的头部，作为一个空节点：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1774,15 +1721,15 @@ if (!doNotTrack) {
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">sk_buff_head</span> <span class="p">{</span>
-	<span class="cm">/* These two members must be first. */</span>
-	<span class="k">struct</span> <span class="n">sk_buff</span>	<span class="o">*</span><span class="n">next</span><span class="p">;</span>
-	<span class="k">struct</span> <span class="n">sk_buff</span>	<span class="o">*</span><span class="n">prev</span><span class="p">;</span>
-
-	<span class="n">__u32</span>		<span class="n">qlen</span><span class="p">;</span>
-	<span class="n">spinlock_t</span>	<span class="n">lock</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">sk_buff_head</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="cm">/* These two members must be first. */</span>
+</span></span><span class="line"><span class="cl">	<span class="k">struct</span> <span class="n">sk_buff</span>	<span class="o">*</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">struct</span> <span class="n">sk_buff</span>	<span class="o">*</span><span class="n">prev</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">__u32</span>		<span class="n">qlen</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">spinlock_t</span>	<span class="n">lock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>qlen: 表示链表中的节点数</li>
@@ -1806,15 +1753,15 @@ if (!doNotTrack) {
 <p>这个字段表示 buffer 的总大小，包括了 sk_buff 自己的占用。在执行 <code>alloc_skb</code> 函数时该字段被初始化。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define SKB_TRUESIZE(X) ((X) +						\
-</span><span class="cp">	 SKB_DATA_ALIGN(sizeof(struct sk_buff)) +	\
-</span><span class="cp">	 SKB_DATA_ALIGN(sizeof(struct skb_shared_info)))
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define SKB_TRUESIZE(X) ((X) +						\
+</span></span></span><span class="line"><span class="cl"><span class="cp">	 SKB_DATA_ALIGN(sizeof(struct sk_buff)) +	\
+</span></span></span><span class="line"><span class="cl"><span class="cp">	 SKB_DATA_ALIGN(sizeof(struct skb_shared_info)))
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>*<em>unsigned char <em>head</em></em><br />
 *<em>unsigned char <em>end</em></em><br />
@@ -1849,7 +1796,7 @@ if (!doNotTrack) {
 <p><code>control buffer</code> 的简称，或存储一些私有信息，由各层维护以供内部使用。它是在 <code>sk_buff</code> 结构中静态分配的（当前大小为40个字节），并且足够大以容纳每一层所需的任何私有数据。在每一层的代码中，访问都是通过宏进行的，以使代码更具可读性。例如，TCP使用该空间存储 <code>tcp_skb_cb</code> 数据结构，该数据结构在 <em>include/net/tcp.h</em> 中定义：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1859,29 +1806,29 @@ if (!doNotTrack) {
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">tcp_skb_cb</span> <span class="p">{</span>
-    <span class="c1">//...
-</span><span class="c1"></span>	<span class="n">__u32</span>		<span class="n">seq</span><span class="p">;</span>		<span class="cm">/* Starting sequence number	*/</span>
-	<span class="n">__u32</span>		<span class="n">end_seq</span><span class="p">;</span>	<span class="cm">/* SEQ + FIN + SYN + datalen	*/</span>
-	<span class="n">__u8</span>		<span class="n">tcp_flags</span><span class="p">;</span>	<span class="cm">/* TCP header flags. (tcp[13])	*/</span>
-	<span class="n">__u32</span>		<span class="n">ack_seq</span><span class="p">;</span>	<span class="cm">/* Sequence number ACK&#39;d	*/</span>
-    <span class="c1">//...
-</span><span class="c1"></span><span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">tcp_skb_cb</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">__u32</span>		<span class="n">seq</span><span class="p">;</span>		<span class="cm">/* Starting sequence number	*/</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__u32</span>		<span class="n">end_seq</span><span class="p">;</span>	<span class="cm">/* SEQ + FIN + SYN + datalen	*/</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__u8</span>		<span class="n">tcp_flags</span><span class="p">;</span>	<span class="cm">/* TCP header flags. (tcp[13])	*/</span>
+</span></span><span class="line"><span class="cl">	<span class="n">__u32</span>		<span class="n">ack_seq</span><span class="p">;</span>	<span class="cm">/* Sequence number ACK&#39;d	*/</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这是 TCP 代码访问结构的宏。宏仅由一个指针转换组成：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define TCP_SKB_CB(__skb)	((struct tcp_skb_cb *)&amp;((__skb)-&gt;cb[0]))
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define TCP_SKB_CB(__skb)	((struct tcp_skb_cb *)&amp;((__skb)-&gt;cb[0]))
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这是一个示例，其中 TCP 模块在收到分段后填写 cb 结构：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1892,16 +1839,16 @@ if (!doNotTrack) {
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">static</span> <span class="kt">void</span> <span class="nf">tcp_v4_fill_cb</span><span class="p">(</span><span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="n">skb</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">iphdr</span> <span class="o">*</span><span class="n">iph</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">tcphdr</span> <span class="o">*</span><span class="n">th</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">seq</span> <span class="o">=</span> <span class="n">ntohl</span><span class="p">(</span><span class="n">th</span><span class="o">-&gt;</span><span class="n">seq</span><span class="p">);</span>
-    <span class="n">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">end_seq</span> <span class="o">=</span> <span class="p">(</span><span class="n">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">seq</span> <span class="o">+</span> <span class="n">th</span><span class="o">-&gt;</span><span class="n">syn</span> <span class="o">+</span> <span class="n">th</span><span class="o">-&gt;</span><span class="n">fin</span> <span class="o">+</span> <span class="n">skb</span><span class="o">-&gt;</span><span class="n">len</span> <span class="o">-</span> <span class="n">th</span><span class="o">-&gt;</span><span class="n">doff</span> <span class="o">*</span> <span class="mi">4</span><span class="p">);</span>
-    <span class="n">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">ack_seq</span> <span class="o">=</span> <span class="n">ntohl</span><span class="p">(</span><span class="n">th</span><span class="o">-&gt;</span><span class="n">ack_seq</span><span class="p">);</span>
-    <span class="n">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">tcp_flags</span> <span class="o">=</span> <span class="n">tcp_flag_byte</span><span class="p">(</span><span class="n">th</span><span class="p">);</span>
-    <span class="n">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">tcp_tw_isn</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">ip_dsfield</span> <span class="o">=</span> <span class="n">ipv4_get_dsfield</span><span class="p">(</span><span class="n">iph</span><span class="p">);</span>
-    <span class="n">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sacked</span>	 <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">void</span> <span class="nf">tcp_v4_fill_cb</span><span class="p">(</span><span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="n">skb</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">iphdr</span> <span class="o">*</span><span class="n">iph</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">tcphdr</span> <span class="o">*</span><span class="n">th</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">seq</span> <span class="o">=</span> <span class="nf">ntohl</span><span class="p">(</span><span class="n">th</span><span class="o">-&gt;</span><span class="n">seq</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">end_seq</span> <span class="o">=</span> <span class="p">(</span><span class="nf">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">seq</span> <span class="o">+</span> <span class="n">th</span><span class="o">-&gt;</span><span class="n">syn</span> <span class="o">+</span> <span class="n">th</span><span class="o">-&gt;</span><span class="n">fin</span> <span class="o">+</span> <span class="n">skb</span><span class="o">-&gt;</span><span class="n">len</span> <span class="o">-</span> <span class="n">th</span><span class="o">-&gt;</span><span class="n">doff</span> <span class="o">*</span> <span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">ack_seq</span> <span class="o">=</span> <span class="nf">ntohl</span><span class="p">(</span><span class="n">th</span><span class="o">-&gt;</span><span class="n">ack_seq</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">tcp_flags</span> <span class="o">=</span> <span class="nf">tcp_flag_byte</span><span class="p">(</span><span class="n">th</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">tcp_tw_isn</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">ip_dsfield</span> <span class="o">=</span> <span class="nf">ipv4_get_dsfield</span><span class="p">(</span><span class="n">iph</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">TCP_SKB_CB</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sacked</span>	 <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>unsigned int csum</strong><br />
 <strong>unsigned char ip_summed</strong></p>
@@ -1958,7 +1905,7 @@ __u32 tc_classid</p>
 <p><code>alloc_skb</code> 通过调用函数 <code>kmem_cache_alloc</code> 从缓存中获取 <code>sk_buff</code> 数据结构，并通过调用 <code>kmalloc</code> 获取数据缓冲区，而 <code>kmalloc</code> 也会使用缓存的内存（如果可用）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1967,14 +1914,14 @@ __u32 tc_classid</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="n">skb</span><span class="p">;</span>
-<span class="n">u8</span> <span class="o">*</span><span class="n">data</span>
-
-<span class="n">skb</span> <span class="o">=</span> <span class="n">kmem_cache_alloc_node</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span> <span class="n">gfp_mask</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">__GFP_DMA</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
-<span class="n">size</span> <span class="o">=</span> <span class="n">SKB_DATA_ALIGN</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
-<span class="n">size</span> <span class="o">+=</span> <span class="n">SKB_DATA_ALIGN</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">skb_shared_info</span><span class="p">));</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">kmalloc_reserve</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">gfp_mask</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">pfmemalloc</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="n">skb</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="o">*</span><span class="n">data</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">skb</span> <span class="o">=</span> <span class="nf">kmem_cache_alloc_node</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span> <span class="n">gfp_mask</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">__GFP_DMA</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">size</span> <span class="o">=</span> <span class="nf">SKB_DATA_ALIGN</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">size</span> <span class="o">+=</span> <span class="nf">SKB_DATA_ALIGN</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">skb_shared_info</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="nf">kmalloc_reserve</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">gfp_mask</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">pfmemalloc</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在调用 kmalloc 之前，使用宏 <code>SKB_DATA_ALIGN</code> 调整了大小参数以强制对齐。返回之前，该函数将初始化结构体中的一些参数，从而产生下图所示的最终结果：</p>
 <p><img src="https://image.youcute.cn/image/blog/alloc_skb.png" alt="alloc_skb" /></p>
@@ -2000,11 +1947,11 @@ __u32 tc_classid</p>
 <p>查看以太网网卡驱动程序的代码（比如: <em>drivers/net/ethernet/3com/3c59x.c</em> <code>vortex_rx</code> 函数），你能看到它们在将任何数据存储在他们刚刚分配的缓冲区中之前都会使用以下命令：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">skb_reserve</span><span class="p">(</span><span class="n">skb</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>	<span class="cm">/* Align IP on 16 byte boundaries */</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">skb_reserve</span><span class="p">(</span><span class="n">skb</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>	<span class="cm">/* Align IP on 16 byte boundaries */</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>因为他们知道他们将要把协议头为 14 个字节的以太网帧复制到缓冲区中，所以参数2将缓冲区的 <code>head</code> 指针下移了 2 个字节。这将让紧跟在以太网头之后的 IP 头，从缓冲区的开头在 16 字节边界上对齐。</p>
 <p><img src="https://image.youcute.cn/image/blog/skb_reserve_aligned.png" alt="skb_reserve aligned" /></p>
@@ -2022,19 +1969,19 @@ __u32 tc_classid</p>
 <p>注意，skb_reserve 函数实际上并没有将任何内容移入或移出数据缓冲区。 它只是更新两个指针：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">skb_reserve</span><span class="p">(</span><span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="n">skb</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">skb</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">+=</span> <span class="n">len</span><span class="p">;</span>
-	<span class="n">skb</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">+=</span> <span class="n">len</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">skb_reserve</span><span class="p">(</span><span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="n">skb</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">skb</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">+=</span> <span class="n">len</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">skb</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">+=</span> <span class="n">len</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>感觉这里是用空间来换了时间，在一开始就分配需要用到的全部空间，然后就可以通过只移动指针来提高效率了。</p>
@@ -2044,7 +1991,7 @@ __u32 tc_classid</p>
 <p>在上面网卡驱动拷贝帧到缓冲区的例子中出现过 <code>skb_shared_info</code>。它是用来保留与数据域有关的其他信息。这个数据结构紧跟在标记数据域结束的 <code>end</code> 指针后面。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2053,14 +2000,14 @@ __u32 tc_classid</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">skb_shared_info</span> <span class="p">{</span>
-    <span class="n">atomic_t</span>        <span class="n">dataref</span><span class="p">;</span>
-    <span class="n">__u8</span>            <span class="n">nr_frags</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="n">sk_buff</span>	<span class="o">*</span><span class="n">frag_list</span><span class="p">;</span>
-    <span class="n">skb_frag_t</span>	    <span class="n">frags</span><span class="p">[</span><span class="n">MAX_SKB_FRAGS</span><span class="p">];</span>
-    <span class="c1">//...
-</span><span class="c1"></span><span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">skb_shared_info</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">atomic_t</span>        <span class="n">dataref</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__u8</span>            <span class="n">nr_frags</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">sk_buff</span>	<span class="o">*</span><span class="n">frag_list</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">skb_frag_t</span>	    <span class="n">frags</span><span class="p">[</span><span class="n">MAX_SKB_FRAGS</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>dataref：代表数据域的「用户」数（数据域被引用的次数）</li>
@@ -2070,7 +2017,7 @@ __u32 tc_classid</p>
 <p><code>sk_buff</code> 中没有专门的指针指向 skb_shared_info 区域，<code>skb_shinfo</code> 函数就是方便得到指向 skb_shared_info 区域指针的函数:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2078,13 +2025,13 @@ __u32 tc_classid</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define skb_shinfo(SKB)	((struct skb_shared_info *)(skb_end_pointer(SKB)))
-</span><span class="cp"></span>
-<span class="k">static</span> <span class="kr">inline</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="nf">skb_end_pointer</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="n">skb</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="k">return</span> <span class="n">skb</span><span class="o">-&gt;</span><span class="n">end</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define skb_shinfo(SKB)	((struct skb_shared_info *)(skb_end_pointer(SKB)))
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kr">inline</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="nf">skb_end_pointer</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="n">skb</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">skb</span><span class="o">-&gt;</span><span class="n">end</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="克隆和拷贝">克隆和拷贝</h3>
 <p>当相同的缓冲区需要由不同的消费者处理，并且他们可能更改 sk_buff 结构中的内容（协议头的<code>h</code>和 <code>nh</code> 指针等 Layout 字段）时，为了提高效率，内核并没有克隆缓冲区的结构和数据域，而是仅复制 sk_buff 的结构，并使用引用计数进行操作，以避免过早释放共享数据块。<code>skb_clone</code> 函数负责拷贝一个 buffer。</p>
@@ -2093,7 +2040,7 @@ __u32 tc_classid</p>
 <p><code>skb_clone</code> 会调用 <code>__skb_clone</code>:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2118,30 +2065,30 @@ __u32 tc_classid</p>
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">static</span> <span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="nf">__skb_clone</span><span class="p">(</span><span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="n">skb</span><span class="p">)</span> 
-<span class="p">{</span>
-<span class="cp">#define C(x) n-&gt;x = skb-&gt;x 
-</span><span class="cp"></span><span class="c1">// 定义的宏，如果 x 是普通变量则是值赋值
-</span><span class="c1">// 如果 x 是指针，则是指向同一块区域
-</span><span class="c1"></span>
-	<span class="n">n</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">n</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-	<span class="n">n</span><span class="o">-&gt;</span><span class="n">sk</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-	<span class="n">__copy_skb_header</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">skb</span><span class="p">);</span>
-    <span class="c1">//...
-</span><span class="c1"></span>	<span class="n">n</span><span class="o">-&gt;</span><span class="n">destructor</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-	<span class="n">C</span><span class="p">(</span><span class="n">tail</span><span class="p">);</span>
-	<span class="n">C</span><span class="p">(</span><span class="n">end</span><span class="p">);</span>
-	<span class="n">C</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
-	<span class="n">C</span><span class="p">(</span><span class="n">head_frag</span><span class="p">);</span>
-	<span class="n">C</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>    <span class="c1">// data 是一个指针, 所以没有克隆数据域，只是指向了数据域的内存地址
-</span><span class="c1"></span>	<span class="n">C</span><span class="p">(</span><span class="n">truesize</span><span class="p">);</span>
-	<span class="n">refcount_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">n</span><span class="o">-&gt;</span><span class="n">users</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">//设置克隆的 sk_buff 的用户数为1
-</span><span class="c1"></span>	<span class="n">atomic_inc</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">skb_shinfo</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">dataref</span><span class="p">));</span> <span class="c1">//增加数据域的引用次数
-</span><span class="c1"></span>	<span class="n">skb</span><span class="o">-&gt;</span><span class="n">cloned</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-	<span class="k">return</span> <span class="n">n</span><span class="p">;</span>
-<span class="cp">#undef C
-</span><span class="cp"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="nf">__skb_clone</span><span class="p">(</span><span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sk_buff</span> <span class="o">*</span><span class="n">skb</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define C(x) n-&gt;x = skb-&gt;x 
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// 定义的宏，如果 x 是普通变量则是值赋值
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 如果 x 是指针，则是指向同一块区域
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="n">n</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">n</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">n</span><span class="o">-&gt;</span><span class="n">sk</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">__copy_skb_header</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">skb</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">n</span><span class="o">-&gt;</span><span class="n">destructor</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">C</span><span class="p">(</span><span class="n">tail</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">C</span><span class="p">(</span><span class="n">end</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">C</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">C</span><span class="p">(</span><span class="n">head_frag</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">C</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>    <span class="c1">// data 是一个指针, 所以没有克隆数据域，只是指向了数据域的内存地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">C</span><span class="p">(</span><span class="n">truesize</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">refcount_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">n</span><span class="o">-&gt;</span><span class="n">users</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">//设置克隆的 sk_buff 的用户数为1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">atomic_inc</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="nf">skb_shinfo</span><span class="p">(</span><span class="n">skb</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">dataref</span><span class="p">));</span> <span class="c1">//增加数据域的引用次数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">skb</span><span class="o">-&gt;</span><span class="n">cloned</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#undef C
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>下图为一个被分段（一个缓冲区，其中一些数据存储在与frags数组链接的数据片段中）了的缓冲区克隆的例子:</p>
 <p><img src="https://image.youcute.cn/image/blog/sk_buff_clone.png" alt="sk_buff clone" /></p>
@@ -2167,17 +2114,17 @@ __u32 tc_classid</p>
 <p>使用 for 循环遍历队列，其实现如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define skb_queue_walk(queue, skb) \
-</span><span class="cp">       for (skb = (queue)-&gt;next;					\
-</span><span class="cp">            skb != (struct sk_buff *)(queue);				\
-</span><span class="cp">            skb = skb-&gt;next)
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define skb_queue_walk(queue, skb) \
+</span></span></span><span class="line"><span class="cl"><span class="cp">   	for (skb = (queue)-&gt;next;					\
+</span></span></span><span class="line"><span class="cl"><span class="cp">   	     skb != (struct sk_buff *)(queue);				\
+</span></span></span><span class="line"><span class="cl"><span class="cp">   	     skb = skb-&gt;next)
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以看到其实现是定义了一个宏，预处理编译之后 skb_queue_walk 就会被替换为上面的代码，因为 sk_buff 的队列是一个双向链表，去过遍历到了头节点，说明遍历完成了。</p>
 <p>操作队列的所有函数都必须保证是原子操作。也就是说，它们必须获取 sk_buff_head 结构提供的队列自旋锁。否则，它们可能会被异步事件中断，这些异步事件会使队列中的元素入队或出队，例如到期计时器调用的函数会导致争用条件。</p>
@@ -2378,7 +2325,7 @@ __u32 tc_classid</p>
     
 <div class="donation">
   <div class="donation__message">
-    Support the author with
+    您的鼓励是我最大的动力
   </div>
   <div class="donation__icons">
     
@@ -2429,7 +2376,7 @@ __u32 tc_classid</p>
   </div>
   <div class="whoami__contents">
     <div class="whoami__written-by">
-      WRITTEN BY
+      作者
     </div>
     <div class="whoami__title">
       
@@ -2615,7 +2562,7 @@ __u32 tc_classid</p>
 </div>
 
 
-<script defer src="/js/swipe.min.989e074dfb92ce7f57a92c1df7027f88b53c50a54fd9ad450a673a64aa91bfa4.js"></script>
+<script defer src="/js/swipe.min.feb438efb7ca009ecd7fc2ac3ad2fced4840990b2798d81f87137f2dc6281f05.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
@@ -2888,7 +2835,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <span class="icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
   </span>
-  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="搜索" autocomplete="off">
   <div id="search-results" class="dropdown">
     <div id="search-menu" class="dropdown-menu" role="menu">
     </div>
@@ -2908,7 +2855,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section class="sidebar hide">
   <script>document.querySelector('.sidebar').classList.remove('hide')</script>
   <div class="toc__flexbox" data-position="fixed">
-    <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
+    <h6 class="toc__title" data-ani="true">目录</h6>
     
       <label class="switch" data-ani="true">
         <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
@@ -3324,7 +3271,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.trigger.classList.add('tooltipped');
       e.trigger.classList.add('tooltipped-s');
     });
-    // =================================================================
+    
 
 
 
@@ -3542,6 +3489,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
+      
+      
+        
+        
+          
+            
+          
+        
+      
+        
+      
+    
   </div>
 </div>
 
@@ -3652,7 +3611,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2022, All Rights Reserved
+                    ©2023, All Rights Reserved
                 
             </p>
         

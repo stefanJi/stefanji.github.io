@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh" dir="ltr">
 
 <head prefix="og: http://ogp.me/ns#">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.3ce954c8aea3b69cc5e6f734d8273ba4cd48d3a7987dbdca145849bc4b8fc296.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -663,6 +663,12 @@
     
     var enableSearch = JSON.parse("true");
     
+    var searchDistance = JSON.parse("null");
+    
+    var searchThreshold = JSON.parse("null");
+    
+    var searchContent = JSON.parse("null");
+    
     var enableSearchHighlight = JSON.parse("true");
     
     var searchResultPosition = JSON.parse("null");
@@ -686,12 +692,13 @@
         xhr.onload = function () {
           if (xhr.status === 200) {
             fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
-              keys: sectionType.includes('publication') ? ['title', 'abstract'] : ['title', 'description', 'content'],
+              keys: sectionType.includes('publication') ? ['title', 'abstract'] : 
+                searchContent ? ['title', 'description', 'content'] : ['title', 'description'],
               includeMatches: enableSearchHighlight,
               shouldSort: true, 
-              threshold: 0.4, 
+              threshold: searchThreshold ? searchThreshold : 0.4, 
               location: 0, 
-              distance: 100, 
+              distance: searchDistance ? searchDistance : 100, 
               maxPatternLength: 32,
               minMatchCharLength: 1,
               isCaseSensitive: false, 
@@ -715,7 +722,7 @@
       var a = document.createElement('a');
       a.innerHTML = obj.item.title;
       a.setAttribute('class', 'search-result__item--title');
-      a.setAttribute('href', obj.item.permalink);
+      a.setAttribute('href', obj.item.uri);
 
       var descDiv = document.createElement('div');
       descDiv.setAttribute('class', 'search-result__item--desc');
@@ -1315,7 +1322,8 @@
     }
   
   });
-</script>    
+</script>
+    
     
 
 
@@ -1341,7 +1349,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="raspberry-pi-os 项目记录了从头实现一个适用与树莓派3B(处理器为ARMv8架构)的操作系统的过程。这篇文章记录了我按照项目的 lesson01 学习的过程，另外再加上自己的修改。">
 
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.115.1">
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1396,7 +1404,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
   
 <script type="application/javascript">
 var doNotTrack = false;
@@ -1453,7 +1460,7 @@ if (!doNotTrack) {
     &nbsp;&nbsp;
     
     
-      <a href="/" title="Home" rel="home" class="navbar__title-link">
+      <a href="/" title="主页" rel="home" class="navbar__title-link">
         <h6 class="navbar__title">YangBlog</h6>
       </a>
     
@@ -1500,7 +1507,7 @@ if (!doNotTrack) {
 
 <div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
   <div class="mobile-search__top">
-    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="搜索" class="mobile-search__top--input"/>
     <div id="search-mobile-close" class="mobile-search__top--icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
     </div>
@@ -1521,59 +1528,23 @@ if (!doNotTrack) {
   <ul dir="ltr">
     
     
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="/categories">category</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item active">
-          <a href="/posts">posts</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="https://life.jiyang.site">about</a>
-        </li>
-      
-      
-    
 
     
       <li class="navbarm__menu--item ">
         <a href="/tags" class="navbarm__menu--term" data-index="0">
-          Tags
+          标签
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/categories" class="navbarm__menu--term" data-index="1">
-          Categories
+          分类
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/series" class="navbarm__menu--term" data-index="2">
-          Series
+          系列
         </a>
       </li>
     
@@ -1618,30 +1589,6 @@ if (!doNotTrack) {
 
   
   
-  
-  
-  
-  
-  
-  <a href="/categories" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">category</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="/posts" class="navbar__menu-item navbar__slide-down active" dir="ltr" data-ani="true">posts</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="https://life.jiyang.site" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">about</a>
-  
-  
 </div>
 </nav>
             
@@ -1684,16 +1631,16 @@ if (!doNotTrack) {
   
   
   <div class="single ">
-    <div class="single__nojs">This page looks best with JavaScript enabled</div>
+    <div class="single__nojs">Please enable Javascript to view the contents</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
     <h2 class="single__title" data-ani="true">树莓派OS-#0x00-自制系统镜像并控制处理器的运行</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Mar 1, 2020 </time>
+  <time class="single__info" title="创建日期">📅&nbsp;2020年03月01日 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;9&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="阅读时长"> ☕&nbsp;9&nbsp;分钟 </span>
   
   <span class="single__info">
     
@@ -1737,7 +1684,7 @@ if (!doNotTrack) {
 <iframe src="//player.bilibili.com/player.html?aid=93004881&cid=158790924&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 <h1 id="make">make</h1>
 <p>make 工具依据 <em>Makefile</em> 定义的规则执行编译工作，<em>Makefile</em> 的格式如下：</p>
-<pre><code>targets : prerequisites
+<pre tabindex="0"><code>targets : prerequisites
         recipe
         …
 </code></pre><ul>
@@ -1752,17 +1699,17 @@ if (!doNotTrack) {
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="nv">ARMGNU</span> <span class="o">?=</span> aarch64-linux-gnu 
-<span class="c"># ARMGNU 交叉编译的前缀, 这里编译的目标平台是 arm64 架构的 x86 机器, 所以使用 aarch64-linux-gnu-gcc 作为编译器
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="line"><span class="cl"><span class="nv">ARMGNU</span> <span class="o">?=</span> aarch64-linux-gnu 
+</span></span><span class="line"><span class="cl"><span class="c"># ARMGNU 交叉编译的前缀, 这里编译的目标平台是 arm64 架构的 x86 机器, 所以使用 aarch64-linux-gnu-gcc 作为编译器
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1771,33 +1718,33 @@ if (!doNotTrack) {
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="nv">COPS</span> <span class="o">=</span> -Wall -nostdlib -nostartfiles -ffreestanding -Iinclude -mgeneral-regs-only <span class="c1"># 传递给C语言编译器的选项</span>
-<span class="c"># -Wall 显示所有警告
-</span><span class="c"># -nostdlib 不使用C标准库，因为许多C标准库的调用实际都会与操作系统做交互。我们这里自己实现一个简易的操作系统，因此没有任何已有的操作系统调用供标准库使用。
-</span><span class="c"># -nostartfiles 不使用标准的 startup 文件，Startup 文件的作用是设置一个栈指针，初始化静态数据，跳到主要的入口。这里我们将自己实现这些工作。
-</span><span class="c"># -ffreestanding 告诉编译器不要去假设标准函数有通常的实现
-</span><span class="c"># -Iinclude 在 include 目录里搜索头文件
-</span><span class="c"># -mgeneral-regs-only 只使用通用寄存器
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="line"><span class="cl"><span class="nv">COPS</span> <span class="o">=</span> -Wall -nostdlib -nostartfiles -ffreestanding -Iinclude -mgeneral-regs-only <span class="c1"># 传递给C语言编译器的选项</span>
+</span></span><span class="line"><span class="cl"><span class="c"># -Wall 显示所有警告
+</span></span></span><span class="line"><span class="cl"><span class="c"># -nostdlib 不使用C标准库，因为许多C标准库的调用实际都会与操作系统做交互。我们这里自己实现一个简易的操作系统，因此没有任何已有的操作系统调用供标准库使用。
+</span></span></span><span class="line"><span class="cl"><span class="c"># -nostartfiles 不使用标准的 startup 文件，Startup 文件的作用是设置一个栈指针，初始化静态数据，跳到主要的入口。这里我们将自己实现这些工作。
+</span></span></span><span class="line"><span class="cl"><span class="c"># -ffreestanding 告诉编译器不要去假设标准函数有通常的实现
+</span></span></span><span class="line"><span class="cl"><span class="c"># -Iinclude 在 include 目录里搜索头文件
+</span></span></span><span class="line"><span class="cl"><span class="c"># -mgeneral-regs-only 只使用通用寄存器
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="nv">ASMOPS</span> <span class="o">=</span> -Iinclude <span class="c1"># 传递给汇编编译器的选项</span>
-<span class="nv">BUILD_DIR</span> <span class="o">=</span> build <span class="c1"># 编译之后文件的存储位置</span>
-<span class="nv">SRC_DIR</span> <span class="o">=</span> src <span class="c1"># 源代码所在的目录</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="line"><span class="cl"><span class="nv">ASMOPS</span> <span class="o">=</span> -Iinclude <span class="c1"># 传递给汇编编译器的选项</span>
+</span></span><span class="line"><span class="cl"><span class="nv">BUILD_DIR</span> <span class="o">=</span> build <span class="c1"># 编译之后文件的存储位置</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SRC_DIR</span> <span class="o">=</span> src <span class="c1"># 源代码所在的目录</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>构建目标的定义</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1833,45 +1780,45 @@ if (!doNotTrack) {
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="nf">all </span><span class="o">:</span> <span class="n">kernel</span>8.<span class="n">img</span>  <span class="c"># 默认的构建目标，依赖 kernel8.img 构建目标
-</span><span class="c"></span>
-<span class="nf">clean </span><span class="o">:</span> <span class="c"># clean 目标的动作是删除所有编译产物
-</span><span class="c"></span>    rm -rf <span class="k">$(</span>BUILD_DIR<span class="k">)</span> *.img 
-
-<span class="c"># 编译 SRC_DIR 目录下所有 .c 文件到 BUILD_DIR
-</span><span class="c"># $&lt; 和 $@ 是占位符，$&lt; 指依赖的文件, $@ 指输出的文件
-</span><span class="c"># -MMD 参数让编译器为每一个 object 文件创建一个依赖文件, 依赖文件包含所有编译目标源码时的依赖文件
-</span><span class="c"></span><span class="nf">$(BUILD_DIR)/%_c.o</span><span class="o">:</span> <span class="k">$(</span><span class="nv">SRC_DIR</span><span class="k">)</span>/%.<span class="n">c</span>
-    mkdir -p <span class="k">$(</span>@D<span class="k">)</span>
-    <span class="k">$(</span>ARMGNU<span class="k">)</span>-gcc <span class="k">$(</span>COPS<span class="k">)</span> -MMD -c $&lt; -o <span class="nv">$@</span>
-
-<span class="c"># 编译 SRC_DIR 目录下所有 .S 文件到 BUILD_DIR
-</span><span class="c"></span><span class="nf">$(BUILD_DIR)/%_s.o</span><span class="o">:</span> <span class="k">$(</span><span class="nv">SRC_DIR</span><span class="k">)</span>/%.<span class="n">S</span>
-    <span class="k">$(</span>ARMGNU<span class="k">)</span>-gcc <span class="k">$(</span>ASMOPS<span class="k">)</span> -MMD -c $&lt; -o <span class="nv">$@</span>
-
-<span class="c"># OBJ_FILES 数组将包含所有 c 源码和汇编源码编译之后的 object 文件
-</span><span class="c"></span><span class="nv">C_FILES</span> <span class="o">=</span> <span class="k">$(</span>wildcard <span class="k">$(</span>SRC_DIR<span class="k">)</span>/*.c<span class="k">)</span>
-<span class="nv">ASM_FILES</span> <span class="o">=</span> <span class="k">$(</span>wildcard <span class="k">$(</span>SRC_DIR<span class="k">)</span>/*.S<span class="k">)</span>
-<span class="nv">OBJ_FILES</span> <span class="o">=</span> <span class="k">$(</span>C_FILES:<span class="k">$(</span>SRC_DIR<span class="k">)</span>/%.c<span class="o">=</span><span class="k">$(</span>BUILD_DIR<span class="k">)</span>/%_c.o<span class="k">)</span>
-<span class="nv">OBJ_FILES</span> <span class="o">+=</span> <span class="k">$(</span>ASM_FILES:<span class="k">$(</span>SRC_DIR<span class="k">)</span>/%.S<span class="o">=</span><span class="k">$(</span>BUILD_DIR<span class="k">)</span>/%_s.o<span class="k">)</span>
-
-<span class="c"># 因为 make 因为依赖的文件的修改触发重新编译, 如果只是依赖关系改变了则不能触发重新编译
-</span><span class="c"># 因此这里将 -MMD 生成的依赖文件也 include 进编译链，间接的让 make 能跟踪到依赖间的改变
-</span><span class="c"></span><span class="nv">DEP_FILES</span> <span class="o">=</span> <span class="k">$(</span>OBJ_FILES:%.o<span class="o">=</span>%.d<span class="k">)</span>
-<span class="err">-include</span> <span class="k">$(</span><span class="nv">DEP_FILES</span><span class="k">)</span>
-
-<span class="c"># 编译目标 kernel8.img 依赖 linker.ld 和 OBJ_FILES 文件
-</span><span class="c"></span><span class="nf">kernel8.img</span><span class="o">:</span> <span class="k">$(</span><span class="nv">SRC_DIR</span><span class="k">)</span>/<span class="n">linker</span>.<span class="n">ld</span> <span class="k">$(</span><span class="nv">OBJ_FILES</span><span class="k">)</span>
-    <span class="c1"># 将 OBJ_FILES 数组链接为 kernel8.elf 文件, 使用 linker.ld 作为链接器的链接规则</span>
-    <span class="k">$(</span>ARMGNU<span class="k">)</span>-ld -T <span class="k">$(</span>SRC_DIR<span class="k">)</span>/linker.ld -o <span class="k">$(</span>BUILD_DIR<span class="k">)</span>/kernel8.elf  <span class="k">$(</span>OBJ_FILES<span class="k">)</span>
-    <span class="c1"># elf 文件面向的是操作系统去执行，因此这里需要将其转换为系统镜像文件，才能作为系统镜像去加载</span>
-    <span class="c1"># 文件名末尾的8，是树莓派硬件的约定，8表示该镜像文件用于 64 位架构的 ARMv8 处理器，kernel8.img 告诉硬件启动处理器到64位模式</span>
-    <span class="k">$(</span>ARMGNU<span class="k">)</span>-objcopy <span class="k">$(</span>BUILD_DIR<span class="k">)</span>/kernel8.elf -O binary kernel8.img
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="line"><span class="cl"><span class="nf">all </span><span class="o">:</span> <span class="n">kernel</span>8.<span class="n">img</span>  <span class="c"># 默认的构建目标，依赖 kernel8.img 构建目标
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>
+</span></span><span class="line"><span class="cl"><span class="nf">clean </span><span class="o">:</span> <span class="c"># clean 目标的动作是删除所有编译产物
+</span></span></span><span class="line"><span class="cl"><span class="c"></span>    rm -rf <span class="k">$(</span>BUILD_DIR<span class="k">)</span> *.img 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 编译 SRC_DIR 目录下所有 .c 文件到 BUILD_DIR
+</span></span></span><span class="line"><span class="cl"><span class="c"># $&lt; 和 $@ 是占位符，$&lt; 指依赖的文件, $@ 指输出的文件
+</span></span></span><span class="line"><span class="cl"><span class="c"># -MMD 参数让编译器为每一个 object 文件创建一个依赖文件, 依赖文件包含所有编译目标源码时的依赖文件
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nf">$(BUILD_DIR)/%_c.o</span><span class="o">:</span> <span class="k">$(</span><span class="nv">SRC_DIR</span><span class="k">)</span>/%.<span class="n">c</span>
+</span></span><span class="line"><span class="cl">    mkdir -p <span class="k">$(</span>@D<span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">$(</span>ARMGNU<span class="k">)</span>-gcc <span class="k">$(</span>COPS<span class="k">)</span> -MMD -c $&lt; -o <span class="nv">$@</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 编译 SRC_DIR 目录下所有 .S 文件到 BUILD_DIR
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nf">$(BUILD_DIR)/%_s.o</span><span class="o">:</span> <span class="k">$(</span><span class="nv">SRC_DIR</span><span class="k">)</span>/%.<span class="n">S</span>
+</span></span><span class="line"><span class="cl">    <span class="k">$(</span>ARMGNU<span class="k">)</span>-gcc <span class="k">$(</span>ASMOPS<span class="k">)</span> -MMD -c $&lt; -o <span class="nv">$@</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># OBJ_FILES 数组将包含所有 c 源码和汇编源码编译之后的 object 文件
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nv">C_FILES</span> <span class="o">=</span> <span class="k">$(</span>wildcard <span class="k">$(</span>SRC_DIR<span class="k">)</span>/*.c<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ASM_FILES</span> <span class="o">=</span> <span class="k">$(</span>wildcard <span class="k">$(</span>SRC_DIR<span class="k">)</span>/*.S<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">OBJ_FILES</span> <span class="o">=</span> <span class="k">$(</span>C_FILES:<span class="k">$(</span>SRC_DIR<span class="k">)</span>/%.c<span class="o">=</span><span class="k">$(</span>BUILD_DIR<span class="k">)</span>/%_c.o<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">OBJ_FILES</span> <span class="o">+=</span> <span class="k">$(</span>ASM_FILES:<span class="k">$(</span>SRC_DIR<span class="k">)</span>/%.S<span class="o">=</span><span class="k">$(</span>BUILD_DIR<span class="k">)</span>/%_s.o<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 因为 make 因为依赖的文件的修改触发重新编译, 如果只是依赖关系改变了则不能触发重新编译
+</span></span></span><span class="line"><span class="cl"><span class="c"># 因此这里将 -MMD 生成的依赖文件也 include 进编译链，间接的让 make 能跟踪到依赖间的改变
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nv">DEP_FILES</span> <span class="o">=</span> <span class="k">$(</span>OBJ_FILES:%.o<span class="o">=</span>%.d<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">-include</span> <span class="k">$(</span><span class="nv">DEP_FILES</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 编译目标 kernel8.img 依赖 linker.ld 和 OBJ_FILES 文件
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nf">kernel8.img</span><span class="o">:</span> <span class="k">$(</span><span class="nv">SRC_DIR</span><span class="k">)</span>/<span class="n">linker</span>.<span class="n">ld</span> <span class="k">$(</span><span class="nv">OBJ_FILES</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 将 OBJ_FILES 数组链接为 kernel8.elf 文件, 使用 linker.ld 作为链接器的链接规则</span>
+</span></span><span class="line"><span class="cl">    <span class="k">$(</span>ARMGNU<span class="k">)</span>-ld -T <span class="k">$(</span>SRC_DIR<span class="k">)</span>/linker.ld -o <span class="k">$(</span>BUILD_DIR<span class="k">)</span>/kernel8.elf  <span class="k">$(</span>OBJ_FILES<span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># elf 文件面向的是操作系统去执行，因此这里需要将其转换为系统镜像文件，才能作为系统镜像去加载</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 文件名末尾的8，是树莓派硬件的约定，8表示该镜像文件用于 64 位架构的 ARMv8 处理器，kernel8.img 告诉硬件启动处理器到64位模式</span>
+</span></span><span class="line"><span class="cl">    <span class="k">$(</span>ARMGNU<span class="k">)</span>-objcopy <span class="k">$(</span>BUILD_DIR<span class="k">)</span>/kernel8.elf -O binary kernel8.img
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="linker-脚本">linker 脚本</h1>
 <p>linker 脚本的目的是：定义如何将目标文件存放到 .elf 文件中的规则。<a href="https://sourceware.org/binutils/docs/ld/Scripts.html#Scripts">linker script的详解</a>.</p>
-<pre><code>SECTIONS
+<pre tabindex="0"><code>SECTIONS
 {
     .text.boot : { *(.text.boot) }
     .text :  { *(.text) }
@@ -1885,31 +1832,61 @@ if (!doNotTrack) {
 </code></pre><p>启动后，Raspberry Pi 将 kernel8.img 加载到内存中，并从文件开头开始执行。这就是必须首先使用.text.boot部分的原因。操作系统启动代码将放入这个 section 中。 .text, .rodata, .data 分别包含: 内核代码编译之后的指令, 只读数据, 普通数据。 .bss section 包含应初始化为0的数据，也就是内存中剩余的空间。将镜像加载到内存后，必须将 .bss 部分的内存空间初始化为0, 所以使用bss_begin和bss_end符号来记录开始和结束地址，并保证以 8 的倍数对齐起始地址(ALIGN(0x8))。</p>
 <h1 id="启动-kernel">启动 kernel</h1>
 <p><em>src/lesson01/src/boot.S</em> 汇编代码文件包含了内核的启动代码:</p>
-<pre><code class="language-armasm" data-lang="armasm">#include &quot;mm.h&quot;
-
-.section &quot;.text.boot&quot; // 表示该汇编代码中定义的内容都应该存放到 .text.boot section 中
-
-// 设备启动之后, 每个处理器核心都会从 _start label 开始执行
-.globl _start
-_start:
-    mrs    x0, mpidr_el1 // 从 mpidr_el1 寄存器获取当前运行的处理器ID，然后存到 x0 寄存器
-    and    x0, x0,#0xFF  // 将获得的处理器ID 与 0xFF 做与运算，从而得到低8位的值，然后存到 x0 寄存器
-    cbz    x0, master    // 因为树莓派有4个处理器核心, 但是现在的这个系统只希望在单处理器核心下运行, 所以将只让0号处理器执行master
-    b    proc_hang       // 其他处理器执行简单的无限循环
-
-# proc_hang 将调用自己, 也就意味着无限循环
-proc_hang: 
-    b proc_hang
-
-master:
-    adr    x0, bss_begin
-    adr    x1, bss_end
-    sub    x1, x1, x0   // x1 减 x0 的结果存到 x1, 即得到需要初始化的内存空间大小
-    bl     memzero      // 调用 memzero 将 x0 到 x0+x1 的内存赋值0
-
-    mov    sp, #LOW_MEMORY // LOW_MEMORY的值为 4MB, 意思是将内存中4MB的地址拷贝到表示运行栈的 sp 寄存器中. 
-    bl    kernel_main  // 调用 kernel_main 方法
-</code></pre><p><img src="https://image.youcute.cn/FlmdhnT_n1Nbxyl1Dn91ZQfqEx9m" alt="内存布局" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-armasm" data-lang="armasm"><span class="line"><span class="cl"><span class="err">#</span>include <span class="err">&#34;mm.h&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">.section</span> <span class="err">&#34;</span><span class="kn">.text.boot</span><span class="err">&#34;</span> <span class="err">//</span> <span class="err">表示该汇编代码中定义的内容都应该存放到</span> <span class="kn">.text.boot</span><span class="nl"> section </span><span class="err">中</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">//</span> <span class="err">设备启动之后,</span> <span class="err">每个处理器核心都会从</span> <span class="err">_</span>start <span class="err">label</span> <span class="err">开始执行</span>
+</span></span><span class="line"><span class="cl"><span class="kn">.globl</span><span class="nl"> _start
+</span></span></span><span class="line"><span class="cl"><span class="nl">_start</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    mrs    <span class="nc">x0</span>, <span class="err">mpidr_el1</span> <span class="err">//</span> <span class="err">从</span> <span class="err">mpidr_el1</span> <span class="err">寄存器获取当前运行的处理器ID，然后存到</span> <span class="nc">x0</span> <span class="err">寄存器</span>
+</span></span><span class="line"><span class="cl">    and    <span class="nc">x0</span>, <span class="nc">x0</span>,#<span class="mh">0xFF</span>  <span class="err">//</span> <span class="err">将获得的处理器ID</span> <span class="err">与</span> <span class="err">0xFF</span> <span class="err">做与运算，从而得到低8位的值，然后存到</span> <span class="nc">x0</span> <span class="err">寄存器</span>
+</span></span><span class="line"><span class="cl">    cbz    <span class="nc">x0</span>, <span class="err">master</span>    <span class="err">//</span> <span class="err">因为树莓派有4个处理器核心</span>, <span class="err">但是现在的这个系统只希望在单处理器核心下运行</span>, <span class="err">所以将只让0号处理器执行master</span>
+</span></span><span class="line"><span class="cl">    b    <span class="err">proc_hang</span>       <span class="err">//</span> <span class="err">其他处理器执行简单的无限循环</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">#</span> proc<span class="err">_hang</span> <span class="err">将调用自己</span>, <span class="err">也就意味着无限循环</span>
+</span></span><span class="line"><span class="cl"><span class="nl">proc_hang</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl">    b <span class="err">proc_hang</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">master</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    adr    <span class="nc">x0</span>, <span class="err">bss_begin</span>
+</span></span><span class="line"><span class="cl">    adr    <span class="nc">x1</span>, <span class="err">bss_end</span>
+</span></span><span class="line"><span class="cl">    sub    <span class="nc">x1</span>, <span class="nc">x1</span>, <span class="nc">x0</span>   <span class="err">//</span> <span class="nc">x1</span> <span class="err">减</span> <span class="nc">x0</span> <span class="err">的结果存到</span> <span class="nc">x1</span>, <span class="err">即得到需要初始化的内存空间大小</span>
+</span></span><span class="line"><span class="cl">    bl     <span class="err">memzero</span>      <span class="err">//</span> <span class="err">调用</span> <span class="err">memzero</span> <span class="err">将</span> <span class="nc">x0</span> <span class="err">到</span> <span class="nc">x0</span><span class="err">+</span><span class="nc">x1</span> <span class="err">的内存赋值0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    mov    <span class="err">sp</span>, #<span class="err">LOW_MEMORY // LOW_MEMORY的值为 </span><span class="mi">4</span><span class="err">MB</span>, <span class="err">意思是将内存中4MB的地址拷贝到表示运行栈的</span> <span class="err">sp</span> <span class="err">寄存器中.</span> 
+</span></span><span class="line"><span class="cl">    <span class="err">bl</span>    <span class="err">kernel_main</span>  <span class="err">//</span> <span class="err">调用</span> <span class="err">kernel_main</span> <span class="err">方法</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://image.youcute.cn/FlmdhnT_n1Nbxyl1Dn91ZQfqEx9m" alt="内存布局" /></p>
 <blockquote>
 <p>汇编命令</p>
 </blockquote>
@@ -1929,7 +1906,7 @@ master:
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1949,25 +1926,25 @@ master:
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;switch.h&#34;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&#34;utils.h&#34;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&#34;mini_uart.h&#34;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">kernel_main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">switch_init</span><span class="p">();</span>
-    <span class="n">uart_init</span><span class="p">();</span>
-    <span class="n">uart_send_string</span><span class="p">(</span><span class="s">&#34;Hello, world!</span><span class="se">\r\n</span><span class="s">&#34;</span><span class="p">);</span>
-
-    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">uart_send</span><span class="p">(</span><span class="n">uart_recv</span><span class="p">());</span>
-        <span class="n">switch_on</span><span class="p">();</span>
-        <span class="n">delay</span><span class="p">(</span><span class="mi">99999</span><span class="p">);</span>
-        <span class="n">switch_off</span><span class="p">();</span>
-        <span class="n">delay</span><span class="p">(</span><span class="mi">99999</span><span class="p">);</span> 
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;switch.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;utils.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;mini_uart.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">kernel_main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">switch_init</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">uart_init</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">uart_send_string</span><span class="p">(</span><span class="s">&#34;Hello, world!</span><span class="se">\r\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">uart_send</span><span class="p">(</span><span class="nf">uart_recv</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">switch_on</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">delay</span><span class="p">(</span><span class="mi">99999</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">switch_off</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">delay</span><span class="p">(</span><span class="mi">99999</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>以上就是这个系统内核所做的所有工作，系统启动之后开始向串口发送一个字符串数据，然后一直循环接收串口的输入并将输入返回给串口，同时控制一个继电器的通断。</p>
 <h1 id="树莓派硬件">树莓派硬件</h1>
@@ -2005,7 +1982,7 @@ ARM 上内存的物理地址从 0x00000000 开始。物理内存地址从<code>0
 <p>根据文档可知 GPFSELn 寄存器在总线上的地址从 <code>0x7E200000</code> 开始, 那么对应到物理内存上就是 <code>0x3F200000</code>, 所以定义 <code>GPFSELn</code> 宏为:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2015,19 +1992,19 @@ ARM 上内存的物理地址从 0x00000000 开始。物理内存地址从<code>0
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define PBASE 0x3F00000
-</span><span class="cp"></span>
-<span class="cp">#define GPFSEL0         (PBASE+0x00200000)
-</span><span class="cp">#define GPFSEL1         (PBASE+0x00200004)
-</span><span class="cp">#define GPFSEL2         (PBASE+0x00200008)
-</span><span class="cp">#define GPFSEL3         (PBASE+0x0020000C)
-</span><span class="cp">#define GPFSEL4         (PBASE+0x00200010)
-</span><span class="cp">#define GPFSEL5         (PBASE+0x00200014)
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#define PBASE 0x3F00000
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define GPFSEL0         (PBASE+0x00200000)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define GPFSEL1         (PBASE+0x00200004)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define GPFSEL2         (PBASE+0x00200008)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define GPFSEL3         (PBASE+0x0020000C)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define GPFSEL4         (PBASE+0x00200010)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define GPFSEL5         (PBASE+0x00200014)
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2055,33 +2032,33 @@ ARM 上内存的物理地址从 0x00000000 开始。物理内存地址从<code>0
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;utils.h&#34;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&#34;peripherals/gpio.h&#34;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">switch_init</span><span class="p">(){</span>
-    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">selector</span><span class="p">;</span>
-    <span class="c1">// 按文档可知 pin3 属于 GPFSEL0 寄存器
-</span><span class="c1"></span>    <span class="n">selector</span> <span class="o">=</span> <span class="n">get32</span><span class="p">(</span><span class="n">GPFSEL0</span><span class="p">);</span>
-    <span class="c1">// pin3 的控制位是11～9位
-</span><span class="c1"></span>    <span class="n">selector</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="mi">7</span><span class="o">&lt;&lt;</span><span class="mi">9</span><span class="p">);</span>  <span class="c1">// xxx -&gt; 000  清空为0
-</span><span class="c1"></span>    <span class="n">selector</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">9</span><span class="p">);</span>   <span class="c1">// xxx -&gt; 001 作为 output
-</span><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">GPFSEL0</span><span class="p">,</span> <span class="n">selector</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">switch_on</span><span class="p">(){</span>
-    <span class="c1">// pin3 clear
-</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">output</span> <span class="o">=</span> <span class="n">get32</span><span class="p">(</span><span class="n">GPCLR0</span><span class="p">);</span>
-    <span class="n">output</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">3</span><span class="p">);</span>
-    <span class="n">put32</span><span class="p">(</span><span class="n">GPCLR0</span><span class="p">,</span> <span class="n">output</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">switch_off</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// pin3 set
-</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">output</span> <span class="o">=</span> <span class="n">get32</span><span class="p">(</span><span class="n">GPSET0</span><span class="p">);</span>
-    <span class="n">output</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">3</span><span class="p">);</span>
-    <span class="n">put32</span><span class="p">(</span><span class="n">GPSET0</span><span class="p">,</span> <span class="n">output</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;utils.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;peripherals/gpio.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">switch_init</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">selector</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 按文档可知 pin3 属于 GPFSEL0 寄存器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">selector</span> <span class="o">=</span> <span class="nf">get32</span><span class="p">(</span><span class="n">GPFSEL0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// pin3 的控制位是11～9位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">selector</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="mi">7</span><span class="o">&lt;&lt;</span><span class="mi">9</span><span class="p">);</span>  <span class="c1">// xxx -&gt; 000  清空为0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">selector</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">9</span><span class="p">);</span>   <span class="c1">// xxx -&gt; 001 作为 output
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">put32</span><span class="p">(</span><span class="n">GPFSEL0</span><span class="p">,</span> <span class="n">selector</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">switch_on</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// pin3 clear
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">output</span> <span class="o">=</span> <span class="nf">get32</span><span class="p">(</span><span class="n">GPCLR0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">put32</span><span class="p">(</span><span class="n">GPCLR0</span><span class="p">,</span> <span class="n">output</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">switch_off</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// pin3 set
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">output</span> <span class="o">=</span> <span class="nf">get32</span><span class="p">(</span><span class="n">GPSET0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">put32</span><span class="p">(</span><span class="n">GPSET0</span><span class="p">,</span> <span class="n">output</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="uart-配置">UART 配置</h3>
 <p><a href="https://zh.wikipedia.org/wiki/UART">UART串口通信</a></p>
@@ -2091,17 +2068,17 @@ ARM 上内存的物理地址从 0x00000000 开始。物理内存地址从<code>0
 <p>根据文档可知 AUX_ENABLES 寄存器在总线上的地址为 <code>0x7E215004</code>, 那么对应到物理内存上就是 <code>0x3F2154004</code>, 所以定义 <code>AUX_ENABLES</code> 宏为:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define PBASE 0x3F00000
-</span><span class="cp">#define AUX_ENABLES     (PBASE+0x00215004)
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#define PBASE 0x3F00000
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define AUX_ENABLES     (PBASE+0x00215004)
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2129,33 +2106,33 @@ ARM 上内存的物理地址从 0x00000000 开始。物理内存地址从<code>0
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">uart_init</span> <span class="p">()</span>
-<span class="p">{</span>
-    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">selector</span><span class="p">;</span>
-
-    <span class="n">selector</span> <span class="o">=</span> <span class="n">get32</span><span class="p">(</span><span class="n">GPFSEL1</span><span class="p">);</span>
-    <span class="n">selector</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="mi">7</span><span class="o">&lt;&lt;</span><span class="mi">12</span><span class="p">);</span>                   <span class="c1">// 复位 gpio14
-</span><span class="c1"></span>    <span class="n">selector</span> <span class="o">|=</span> <span class="mi">2</span><span class="o">&lt;&lt;</span><span class="mi">12</span><span class="p">;</span>                      <span class="c1">// gpio14 设置 alt5
-</span><span class="c1"></span>    <span class="n">selector</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="mi">7</span><span class="o">&lt;&lt;</span><span class="mi">15</span><span class="p">);</span>                   <span class="c1">// 复位 gpio15
-</span><span class="c1"></span>    <span class="n">selector</span> <span class="o">|=</span> <span class="mi">2</span><span class="o">&lt;&lt;</span><span class="mi">15</span><span class="p">;</span>                      <span class="c1">// gpio 15 设置 alt5
-</span><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">GPFSEL1</span><span class="p">,</span><span class="n">selector</span><span class="p">);</span>
-
-    <span class="n">put32</span><span class="p">(</span><span class="n">GPPUD</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>                        <span class="c1">// 向总线发出一个 GPIO PULL DOWN 控制信号
-</span><span class="c1"></span>    <span class="n">delay</span><span class="p">(</span><span class="mi">150</span><span class="p">);</span>                            <span class="c1">// 等待 150 个 CPU 周期
-</span><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">GPPUDCLK0</span><span class="p">,(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">14</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">15</span><span class="p">));</span>      <span class="c1">// 让PULL DOWN 信号写入 14和15号 pin
-</span><span class="c1"></span>    <span class="n">delay</span><span class="p">(</span><span class="mi">150</span><span class="p">);</span>                            <span class="c1">// 等待 150 个 CPU 周期
-</span><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">GPPUDCLK0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>                    <span class="c1">// 移除拦截
-</span><span class="c1"></span>
-    <span class="n">put32</span><span class="p">(</span><span class="n">AUX_ENABLES</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>                   <span class="c1">//打开 mini uart (this also enables access to it registers)
-</span><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">AUX_MU_CNTL_REG</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>               <span class="c1">//关闭自动控制和接收和转发
-</span><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">AUX_MU_IER_REG</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>                <span class="c1">//关闭关闭和转发拦截
-</span><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">AUX_MU_LCR_REG</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>                <span class="c1">//设置数据格式为8位模式 &lt;- 3 表示二进制的 11: the UART works in 8-bit mode
-</span><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">AUX_MU_MCR_REG</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>                <span class="c1">//设置电路的状态总是为高电位
-</span><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">AUX_MU_BAUD_REG</span><span class="p">,</span><span class="mi">270</span><span class="p">);</span>             <span class="c1">//设置调制速率为 115200
-</span><span class="c1"></span>
-    <span class="n">put32</span><span class="p">(</span><span class="n">AUX_MU_CNTL_REG</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>               <span class="c1">//最后, 开启发送和接收
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">uart_init</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">selector</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">selector</span> <span class="o">=</span> <span class="n">get32</span><span class="p">(</span><span class="n">GPFSEL1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">selector</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="mi">7</span><span class="o">&lt;&lt;</span><span class="mi">12</span><span class="p">);</span>                   <span class="c1">// 复位 gpio14
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">selector</span> <span class="o">|=</span> <span class="mi">2</span><span class="o">&lt;&lt;</span><span class="mi">12</span><span class="p">;</span>                      <span class="c1">// gpio14 设置 alt5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">selector</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="mi">7</span><span class="o">&lt;&lt;</span><span class="mi">15</span><span class="p">);</span>                   <span class="c1">// 复位 gpio15
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">selector</span> <span class="o">|=</span> <span class="mi">2</span><span class="o">&lt;&lt;</span><span class="mi">15</span><span class="p">;</span>                      <span class="c1">// gpio 15 设置 alt5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">GPFSEL1</span><span class="p">,</span><span class="n">selector</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">put32</span><span class="p">(</span><span class="n">GPPUD</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>                        <span class="c1">// 向总线发出一个 GPIO PULL DOWN 控制信号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">delay</span><span class="p">(</span><span class="mi">150</span><span class="p">);</span>                            <span class="c1">// 等待 150 个 CPU 周期
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">GPPUDCLK0</span><span class="p">,(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">14</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">15</span><span class="p">));</span>      <span class="c1">// 让PULL DOWN 信号写入 14和15号 pin
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">delay</span><span class="p">(</span><span class="mi">150</span><span class="p">);</span>                            <span class="c1">// 等待 150 个 CPU 周期
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">GPPUDCLK0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>                    <span class="c1">// 移除拦截
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">put32</span><span class="p">(</span><span class="n">AUX_ENABLES</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>                   <span class="c1">//打开 mini uart (this also enables access to it registers)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">AUX_MU_CNTL_REG</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>               <span class="c1">//关闭自动控制和接收和转发
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">AUX_MU_IER_REG</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>                <span class="c1">//关闭关闭和转发拦截
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">AUX_MU_LCR_REG</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>                <span class="c1">//设置数据格式为8位模式 &lt;- 3 表示二进制的 11: the UART works in 8-bit mode
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">AUX_MU_MCR_REG</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>                <span class="c1">//设置电路的状态总是为高电位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">put32</span><span class="p">(</span><span class="n">AUX_MU_BAUD_REG</span><span class="p">,</span><span class="mi">270</span><span class="p">);</span>             <span class="c1">//设置调制速率为 115200
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">put32</span><span class="p">(</span><span class="n">AUX_MU_CNTL_REG</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>               <span class="c1">//最后, 开启发送和接收
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面每行代码的详细解释以及数据发送和接收的实现可以到<a href="https://github.com/stefanji/raspberry-pi-os/blob/master/docs/lesson01/rpi-os.md#initializing-the-mini-uart">initializing-the-mini-uart</a>查看。</p>
 <h1 id="启动树莓派">启动树莓派</h1>
@@ -2166,7 +2143,7 @@ ARM 上内存的物理地址从 0x00000000 开始。物理内存地址从<code>0
 <li><code>kernel8.img</code> 被加载到内存并执行</li>
 </ol>
 <p>为了能够运行我这个简易的系统，<code>config.txt</code> 文件应该变成下面这样:</p>
-<pre><code>kernel_old=1
+<pre tabindex="0"><code>kernel_old=1
 disable_commandline_tags=1
 </code></pre><ul>
 <li><code>kernel_old=1</code> 指定 kernel 镜像应该加载到内存地址0</li>
@@ -2177,12 +2154,12 @@ disable_commandline_tags=1
 <li>
 <p>打包系统镜像</p>
 <p>使用 smatyukevich/raspberry-pi-os-builder 镜像进行编译行为, 该镜像已经配置了 GNU 的交叉编译环境</p>
-<pre><code>docker run --rm -v $(pwd):/app -w /app smatyukevich/raspberry-pi-os-builder make $1
+<pre tabindex="0"><code>docker run --rm -v $(pwd):/app -w /app smatyukevich/raspberry-pi-os-builder make $1
 </code></pre></li>
 <li>
 <p>将镜像拷到 SD 卡(Mac os 下)</p>
 <p>将编译出的系统镜像写入 sd 卡，然后弹出</p>
-<pre><code>cp kernel8.img /Volumes/boot
+<pre tabindex="0"><code>cp kernel8.img /Volumes/boot
 hdiutil eject /Volumes/boot
 </code></pre></li>
 <li>
@@ -2204,52 +2181,106 @@ hdiutil eject /Volumes/boot
 <li>某些只能执行一次的操作，需要做额外处理。防止多个处理器核心都执行了。</li>
 </ul>
 <p><img src="https://image.youcute.cn/Fgs7QdRSVpSxTmkFP0oY-Kr9_Ruw" alt="多核下流程" /></p>
-<pre><code class="language-armasm" data-lang="armasm">.globl _start
-_start:
-    b   master  //每个核心通电之后都会执行 master
-
-master:
-    bl    get_core_id     //获取核心编号
-    cbz   x0, init_memory //编号为0的核心执行内存初始化工作
-    bl    get_core_id     //再次获取核心编号
-    bl    init_stack      //设置栈空间
-    bl    get_core_id
-    bl    kernel_main     //执行kernal_mail
-</code></pre><h2 id="获取处理器核心">获取处理器核心</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-armasm" data-lang="armasm"><span class="line"><span class="cl"><span class="kn">.globl</span><span class="nl"> _start
+</span></span></span><span class="line"><span class="cl"><span class="nl">_start</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    b   <span class="err">master</span>  <span class="err">//每个核心通电之后都会执行</span> <span class="err">master</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">master</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    bl    <span class="err">get_core_id</span>     <span class="err">//获取核心编号</span>
+</span></span><span class="line"><span class="cl">    cbz   <span class="nc">x0</span>, <span class="err">init_memory</span> <span class="err">//编号为0的核心执行内存初始化工作</span>
+</span></span><span class="line"><span class="cl">    bl    <span class="err">get_core_id</span>     <span class="err">//再次获取核心编号</span>
+</span></span><span class="line"><span class="cl">    bl    <span class="err">init_stack</span>      <span class="err">//设置栈空间</span>
+</span></span><span class="line"><span class="cl">    bl    <span class="err">get_core_id</span>
+</span></span><span class="line"><span class="cl">    bl    <span class="err">kernel_main</span>     <span class="err">//执行kernal_mail</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="获取处理器核心">获取处理器核心</h2>
 <p>从 <code>mpidr_el1</code> 寄存器中可以获取当前正在运行的处理器核心的编号</p>
-<pre><code class="language-armasm" data-lang="armasm">.global get_core_id
-get_core_id:
-        mrs x0, mpidr_el1
-        and x0, x0, #0xFF
-        ret
-</code></pre><h2 id="内存初始化">内存初始化</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-armasm" data-lang="armasm"><span class="line"><span class="cl"><span class="kn">.global</span><span class="nl"> get_core_id
+</span></span></span><span class="line"><span class="cl"><span class="nl">get_core_id</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        mrs <span class="nc">x0</span>, <span class="err">mpidr_el1</span>
+</span></span><span class="line"><span class="cl">        and <span class="nc">x0</span>, <span class="nc">x0</span>, #<span class="mh">0xFF</span>
+</span></span><span class="line"><span class="cl">        ret
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="内存初始化">内存初始化</h2>
 <p><img src="https://image.youcute.cn/Fp_jn_cqUImoD5AQvZextInlIKx_" alt="多处理核心下的内存布局" /></p>
 <ul>
 <li>
 <p>将 bss_begin 和 bss_end 范围的内存赋值0</p>
-<pre><code class="language-armasm" data-lang="armasm">.global init_memory
-init_memory:
-        adr x0, bss_begin
-        adr x1, bss_end
-        sub x1, x1, x0
-        b memzero
-        ret
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-armasm" data-lang="armasm"><span class="line"><span class="cl"><span class="kn">.global</span><span class="nl"> init_memory
+</span></span></span><span class="line"><span class="cl"><span class="nl">init_memory</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        adr <span class="nc">x0</span>, <span class="err">bss_begin</span>
+</span></span><span class="line"><span class="cl">        adr <span class="nc">x1</span>, <span class="err">bss_end</span>
+</span></span><span class="line"><span class="cl">        sub <span class="nc">x1</span>, <span class="nc">x1</span>, <span class="nc">x0</span>
+</span></span><span class="line"><span class="cl">        b <span class="err">memzero</span>
+</span></span><span class="line"><span class="cl">        ret
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>为每个处理器核心分配 1KB 的栈空间</p>
-<pre><code class="language-armasm" data-lang="armasm">.global init_stack
-init_stack:
-        mov x1, #STACK_OFFSET  //x1=STACK_OFFSET, STACK_OFFSET值为1KB
-        mul x1, x1,x0          //x1=x1*x0, x0是调用方传递过来的处理器核心编号(0~3)
-        add x1, x1,#LOW_MEMORY //x1=x1+LOW_MEMORY, LOW_MEMORY值为4MB
-        mov sp, x1             //将当前处理器核心的sp(栈指针)寄存器移动到x1位置
-        ret
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-armasm" data-lang="armasm"><span class="line"><span class="cl"><span class="kn">.global</span><span class="nl"> init_stack
+</span></span></span><span class="line"><span class="cl"><span class="nl">init_stack</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        mov <span class="nc">x1</span>, #<span class="err">STACK_OFFSET  //x</span><span class="mi">1</span>=<span class="nl">STACK_OFFSET</span>, <span class="err">STACK_OFFSET值为1KB</span>
+</span></span><span class="line"><span class="cl">        mul <span class="nc">x1</span>, <span class="nc">x1</span>,<span class="nc">x0</span>          <span class="err">//</span><span class="nc">x1</span>=<span class="nl">x1</span><span class="err">*</span><span class="nc">x0</span>, <span class="nc">x0</span><span class="err">是调用方传递过来的处理器核心编号(0~3)</span>
+</span></span><span class="line"><span class="cl">        add <span class="nc">x1</span>, <span class="nc">x1</span>,#<span class="err">LOW_MEMORY //x</span><span class="mi">1</span>=<span class="nl">x1</span><span class="err">+LOW_MEMORY</span>, <span class="err">LOW_MEMORY值为4MB</span>
+</span></span><span class="line"><span class="cl">        mov <span class="err">sp</span>, <span class="nc">x1</span>             <span class="err">//将当前处理器核心的sp(栈指针)寄存器移动到</span><span class="nc">x1</span><span class="err">位置</span>
+</span></span><span class="line"><span class="cl">        ret
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
 <h2 id="多核心运行">多核心运行</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2267,23 +2298,23 @@ init_stack:
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">kernel_main</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">core_id</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">core_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// uart 外设只需要初始化一次, 所以只让核心0执行
-</span><span class="c1"></span>            <span class="n">uart_init</span><span class="p">();</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="c1">// 其他核心等待一段时间
-</span><span class="c1"></span>            <span class="n">delay</span><span class="p">(</span><span class="mi">300000</span> <span class="o">*</span> <span class="n">core_id</span><span class="p">);</span> 
-        <span class="p">}</span>
-        <span class="n">uart_send_string</span><span class="p">(</span><span class="s">&#34;Hello Word From #&#34;</span><span class="p">);</span>
-        <span class="n">uart_send</span><span class="p">(</span><span class="n">core_id</span> <span class="o">+</span> <span class="sc">&#39;0&#39;</span><span class="p">);</span>
-        <span class="n">uart_send_string</span><span class="p">(</span><span class="s">&#34; Processor Core.</span><span class="se">\r\n</span><span class="s">&#34;</span><span class="p">);</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">core_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// 只让核心0执行读取行为
-</span><span class="c1"></span>            <span class="n">uart_send</span><span class="p">(</span><span class="n">uart_recv</span><span class="p">());</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{};</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">kernel_main</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">core_id</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">core_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// uart 外设只需要初始化一次, 所以只让核心0执行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nf">uart_init</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 其他核心等待一段时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nf">delay</span><span class="p">(</span><span class="mi">300000</span> <span class="o">*</span> <span class="n">core_id</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">uart_send_string</span><span class="p">(</span><span class="s">&#34;Hello Word From #&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">uart_send</span><span class="p">(</span><span class="n">core_id</span> <span class="o">+</span> <span class="sc">&#39;0&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">uart_send_string</span><span class="p">(</span><span class="s">&#34; Processor Core.</span><span class="se">\r\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">core_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 只让核心0执行读取行为
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nf">uart_send</span><span class="p">(</span><span class="nf">uart_recv</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="结果">结果</h2>
 <p><code>Hello From RPI #0 Processor Core.</code></p>
@@ -2484,7 +2515,7 @@ init_stack:
     
 <div class="donation">
   <div class="donation__message">
-    Support the author with
+    您的鼓励是我最大的动力
   </div>
   <div class="donation__icons">
     
@@ -2535,7 +2566,7 @@ init_stack:
   </div>
   <div class="whoami__contents">
     <div class="whoami__written-by">
-      WRITTEN BY
+      作者
     </div>
     <div class="whoami__title">
       
@@ -2721,7 +2752,7 @@ init_stack:
 </div>
 
 
-<script defer src="/js/swipe.min.989e074dfb92ce7f57a92c1df7027f88b53c50a54fd9ad450a673a64aa91bfa4.js"></script>
+<script defer src="/js/swipe.min.feb438efb7ca009ecd7fc2ac3ad2fced4840990b2798d81f87137f2dc6281f05.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
@@ -2994,7 +3025,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <span class="icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
   </span>
-  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="搜索" autocomplete="off">
   <div id="search-results" class="dropdown">
     <div id="search-menu" class="dropdown-menu" role="menu">
     </div>
@@ -3014,7 +3045,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section class="sidebar hide">
   <script>document.querySelector('.sidebar').classList.remove('hide')</script>
   <div class="toc__flexbox" data-position="fixed">
-    <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
+    <h6 class="toc__title" data-ani="true">目录</h6>
     
       <label class="switch" data-ani="true">
         <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
@@ -3438,7 +3469,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.trigger.classList.add('tooltipped');
       e.trigger.classList.add('tooltipped-s');
     });
-    // =================================================================
+    
 
 
 
@@ -3656,6 +3687,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
+      
+      
+        
+        
+          
+            
+          
+        
+      
+        
+      
+    
   </div>
 </div>
 
@@ -3766,7 +3809,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2022, All Rights Reserved
+                    ©2023, All Rights Reserved
                 
             </p>
         

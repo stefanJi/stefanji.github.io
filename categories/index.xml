@@ -10,13 +10,31 @@
     <link>https://jiyang.site/categories/</link>
     <description>Recent content in Categories on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>©{year}, All Rights Reserved</copyright>
-    <lastBuildDate>Tue, 03 Aug 2021 14:15:19 +0800</lastBuildDate>
+    <language>zh</language>
+    <copyright>©2023, All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 06 Jul 2023 11:31:17 +0800</lastBuildDate>
     
         <atom:link href="https://jiyang.site/categories/index.xml" rel="self" type="application/rss+xml" />
     
 
+      
+      <item>
+        <title>react</title>
+        <link>https://jiyang.site/categories/react/</link>
+        <pubDate>Thu, 06 Jul 2023 11:31:17 +0800</pubDate>
+        
+        
+        <guid>https://jiyang.site/categories/react/</guid>
+        <description></description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
       
       <item>
         <title>OpenGL</title>

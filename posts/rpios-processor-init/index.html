@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh" dir="ltr">
 
 <head prefix="og: http://ogp.me/ns#">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.3ce954c8aea3b69cc5e6f734d8273ba4cd48d3a7987dbdca145849bc4b8fc296.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -663,6 +663,12 @@
     
     var enableSearch = JSON.parse("true");
     
+    var searchDistance = JSON.parse("null");
+    
+    var searchThreshold = JSON.parse("null");
+    
+    var searchContent = JSON.parse("null");
+    
     var enableSearchHighlight = JSON.parse("true");
     
     var searchResultPosition = JSON.parse("null");
@@ -686,12 +692,13 @@
         xhr.onload = function () {
           if (xhr.status === 200) {
             fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
-              keys: sectionType.includes('publication') ? ['title', 'abstract'] : ['title', 'description', 'content'],
+              keys: sectionType.includes('publication') ? ['title', 'abstract'] : 
+                searchContent ? ['title', 'description', 'content'] : ['title', 'description'],
               includeMatches: enableSearchHighlight,
               shouldSort: true, 
-              threshold: 0.4, 
+              threshold: searchThreshold ? searchThreshold : 0.4, 
               location: 0, 
-              distance: 100, 
+              distance: searchDistance ? searchDistance : 100, 
               maxPatternLength: 32,
               minMatchCharLength: 1,
               isCaseSensitive: false, 
@@ -715,7 +722,7 @@
       var a = document.createElement('a');
       a.innerHTML = obj.item.title;
       a.setAttribute('class', 'search-result__item--title');
-      a.setAttribute('href', obj.item.permalink);
+      a.setAttribute('href', obj.item.uri);
 
       var descDiv = document.createElement('div');
       descDiv.setAttribute('class', 'search-result__item--desc');
@@ -1315,7 +1322,8 @@
     }
   
   });
-</script>    
+</script>
+    
     
 
 
@@ -1341,7 +1349,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="理解并配置 ARM 处理器的异常级别。">
 
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.115.1">
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1396,7 +1404,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
   
 <script type="application/javascript">
 var doNotTrack = false;
@@ -1453,7 +1460,7 @@ if (!doNotTrack) {
     &nbsp;&nbsp;
     
     
-      <a href="/" title="Home" rel="home" class="navbar__title-link">
+      <a href="/" title="主页" rel="home" class="navbar__title-link">
         <h6 class="navbar__title">YangBlog</h6>
       </a>
     
@@ -1500,7 +1507,7 @@ if (!doNotTrack) {
 
 <div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
   <div class="mobile-search__top">
-    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="搜索" class="mobile-search__top--input"/>
     <div id="search-mobile-close" class="mobile-search__top--icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
     </div>
@@ -1521,59 +1528,23 @@ if (!doNotTrack) {
   <ul dir="ltr">
     
     
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="/categories">category</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item active">
-          <a href="/posts">posts</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="https://life.jiyang.site">about</a>
-        </li>
-      
-      
-    
 
     
       <li class="navbarm__menu--item ">
         <a href="/tags" class="navbarm__menu--term" data-index="0">
-          Tags
+          标签
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/categories" class="navbarm__menu--term" data-index="1">
-          Categories
+          分类
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/series" class="navbarm__menu--term" data-index="2">
-          Series
+          系列
         </a>
       </li>
     
@@ -1618,30 +1589,6 @@ if (!doNotTrack) {
 
   
   
-  
-  
-  
-  
-  
-  <a href="/categories" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">category</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="/posts" class="navbar__menu-item navbar__slide-down active" dir="ltr" data-ani="true">posts</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="https://life.jiyang.site" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">about</a>
-  
-  
 </div>
 </nav>
             
@@ -1684,16 +1631,16 @@ if (!doNotTrack) {
   
   
   <div class="single ">
-    <div class="single__nojs">This page looks best with JavaScript enabled</div>
+    <div class="single__nojs">Please enable Javascript to view the contents</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
     <h2 class="single__title" data-ani="true">树莓派OS#0x02 处理器初始化</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;May 4, 2020 </time>
+  <time class="single__info" title="创建日期">📅&nbsp;2020年05月04日 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;6&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="阅读时长"> ☕&nbsp;6&nbsp;分钟 </span>
   
   <span class="single__info">
     
@@ -1788,7 +1735,7 @@ if (!doNotTrack) {
 <p>通过下面的代码能够获得当前的 EL:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1797,32 +1744,32 @@ if (!doNotTrack) {
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="err">//</span> <span class="nf">Move</span> <span class="no">the</span> <span class="no">contents</span> <span class="no">of</span> <span class="no">a</span> <span class="no">PSR</span> <span class="no">to</span> <span class="no">a</span> <span class="no">general-purpose</span> <span class="no">register</span>
-<span class="err">//</span> <span class="err">将</span> <span class="nf">CurrentEL</span> <span class="err">值写入通用寄存器</span> <span class="no">x0</span>
-<span class="nf">mrs</span> <span class="no">x0</span><span class="p">,</span> <span class="no">CurrentEL</span>
-
-<span class="err">//</span> <span class="nf">Logical</span> <span class="no">Shift</span> <span class="no">Right</span>
-<span class="err">//</span> <span class="err">将</span> <span class="nf">Xt</span> <span class="err">值右移</span> <span class="mi">2</span> <span class="err">位</span>
-<span class="nf">lsr</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x0</span><span class="p">,</span> <span class="c">#2
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="c1">// Move the contents of a PSR to a general-purpose register
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 将 CurrentEL 值写入通用寄存器 x0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mrs</span> <span class="no">x0</span><span class="p">,</span> <span class="no">CurrentEL</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Logical Shift Right
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 将 Xt 值右移 2 位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">lsr</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x0</span><span class="p">,</span> <span class="c1">#2
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>比如获取到的值是 <code>0b0100</code>, 因为 [1:0] 2位是保留位，总是为0，所以右移 2 位就得到了上表中的 <code>0b01</code> EL。</p>
 <p>所以能创建如下的方法去获取当前 EL:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="na">.global</span> <span class="no">get_el</span>
-<span class="nl">get_el:</span>
-    <span class="nf">mrs</span> <span class="no">x0</span><span class="p">,</span> <span class="no">CurrentEL</span>
-    <span class="nf">lsr</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x0</span><span class="p">,</span> <span class="c">#2
-</span><span class="c"></span>    <span class="no">ret</span> <span class="err">//</span> <span class="err">返回到</span> <span class="no">X30</span> <span class="err">寄存器</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="na">.global</span> <span class="no">get_el</span>
+</span></span><span class="line"><span class="cl"><span class="nl">get_el:</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">mrs</span> <span class="no">x0</span><span class="p">,</span> <span class="no">CurrentEL</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">lsr</span> <span class="no">x0</span><span class="p">,</span> <span class="no">x0</span><span class="p">,</span> <span class="c1">#2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">ret</span> <span class="c1">// 返回到 X30 寄存器
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="切换-el">切换 EL</h1>
 <p>在了解异常级别的切换前，需要先了解 ARM 架构的异常。</p>
@@ -1887,7 +1834,7 @@ if (!doNotTrack) {
 <p>回到树莓派OS这边，通电之后，处理器默认是在最高级别的 EL 运行的，也就是 EL3。现在我希望树莓派OS 启动之后切换到 EL1 执行(如同 Linux 和 Windows 都是在EL1运行)。通过配置一些系统寄存器，然后调用 <code>eret</code> 指令触发处理器去执行状态重读取就能达成目的。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1906,24 +1853,24 @@ if (!doNotTrack) {
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nl">master:</span>
-    <span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SCTLR_VALUE_MMU_DISABLED</span>
-    <span class="nf">msr</span>    <span class="no">sctlr_el1</span><span class="p">,</span> <span class="no">x0</span>
-
-    <span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">HCR_VALUE</span>
-    <span class="nf">msr</span>    <span class="no">hcr_el2</span><span class="p">,</span> <span class="no">x0</span>
-
-    <span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SCR_VALUE</span>
-    <span class="nf">msr</span>    <span class="no">scr_el3</span><span class="p">,</span> <span class="no">x0</span>
-
-    <span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SPSR_VALUE</span>
-    <span class="nf">msr</span>    <span class="no">spsr_el3</span><span class="p">,</span> <span class="no">x0</span>
-
-    <span class="nf">adr</span>    <span class="no">x0</span><span class="p">,</span> <span class="no">el1_entry</span>
-    <span class="nf">msr</span>    <span class="no">elr_el3</span><span class="p">,</span> <span class="no">x0</span>
-
-    <span class="nf">eret</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nl">master:</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SCTLR_VALUE_MMU_DISABLED</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">msr</span>    <span class="no">sctlr_el1</span><span class="p">,</span> <span class="no">x0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">HCR_VALUE</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">msr</span>    <span class="no">hcr_el2</span><span class="p">,</span> <span class="no">x0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SCR_VALUE</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">msr</span>    <span class="no">scr_el3</span><span class="p">,</span> <span class="no">x0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SPSR_VALUE</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">msr</span>    <span class="no">spsr_el3</span><span class="p">,</span> <span class="no">x0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">adr</span>    <span class="no">x0</span><span class="p">,</span> <span class="no">el1_entry</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">msr</span>    <span class="no">elr_el3</span><span class="p">,</span> <span class="no">x0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">eret</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="配置-sctlr_el1">配置 SCTLR_EL1</h3>
 <blockquote>
@@ -1933,17 +1880,17 @@ if (!doNotTrack) {
 <p>sctlr_el1 寄存器能够配置 EL0 和 EL1 级别的内存等配置。通过修改 sctlr_el1 某些位的值能达到配置处理器在 EL0 和 EL1 级别运行时的行为。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SCTLR_VALUE_MMU_DISABLED</span>
-<span class="nf">msr</span>    <span class="no">sctlr_el1</span><span class="p">,</span> <span class="no">x0</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SCTLR_VALUE_MMU_DISABLED</span>
+</span></span><span class="line"><span class="cl"><span class="nf">msr</span>    <span class="no">sctlr_el1</span><span class="p">,</span> <span class="no">x0</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1959,21 +1906,21 @@ if (!doNotTrack) {
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-h" data-lang="h"><span class="cp">#define SCTLR_RESERVED                  (3 &lt;&lt; 28) | (3 &lt;&lt; 22) | (1 &lt;&lt; 20) | (1 &lt;&lt; 11)
-</span><span class="cp"></span><span class="c1">// 保留位赋值1
-</span><span class="c1"></span><span class="cp">#define SCTLR_EE_LITTLE_ENDIAN          (0 &lt;&lt; 25)
-</span><span class="cp"></span><span class="c1">// EL1 采用小端字节序
-</span><span class="c1"></span><span class="cp">#define SCTLR_EOE_LITTLE_ENDIAN         (0 &lt;&lt; 24)
-</span><span class="cp"></span><span class="c1">// EL0 采用小端字节序
-</span><span class="c1"></span><span class="cp">#define SCTLR_I_CACHE_DISABLED          (0 &lt;&lt; 12)
-</span><span class="cp"></span><span class="c1">// 禁用指令缓存
-</span><span class="c1"></span><span class="cp">#define SCTLR_D_CACHE_DISABLED          (0 &lt;&lt; 2)
-</span><span class="cp"></span><span class="c1">// 禁用数据缓存
-</span><span class="c1"></span><span class="cp">#define SCTLR_MMU_DISABLED              (0 &lt;&lt; 0)
-</span><span class="cp"></span><span class="c1">// 禁用内存管理单元
-</span><span class="c1"></span>
-<span class="cp">#define SCTLR_VALUE_MMU_DISABLED	(SCTLR_RESERVED | SCTLR_EE_LITTLE_ENDIAN | SCTLR_I_CACHE_DISABLED | SCTLR_D_CACHE_DISABLED |    SCTLR_MMU_DISABLED)
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-h" data-lang="h"><span class="line"><span class="cl"><span class="cp">#define SCTLR_RESERVED                  (3 &lt;&lt; 28) | (3 &lt;&lt; 22) | (1 &lt;&lt; 20) | (1 &lt;&lt; 11)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// 保留位赋值1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define SCTLR_EE_LITTLE_ENDIAN          (0 &lt;&lt; 25)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// EL1 采用小端字节序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define SCTLR_EOE_LITTLE_ENDIAN         (0 &lt;&lt; 24)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// EL0 采用小端字节序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define SCTLR_I_CACHE_DISABLED          (0 &lt;&lt; 12)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// 禁用指令缓存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define SCTLR_D_CACHE_DISABLED          (0 &lt;&lt; 2)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// 禁用数据缓存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define SCTLR_MMU_DISABLED              (0 &lt;&lt; 0)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// 禁用内存管理单元
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define SCTLR_VALUE_MMU_DISABLED	(SCTLR_RESERVED | SCTLR_EE_LITTLE_ENDIAN | SCTLR_I_CACHE_DISABLED | SCTLR_D_CACHE_DISABLED |    SCTLR_MMU_DISABLED)
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://image.youcute.cn/FtRRQKuDmdRRzsMCqPt4SaIHYWWX" alt="上述代码执行之后的布局" /></p>
 <h3 id="配置-hcr_el2">配置 HCR_EL2</h3>
@@ -1983,25 +1930,25 @@ if (!doNotTrack) {
 <p>HCR_EL2 寄存器提供了虚拟化的配置，包括定义是否将各种操作限制在EL2中。因为只有 EL2 支持 Hypervisor,所以只存在一个 HCR_EL2 寄存器。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define HCR_RW	    			(1 &lt;&lt; 31)
-</span><span class="cp"></span><span class="c1">// EL1 的 Execution State 为 AArch64
-</span><span class="c1"></span><span class="cp">#define HCR_VALUE			HCR_RW
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define HCR_RW	    			(1 &lt;&lt; 31)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// EL1 的 Execution State 为 AArch64
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define HCR_VALUE			HCR_RW
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm">    <span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">HCR_VALUE</span>
-    <span class="nf">msr</span>    <span class="no">hcr_el2</span><span class="p">,</span> <span class="no">x0</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl">    <span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">HCR_VALUE</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">msr</span>    <span class="no">hcr_el2</span><span class="p">,</span> <span class="no">x0</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="配置-scr_el3">配置 SCR_EL3</h3>
 <blockquote>
@@ -2014,7 +1961,7 @@ if (!doNotTrack) {
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2022,23 +1969,23 @@ if (!doNotTrack) {
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define SCR_RESERVED	    		(3 &lt;&lt; 4)
-</span><span class="cp">#define SCR_RW				(1 &lt;&lt; 10)
-</span><span class="cp"></span><span class="c1">// EL2 的Execution State 为 AArch64
-</span><span class="c1"></span><span class="cp">#define SCR_NS				(1 &lt;&lt; 0)
-</span><span class="cp"></span><span class="c1">// 安全状态为 Non-secure
-</span><span class="c1"></span><span class="cp">#define SCR_VALUE	    	    	(SCR_RESERVED | SCR_RW | SCR_NS)
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define SCR_RESERVED	    		(3 &lt;&lt; 4)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define SCR_RW				(1 &lt;&lt; 10)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// EL2 的Execution State 为 AArch64
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define SCR_NS				(1 &lt;&lt; 0)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// 安全状态为 Non-secure
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define SCR_VALUE	    	    	(SCR_RESERVED | SCR_RW | SCR_NS)
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SCR_VALUE</span>
-<span class="nf">msr</span>    <span class="no">scr_el3</span><span class="p">,</span> <span class="no">x0</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SCR_VALUE</span>
+</span></span><span class="line"><span class="cl"><span class="nf">msr</span>    <span class="no">scr_el3</span><span class="p">,</span> <span class="no">x0</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="配置-spsr_el3">配置 SPSR_EL3</h3>
 <blockquote>
@@ -2048,11 +1995,11 @@ if (!doNotTrack) {
 <p><code>7 &lt;&lt; 6</code> 意味着将 [8:7] 3 个位都置 1:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define SPSR_MASK_ALL 			(7 &lt;&lt; 6)
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define SPSR_MASK_ALL 			(7 &lt;&lt; 6)
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>bit[8]: SError interrupt mask</li>
@@ -2062,13 +2009,13 @@ if (!doNotTrack) {
 <p>设置 Exception level 和 selected Stack Pointer 为 EL1h:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define SPSR_EL1h			(5 &lt;&lt; 0)
-</span><span class="cp">#define SPSR_VALUE			(SPSR_MASK_ALL | SPSR_EL1h)
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define SPSR_EL1h			(5 &lt;&lt; 0)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define SPSR_VALUE			(SPSR_MASK_ALL | SPSR_EL1h)
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><table>
 <thead>
@@ -2110,13 +2057,13 @@ if (!doNotTrack) {
 </table>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SPSR_VALUE</span>
-<span class="nf">msr</span>    <span class="no">spsr_el3</span><span class="p">,</span> <span class="no">x0</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">ldr</span>    <span class="no">x0</span><span class="p">,</span> <span class="err">=</span><span class="no">SPSR_VALUE</span>
+</span></span><span class="line"><span class="cl"><span class="nf">msr</span>    <span class="no">spsr_el3</span><span class="p">,</span> <span class="no">x0</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>将 SPSR_EL3 的第 [3:0] 3 个位, 置为 <code>EL1h</code> 后，在执行 <code>eret</code> 指令后，处理器的状态会从 SPSR_EL3 中恢复，也就让处理器的 EL 切换到了 EL1。</p>
 <h3 id="配置-elr_el3">配置 ELR_EL3</h3>
@@ -2126,17 +2073,17 @@ if (!doNotTrack) {
 <p>在 EL3 进行异常处理时，ELR_EL3 寄存器将用来保留要返回的地址。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">adr</span>    <span class="no">x0</span><span class="p">,</span> <span class="no">el1_entry</span>
-<span class="err">//</span> <span class="err">将</span> <span class="nf">el1_entry</span> <span class="no">label</span> <span class="err">地址存到</span> <span class="no">x0</span>
-<span class="nf">msr</span>    <span class="no">elr_el3</span><span class="p">,</span> <span class="no">x0</span>
-<span class="err">//</span> <span class="err">将</span> <span class="nf">x0</span> <span class="err">值存到</span> <span class="no">elr_el3</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">adr</span>    <span class="no">x0</span><span class="p">,</span> <span class="no">el1_entry</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 将 el1_entry label 地址存到 x0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">msr</span>    <span class="no">elr_el3</span><span class="p">,</span> <span class="no">x0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 将 x0 值存到 elr_el3
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>先将 <code>el1_entry</code> 符号地址存到 <code>elr_el3</code>，在执行 <code>eret</code> 指令之后，处理器就将从 <code>elr_el3</code> 寄存器读取符号去恢复执行，也就间接的让处理器执行 <code>el1_entry</code>。</p>
 <hr />
@@ -2335,7 +2282,7 @@ if (!doNotTrack) {
     
 <div class="donation">
   <div class="donation__message">
-    Support the author with
+    您的鼓励是我最大的动力
   </div>
   <div class="donation__icons">
     
@@ -2386,7 +2333,7 @@ if (!doNotTrack) {
   </div>
   <div class="whoami__contents">
     <div class="whoami__written-by">
-      WRITTEN BY
+      作者
     </div>
     <div class="whoami__title">
       
@@ -2483,7 +2430,7 @@ if (!doNotTrack) {
     <h1 class="related__title">
       <hr class="hr-dots"/>
       <div>
-        See Also
+        相关内容
       </div>
       <hr class="hr-dots"/>
     </h1>
@@ -2591,7 +2538,7 @@ if (!doNotTrack) {
 </div>
 
 
-<script defer src="/js/swipe.min.989e074dfb92ce7f57a92c1df7027f88b53c50a54fd9ad450a673a64aa91bfa4.js"></script>
+<script defer src="/js/swipe.min.feb438efb7ca009ecd7fc2ac3ad2fced4840990b2798d81f87137f2dc6281f05.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
@@ -2864,7 +2811,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <span class="icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
   </span>
-  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="搜索" autocomplete="off">
   <div id="search-results" class="dropdown">
     <div id="search-menu" class="dropdown-menu" role="menu">
     </div>
@@ -2884,7 +2831,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section class="sidebar hide">
   <script>document.querySelector('.sidebar').classList.remove('hide')</script>
   <div class="toc__flexbox" data-position="fixed">
-    <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
+    <h6 class="toc__title" data-ani="true">目录</h6>
     
       <label class="switch" data-ani="true">
         <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
@@ -3298,7 +3245,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.trigger.classList.add('tooltipped');
       e.trigger.classList.add('tooltipped-s');
     });
-    // =================================================================
+    
 
 
 
@@ -3516,6 +3463,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
+      
+      
+        
+        
+          
+            
+          
+        
+      
+        
+      
+    
   </div>
 </div>
 
@@ -3626,7 +3585,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2022, All Rights Reserved
+                    ©2023, All Rights Reserved
                 
             </p>
         

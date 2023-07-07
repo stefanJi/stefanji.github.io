@@ -10,8 +10,8 @@
     <link>https://jiyang.site/categories/java/</link>
     <description>Recent content in Java on Yang Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>©{year}, All Rights Reserved</copyright>
+    <language>zh</language>
+    <copyright>©2023, All Rights Reserved</copyright>
     <lastBuildDate>Mon, 20 Jan 2020 17:59:51 +0000</lastBuildDate>
     
         <atom:link href="https://jiyang.site/categories/java/index.xml" rel="self" type="application/rss+xml" />
@@ -25,7 +25,7 @@
         
         <atom:modified>Mon, 20 Jan 2020 17:59:51 +0000</atom:modified>
         <guid>https://jiyang.site/posts/2020-01-20-%E4%BD%BF%E7%94%A8java%E8%A7%A3%E6%9E%90class%E5%AD%97%E8%8A%82%E7%A0%81%E7%BB%93%E6%9E%84/</guid>
-        <description>按照JVM 字节码的存储格式 https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html 规范，实现了一段程序解析字节码结构。 结果输出 ========== Start Parse========= == Magic Number ====================================== MagicNumber{b1=CA, b2=FE, b3=BA, b4=BE} == Version ====================================== Version{minorVersion=0, majorVersion=52} == Constant Pool ====================================== ConstantPool{poolCount=214, constantsSize=2376, mConstantItems= #1 MethodRef{classInfoIndex=65, nameAndTypeIndex=130} #2 String{index=131} ... #213 Utf8{attributeLength=20, value=&#39;()Ljava/lang/String;&#39;} } ==</description>
+        <description>按照JVM 字节码的存储格式 https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html 规范，实现了一段程序解析字节码结构。 结果输出 ========== Start Parse========= == Magic Number ====================================== MagicNumber{b1=CA, b2=FE, b3=BA, b4=BE} == Version ====================================== Version{minorVersion=0, majorVersion=52} == Constant Pool ====================================== ConstantPool{poolCount=214, constantsSize=2376, mConstantItems= #1 MethodRef{classInfoIndex=65, nameAndTypeIndex=130} #2 String{index=131} ... #213 Utf8{attributeLength=20, value=&amp;#39;()Ljava/lang/String;&amp;#39;} } ==</description>
         
         <dc:creator>Yang</dc:creator>
         

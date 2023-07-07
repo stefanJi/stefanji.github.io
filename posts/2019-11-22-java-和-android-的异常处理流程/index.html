@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh" dir="ltr">
 
 <head prefix="og: http://ogp.me/ns#">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.3ce954c8aea3b69cc5e6f734d8273ba4cd48d3a7987dbdca145849bc4b8fc296.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -663,6 +663,12 @@
     
     var enableSearch = JSON.parse("true");
     
+    var searchDistance = JSON.parse("null");
+    
+    var searchThreshold = JSON.parse("null");
+    
+    var searchContent = JSON.parse("null");
+    
     var enableSearchHighlight = JSON.parse("true");
     
     var searchResultPosition = JSON.parse("null");
@@ -686,12 +692,13 @@
         xhr.onload = function () {
           if (xhr.status === 200) {
             fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
-              keys: sectionType.includes('publication') ? ['title', 'abstract'] : ['title', 'description', 'content'],
+              keys: sectionType.includes('publication') ? ['title', 'abstract'] : 
+                searchContent ? ['title', 'description', 'content'] : ['title', 'description'],
               includeMatches: enableSearchHighlight,
               shouldSort: true, 
-              threshold: 0.4, 
+              threshold: searchThreshold ? searchThreshold : 0.4, 
               location: 0, 
-              distance: 100, 
+              distance: searchDistance ? searchDistance : 100, 
               maxPatternLength: 32,
               minMatchCharLength: 1,
               isCaseSensitive: false, 
@@ -715,7 +722,7 @@
       var a = document.createElement('a');
       a.innerHTML = obj.item.title;
       a.setAttribute('class', 'search-result__item--title');
-      a.setAttribute('href', obj.item.permalink);
+      a.setAttribute('href', obj.item.uri);
 
       var descDiv = document.createElement('div');
       descDiv.setAttribute('class', 'search-result__item--desc');
@@ -1315,7 +1322,8 @@
     }
   
   });
-</script>    
+</script>
+    
     
 
 
@@ -1339,7 +1347,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="理清 Java 和 Android 的线程异常处理">
 
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.115.1">
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1393,7 +1401,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
   
 <script type="application/javascript">
 var doNotTrack = false;
@@ -1450,7 +1457,7 @@ if (!doNotTrack) {
     &nbsp;&nbsp;
     
     
-      <a href="/" title="Home" rel="home" class="navbar__title-link">
+      <a href="/" title="主页" rel="home" class="navbar__title-link">
         <h6 class="navbar__title">YangBlog</h6>
       </a>
     
@@ -1497,7 +1504,7 @@ if (!doNotTrack) {
 
 <div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
   <div class="mobile-search__top">
-    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="搜索" class="mobile-search__top--input"/>
     <div id="search-mobile-close" class="mobile-search__top--icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
     </div>
@@ -1518,59 +1525,23 @@ if (!doNotTrack) {
   <ul dir="ltr">
     
     
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="/categories">category</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item active">
-          <a href="/posts">posts</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="https://life.jiyang.site">about</a>
-        </li>
-      
-      
-    
 
     
       <li class="navbarm__menu--item ">
         <a href="/tags" class="navbarm__menu--term" data-index="0">
-          Tags
+          标签
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/categories" class="navbarm__menu--term" data-index="1">
-          Categories
+          分类
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/series" class="navbarm__menu--term" data-index="2">
-          Series
+          系列
         </a>
       </li>
     
@@ -1615,30 +1586,6 @@ if (!doNotTrack) {
 
   
   
-  
-  
-  
-  
-  
-  <a href="/categories" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">category</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="/posts" class="navbar__menu-item navbar__slide-down active" dir="ltr" data-ani="true">posts</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="https://life.jiyang.site" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">about</a>
-  
-  
 </div>
 </nav>
             
@@ -1681,16 +1628,16 @@ if (!doNotTrack) {
   
   
   <div class="single ">
-    <div class="single__nojs">This page looks best with JavaScript enabled</div>
+    <div class="single__nojs">Please enable Javascript to view the contents</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
     <h2 class="single__title" data-ani="true">Java 和 Android 的异常处理流程</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Nov 22, 2019 </time>
+  <time class="single__info" title="创建日期">📅&nbsp;2019年11月22日 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;3&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="阅读时长"> ☕&nbsp;3&nbsp;分钟 </span>
   
   <span class="single__info">
     
@@ -1717,7 +1664,7 @@ if (!doNotTrack) {
 <h3 id="java">Java</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1731,30 +1678,30 @@ if (!doNotTrack) {
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;A&#34;</span><span class="o">);</span>
-    <span class="k">new</span> <span class="n">Thread</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">Object</span> <span class="n">o</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-        <span class="o">}</span>
-    <span class="o">}.</span><span class="na">start</span><span class="o">();</span>
-    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">500</span><span class="o">);</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;B&#34;</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;A&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">new</span> <span class="n">Thread</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Object</span> <span class="n">o</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">500</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;B&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>输出:</p>
-<pre><code>A
-Exception in thread &quot;Thread-0&quot; java.lang.NullPointerException
+<pre tabindex="0"><code>A
+Exception in thread &#34;Thread-0&#34; java.lang.NullPointerException
 	at Test$1.run(Test.java:12)
 B
 </code></pre><p>可以看到在没有单独设置 <code>UncaughtExceptionHandler</code> 时, 非主线程出现了异常也不会阻断主线程的运行, 只是输出了异常.</p>
 <h3 id="android">Android</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1770,28 +1717,28 @@ B
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nd">@Nullable</span> <span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
-    <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">&#34;TAG&#34;</span><span class="o">,</span> <span class="s">&#34;A&#34;</span><span class="o">);</span>
-    <span class="k">new</span> <span class="n">Thread</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">Object</span> <span class="n">o</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">&#34;TAG&#34;</span><span class="o">,</span> <span class="n">o</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-        <span class="o">}</span>
-    <span class="o">}.</span><span class="na">start</span><span class="o">();</span>
-    <span class="c1">// 这里为了节目效果, 休眠了 500 毫秒
-</span><span class="c1"></span>    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">500</span><span class="o">);</span>
-    <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">&#34;TAG&#34;</span><span class="o">,</span> <span class="s">&#34;B&#34;</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nd">@Nullable</span> <span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">&#34;TAG&#34;</span><span class="o">,</span> <span class="s">&#34;A&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">new</span> <span class="n">Thread</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Object</span> <span class="n">o</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">&#34;TAG&#34;</span><span class="o">,</span> <span class="n">o</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 这里为了节目效果, 休眠了 500 毫秒
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">500</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">&#34;TAG&#34;</span><span class="o">,</span> <span class="s">&#34;B&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>输出:</p>
-<pre><code>D/TAG: A
+<pre tabindex="0"><code>D/TAG: A
 
 E/AndroidRuntime: FATAL EXCEPTION: Thread-2
     Process: io.github.stefanji.playground, PID: 4815
-    java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.String java.lang.Object.toString()' on a null object reference
+    java.lang.NullPointerException: Attempt to invoke virtual method &#39;java.lang.String java.lang.Object.toString()&#39; on a null object reference
         at ExceptionTest$1.run(ExceptionTest.java:22)
 </code></pre><p>结果运行到这里 App 直接 Crash 了.</p>
 <blockquote>
@@ -1808,7 +1755,7 @@ E/AndroidRuntime: FATAL EXCEPTION: Thread-2
 <p>在 Android-28 <code>com/android/internal/os/RuntimeInit.java</code> 中发现了踪影:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1839,41 +1786,41 @@ E/AndroidRuntime: FATAL EXCEPTION: Thread-2
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">LoggingHandler</span> <span class="kd">implements</span> <span class="n">Thread</span><span class="o">.</span><span class="na">UncaughtExceptionHandler</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">mTriggered</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">uncaughtException</span><span class="o">(</span><span class="n">Thread</span> <span class="n">t</span><span class="o">,</span> <span class="n">Throwable</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">mTriggered</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-
-        <span class="c1">// Don&#39;t re-enter if KillApplicationHandler has already run
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mCrashing</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
-
-        <span class="c1">// 系统进程异常
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mApplicationObject</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">Process</span><span class="o">.</span><span class="na">SYSTEM_UID</span> <span class="o">==</span> <span class="n">Process</span><span class="o">.</span><span class="na">myUid</span><span class="o">()))</span> <span class="o">{</span>
-            <span class="n">Clog_e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;*** FATAL EXCEPTION IN SYSTEM PROCESS: &#34;</span> <span class="o">+</span> <span class="n">t</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="n">StringBuilder</span> <span class="n">message</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
-            <span class="c1">// The &#34;FATAL EXCEPTION&#34; string is still used on Android even though
-</span><span class="c1"></span>            <span class="c1">// apps can set a custom UncaughtExceptionHandler that renders uncaught
-</span><span class="c1"></span>            <span class="c1">// exceptions non-fatal.
-</span><span class="c1"></span>            <span class="c1">// 下面刚好能匹配到应用 Crash 时的日志
-</span><span class="c1"></span>            <span class="n">message</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;FATAL EXCEPTION: &#34;</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="na">getName</span><span class="o">()).</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;\n&#34;</span><span class="o">);</span>
-            <span class="kd">final</span> <span class="n">String</span> <span class="n">processName</span> <span class="o">=</span> <span class="n">ActivityThread</span><span class="o">.</span><span class="na">currentProcessName</span><span class="o">();</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">processName</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">message</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;Process: &#34;</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="n">processName</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;, &#34;</span><span class="o">);</span>
-            <span class="o">}</span>
-            <span class="n">message</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;PID: &#34;</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="n">Process</span><span class="o">.</span><span class="na">myPid</span><span class="o">());</span>
-            <span class="n">Clog_e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">message</span><span class="o">.</span><span class="na">toString</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">LoggingHandler</span> <span class="kd">implements</span> <span class="n">Thread</span><span class="o">.</span><span class="na">UncaughtExceptionHandler</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="n">mTriggered</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">uncaughtException</span><span class="o">(</span><span class="n">Thread</span> <span class="n">t</span><span class="o">,</span> <span class="n">Throwable</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mTriggered</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// Don&#39;t re-enter if KillApplicationHandler has already run
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mCrashing</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 系统进程异常
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mApplicationObject</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">Process</span><span class="o">.</span><span class="na">SYSTEM_UID</span> <span class="o">==</span> <span class="n">Process</span><span class="o">.</span><span class="na">myUid</span><span class="o">()))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Clog_e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;*** FATAL EXCEPTION IN SYSTEM PROCESS: &#34;</span> <span class="o">+</span> <span class="n">t</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">StringBuilder</span> <span class="n">message</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// The &#34;FATAL EXCEPTION&#34; string is still used on Android even though
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// apps can set a custom UncaughtExceptionHandler that renders uncaught
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// exceptions non-fatal.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// 下面刚好能匹配到应用 Crash 时的日志
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">message</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;FATAL EXCEPTION: &#34;</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="n">t</span><span class="o">.</span><span class="na">getName</span><span class="o">()).</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;\n&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">final</span> <span class="n">String</span> <span class="n">processName</span> <span class="o">=</span> <span class="n">ActivityThread</span><span class="o">.</span><span class="na">currentProcessName</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">processName</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">message</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;Process: &#34;</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="n">processName</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;, &#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">message</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;PID: &#34;</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="n">Process</span><span class="o">.</span><span class="na">myPid</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Clog_e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">message</span><span class="o">.</span><span class="na">toString</span><span class="o">(),</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在 <code>LogingHandler</code> 里只看的日志的的输出, 没有应用 Crash 相关的. 再接着看 <code>LogingHandler</code> 在哪里使用的, 在 <code>RuntimeInit.java</code> 中搜索发现在 <code>RuntimeInit</code> 的一个私有内部类 <code>KillApplicationHandler</code> 中使用了:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1882,19 +1829,19 @@ E/AndroidRuntime: FATAL EXCEPTION: Thread-2
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">KillApplicationHandler</span> <span class="kd">implements</span> <span class="n">Thread</span><span class="o">.</span><span class="na">UncaughtExceptionHandler</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="n">LoggingHandler</span> <span class="n">mLoggingHandler</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">KillApplicationHandler</span><span class="o">(</span><span class="n">LoggingHandler</span> <span class="n">loggingHandler</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">mLoggingHandler</span> <span class="o">=</span> <span class="n">Objects</span><span class="o">.</span><span class="na">requireNonNull</span><span class="o">(</span><span class="n">loggingHandler</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">KillApplicationHandler</span> <span class="kd">implements</span> <span class="n">Thread</span><span class="o">.</span><span class="na">UncaughtExceptionHandler</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">final</span> <span class="n">LoggingHandler</span> <span class="n">mLoggingHandler</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">KillApplicationHandler</span><span class="o">(</span><span class="n">LoggingHandler</span> <span class="n">loggingHandler</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">mLoggingHandler</span> <span class="o">=</span> <span class="n">Objects</span><span class="o">.</span><span class="na">requireNonNull</span><span class="o">(</span><span class="n">loggingHandler</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>KillApplicationHandler</code> 又是在 <code>commonInit</code> 类方法中创建, 然后设置为线程的全局 ExceptionHandler.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1908,25 +1855,25 @@ E/AndroidRuntime: FATAL EXCEPTION: Thread-2
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">commonInit</span><span class="o">()</span> <span class="o">{</span>
-    <span class="cm">/*
-</span><span class="cm">     * set handlers; these apply to all threads in the VM. Apps can replace
-</span><span class="cm">     * the default handler, but not the pre handler.
-</span><span class="cm">     */</span>
-    <span class="n">LoggingHandler</span> <span class="n">loggingHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LoggingHandler</span><span class="o">();</span>
-    <span class="c1">// setUncaughtExceptionPreHandler 这个方法 Thread 里没有呀?
-</span><span class="c1"></span>    <span class="n">Thread</span><span class="o">.</span><span class="na">setUncaughtExceptionPreHandler</span><span class="o">(</span><span class="n">loggingHandler</span><span class="o">);</span>
-    <span class="c1">// KillApplicationHandler 作为全局 Handler
-</span><span class="c1"></span>    <span class="n">Thread</span><span class="o">.</span><span class="na">setDefaultUncaughtExceptionHandler</span><span class="o">(</span><span class="k">new</span> <span class="n">KillApplicationHandler</span><span class="o">(</span><span class="n">loggingHandler</span><span class="o">));</span>
-    <span class="c1">//...
-</span><span class="c1"></span><span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">commonInit</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * set handlers; these apply to all threads in the VM. Apps can replace
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * the default handler, but not the pre handler.
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LoggingHandler</span> <span class="n">loggingHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LoggingHandler</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// setUncaughtExceptionPreHandler 这个方法 Thread 里没有呀?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Thread</span><span class="o">.</span><span class="na">setUncaughtExceptionPreHandler</span><span class="o">(</span><span class="n">loggingHandler</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// KillApplicationHandler 作为全局 Handler
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Thread</span><span class="o">.</span><span class="na">setDefaultUncaughtExceptionHandler</span><span class="o">(</span><span class="k">new</span> <span class="n">KillApplicationHandler</span><span class="o">(</span><span class="n">loggingHandler</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>commonInit</code> 是在 <code>RuntimeInit.java</code> 的静态 <code>main</code> 方法中被调用.</p>
 <p>而 <code>RuntimeInit</code> 的入口方法(<code>main</code>) 会在 <code>zygote</code> 创建新的应用进程之后被调用. 所以 <code>KillApplicationHandler</code> 是在应用进程启动以后就设置的. 如果我们没有单独设置过全局的 DefaultUncaughtExceptionHandler, 那么应用中任何线程出现了未捕获的异常, 且发生异常的线程没有设置过 UnCaughtExceptionHandler 时, 异常就会走到 KillApplicationHandler 的 <code>uncaughtException</code> 方法:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1955,34 +1902,34 @@ E/AndroidRuntime: FATAL EXCEPTION: Thread-2
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">uncaughtException</span><span class="o">(</span><span class="n">Thread</span> <span class="n">t</span><span class="o">,</span> <span class="n">Throwable</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="c1">// 调用 loggingHandler 输出日志
-</span><span class="c1"></span>        <span class="n">ensureLogging</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
-
-        <span class="c1">// Don&#39;t re-enter -- avoid infinite loops if crash-reporting crashes.
-</span><span class="c1"></span>        <span class="c1">// 已经在 crash 中时, 就不再处理了
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mCrashing</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
-        <span class="n">mCrashing</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="c1">//...
-</span><span class="c1"></span>    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">t2</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">t2</span> <span class="k">instanceof</span> <span class="n">DeadObjectException</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// System process is dead; ignore
-</span><span class="c1"></span>        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="k">try</span> <span class="o">{</span>
-                <span class="n">Clog_e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;Error reporting crash&#34;</span><span class="o">,</span> <span class="n">t2</span><span class="o">);</span>
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">t3</span><span class="o">)</span> <span class="o">{</span>
-                <span class="c1">// Even Clog_e() fails!  Oh well.
-</span><span class="c1"></span>            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-        <span class="c1">// 通知内核杀掉应用进程
-</span><span class="c1"></span>        <span class="n">Process</span><span class="o">.</span><span class="na">killProcess</span><span class="o">(</span><span class="n">Process</span><span class="o">.</span><span class="na">myPid</span><span class="o">());</span>
-        <span class="c1">// 停止 VM
-</span><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">uncaughtException</span><span class="o">(</span><span class="n">Thread</span> <span class="n">t</span><span class="o">,</span> <span class="n">Throwable</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 调用 loggingHandler 输出日志
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">ensureLogging</span><span class="o">(</span><span class="n">t</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// Don&#39;t re-enter -- avoid infinite loops if crash-reporting crashes.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 已经在 crash 中时, 就不再处理了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mCrashing</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mCrashing</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">t2</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">t2</span> <span class="k">instanceof</span> <span class="n">DeadObjectException</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// System process is dead; ignore
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Clog_e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;Error reporting crash&#34;</span><span class="o">,</span> <span class="n">t2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">t3</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// Even Clog_e() fails!  Oh well.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 通知内核杀掉应用进程
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Process</span><span class="o">.</span><span class="na">killProcess</span><span class="o">(</span><span class="n">Process</span><span class="o">.</span><span class="na">myPid</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 停止 VM
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="总结">总结</h2>
 <p>Android 应用之所以遇到非主线程抛出的未捕获异常也会 Crash 的原因是, 在应用进程被创建之后, RuntimeInit 就为线程设置 <code>KillApplicationHandler</code> 为全局的 UncaughtExceptionHandler. <code>KillApplicationHandler</code> 的处理机制是先输出异常日志, 然后杀掉应用进程.</p>
@@ -2185,7 +2132,7 @@ E/AndroidRuntime: FATAL EXCEPTION: Thread-2
     
 <div class="donation">
   <div class="donation__message">
-    Support the author with
+    您的鼓励是我最大的动力
   </div>
   <div class="donation__icons">
     
@@ -2236,7 +2183,7 @@ E/AndroidRuntime: FATAL EXCEPTION: Thread-2
   </div>
   <div class="whoami__contents">
     <div class="whoami__written-by">
-      WRITTEN BY
+      作者
     </div>
     <div class="whoami__title">
       
@@ -2422,7 +2369,7 @@ E/AndroidRuntime: FATAL EXCEPTION: Thread-2
 </div>
 
 
-<script defer src="/js/swipe.min.989e074dfb92ce7f57a92c1df7027f88b53c50a54fd9ad450a673a64aa91bfa4.js"></script>
+<script defer src="/js/swipe.min.feb438efb7ca009ecd7fc2ac3ad2fced4840990b2798d81f87137f2dc6281f05.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
@@ -2695,7 +2642,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <span class="icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
   </span>
-  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="搜索" autocomplete="off">
   <div id="search-results" class="dropdown">
     <div id="search-menu" class="dropdown-menu" role="menu">
     </div>
@@ -2715,7 +2662,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section class="sidebar hide">
   <script>document.querySelector('.sidebar').classList.remove('hide')</script>
   <div class="toc__flexbox" data-position="fixed">
-    <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
+    <h6 class="toc__title" data-ani="true">目录</h6>
     
       <label class="switch" data-ani="true">
         <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
@@ -3124,7 +3071,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.trigger.classList.add('tooltipped');
       e.trigger.classList.add('tooltipped-s');
     });
-    // =================================================================
+    
 
 
 
@@ -3342,6 +3289,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
+      
+      
+        
+        
+          
+            
+          
+        
+      
+        
+      
+    
   </div>
 </div>
 
@@ -3452,7 +3411,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2022, All Rights Reserved
+                    ©2023, All Rights Reserved
                 
             </p>
         

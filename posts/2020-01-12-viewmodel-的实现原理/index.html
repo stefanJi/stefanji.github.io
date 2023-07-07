@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh" dir="ltr">
 
 <head prefix="og: http://ogp.me/ns#">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.3ce954c8aea3b69cc5e6f734d8273ba4cd48d3a7987dbdca145849bc4b8fc296.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -663,6 +663,12 @@
     
     var enableSearch = JSON.parse("true");
     
+    var searchDistance = JSON.parse("null");
+    
+    var searchThreshold = JSON.parse("null");
+    
+    var searchContent = JSON.parse("null");
+    
     var enableSearchHighlight = JSON.parse("true");
     
     var searchResultPosition = JSON.parse("null");
@@ -686,12 +692,13 @@
         xhr.onload = function () {
           if (xhr.status === 200) {
             fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
-              keys: sectionType.includes('publication') ? ['title', 'abstract'] : ['title', 'description', 'content'],
+              keys: sectionType.includes('publication') ? ['title', 'abstract'] : 
+                searchContent ? ['title', 'description', 'content'] : ['title', 'description'],
               includeMatches: enableSearchHighlight,
               shouldSort: true, 
-              threshold: 0.4, 
+              threshold: searchThreshold ? searchThreshold : 0.4, 
               location: 0, 
-              distance: 100, 
+              distance: searchDistance ? searchDistance : 100, 
               maxPatternLength: 32,
               minMatchCharLength: 1,
               isCaseSensitive: false, 
@@ -715,7 +722,7 @@
       var a = document.createElement('a');
       a.innerHTML = obj.item.title;
       a.setAttribute('class', 'search-result__item--title');
-      a.setAttribute('href', obj.item.permalink);
+      a.setAttribute('href', obj.item.uri);
 
       var descDiv = document.createElement('div');
       descDiv.setAttribute('class', 'search-result__item--desc');
@@ -1315,7 +1322,8 @@
     }
   
   });
-</script>    
+</script>
+    
     
 
 
@@ -1339,7 +1347,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="Android Jetpack 提供了 ViewModel, 以用来维护 Activity 或 Fragment 中需要的数据。其能够在因配置改变(比如屏幕旋转)造成的 Activity 和 Fragment 重建时, 依然维护其内部的数据。">
 
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.115.1">
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1393,7 +1401,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
   
 <script type="application/javascript">
 var doNotTrack = false;
@@ -1450,7 +1457,7 @@ if (!doNotTrack) {
     &nbsp;&nbsp;
     
     
-      <a href="/" title="Home" rel="home" class="navbar__title-link">
+      <a href="/" title="主页" rel="home" class="navbar__title-link">
         <h6 class="navbar__title">YangBlog</h6>
       </a>
     
@@ -1497,7 +1504,7 @@ if (!doNotTrack) {
 
 <div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
   <div class="mobile-search__top">
-    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="搜索" class="mobile-search__top--input"/>
     <div id="search-mobile-close" class="mobile-search__top--icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
     </div>
@@ -1518,59 +1525,23 @@ if (!doNotTrack) {
   <ul dir="ltr">
     
     
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="/categories">category</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item active">
-          <a href="/posts">posts</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="https://life.jiyang.site">about</a>
-        </li>
-      
-      
-    
 
     
       <li class="navbarm__menu--item ">
         <a href="/tags" class="navbarm__menu--term" data-index="0">
-          Tags
+          标签
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/categories" class="navbarm__menu--term" data-index="1">
-          Categories
+          分类
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/series" class="navbarm__menu--term" data-index="2">
-          Series
+          系列
         </a>
       </li>
     
@@ -1615,30 +1586,6 @@ if (!doNotTrack) {
 
   
   
-  
-  
-  
-  
-  
-  <a href="/categories" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">category</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="/posts" class="navbar__menu-item navbar__slide-down active" dir="ltr" data-ani="true">posts</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="https://life.jiyang.site" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">about</a>
-  
-  
 </div>
 </nav>
             
@@ -1681,16 +1628,16 @@ if (!doNotTrack) {
   
   
   <div class="single ">
-    <div class="single__nojs">This page looks best with JavaScript enabled</div>
+    <div class="single__nojs">Please enable Javascript to view the contents</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
     <h2 class="single__title" data-ani="true">ViewModel 的实现原理</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Jan 12, 2020 </time>
+  <time class="single__info" title="创建日期">📅&nbsp;2020年01月12日 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;8&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="阅读时长"> ☕&nbsp;8&nbsp;分钟 </span>
   
   <span class="single__info">
     
@@ -1753,7 +1700,7 @@ if (!doNotTrack) {
 <p>向 ViewModelStore 的池子中存入 ViewModel, 如果池子中已经有 key 对应 ViewModel了，旧的会被新的替换，而且会调用旧的 ViewModel 的 <code>onCleared</code> 方法。(🤔️不是应该调用 ViewModel 的 <code>clear</code> 去释放资源吗？)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1761,27 +1708,27 @@ if (!doNotTrack) {
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="kt">void</span> <span class="nf">put</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="n">ViewModel</span> <span class="n">viewModel</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">ViewModel</span> <span class="n">oldViewModel</span> <span class="o">=</span> <span class="n">mMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">viewModel</span><span class="o">);</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">oldViewModel</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">oldViewModel</span><span class="o">.</span><span class="na">onCleared</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">final</span> <span class="kt">void</span> <span class="nf">put</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="n">ViewModel</span> <span class="n">viewModel</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ViewModel</span> <span class="n">oldViewModel</span> <span class="o">=</span> <span class="n">mMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">viewModel</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">oldViewModel</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">oldViewModel</span><span class="o">.</span><span class="na">onCleared</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>ViewModel get(String key)</code></p>
 <p>从池子(<code>mMap</code>)中获取 key 对应的 ViewModel</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="n">ViewModel</span> <span class="nf">get</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">mMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">final</span> <span class="n">ViewModel</span> <span class="nf">get</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">mMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>Set&lt;String&gt; keys()</code></p>
 <p>返回 <code>mMap</code> 的所有 key</p>
@@ -1789,7 +1736,7 @@ if (!doNotTrack) {
 <p>清空 <code>mMap</code> 中的所有 ViewModel，并调用每一个的 <code>clear</code> 方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1797,13 +1744,13 @@ if (!doNotTrack) {
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">clear</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">for</span> <span class="o">(</span><span class="n">ViewModel</span> <span class="n">vm</span> <span class="o">:</span> <span class="n">mMap</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
-        <span class="n">vm</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
-    <span class="o">}</span>
-    <span class="n">mMap</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">clear</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="n">ViewModel</span> <span class="n">vm</span> <span class="o">:</span> <span class="n">mMap</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vm</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mMap</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里注意下 ViewModelStore 的 get 和 put 方法的声明，访问权限都是包层级的，也就表示我们使用者是无法直接通过 ViewModelStore 通过 key 拿到对应的 ViewModel 的。</p>
 <h3 id="viewmodelprovider">ViewModelProvider</h3>
@@ -1814,15 +1761,15 @@ if (!doNotTrack) {
 <p><code>private final Factory mFactory;</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Factory</span> <span class="o">{</span>
-    <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">ViewModel</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">create</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">modelClass</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Factory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">ViewModel</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">create</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">modelClass</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Factory 表示创建 ViewModel 的工厂，<code>final</code> 的声明表示它必须在 ViewModelProvider 的构造函数中就赋值。</p>
 <p><code>final ViewModelStore mViewModelStore;</code></p>
@@ -1833,7 +1780,7 @@ if (!doNotTrack) {
 <p><strong>构造方法</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1849,44 +1796,44 @@ if (!doNotTrack) {
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">ViewModelProvider</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">ViewModelStoreOwner</span> <span class="n">owner</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">(</span><span class="n">owner</span><span class="o">.</span><span class="na">getViewModelStore</span><span class="o">(),</span> <span class="n">owner</span> <span class="k">instanceof</span> <span class="n">HasDefaultViewModelProviderFactory</span>
-            <span class="o">?</span> <span class="o">((</span><span class="n">HasDefaultViewModelProviderFactory</span><span class="o">)</span> <span class="n">owner</span><span class="o">).</span><span class="na">getDefaultViewModelProviderFactory</span><span class="o">()</span>
-            <span class="o">:</span> <span class="n">NewInstanceFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">());</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="nf">ViewModelProvider</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">ViewModelStoreOwner</span> <span class="n">owner</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">Factory</span> <span class="n">factory</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">(</span><span class="n">owner</span><span class="o">.</span><span class="na">getViewModelStore</span><span class="o">(),</span> <span class="n">factory</span><span class="o">);</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="nf">ViewModelProvider</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">ViewModelStore</span> <span class="n">store</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">Factory</span> <span class="n">factory</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">mFactory</span> <span class="o">=</span> <span class="n">factory</span><span class="o">;</span>
-    <span class="n">mViewModelStore</span> <span class="o">=</span> <span class="n">store</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">ViewModelProvider</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">ViewModelStoreOwner</span> <span class="n">owner</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">(</span><span class="n">owner</span><span class="o">.</span><span class="na">getViewModelStore</span><span class="o">(),</span> <span class="n">owner</span> <span class="k">instanceof</span> <span class="n">HasDefaultViewModelProviderFactory</span>
+</span></span><span class="line"><span class="cl">            <span class="o">?</span> <span class="o">((</span><span class="n">HasDefaultViewModelProviderFactory</span><span class="o">)</span> <span class="n">owner</span><span class="o">).</span><span class="na">getDefaultViewModelProviderFactory</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">:</span> <span class="n">NewInstanceFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">ViewModelProvider</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">ViewModelStoreOwner</span> <span class="n">owner</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">Factory</span> <span class="n">factory</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">(</span><span class="n">owner</span><span class="o">.</span><span class="na">getViewModelStore</span><span class="o">(),</span> <span class="n">factory</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">ViewModelProvider</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">ViewModelStore</span> <span class="n">store</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">Factory</span> <span class="n">factory</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mFactory</span> <span class="o">=</span> <span class="n">factory</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mViewModelStore</span> <span class="o">=</span> <span class="n">store</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>public <T extends ViewModel> T get(@NonNull Class<T> modelClass)</strong><br />
 <strong>public <T extends ViewModel> T get(@NonNull String key, @NonNull Class<T> modelClass)</strong></p>
 <p>以上两个方法就是获取 ViewModel 的方法，也是 ViewModel 库向使用者提供的两个公开的接口。第一个 <code>get</code> 方法会利用 <code>DEFAULT_KEY</code> 构造一个 key，然后调用第二个 <code>get</code> 方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">ViewModel</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">get</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">modelClass</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">String</span> <span class="n">canonicalName</span> <span class="o">=</span> <span class="n">modelClass</span><span class="o">.</span><span class="na">getCanonicalName</span><span class="o">();</span>
-    <span class="c1">// 构建一个 key
-</span><span class="c1"></span>    <span class="k">return</span> <span class="n">get</span><span class="o">(</span><span class="n">DEFAULT_KEY</span> <span class="o">+</span> <span class="s">&#34;:&#34;</span> <span class="o">+</span> <span class="n">canonicalName</span><span class="o">,</span> <span class="n">modelClass</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">ViewModel</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">get</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">modelClass</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">canonicalName</span> <span class="o">=</span> <span class="n">modelClass</span><span class="o">.</span><span class="na">getCanonicalName</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 构建一个 key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">get</span><span class="o">(</span><span class="n">DEFAULT_KEY</span> <span class="o">+</span> <span class="s">&#34;:&#34;</span> <span class="o">+</span> <span class="n">canonicalName</span><span class="o">,</span> <span class="n">modelClass</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1907,26 +1854,26 @@ if (!doNotTrack) {
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">ViewModel</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">get</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">modelClass</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 从 ViewModelStore 中获取 ViewModel
-</span><span class="c1"></span>    <span class="n">ViewModel</span> <span class="n">viewModel</span> <span class="o">=</span> <span class="n">mViewModelStore</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">modelClass</span><span class="o">.</span><span class="na">isInstance</span><span class="o">(</span><span class="n">viewModel</span><span class="o">))</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="o">(</span><span class="n">T</span><span class="o">)</span> <span class="n">viewModel</span><span class="o">;</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">viewModel</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="c1">// ViewModelStore 中还没有对应 ViewModel, 就创建
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">mFactory</span> <span class="k">instanceof</span> <span class="n">KeyedFactory</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">viewModel</span> <span class="o">=</span> <span class="o">((</span><span class="n">KeyedFactory</span><span class="o">)</span> <span class="o">(</span><span class="n">mFactory</span><span class="o">)).</span><span class="na">create</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">modelClass</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="n">viewModel</span> <span class="o">=</span> <span class="o">(</span><span class="n">mFactory</span><span class="o">).</span><span class="na">create</span><span class="o">(</span><span class="n">modelClass</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="c1">// 将创建的 ViewModel 存入 ViewModelStore
-</span><span class="c1"></span>    <span class="n">mViewModelStore</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">viewModel</span><span class="o">);</span>
-    <span class="k">return</span> <span class="o">(</span><span class="n">T</span><span class="o">)</span> <span class="n">viewModel</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">ViewModel</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">get</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">modelClass</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 从 ViewModelStore 中获取 ViewModel
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ViewModel</span> <span class="n">viewModel</span> <span class="o">=</span> <span class="n">mViewModelStore</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">modelClass</span><span class="o">.</span><span class="na">isInstance</span><span class="o">(</span><span class="n">viewModel</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">(</span><span class="n">T</span><span class="o">)</span> <span class="n">viewModel</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">viewModel</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ViewModelStore 中还没有对应 ViewModel, 就创建
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">mFactory</span> <span class="k">instanceof</span> <span class="n">KeyedFactory</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">viewModel</span> <span class="o">=</span> <span class="o">((</span><span class="n">KeyedFactory</span><span class="o">)</span> <span class="o">(</span><span class="n">mFactory</span><span class="o">)).</span><span class="na">create</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">modelClass</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">viewModel</span> <span class="o">=</span> <span class="o">(</span><span class="n">mFactory</span><span class="o">).</span><span class="na">create</span><span class="o">(</span><span class="n">modelClass</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 将创建的 ViewModel 存入 ViewModelStore
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">mViewModelStore</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">viewModel</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">(</span><span class="n">T</span><span class="o">)</span> <span class="n">viewModel</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="viewmodelstoreowner">ViewModelStoreOwner</h3>
 <p>ViewModelStoreOwner 是一个接口，它声明了一个 <code>getViewModelStore</code> 方法需要实现类实现。</p>
@@ -1935,25 +1882,25 @@ if (!doNotTrack) {
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ViewModelStoreOwner</span> <span class="o">{</span>
-
-    <span class="nd">@NonNull</span>
-    <span class="n">ViewModelStore</span> <span class="nf">getViewModelStore</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ViewModelStoreOwner</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@NonNull</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ViewModelStore</span> <span class="nf">getViewModelStore</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="componentactivity">ComponentActivity</h3>
 <p>ComponentActivity 是 androidx.activity 包中增加的，FragmentActivity 继承自它。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1961,13 +1908,13 @@ if (!doNotTrack) {
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ComponentActivity</span> <span class="kd">extends</span> <span class="n">androidx</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">app</span><span class="o">.</span><span class="na">ComponentActivity</span> <span class="kd">implements</span>
-        <span class="n">LifecycleOwner</span><span class="o">,</span>
-        <span class="n">ViewModelStoreOwner</span><span class="o">,</span>
-        <span class="n">HasDefaultViewModelProviderFactory</span><span class="o">,</span>
-        <span class="n">SavedStateRegistryOwner</span><span class="o">,</span>
-        <span class="n">OnBackPressedDispatcherOwner</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ComponentActivity</span> <span class="kd">extends</span> <span class="n">androidx</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">app</span><span class="o">.</span><span class="na">ComponentActivity</span> <span class="kd">implements</span>
+</span></span><span class="line"><span class="cl">        <span class="n">LifecycleOwner</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ViewModelStoreOwner</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">HasDefaultViewModelProviderFactory</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SavedStateRegistryOwner</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">OnBackPressedDispatcherOwner</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>ComponentActivity 中与 ViewModel 有关的两个变量:</p>
 <p><code>ViewModelStore mViewModelStore;</code></p>
@@ -1978,7 +1925,7 @@ if (!doNotTrack) {
 <p>ComponentActivity 中实现了</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1995,22 +1942,22 @@ if (!doNotTrack) {
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">ViewModelStore</span> <span class="nf">getViewModelStore</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">// 如果 mViewModelStore 还未赋值，则创建一个实例赋值给它
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">mViewModelStore</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 与 Activity 重建时恢复数据有关，后面会再详谈
-</span><span class="c1"></span>        <span class="n">NonConfigurationInstances</span> <span class="n">nc</span> <span class="o">=</span> <span class="o">(</span><span class="n">NonConfigurationInstances</span><span class="o">)</span> <span class="n">getLastNonConfigurationInstance</span><span class="o">();</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">nc</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">mViewModelStore</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="na">viewModelStore</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">mViewModelStore</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 创建 ViewModelStore, 赋值给 ComponentActivity 的 mViewModelStore 变量
-</span><span class="c1"></span>            <span class="n">mViewModelStore</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ViewModelStore</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">mViewModelStore</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">ViewModelStore</span> <span class="nf">getViewModelStore</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 如果 mViewModelStore 还未赋值，则创建一个实例赋值给它
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">mViewModelStore</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 与 Activity 重建时恢复数据有关，后面会再详谈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">NonConfigurationInstances</span> <span class="n">nc</span> <span class="o">=</span> <span class="o">(</span><span class="n">NonConfigurationInstances</span><span class="o">)</span> <span class="n">getLastNonConfigurationInstance</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">nc</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mViewModelStore</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="na">viewModelStore</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">mViewModelStore</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 创建 ViewModelStore, 赋值给 ComponentActivity 的 mViewModelStore 变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">mViewModelStore</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ViewModelStore</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">mViewModelStore</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="viewmodelstore-的创建">ViewModelStore 的创建</h2>
 <p>ViewModelStore 是负责储存 ViewModel 的，所以一般是需要先有个容器，才能存 ViewModel。而 ViewModelStore 又是由 ViewModelStoreOwner 提供的。</p>
@@ -2036,7 +1983,7 @@ handleLaunchActivity:3048, ActivityThread (android.app)
 <p>看调用栈能发现 <code>getViewModelStore</code> 方法是在 FragmentManager 的 <code>attachController</code> 方法中调用的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2051,42 +1998,42 @@ handleLaunchActivity:3048, ActivityThread (android.app)
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">void</span> <span class="nf">attachController</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">FragmentHostCallback</span><span class="o">&lt;?&gt;</span> <span class="n">host</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">FragmentContainer</span> <span class="n">container</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">mHost</span> <span class="o">=</span> <span class="n">host</span><span class="o">;</span>
-    <span class="c1">// Get the FragmentManagerViewModel
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">parent</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">mNonConfig</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="na">mFragmentManager</span><span class="o">.</span><span class="na">getChildNonConfig</span><span class="o">(</span><span class="n">parent</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">host</span> <span class="k">instanceof</span> <span class="n">ViewModelStoreOwner</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 没有嵌套 Fragment 的 Fragment 会走到这里
-</span><span class="c1"></span>        <span class="n">ViewModelStore</span> <span class="n">viewModelStore</span> <span class="o">=</span> <span class="o">((</span><span class="n">ViewModelStoreOwner</span><span class="o">)</span> <span class="n">host</span><span class="o">).</span><span class="na">getViewModelStore</span><span class="o">();</span>
-        <span class="n">mNonConfig</span> <span class="o">=</span> <span class="n">FragmentManagerViewModel</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">viewModelStore</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="n">mNonConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FragmentManagerViewModel</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">attachController</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">FragmentHostCallback</span><span class="o">&lt;?&gt;</span> <span class="n">host</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">FragmentContainer</span> <span class="n">container</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mHost</span> <span class="o">=</span> <span class="n">host</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Get the FragmentManagerViewModel
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">parent</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mNonConfig</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="na">mFragmentManager</span><span class="o">.</span><span class="na">getChildNonConfig</span><span class="o">(</span><span class="n">parent</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">host</span> <span class="k">instanceof</span> <span class="n">ViewModelStoreOwner</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 没有嵌套 Fragment 的 Fragment 会走到这里
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">ViewModelStore</span> <span class="n">viewModelStore</span> <span class="o">=</span> <span class="o">((</span><span class="n">ViewModelStoreOwner</span><span class="o">)</span> <span class="n">host</span><span class="o">).</span><span class="na">getViewModelStore</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mNonConfig</span> <span class="o">=</span> <span class="n">FragmentManagerViewModel</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">viewModelStore</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mNonConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FragmentManagerViewModel</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">static</span> <span class="n">FragmentManagerViewModel</span> <span class="nf">getInstance</span><span class="o">(</span><span class="n">ViewModelStore</span> <span class="n">viewModelStore</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 创建 FragmentManagerViewModel, viewModelProvider 的 get 内部会把 ViewModel 添加到 ViewModelStore
-</span><span class="c1"></span>    <span class="n">ViewModelProvider</span> <span class="n">viewModelProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ViewModelProvider</span><span class="o">(</span><span class="n">viewModelStore</span><span class="o">,</span> <span class="n">FACTORY</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">viewModelProvider</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">FragmentManagerViewModel</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="n">FragmentManagerViewModel</span> <span class="nf">getInstance</span><span class="o">(</span><span class="n">ViewModelStore</span> <span class="n">viewModelStore</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 创建 FragmentManagerViewModel, viewModelProvider 的 get 内部会把 ViewModel 添加到 ViewModelStore
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ViewModelProvider</span> <span class="n">viewModelProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ViewModelProvider</span><span class="o">(</span><span class="n">viewModelStore</span><span class="o">,</span> <span class="n">FACTORY</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">viewModelProvider</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">FragmentManagerViewModel</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>原因找到了: FragmentActivity 在 onCreate 里就调用了 <code>getViewModelStore</code>, 是为了让 FragmentManagerViewModel 尽早的添加到 Activity 的 ViewModelStore 中。</p>
 <h3 id="其他-activity">其他 Activity</h3>
 <p>没有继承自 FragmentActivity 的 Activity 在 onCreate 里不会创建 ViewModelStore， 而是等到有用到的地方才会创建。<br />
 比如我在自己的 Activity 的 onCreate post 一个 Runnable, 然后按照 ViewModel 文档的描述, 通过 ViewModelProvider 获取 ViewModel:</p>
-<pre><code>runOnUiThread {
+<pre tabindex="0"><code>runOnUiThread {
     val mMode = ViewModelProvider(this).get(MMode::class.java)
 }
 </code></pre><p>执行之后时的栈为:</p>
@@ -2106,7 +2053,7 @@ runOnUiThread:6282, Activity (android.app)
 <p>前面提到过，Jetpack 中的库都是基于现有 SDK 实现进行的封装，不会修改 SDK 已有的实现。ViewModel 要实现重建保留的功能，肯定需要一个时机来做保留的动作。我们知道 SDK 已有的实现中，一个 Activity 在因为配置改变而要销毁重建时一定会调用的一个方法就是<code>onSaveInstanceState</code>，所以先去检查下 ComponentActivity 在这个方法中有没有动什么手脚。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2116,15 +2063,15 @@ runOnUiThread:6282, Activity (android.app)
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onSaveInstanceState</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Bundle</span> <span class="n">outState</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">Lifecycle</span> <span class="n">lifecycle</span> <span class="o">=</span> <span class="n">getLifecycle</span><span class="o">();</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">lifecycle</span> <span class="k">instanceof</span> <span class="n">LifecycleRegistry</span><span class="o">)</span> <span class="o">{</span>
-        <span class="o">((</span><span class="n">LifecycleRegistry</span><span class="o">)</span> <span class="n">lifecycle</span><span class="o">).</span><span class="na">setCurrentState</span><span class="o">(</span><span class="n">Lifecycle</span><span class="o">.</span><span class="na">State</span><span class="o">.</span><span class="na">CREATED</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="kd">super</span><span class="o">.</span><span class="na">onSaveInstanceState</span><span class="o">(</span><span class="n">outState</span><span class="o">);</span>
-    <span class="n">mSavedStateRegistryController</span><span class="o">.</span><span class="na">performSave</span><span class="o">(</span><span class="n">outState</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onSaveInstanceState</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Bundle</span> <span class="n">outState</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Lifecycle</span> <span class="n">lifecycle</span> <span class="o">=</span> <span class="n">getLifecycle</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">lifecycle</span> <span class="k">instanceof</span> <span class="n">LifecycleRegistry</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">((</span><span class="n">LifecycleRegistry</span><span class="o">)</span> <span class="n">lifecycle</span><span class="o">).</span><span class="na">setCurrentState</span><span class="o">(</span><span class="n">Lifecycle</span><span class="o">.</span><span class="na">State</span><span class="o">.</span><span class="na">CREATED</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">super</span><span class="o">.</span><span class="na">onSaveInstanceState</span><span class="o">(</span><span class="n">outState</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mSavedStateRegistryController</span><span class="o">.</span><span class="na">performSave</span><span class="o">(</span><span class="n">outState</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>发现没有与 ViewModel 相关的，于是这条路不通了。无路可走时造路走，最后大法 <em>Find Usage</em>，找出使用到 <code>mViewModelStore</code> 的地方，看看有什么特殊没有。</p>
 <pre>
@@ -2154,7 +2101,7 @@ Found usages  (9 usages found)
 <p>Activity 的 retainNonConfigurationInstances 方法调用了子类的 <em>onRetainNonConfigurationInstance()</em> 方法:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2171,28 +2118,28 @@ Found usages  (9 usages found)
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">NonConfigurationInstances</span> <span class="nf">retainNonConfigurationInstances</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">//需要 Activity 子类实现的 onRetainNonConfigurationInstance 方法
-</span><span class="c1"></span>    <span class="n">Object</span> <span class="n">activity</span> <span class="o">=</span> <span class="n">onRetainNonConfigurationInstance</span><span class="o">();</span>
-
-    <span class="n">NonConfigurationInstances</span> <span class="n">nci</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NonConfigurationInstances</span><span class="o">();</span>
-    <span class="n">nci</span><span class="o">.</span><span class="na">activity</span> <span class="o">=</span> <span class="n">activity</span><span class="o">;</span>
-    <span class="n">nci</span><span class="o">.</span><span class="na">children</span> <span class="o">=</span> <span class="n">children</span><span class="o">;</span>
-    <span class="n">nci</span><span class="o">.</span><span class="na">fragments</span> <span class="o">=</span> <span class="n">fragments</span><span class="o">;</span>
-    <span class="n">nci</span><span class="o">.</span><span class="na">loaders</span> <span class="o">=</span> <span class="n">loaders</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">mVoiceInteractor</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">mVoiceInteractor</span><span class="o">.</span><span class="na">retainInstance</span><span class="o">();</span>
-        <span class="n">nci</span><span class="o">.</span><span class="na">voiceInteractor</span> <span class="o">=</span> <span class="n">mVoiceInteractor</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">nci</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">NonConfigurationInstances</span> <span class="nf">retainNonConfigurationInstances</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//需要 Activity 子类实现的 onRetainNonConfigurationInstance 方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Object</span> <span class="n">activity</span> <span class="o">=</span> <span class="n">onRetainNonConfigurationInstance</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">NonConfigurationInstances</span> <span class="n">nci</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NonConfigurationInstances</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nci</span><span class="o">.</span><span class="na">activity</span> <span class="o">=</span> <span class="n">activity</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nci</span><span class="o">.</span><span class="na">children</span> <span class="o">=</span> <span class="n">children</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nci</span><span class="o">.</span><span class="na">fragments</span> <span class="o">=</span> <span class="n">fragments</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nci</span><span class="o">.</span><span class="na">loaders</span> <span class="o">=</span> <span class="n">loaders</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">mVoiceInteractor</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mVoiceInteractor</span><span class="o">.</span><span class="na">retainInstance</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nci</span><span class="o">.</span><span class="na">voiceInteractor</span> <span class="o">=</span> <span class="n">mVoiceInteractor</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">nci</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在查找 Activity 的 retaionNonConfigurationInstances 方法的调用者，Android Studio 显示找不到了。因为它的调用者是 ActivityThread(@hide 注释的)，那就进入 ActivityThread 搜索看看。</p>
 <p>在 ActivityThread 的 <em>performDestroyActivity</em> 找到了调用：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2212,25 +2159,25 @@ Found usages  (9 usages found)
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">ActivityClientRecord</span> <span class="nf">performDestroyActivity</span><span class="o">(</span><span class="n">IBinder</span> <span class="n">token</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">finishing</span><span class="o">,</span> <span class="kt">int</span> <span class="n">configChanges</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">getNonConfigInstance</span><span class="o">,</span> <span class="n">String</span> <span class="n">reason</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 从 mActivities 中获取 token 对应的 ActivityClientRecord
-</span><span class="c1"></span>    <span class="n">ActivityClientRecord</span> <span class="n">r</span> <span class="o">=</span> <span class="n">mActivities</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
-    <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Activity</span><span class="o">&gt;</span> <span class="n">activityClass</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">r</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">//...
-</span><span class="c1"></span>        <span class="c1">// 如果参数 getNonConfigInstance 为 true
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">getNonConfigInstance</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">try</span> <span class="o">{</span>
-                <span class="c1">// 将 ViewModelStore 存入 ActivityClientRecord 的 lastNonConfiguratinInstances 字段中
-</span><span class="c1"></span>                <span class="n">r</span><span class="o">.</span><span class="na">lastNonConfigurationInstances</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="na">activity</span><span class="o">.</span><span class="na">retainNonConfigurationInstances</span><span class="o">();</span>
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span>
-        <span class="o">}</span>
-        <span class="c1">//...
-</span><span class="c1"></span>    <span class="o">}</span>
-    <span class="n">mActivities</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">r</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ActivityClientRecord</span> <span class="nf">performDestroyActivity</span><span class="o">(</span><span class="n">IBinder</span> <span class="n">token</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">finishing</span><span class="o">,</span> <span class="kt">int</span> <span class="n">configChanges</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">getNonConfigInstance</span><span class="o">,</span> <span class="n">String</span> <span class="n">reason</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 从 mActivities 中获取 token 对应的 ActivityClientRecord
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ActivityClientRecord</span> <span class="n">r</span> <span class="o">=</span> <span class="n">mActivities</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Activity</span><span class="o">&gt;</span> <span class="n">activityClass</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">r</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 如果参数 getNonConfigInstance 为 true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">getNonConfigInstance</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 将 ViewModelStore 存入 ActivityClientRecord 的 lastNonConfiguratinInstances 字段中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">r</span><span class="o">.</span><span class="na">lastNonConfigurationInstances</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="na">activity</span><span class="o">.</span><span class="na">retainNonConfigurationInstances</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mActivities</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">r</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>那么这个 <code>getNonConfigInstance</code> 参数是在哪里赋值为 <code>true</code> 的呢?</p>
 <p><img src="https://image.youcute.cn/Fgh9Y0_C1a-W8DGvwpK731ifvnIq" alt="getNonConfigInstance写入" /></p>
@@ -2433,7 +2380,7 @@ Found usages  (9 usages found)
     
 <div class="donation">
   <div class="donation__message">
-    Support the author with
+    您的鼓励是我最大的动力
   </div>
   <div class="donation__icons">
     
@@ -2484,7 +2431,7 @@ Found usages  (9 usages found)
   </div>
   <div class="whoami__contents">
     <div class="whoami__written-by">
-      WRITTEN BY
+      作者
     </div>
     <div class="whoami__title">
       
@@ -2670,7 +2617,7 @@ Found usages  (9 usages found)
 </div>
 
 
-<script defer src="/js/swipe.min.989e074dfb92ce7f57a92c1df7027f88b53c50a54fd9ad450a673a64aa91bfa4.js"></script>
+<script defer src="/js/swipe.min.feb438efb7ca009ecd7fc2ac3ad2fced4840990b2798d81f87137f2dc6281f05.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
@@ -2943,7 +2890,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <span class="icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
   </span>
-  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="搜索" autocomplete="off">
   <div id="search-results" class="dropdown">
     <div id="search-menu" class="dropdown-menu" role="menu">
     </div>
@@ -2963,7 +2910,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section class="sidebar hide">
   <script>document.querySelector('.sidebar').classList.remove('hide')</script>
   <div class="toc__flexbox" data-position="fixed">
-    <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
+    <h6 class="toc__title" data-ani="true">目录</h6>
     
       <label class="switch" data-ani="true">
         <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
@@ -3378,7 +3325,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.trigger.classList.add('tooltipped');
       e.trigger.classList.add('tooltipped-s');
     });
-    // =================================================================
+    
 
 
 
@@ -3596,6 +3543,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
+      
+      
+        
+        
+          
+            
+          
+        
+      
+        
+      
+    
   </div>
 </div>
 
@@ -3706,7 +3665,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2022, All Rights Reserved
+                    ©2023, All Rights Reserved
                 
             </p>
         

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh" dir="ltr">
 
 <head prefix="og: http://ogp.me/ns#">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.3ce954c8aea3b69cc5e6f734d8273ba4cd48d3a7987dbdca145849bc4b8fc296.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -663,6 +663,12 @@
     
     var enableSearch = JSON.parse("true");
     
+    var searchDistance = JSON.parse("null");
+    
+    var searchThreshold = JSON.parse("null");
+    
+    var searchContent = JSON.parse("null");
+    
     var enableSearchHighlight = JSON.parse("true");
     
     var searchResultPosition = JSON.parse("null");
@@ -686,12 +692,13 @@
         xhr.onload = function () {
           if (xhr.status === 200) {
             fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
-              keys: sectionType.includes('publication') ? ['title', 'abstract'] : ['title', 'description', 'content'],
+              keys: sectionType.includes('publication') ? ['title', 'abstract'] : 
+                searchContent ? ['title', 'description', 'content'] : ['title', 'description'],
               includeMatches: enableSearchHighlight,
               shouldSort: true, 
-              threshold: 0.4, 
+              threshold: searchThreshold ? searchThreshold : 0.4, 
               location: 0, 
-              distance: 100, 
+              distance: searchDistance ? searchDistance : 100, 
               maxPatternLength: 32,
               minMatchCharLength: 1,
               isCaseSensitive: false, 
@@ -715,7 +722,7 @@
       var a = document.createElement('a');
       a.innerHTML = obj.item.title;
       a.setAttribute('class', 'search-result__item--title');
-      a.setAttribute('href', obj.item.permalink);
+      a.setAttribute('href', obj.item.uri);
 
       var descDiv = document.createElement('div');
       descDiv.setAttribute('class', 'search-result__item--desc');
@@ -1315,7 +1322,8 @@
     }
   
   });
-</script>    
+</script>
+    
     
 
 
@@ -1339,7 +1347,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="最近使用 Android Jetpack 中 WorkManager 组件做了一个上报一些做分析用途数据的需求, 用着感觉挺香的. 于是想看下其内部的实现原理.">
 
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.115.1">
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1393,7 +1401,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
   
 <script type="application/javascript">
 var doNotTrack = false;
@@ -1450,7 +1457,7 @@ if (!doNotTrack) {
     &nbsp;&nbsp;
     
     
-      <a href="/" title="Home" rel="home" class="navbar__title-link">
+      <a href="/" title="主页" rel="home" class="navbar__title-link">
         <h6 class="navbar__title">YangBlog</h6>
       </a>
     
@@ -1497,7 +1504,7 @@ if (!doNotTrack) {
 
 <div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
   <div class="mobile-search__top">
-    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="搜索" class="mobile-search__top--input"/>
     <div id="search-mobile-close" class="mobile-search__top--icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
     </div>
@@ -1518,59 +1525,23 @@ if (!doNotTrack) {
   <ul dir="ltr">
     
     
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="/categories">category</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item active">
-          <a href="/posts">posts</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="https://life.jiyang.site">about</a>
-        </li>
-      
-      
-    
 
     
       <li class="navbarm__menu--item ">
         <a href="/tags" class="navbarm__menu--term" data-index="0">
-          Tags
+          标签
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/categories" class="navbarm__menu--term" data-index="1">
-          Categories
+          分类
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/series" class="navbarm__menu--term" data-index="2">
-          Series
+          系列
         </a>
       </li>
     
@@ -1615,30 +1586,6 @@ if (!doNotTrack) {
 
   
   
-  
-  
-  
-  
-  
-  <a href="/categories" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">category</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="/posts" class="navbar__menu-item navbar__slide-down active" dir="ltr" data-ani="true">posts</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="https://life.jiyang.site" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">about</a>
-  
-  
 </div>
 </nav>
             
@@ -1681,16 +1628,16 @@ if (!doNotTrack) {
   
   
   <div class="single ">
-    <div class="single__nojs">This page looks best with JavaScript enabled</div>
+    <div class="single__nojs">Please enable Javascript to view the contents</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
     <h2 class="single__title" data-ani="true">理解 WorkManager 的实现</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Dec 7, 2019 </time>
+  <time class="single__info" title="创建日期">📅&nbsp;2019年12月07日 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;6&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="阅读时长"> ☕&nbsp;6&nbsp;分钟 </span>
   
   <span class="single__info">
     
@@ -1750,7 +1697,7 @@ if (!doNotTrack) {
 <h1 id="简单例子">简单例子</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1788,43 +1735,43 @@ if (!doNotTrack) {
 </span><span class="lnt">36
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="c1">// 实现 Worker
-</span><span class="c1"></span><span class="k">class</span> <span class="nc">UploadWorker</span><span class="p">(</span><span class="n">appContext</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">workerParams</span><span class="p">:</span> <span class="n">WorkerParameters</span><span class="p">)</span> <span class="p">:</span> <span class="n">Worker</span><span class="p">(</span><span class="n">appContext</span><span class="p">,</span> <span class="n">workerParams</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">doWork</span><span class="p">():</span> <span class="n">Result</span> <span class="p">{</span>
-        <span class="c1">// 这里运行在非主线程
-</span><span class="c1"></span>        <span class="n">uploadImages</span><span class="p">()</span>
-        <span class="c1">// 返回任务执行成功、失败、重试、取消
-</span><span class="c1"></span>        <span class="k">return</span> <span class="n">Result</span><span class="p">.</span><span class="n">success</span><span class="p">()</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// 创建约束条件
-</span><span class="c1"></span><span class="k">val</span> <span class="py">constraints</span> <span class="p">=</span> <span class="n">Constraints</span><span class="p">.</span><span class="n">Builder</span><span class="p">()</span>
-        <span class="p">.</span><span class="n">setRequiresBatteryNotLow</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>                 <span class="c1">// 电量不低
-</span><span class="c1"></span>        <span class="p">.</span><span class="n">setRequiredNetworkType</span><span class="p">(</span><span class="n">NetworkType</span><span class="p">.</span><span class="n">CONNECTED</span><span class="p">)</span>  <span class="c1">// 连接了网络
-</span><span class="c1"></span>        <span class="p">.</span><span class="n">setRequiresCharging</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>                      <span class="c1">// 充电中
-</span><span class="c1"></span>        <span class="p">.</span><span class="n">setRequiresStorageNotLow</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>                 <span class="c1">// 储存空间不低
-</span><span class="c1"></span>        <span class="p">.</span><span class="n">setRequiresDeviceIdle</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>                    <span class="c1">// 设备空闲中
-</span><span class="c1"></span>        <span class="p">.</span><span class="n">build</span><span class="p">()</span>
-
-<span class="c1">// 定义输入数据
-</span><span class="c1">// 输入数据通过 key value 匹配, key 为 String, value 为基本数据类型和 String
-</span><span class="c1"></span><span class="k">val</span> <span class="py">imageData</span> <span class="p">=</span> <span class="n">workDataOf</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="n">KEY_IMAGE_URI</span> <span class="n">to</span> <span class="n">imageUriString</span><span class="p">)</span>
-
-<span class="c1">// 创建请求
-</span><span class="c1"></span><span class="k">val</span> <span class="py">request</span> <span class="p">=</span> <span class="n">OneTimeWorkRequestBuilder</span><span class="p">&lt;</span><span class="n">UploadWorker</span><span class="p">&gt;()</span>
-        <span class="p">.</span><span class="n">setInputData</span><span class="p">(</span><span class="n">imageData</span><span class="p">)</span>        <span class="c1">// 输入数据
-</span><span class="c1"></span>        <span class="p">.</span><span class="n">setConstraints</span><span class="p">(</span><span class="n">constraints</span><span class="p">)</span>    <span class="c1">// 约束条件
-</span><span class="c1"></span>        <span class="p">.</span><span class="n">setBackoffCriteria</span><span class="p">(</span>            <span class="c1">// 重试任务时的策略
-</span><span class="c1"></span>                <span class="n">BackoffPolicy</span><span class="p">.</span><span class="n">LINEAR</span><span class="p">,</span>
-                <span class="n">OneTimeWorkRequest</span><span class="p">.</span><span class="n">MIN_BACKOFF_MILLIS</span><span class="p">,</span>
-                <span class="n">TimeUnit</span><span class="p">.</span><span class="n">MILLISECONDS</span><span class="p">)</span>
-        <span class="p">.</span><span class="n">build</span><span class="p">()</span>
-
-<span class="c1">//提交任务
-</span><span class="c1"></span><span class="n">WorkManager</span><span class="p">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">enque</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="c1">// 实现 Worker
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">UploadWorker</span><span class="p">(</span><span class="n">appContext</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">workerParams</span><span class="p">:</span> <span class="n">WorkerParameters</span><span class="p">)</span> <span class="p">:</span> <span class="n">Worker</span><span class="p">(</span><span class="n">appContext</span><span class="p">,</span> <span class="n">workerParams</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">doWork</span><span class="p">():</span> <span class="n">Result</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 这里运行在非主线程
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">uploadImages</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 返回任务执行成功、失败、重试、取消
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="nc">Result</span><span class="p">.</span><span class="n">success</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 创建约束条件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">val</span> <span class="py">constraints</span> <span class="p">=</span> <span class="nc">Constraints</span><span class="p">.</span><span class="n">Builder</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="n">setRequiresBatteryNotLow</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>                 <span class="c1">// 电量不低
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">.</span><span class="n">setRequiredNetworkType</span><span class="p">(</span><span class="nc">NetworkType</span><span class="p">.</span><span class="n">CONNECTED</span><span class="p">)</span>  <span class="c1">// 连接了网络
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">.</span><span class="n">setRequiresCharging</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>                      <span class="c1">// 充电中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">.</span><span class="n">setRequiresStorageNotLow</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>                 <span class="c1">// 储存空间不低
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">.</span><span class="n">setRequiresDeviceIdle</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>                    <span class="c1">// 设备空闲中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 定义输入数据
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 输入数据通过 key value 匹配, key 为 String, value 为基本数据类型和 String
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">val</span> <span class="py">imageData</span> <span class="p">=</span> <span class="n">workDataOf</span><span class="p">(</span><span class="nc">Constants</span><span class="p">.</span><span class="n">KEY_IMAGE_URI</span> <span class="n">to</span> <span class="n">imageUriString</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 创建请求
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">val</span> <span class="py">request</span> <span class="p">=</span> <span class="n">OneTimeWorkRequestBuilder</span><span class="p">&lt;</span><span class="n">UploadWorker</span><span class="p">&gt;()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="n">setInputData</span><span class="p">(</span><span class="n">imageData</span><span class="p">)</span>        <span class="c1">// 输入数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">.</span><span class="n">setConstraints</span><span class="p">(</span><span class="n">constraints</span><span class="p">)</span>    <span class="c1">// 约束条件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">.</span><span class="n">setBackoffCriteria</span><span class="p">(</span>            <span class="c1">// 重试任务时的策略
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="nc">BackoffPolicy</span><span class="p">.</span><span class="n">LINEAR</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nc">OneTimeWorkRequest</span><span class="p">.</span><span class="n">MIN_BACKOFF_MILLIS</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nc">TimeUnit</span><span class="p">.</span><span class="n">MILLISECONDS</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//提交任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nc">WorkManager</span><span class="p">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="n">enque</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="实现原理">实现原理</h1>
 <p>在实现原理上, 这里先提出几个问题:</p>
@@ -1859,7 +1806,7 @@ if (!doNotTrack) {
 <p>利用 ContentProvider, ContentProvider 会在应用启动之后调用 <code>onCreate</code> 方法, 所以自动初始化就是在 <code>onCreate</code> 中执行 WorkManager 的初始化</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1869,37 +1816,37 @@ if (!doNotTrack) {
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WorkManagerInitializer</span> <span class="kd">extends</span> <span class="n">ContentProvider</span> <span class="o">{</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">onCreate</span><span class="o">()</span> <span class="o">{</span>
-        <span class="c1">// Initialize WorkManager with the default configuration.
-</span><span class="c1"></span>        <span class="n">WorkManager</span><span class="o">.</span><span class="na">initialize</span><span class="o">(</span><span class="n">getContext</span><span class="o">(),</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">.</span><span class="na">Builder</span><span class="o">().</span><span class="na">build</span><span class="o">());</span>
-        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WorkManagerInitializer</span> <span class="kd">extends</span> <span class="n">ContentProvider</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">onCreate</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Initialize WorkManager with the default configuration.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">WorkManager</span><span class="o">.</span><span class="na">initialize</span><span class="o">(</span><span class="n">getContext</span><span class="o">(),</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">.</span><span class="na">Builder</span><span class="o">().</span><span class="na">build</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="按需初始化">按需初始化</h3>
 <p>因为 WorkManagerInitializer 这个 ContentProvider 会被 WorkManager 库注册到应用的 manifest.xml 中, 所以如果要使用按需初始化, 需要主动移除这个 ContentProvider 并让 Application 实现 Configuration.Provider 接口:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;provider</span>
-    <span class="na">android:name=</span><span class="s">&#34;androidx.work.impl.WorkManagerInitializer&#34;</span>
-    <span class="na">android:authorities=</span><span class="s">&#34;${applicationId}.workmanager-init&#34;</span>
-    <span class="na">tools:node=</span><span class="s">&#34;remove&#34;</span>
-    <span class="na">android:exported=</span><span class="s">&#34;false&#34;</span> <span class="nt">/&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;provider</span>
+</span></span><span class="line"><span class="cl">    <span class="na">android:name=</span><span class="s">&#34;androidx.work.impl.WorkManagerInitializer&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">android:authorities=</span><span class="s">&#34;${applicationId}.workmanager-init&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">tools:node=</span><span class="s">&#34;remove&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">android:exported=</span><span class="s">&#34;false&#34;</span> <span class="nt">/&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1908,19 +1855,19 @@ if (!doNotTrack) {
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">MApp</span> <span class="kd">extends</span> <span class="n">Application</span> <span class="kd">implements</span> <span class="n">Configuration</span><span class="o">.</span><span class="na">Provider</span> <span class="o">{</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">Configuration</span> <span class="nf">getWorkManagerConfiguration</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">.</span><span class="na">Builder</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">MApp</span> <span class="kd">extends</span> <span class="n">Application</span> <span class="kd">implements</span> <span class="n">Configuration</span><span class="o">.</span><span class="na">Provider</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Configuration</span> <span class="nf">getWorkManagerConfiguration</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">.</span><span class="na">Builder</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样之后, 就不会在应用启动时调用 WorkManagerInitializer 的 onCreate 了. 但是每次获取实例就需要使用 <code>getInstance(Context ctx)</code> 带参数的那个, 因为要在 <code>getInstance</code> 里做初始化.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1937,28 +1884,28 @@ if (!doNotTrack) {
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="nd">@NonNull</span> <span class="n">WorkManagerImpl</span> <span class="nf">getInstance</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kd">synchronized</span> <span class="o">(</span><span class="n">sLock</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">WorkManagerImpl</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">getInstance</span><span class="o">();</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">instance</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">Context</span> <span class="n">appContext</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getApplicationContext</span><span class="o">();</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">appContext</span> <span class="k">instanceof</span> <span class="n">Configuration</span><span class="o">.</span><span class="na">Provider</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">initialize</span><span class="o">(</span><span class="n">appContext</span><span class="o">,</span> <span class="o">((</span><span class="n">Configuration</span><span class="o">.</span><span class="na">Provider</span><span class="o">)</span> <span class="n">appContext</span><span class="o">).</span><span class="na">getWorkManagerConfiguration</span><span class="o">());</span>
-                <span class="n">instance</span> <span class="o">=</span> <span class="n">getInstance</span><span class="o">(</span><span class="n">appContext</span><span class="o">);</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                
-            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="nd">@NonNull</span> <span class="n">WorkManagerImpl</span> <span class="nf">getInstance</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">synchronized</span> <span class="o">(</span><span class="n">sLock</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">WorkManagerImpl</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">getInstance</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">instance</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Context</span> <span class="n">appContext</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getApplicationContext</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">appContext</span> <span class="k">instanceof</span> <span class="n">Configuration</span><span class="o">.</span><span class="na">Provider</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">initialize</span><span class="o">(</span><span class="n">appContext</span><span class="o">,</span> <span class="o">((</span><span class="n">Configuration</span><span class="o">.</span><span class="na">Provider</span><span class="o">)</span> <span class="n">appContext</span><span class="o">).</span><span class="na">getWorkManagerConfiguration</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">                <span class="n">instance</span> <span class="o">=</span> <span class="n">getInstance</span><span class="o">(</span><span class="n">appContext</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="初始化">初始化</h3>
 <p>初始化工作的 <code>initialize</code> 方法里:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1975,26 +1922,26 @@ if (!doNotTrack) {
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">Configuration</span> <span class="n">configuration</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kd">synchronized</span> <span class="o">(</span><span class="n">sLock</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">sDelegatedInstance</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">context</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getApplicationContext</span><span class="o">();</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">sDefaultInstance</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="c1">// 创建单例
-</span><span class="c1"></span>                <span class="n">sDefaultInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WorkManagerImpl</span><span class="o">(</span>
-                        <span class="n">context</span><span class="o">,</span>
-                        <span class="n">configuration</span><span class="o">,</span>
-                        <span class="k">new</span> <span class="n">WorkManagerTaskExecutor</span><span class="o">(</span><span class="n">configuration</span><span class="o">.</span><span class="na">getTaskExecutor</span><span class="o">()));</span>
-            <span class="o">}</span>
-            <span class="n">sDelegatedInstance</span> <span class="o">=</span> <span class="n">sDefaultInstance</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">Configuration</span> <span class="n">configuration</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">synchronized</span> <span class="o">(</span><span class="n">sLock</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">sDelegatedInstance</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">context</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getApplicationContext</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">sDefaultInstance</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 创建单例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">sDefaultInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WorkManagerImpl</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">context</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">configuration</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">new</span> <span class="n">WorkManagerTaskExecutor</span><span class="o">(</span><span class="n">configuration</span><span class="o">.</span><span class="na">getTaskExecutor</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sDelegatedInstance</span> <span class="o">=</span> <span class="n">sDefaultInstance</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2016,27 +1963,27 @@ if (!doNotTrack) {
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">WorkManagerImpl</span><span class="o">(</span>
-        <span class="nd">@NonNull</span> <span class="n">Context</span> <span class="n">context</span><span class="o">,</span>
-        <span class="nd">@NonNull</span> <span class="n">Configuration</span> <span class="n">configuration</span><span class="o">,</span>
-        <span class="nd">@NonNull</span> <span class="n">TaskExecutor</span> <span class="n">workTaskExecutor</span><span class="o">,</span>
-        <span class="kt">boolean</span> <span class="n">useTestDatabase</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">Context</span> <span class="n">applicationContext</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getApplicationContext</span><span class="o">();</span>
-    <span class="c1">// 创建数据库
-</span><span class="c1"></span>    <span class="n">WorkDatabase</span> <span class="n">database</span> <span class="o">=</span> <span class="n">WorkDatabase</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">applicationContext</span><span class="o">,</span> <span class="n">configuration</span><span class="o">.</span><span class="na">getTaskExecutor</span><span class="o">(),</span> <span class="n">useTestDatabase</span><span class="o">);</span>
-    <span class="n">Logger</span><span class="o">.</span><span class="na">setLogger</span><span class="o">(</span><span class="k">new</span> <span class="n">Logger</span><span class="o">.</span><span class="na">LogcatLogger</span><span class="o">(</span><span class="n">configuration</span><span class="o">.</span><span class="na">getMinimumLoggingLevel</span><span class="o">()));</span>
-    <span class="c1">// 创建 schedulers
-</span><span class="c1"></span>    <span class="n">List</span><span class="o">&lt;</span><span class="n">Scheduler</span><span class="o">&gt;</span> <span class="n">schedulers</span> <span class="o">=</span> <span class="n">createSchedulers</span><span class="o">(</span><span class="n">applicationContext</span><span class="o">,</span> <span class="n">workTaskExecutor</span><span class="o">);</span>
-    <span class="c1">// 创建 processor
-</span><span class="c1"></span>    <span class="n">Processor</span> <span class="n">processor</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Processor</span><span class="o">(</span>
-            <span class="n">context</span><span class="o">,</span>
-            <span class="n">configuration</span><span class="o">,</span>
-            <span class="n">workTaskExecutor</span><span class="o">,</span>
-            <span class="n">database</span><span class="o">,</span>
-            <span class="n">schedulers</span><span class="o">);</span>
-    <span class="n">internalInit</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">configuration</span><span class="o">,</span> <span class="n">workTaskExecutor</span><span class="o">,</span> <span class="n">database</span><span class="o">,</span> <span class="n">schedulers</span><span class="o">,</span> <span class="n">processor</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">WorkManagerImpl</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@NonNull</span> <span class="n">Context</span> <span class="n">context</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@NonNull</span> <span class="n">Configuration</span> <span class="n">configuration</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@NonNull</span> <span class="n">TaskExecutor</span> <span class="n">workTaskExecutor</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">boolean</span> <span class="n">useTestDatabase</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Context</span> <span class="n">applicationContext</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getApplicationContext</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 创建数据库
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">WorkDatabase</span> <span class="n">database</span> <span class="o">=</span> <span class="n">WorkDatabase</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">applicationContext</span><span class="o">,</span> <span class="n">configuration</span><span class="o">.</span><span class="na">getTaskExecutor</span><span class="o">(),</span> <span class="n">useTestDatabase</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Logger</span><span class="o">.</span><span class="na">setLogger</span><span class="o">(</span><span class="k">new</span> <span class="n">Logger</span><span class="o">.</span><span class="na">LogcatLogger</span><span class="o">(</span><span class="n">configuration</span><span class="o">.</span><span class="na">getMinimumLoggingLevel</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 创建 schedulers
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">List</span><span class="o">&lt;</span><span class="n">Scheduler</span><span class="o">&gt;</span> <span class="n">schedulers</span> <span class="o">=</span> <span class="n">createSchedulers</span><span class="o">(</span><span class="n">applicationContext</span><span class="o">,</span> <span class="n">workTaskExecutor</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 创建 processor
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Processor</span> <span class="n">processor</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Processor</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">context</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">configuration</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">workTaskExecutor</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">database</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">schedulers</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">internalInit</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">configuration</span><span class="o">,</span> <span class="n">workTaskExecutor</span><span class="o">,</span> <span class="n">database</span><span class="o">,</span> <span class="n">schedulers</span><span class="o">,</span> <span class="n">processor</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://image.youcute.cn/Fs5n8pzc-v3b5Sqq-8XSzzHCW2w2" alt="" /></p>
 <h2 id="创建任务">创建任务</h2>
@@ -2045,7 +1992,7 @@ if (!doNotTrack) {
 <p>WorkRequest 的 Buidler 是一个抽象类, 一次性和周期任务分别实现了自己的 Buidler.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2069,33 +2016,33 @@ if (!doNotTrack) {
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// WorkRequest.Builder
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Builder</span><span class="o">&lt;</span><span class="n">B</span> <span class="kd">extends</span> <span class="n">Builder</span><span class="o">,</span> <span class="n">W</span> <span class="kd">extends</span> <span class="n">WorkRequest</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="kt">boolean</span> <span class="n">mBackoffCriteriaSet</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-    <span class="n">UUID</span> <span class="n">mId</span><span class="o">;</span>
-    <span class="n">WorkSpec</span> <span class="n">mWorkSpec</span><span class="o">;</span>
-    <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mTags</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
-
-    <span class="n">Builder</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">ListenableWorker</span><span class="o">&gt;</span> <span class="n">workerClass</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">mId</span> <span class="o">=</span> <span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">();</span>        <span class="c1">// 分配一个 uuid
-</span><span class="c1"></span>        <span class="n">mWorkSpec</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WorkSpec</span><span class="o">(</span><span class="n">mId</span><span class="o">.</span><span class="na">toString</span><span class="o">(),</span> <span class="n">workerClass</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span> <span class="c1">// 创建 WorkSpec
-</span><span class="c1"></span>        <span class="n">addTag</span><span class="o">(</span><span class="n">workerClass</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>  <span class="c1">// 传入的 Worker 的 className 作为一个 tag
-</span><span class="c1"></span>    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">final</span> <span class="n">W</span> <span class="nf">build</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">W</span> <span class="n">returnValue</span> <span class="o">=</span> <span class="n">buildInternal</span><span class="o">();</span> <span class="c1">// 子类实现 buildInternal 方法
-</span><span class="c1"></span>        <span class="c1">// Create a new id and WorkSpec so this WorkRequest.Builder can be used multiple times.
-</span><span class="c1"></span>        <span class="n">mId</span> <span class="o">=</span> <span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">();</span>
-        <span class="n">mWorkSpec</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WorkSpec</span><span class="o">(</span><span class="n">mWorkSpec</span><span class="o">);</span>
-        <span class="n">mWorkSpec</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">mId</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-        <span class="k">return</span> <span class="n">returnValue</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// WorkRequest.Builder
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Builder</span><span class="o">&lt;</span><span class="n">B</span> <span class="kd">extends</span> <span class="n">Builder</span><span class="o">,</span> <span class="n">W</span> <span class="kd">extends</span> <span class="n">WorkRequest</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="n">mBackoffCriteriaSet</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UUID</span> <span class="n">mId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">WorkSpec</span> <span class="n">mWorkSpec</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mTags</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Builder</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">ListenableWorker</span><span class="o">&gt;</span> <span class="n">workerClass</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mId</span> <span class="o">=</span> <span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">();</span>        <span class="c1">// 分配一个 uuid
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">mWorkSpec</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WorkSpec</span><span class="o">(</span><span class="n">mId</span><span class="o">.</span><span class="na">toString</span><span class="o">(),</span> <span class="n">workerClass</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span> <span class="c1">// 创建 WorkSpec
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">addTag</span><span class="o">(</span><span class="n">workerClass</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>  <span class="c1">// 传入的 Worker 的 className 作为一个 tag
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">final</span> <span class="n">W</span> <span class="nf">build</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">W</span> <span class="n">returnValue</span> <span class="o">=</span> <span class="n">buildInternal</span><span class="o">();</span> <span class="c1">// 子类实现 buildInternal 方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// Create a new id and WorkSpec so this WorkRequest.Builder can be used multiple times.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">mId</span> <span class="o">=</span> <span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mWorkSpec</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WorkSpec</span><span class="o">(</span><span class="n">mWorkSpec</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mWorkSpec</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">mId</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">returnValue</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2116,30 +2063,30 @@ if (!doNotTrack) {
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// OneTimeWorkRequest.Builder
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Builder</span> <span class="kd">extends</span> <span class="n">WorkRequest</span><span class="o">.</span><span class="na">Builder</span><span class="o">&lt;</span><span class="n">Builder</span><span class="o">,</span> <span class="n">OneTimeWorkRequest</span><span class="o">&gt;</span> <span class="o">{</span>
-
-    <span class="kd">public</span> <span class="nf">Builder</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">ListenableWorker</span><span class="o">&gt;</span> <span class="n">workerClass</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">(</span><span class="n">workerClass</span><span class="o">);</span>
-        <span class="c1">// 为 inputMergerClassName 单独赋个值
-</span><span class="c1"></span>        <span class="n">mWorkSpec</span><span class="o">.</span><span class="na">inputMergerClassName</span> <span class="o">=</span> <span class="n">OverwritingInputMerger</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="n">OneTimeWorkRequest</span> <span class="nf">buildInternal</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">mBackoffCriteriaSet</span>
-                <span class="o">&amp;&amp;</span> <span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&gt;=</span> <span class="n">23</span>
-                <span class="o">&amp;&amp;</span> <span class="n">mWorkSpec</span><span class="o">.</span><span class="na">constraints</span><span class="o">.</span><span class="na">requiresDeviceIdle</span><span class="o">())</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;Cannot set backoff criteria on an idle mode job&#34;</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">OneTimeWorkRequest</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// OneTimeWorkRequest.Builder
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Builder</span> <span class="kd">extends</span> <span class="n">WorkRequest</span><span class="o">.</span><span class="na">Builder</span><span class="o">&lt;</span><span class="n">Builder</span><span class="o">,</span> <span class="n">OneTimeWorkRequest</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Builder</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">ListenableWorker</span><span class="o">&gt;</span> <span class="n">workerClass</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">workerClass</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 为 inputMergerClassName 单独赋个值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">mWorkSpec</span><span class="o">.</span><span class="na">inputMergerClassName</span> <span class="o">=</span> <span class="n">OverwritingInputMerger</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OneTimeWorkRequest</span> <span class="nf">buildInternal</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">mBackoffCriteriaSet</span>
+</span></span><span class="line"><span class="cl">                <span class="o">&amp;&amp;</span> <span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&gt;=</span> <span class="mi">23</span>
+</span></span><span class="line"><span class="cl">                <span class="o">&amp;&amp;</span> <span class="n">mWorkSpec</span><span class="o">.</span><span class="na">constraints</span><span class="o">.</span><span class="na">requiresDeviceIdle</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;Cannot set backoff criteria on an idle mode job&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">OneTimeWorkRequest</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2161,34 +2108,34 @@ if (!doNotTrack) {
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// PeriodicWorkRequest.Builder
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Builder</span> <span class="kd">extends</span> <span class="n">WorkRequest</span><span class="o">.</span><span class="na">Builder</span><span class="o">&lt;</span><span class="n">Builder</span><span class="o">,</span> <span class="n">PeriodicWorkRequest</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="nf">Builder</span><span class="o">(</span>
-            <span class="nd">@NonNull</span> <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">ListenableWorker</span><span class="o">&gt;</span> <span class="n">workerClass</span><span class="o">,</span>
-            <span class="kt">long</span> <span class="n">repeatInterval</span><span class="o">,</span>
-            <span class="nd">@NonNull</span> <span class="n">TimeUnit</span> <span class="n">repeatIntervalTimeUnit</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">(</span><span class="n">workerClass</span><span class="o">);</span>
-        <span class="c1">// 周期任务的间隔执行时间
-</span><span class="c1"></span>        <span class="n">mWorkSpec</span><span class="o">.</span><span class="na">setPeriodic</span><span class="o">(</span><span class="n">repeatIntervalTimeUnit</span><span class="o">.</span><span class="na">toMillis</span><span class="o">(</span><span class="n">repeatInterval</span><span class="o">));</span>
-    <span class="o">}</span>
-
-    <span class="n">PeriodicWorkRequest</span> <span class="nf">buildInternal</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">mBackoffCriteriaSet</span>
-                <span class="o">&amp;&amp;</span> <span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&gt;=</span> <span class="n">23</span>
-                <span class="o">&amp;&amp;</span> <span class="n">mWorkSpec</span><span class="o">.</span><span class="na">constraints</span><span class="o">.</span><span class="na">requiresDeviceIdle</span><span class="o">())</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;Cannot set backoff criteria on an idle mode job&#34;</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">PeriodicWorkRequest</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// PeriodicWorkRequest.Builder
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Builder</span> <span class="kd">extends</span> <span class="n">WorkRequest</span><span class="o">.</span><span class="na">Builder</span><span class="o">&lt;</span><span class="n">Builder</span><span class="o">,</span> <span class="n">PeriodicWorkRequest</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Builder</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@NonNull</span> <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">ListenableWorker</span><span class="o">&gt;</span> <span class="n">workerClass</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">long</span> <span class="n">repeatInterval</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@NonNull</span> <span class="n">TimeUnit</span> <span class="n">repeatIntervalTimeUnit</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">workerClass</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 周期任务的间隔执行时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">mWorkSpec</span><span class="o">.</span><span class="na">setPeriodic</span><span class="o">(</span><span class="n">repeatIntervalTimeUnit</span><span class="o">.</span><span class="na">toMillis</span><span class="o">(</span><span class="n">repeatInterval</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">PeriodicWorkRequest</span> <span class="nf">buildInternal</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">mBackoffCriteriaSet</span>
+</span></span><span class="line"><span class="cl">                <span class="o">&amp;&amp;</span> <span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&gt;=</span> <span class="mi">23</span>
+</span></span><span class="line"><span class="cl">                <span class="o">&amp;&amp;</span> <span class="n">mWorkSpec</span><span class="o">.</span><span class="na">constraints</span><span class="o">.</span><span class="na">requiresDeviceIdle</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;Cannot set backoff criteria on an idle mode job&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">PeriodicWorkRequest</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://image.youcute.cn/FtK0UuKXLN-JDcpPwq9hScd_qYxi" alt="" /></p>
 <h3 id="workspec">WorkSpec</h3>
 <p>查看 WorkSpec 的定义能发现其利用 Room 实现的数据库字段和类字段的映射</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2205,22 +2152,22 @@ if (!doNotTrack) {
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WorkSpec</span> <span class="o">{</span>
-    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;id&#34;</span><span class="o">)</span> <span class="nd">@PrimaryKey</span> <span class="nd">@NonNull</span> <span class="kd">public</span> <span class="n">String</span> <span class="n">id</span><span class="o">;</span>
-    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;state&#34;</span><span class="o">)</span> <span class="nd">@NonNull</span> <span class="kd">public</span> <span class="n">WorkInfo</span><span class="o">.</span><span class="na">State</span> <span class="n">state</span> <span class="o">=</span> <span class="n">ENQUEUED</span><span class="o">;</span>
-    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;worker_class_name&#34;</span><span class="o">)</span> <span class="nd">@NonNull</span> <span class="kd">public</span> <span class="n">String</span> <span class="n">workerClassName</span><span class="o">;</span>
-    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;input_merger_class_name&#34;</span><span class="o">)</span> <span class="kd">public</span> <span class="n">String</span> <span class="n">inputMergerClassName</span><span class="o">;</span>
-    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;input&#34;</span><span class="o">)</span> <span class="nd">@NonNull</span> <span class="kd">public</span> <span class="n">Data</span> <span class="n">input</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="na">EMPTY</span><span class="o">;</span>
-    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;output&#34;</span><span class="o">)</span> <span class="nd">@NonNull</span> <span class="kd">public</span> <span class="n">Data</span> <span class="n">output</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="na">EMPTY</span><span class="o">;</span>
-    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;initial_delay&#34;</span><span class="o">)</span> <span class="kd">public</span> <span class="kt">long</span> <span class="n">initialDelay</span><span class="o">;</span>
-    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;interval_duration&#34;</span><span class="o">)</span> <span class="kd">public</span> <span class="kt">long</span> <span class="n">intervalDuration</span><span class="o">;</span>
-    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;flex_duration&#34;</span><span class="o">)</span> <span class="kd">public</span> <span class="kt">long</span> <span class="n">flexDuration</span><span class="o">;</span>
-    <span class="nd">@Embedded</span> <span class="nd">@NonNull</span> <span class="kd">public</span> <span class="n">Constraints</span> <span class="n">constraints</span> <span class="o">=</span> <span class="n">Constraints</span><span class="o">.</span><span class="na">NONE</span><span class="o">;</span>
-    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;run_attempt_count&#34;</span><span class="o">)</span> <span class="nd">@IntRange</span><span class="o">(</span><span class="n">from</span> <span class="o">=</span> <span class="n">0</span><span class="o">)</span> <span class="kd">public</span> <span class="kt">int</span> <span class="n">runAttemptCount</span><span class="o">;</span>
-    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;backoff_policy&#34;</span><span class="o">)</span> <span class="nd">@NonNull</span> <span class="kd">public</span> <span class="n">BackoffPolicy</span> <span class="n">backoffPolicy</span> <span class="o">=</span> <span class="n">BackoffPolicy</span><span class="o">.</span><span class="na">EXPONENTIAL</span><span class="o">;</span>
-    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;backoff_delay_duration&#34;</span><span class="o">)</span> <span class="kd">public</span> <span class="kt">long</span> <span class="n">backoffDelayDuration</span> <span class="o">=</span> <span class="n">WorkRequest</span><span class="o">.</span><span class="na">DEFAULT_BACKOFF_DELAY_MILLIS</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WorkSpec</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;id&#34;</span><span class="o">)</span> <span class="nd">@PrimaryKey</span> <span class="nd">@NonNull</span> <span class="kd">public</span> <span class="n">String</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;state&#34;</span><span class="o">)</span> <span class="nd">@NonNull</span> <span class="kd">public</span> <span class="n">WorkInfo</span><span class="o">.</span><span class="na">State</span> <span class="n">state</span> <span class="o">=</span> <span class="n">ENQUEUED</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;worker_class_name&#34;</span><span class="o">)</span> <span class="nd">@NonNull</span> <span class="kd">public</span> <span class="n">String</span> <span class="n">workerClassName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;input_merger_class_name&#34;</span><span class="o">)</span> <span class="kd">public</span> <span class="n">String</span> <span class="n">inputMergerClassName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;input&#34;</span><span class="o">)</span> <span class="nd">@NonNull</span> <span class="kd">public</span> <span class="n">Data</span> <span class="n">input</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="na">EMPTY</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;output&#34;</span><span class="o">)</span> <span class="nd">@NonNull</span> <span class="kd">public</span> <span class="n">Data</span> <span class="n">output</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="na">EMPTY</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;initial_delay&#34;</span><span class="o">)</span> <span class="kd">public</span> <span class="kt">long</span> <span class="n">initialDelay</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;interval_duration&#34;</span><span class="o">)</span> <span class="kd">public</span> <span class="kt">long</span> <span class="n">intervalDuration</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;flex_duration&#34;</span><span class="o">)</span> <span class="kd">public</span> <span class="kt">long</span> <span class="n">flexDuration</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Embedded</span> <span class="nd">@NonNull</span> <span class="kd">public</span> <span class="n">Constraints</span> <span class="n">constraints</span> <span class="o">=</span> <span class="n">Constraints</span><span class="o">.</span><span class="na">NONE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;run_attempt_count&#34;</span><span class="o">)</span> <span class="nd">@IntRange</span><span class="o">(</span><span class="n">from</span> <span class="o">=</span> <span class="mi">0</span><span class="o">)</span> <span class="kd">public</span> <span class="kt">int</span> <span class="n">runAttemptCount</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;backoff_policy&#34;</span><span class="o">)</span> <span class="nd">@NonNull</span> <span class="kd">public</span> <span class="n">BackoffPolicy</span> <span class="n">backoffPolicy</span> <span class="o">=</span> <span class="n">BackoffPolicy</span><span class="o">.</span><span class="na">EXPONENTIAL</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;backoff_delay_duration&#34;</span><span class="o">)</span> <span class="kd">public</span> <span class="kt">long</span> <span class="n">backoffDelayDuration</span> <span class="o">=</span> <span class="n">WorkRequest</span><span class="o">.</span><span class="na">DEFAULT_BACKOFF_DELAY_MILLIS</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在创建任务的时候, 每个任务会:</p>
 <ul>
@@ -2235,39 +2182,17 @@ if (!doNotTrack) {
 <p>在应用重启或手机重启之后依然能执行提交的任务, 那说明任务肯定需要存储到磁盘的. 看流程图中也能看出有数据库的参与, 带着这个猜想看下源码. 任务的提交从调用 <code>enqueue</code> 开始:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">WorkManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">context</span><span class="o">).</span><span class="na">enqueue</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
-<span class="c1">// getInstance 返回的是 WorkManagerImpl 单列对象
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">WorkManager</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">context</span><span class="o">).</span><span class="na">enqueue</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// getInstance 返回的是 WorkManagerImpl 单列对象
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//WorkManager#enqueue(WorkRequest)
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">final</span> <span class="n">Operation</span> <span class="nf">enqueue</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">WorkRequest</span> <span class="n">workRequest</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 单个 workReeust 会被装到 List 中, 后续方法都接收 List&lt;WorkReuest&gt;
-</span><span class="c1"></span>    <span class="k">return</span> <span class="n">enqueue</span><span class="o">(</span><span class="n">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="n">workRequest</span><span class="o">));</span>
-<span class="o">}</span>
-
-<span class="c1">//最终调用到抽象方法 enqueue, 也就是调用 WorkManagerImpl 的实现
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">abstract</span> <span class="n">Operation</span> <span class="nf">enqueue</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">WorkRequest</span><span class="o">&gt;</span> <span class="n">requests</span><span class="o">);</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2277,19 +2202,41 @@ if (!doNotTrack) {
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//WorkManagerImpl#enqueue
-</span><span class="c1"></span><span class="kd">public</span> <span class="n">Operation</span> <span class="nf">enqueue</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">WorkRequest</span><span class="o">&gt;</span> <span class="n">workRequests</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">workRequests</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;enqueue needs at least one WorkRequest.&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="c1">// 后续工作交给 WorkContinuationImpl
-</span><span class="c1"></span>    <span class="k">return</span> <span class="k">new</span> <span class="n">WorkContinuationImpl</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">workRequests</span><span class="o">).</span><span class="na">enqueue</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//WorkManager#enqueue(WorkRequest)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">final</span> <span class="n">Operation</span> <span class="nf">enqueue</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">WorkRequest</span> <span class="n">workRequest</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 单个 workReeust 会被装到 List 中, 后续方法都接收 List&lt;WorkReuest&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">enqueue</span><span class="o">(</span><span class="n">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="n">workRequest</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//最终调用到抽象方法 enqueue, 也就是调用 WorkManagerImpl 的实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">abstract</span> <span class="n">Operation</span> <span class="nf">enqueue</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">WorkRequest</span><span class="o">&gt;</span> <span class="n">requests</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//WorkManagerImpl#enqueue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="n">Operation</span> <span class="nf">enqueue</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">WorkRequest</span><span class="o">&gt;</span> <span class="n">workRequests</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">workRequests</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;enqueue needs at least one WorkRequest.&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 后续工作交给 WorkContinuationImpl
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="k">new</span> <span class="n">WorkContinuationImpl</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">workRequests</span><span class="o">).</span><span class="na">enqueue</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2304,25 +2251,25 @@ if (!doNotTrack) {
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//WorkContinuationImpl#enqueue
-</span><span class="c1"></span><span class="kd">public</span> <span class="n">Operation</span> <span class="nf">enqueue</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">// 防止重复提交, mEnqueued 会在 EnqueueRunnable 中被标记为 true
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(!</span><span class="n">mEnqueued</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">EnqueueRunnable</span> <span class="n">runnable</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EnqueueRunnable</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-        <span class="c1">// EnqueueRunnable 被提交到线程池执行
-</span><span class="c1"></span>        <span class="n">mWorkManagerImpl</span><span class="o">.</span><span class="na">getWorkTaskExecutor</span><span class="o">().</span><span class="na">executeOnBackgroundThread</span><span class="o">(</span><span class="n">runnable</span><span class="o">);</span>
-        <span class="n">mOperation</span> <span class="o">=</span> <span class="n">runnable</span><span class="o">.</span><span class="na">getOperation</span><span class="o">();</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="n">Logger</span><span class="o">.</span><span class="na">get</span><span class="o">().</span><span class="na">warning</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&#34;Already enqueued work ids (%s)&#34;</span><span class="o">,</span> <span class="n">TextUtils</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">&#34;, &#34;</span><span class="o">,</span> <span class="n">mIds</span><span class="o">)));</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">mOperation</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//WorkContinuationImpl#enqueue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="n">Operation</span> <span class="nf">enqueue</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 防止重复提交, mEnqueued 会在 EnqueueRunnable 中被标记为 true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(!</span><span class="n">mEnqueued</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">EnqueueRunnable</span> <span class="n">runnable</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EnqueueRunnable</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// EnqueueRunnable 被提交到线程池执行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">mWorkManagerImpl</span><span class="o">.</span><span class="na">getWorkTaskExecutor</span><span class="o">().</span><span class="na">executeOnBackgroundThread</span><span class="o">(</span><span class="n">runnable</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mOperation</span> <span class="o">=</span> <span class="n">runnable</span><span class="o">.</span><span class="na">getOperation</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Logger</span><span class="o">.</span><span class="na">get</span><span class="o">().</span><span class="na">warning</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&#34;Already enqueued work ids (%s)&#34;</span><span class="o">,</span> <span class="n">TextUtils</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">&#34;, &#34;</span><span class="o">,</span> <span class="n">mIds</span><span class="o">)));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">mOperation</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="enqueuerunnable">EnqueueRunnable</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2346,33 +2293,33 @@ if (!doNotTrack) {
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//EnqueueRunnable#run
-</span><span class="c1"></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="c1">// 判断 Worker 是否有循环引用
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mWorkContinuation</span><span class="o">.</span><span class="na">hasCycles</span><span class="o">())</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&#34;WorkContinuation has cycles (%s)&#34;</span><span class="o">,</span> <span class="n">mWorkContinuation</span><span class="o">));</span>
-        <span class="o">}</span>
-        <span class="c1">// 储存到数据库, 并返回是否需要执行
-</span><span class="c1"></span>        <span class="kt">boolean</span> <span class="n">needsScheduling</span> <span class="o">=</span> <span class="n">addToDatabase</span><span class="o">();</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">needsScheduling</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 需要执行:
-</span><span class="c1"></span>            <span class="c1">// 启用 RescheduleReceiver: 一个广播接收器
-</span><span class="c1"></span>            <span class="kd">final</span> <span class="n">Context</span> <span class="n">context</span> <span class="o">=</span> <span class="n">mWorkContinuation</span><span class="o">.</span><span class="na">getWorkManagerImpl</span><span class="o">().</span><span class="na">getApplicationContext</span><span class="o">();</span>
-            <span class="n">PackageManagerHelper</span><span class="o">.</span><span class="na">setComponentEnabled</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">RescheduleReceiver</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-            <span class="c1">// 在后台执行 work
-</span><span class="c1"></span>            <span class="n">scheduleWorkInBackground</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="n">mOperation</span><span class="o">.</span><span class="na">setState</span><span class="o">(</span><span class="n">Operation</span><span class="o">.</span><span class="na">SUCCESS</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">exception</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">mOperation</span><span class="o">.</span><span class="na">setState</span><span class="o">(</span><span class="k">new</span> <span class="n">Operation</span><span class="o">.</span><span class="na">State</span><span class="o">.</span><span class="na">FAILURE</span><span class="o">(</span><span class="n">exception</span><span class="o">));</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//EnqueueRunnable#run
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 判断 Worker 是否有循环引用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">mWorkContinuation</span><span class="o">.</span><span class="na">hasCycles</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&#34;WorkContinuation has cycles (%s)&#34;</span><span class="o">,</span> <span class="n">mWorkContinuation</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 储存到数据库, 并返回是否需要执行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">boolean</span> <span class="n">needsScheduling</span> <span class="o">=</span> <span class="n">addToDatabase</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">needsScheduling</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 需要执行:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// 启用 RescheduleReceiver: 一个广播接收器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="kd">final</span> <span class="n">Context</span> <span class="n">context</span> <span class="o">=</span> <span class="n">mWorkContinuation</span><span class="o">.</span><span class="na">getWorkManagerImpl</span><span class="o">().</span><span class="na">getApplicationContext</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">PackageManagerHelper</span><span class="o">.</span><span class="na">setComponentEnabled</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">RescheduleReceiver</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 在后台执行 work
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">scheduleWorkInBackground</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mOperation</span><span class="o">.</span><span class="na">setState</span><span class="o">(</span><span class="n">Operation</span><span class="o">.</span><span class="na">SUCCESS</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">exception</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mOperation</span><span class="o">.</span><span class="na">setState</span><span class="o">(</span><span class="k">new</span> <span class="n">Operation</span><span class="o">.</span><span class="na">State</span><span class="o">.</span><span class="na">FAILURE</span><span class="o">(</span><span class="n">exception</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2389,26 +2336,26 @@ if (!doNotTrack) {
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//EnqueueRunnable#addToDatabase
-</span><span class="c1"></span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">addToDatabase</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">WorkManagerImpl</span> <span class="n">workManagerImpl</span> <span class="o">=</span> <span class="n">mWorkContinuation</span><span class="o">.</span><span class="na">getWorkManagerImpl</span><span class="o">();</span>
-    <span class="n">WorkDatabase</span> <span class="n">workDatabase</span> <span class="o">=</span> <span class="n">workManagerImpl</span><span class="o">.</span><span class="na">getWorkDatabase</span><span class="o">();</span>
-    <span class="c1">// 开始一个事务
-</span><span class="c1"></span>    <span class="n">workDatabase</span><span class="o">.</span><span class="na">beginTransaction</span><span class="o">();</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="kt">boolean</span> <span class="n">needsScheduling</span> <span class="o">=</span> <span class="n">processContinuation</span><span class="o">(</span><span class="n">mWorkContinuation</span><span class="o">);</span>
-        <span class="n">workDatabase</span><span class="o">.</span><span class="na">setTransactionSuccessful</span><span class="o">();</span>
-        <span class="k">return</span> <span class="n">needsScheduling</span><span class="o">;</span>
-    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-        <span class="c1">// 关闭事务
-</span><span class="c1"></span>        <span class="n">workDatabase</span><span class="o">.</span><span class="na">endTransaction</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//EnqueueRunnable#addToDatabase
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">addToDatabase</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">WorkManagerImpl</span> <span class="n">workManagerImpl</span> <span class="o">=</span> <span class="n">mWorkContinuation</span><span class="o">.</span><span class="na">getWorkManagerImpl</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">WorkDatabase</span> <span class="n">workDatabase</span> <span class="o">=</span> <span class="n">workManagerImpl</span><span class="o">.</span><span class="na">getWorkDatabase</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 开始一个事务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">workDatabase</span><span class="o">.</span><span class="na">beginTransaction</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">boolean</span> <span class="n">needsScheduling</span> <span class="o">=</span> <span class="n">processContinuation</span><span class="o">(</span><span class="n">mWorkContinuation</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">workDatabase</span><span class="o">.</span><span class="na">setTransactionSuccessful</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">needsScheduling</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 关闭事务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">workDatabase</span><span class="o">.</span><span class="na">endTransaction</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2460,57 +2407,57 @@ if (!doNotTrack) {
 </span><span class="lnt">50
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// addToDatabase 经过几个调用
-</span><span class="c1">// EnqueueRunnable#processContinuation
-</span><span class="c1">// EnqueueRunnable#enqueueContinuation
-</span><span class="c1">// 最终会走到: EnqueueRunnable#enqueueWorkWithPrerequisites
-</span><span class="c1"></span><span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">enqueueWorkWithPrerequisites</span><span class="o">(</span>
-    <span class="n">WorkManagerImpl</span> <span class="n">workManagerImpl</span><span class="o">,</span>
-    <span class="nd">@NonNull</span> <span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">WorkRequest</span><span class="o">&gt;</span> <span class="n">workList</span><span class="o">,</span>
-    <span class="n">String</span><span class="o">[]</span> <span class="n">prerequisiteIds</span><span class="o">,</span>
-    <span class="n">String</span> <span class="n">name</span><span class="o">,</span>
-    <span class="n">ExistingWorkPolicy</span> <span class="n">existingWorkPolicy</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">boolean</span> <span class="n">needsScheduling</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-    <span class="c1">// prerequisiteIds 这里会为空, 与 WorkContinuation 的构造函数的 parent 参数有关
-</span><span class="c1"></span>    <span class="c1">//...
-</span><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="n">WorkRequest</span> <span class="n">work</span> <span class="o">:</span> <span class="n">workList</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 获取 WorkRequest 中的 WorkSpec
-</span><span class="c1"></span>        <span class="n">WorkSpec</span> <span class="n">workSpec</span> <span class="o">=</span> <span class="n">work</span><span class="o">.</span><span class="na">getWorkSpec</span><span class="o">();</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">hasPrerequisite</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">hasCompletedAllPrerequisites</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">//...
-</span><span class="c1"></span>        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(!</span><span class="n">workSpec</span><span class="o">.</span><span class="na">isPeriodic</span><span class="o">())</span> <span class="o">{</span>
-                <span class="c1">// 如果是周期任务, 则将周期执行的开始时间设为当前时间
-</span><span class="c1"></span>                <span class="n">workSpec</span><span class="o">.</span><span class="na">periodStartTime</span> <span class="o">=</span> <span class="n">currentTimeMillis</span><span class="o">;</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="n">workSpec</span><span class="o">.</span><span class="na">periodStartTime</span> <span class="o">=</span> <span class="n">0L</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="c1">// 在 Api 23~35 将带有电量和存储空间约束的 Worker 代理给 ConstraintTrackingWorker
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&gt;=</span> <span class="n">WorkManagerImpl</span><span class="o">.</span><span class="na">MIN_JOB_SCHEDULER_API_LEVEL</span>
-                <span class="o">&amp;&amp;</span> <span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&lt;=</span> <span class="n">25</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">tryDelegateConstrainedWorkSpec</span><span class="o">(</span><span class="n">workSpec</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&lt;=</span> <span class="n">WorkManagerImpl</span><span class="o">.</span><span class="na">MAX_PRE_JOB_SCHEDULER_API_LEVEL</span>
-                <span class="o">&amp;&amp;</span> <span class="n">usesScheduler</span><span class="o">(</span><span class="n">workManagerImpl</span><span class="o">,</span> <span class="n">Schedulers</span><span class="o">.</span><span class="na">GCM_SCHEDULER</span><span class="o">))</span> <span class="o">{</span>
-            <span class="n">tryDelegateConstrainedWorkSpec</span><span class="o">(</span><span class="n">workSpec</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">workSpec</span><span class="o">.</span><span class="na">state</span> <span class="o">==</span> <span class="n">ENQUEUED</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">needsScheduling</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="c1">// 将 WorkSpace 插入到 WorkSpec 表
-</span><span class="c1"></span>        <span class="n">workDatabase</span><span class="o">.</span><span class="na">workSpecDao</span><span class="o">().</span><span class="na">insertWorkSpec</span><span class="o">(</span><span class="n">workSpec</span><span class="o">);</span>
-        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">tag</span> <span class="o">:</span> <span class="n">work</span><span class="o">.</span><span class="na">getTags</span><span class="o">())</span> <span class="o">{</span>
-            <span class="c1">// 将 tag 和 worker 的 uuid 绑定, 插入到 WorkTag 表
-</span><span class="c1"></span>            <span class="n">workDatabase</span><span class="o">.</span><span class="na">workTagDao</span><span class="o">().</span><span class="na">insert</span><span class="o">(</span><span class="k">new</span> <span class="n">WorkTag</span><span class="o">(</span><span class="n">tag</span><span class="o">,</span> <span class="n">work</span><span class="o">.</span><span class="na">getStringId</span><span class="o">()));</span>
-        <span class="o">}</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">isNamed</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 如果是命名 Worker, 将 name 和 worker 的 uuid 绑定, 插入到 WorkName 表
-</span><span class="c1"></span>            <span class="n">workDatabase</span><span class="o">.</span><span class="na">workNameDao</span><span class="o">().</span><span class="na">insert</span><span class="o">(</span><span class="k">new</span> <span class="n">WorkName</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">work</span><span class="o">.</span><span class="na">getStringId</span><span class="o">()));</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">needsScheduling</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// addToDatabase 经过几个调用
+</span></span></span><span class="line"><span class="cl"><span class="c1">// EnqueueRunnable#processContinuation
+</span></span></span><span class="line"><span class="cl"><span class="c1">// EnqueueRunnable#enqueueContinuation
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 最终会走到: EnqueueRunnable#enqueueWorkWithPrerequisites
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">enqueueWorkWithPrerequisites</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">WorkManagerImpl</span> <span class="n">workManagerImpl</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@NonNull</span> <span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">WorkRequest</span><span class="o">&gt;</span> <span class="n">workList</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span><span class="o">[]</span> <span class="n">prerequisiteIds</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">name</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ExistingWorkPolicy</span> <span class="n">existingWorkPolicy</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="n">needsScheduling</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// prerequisiteIds 这里会为空, 与 WorkContinuation 的构造函数的 parent 参数有关
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="n">WorkRequest</span> <span class="n">work</span> <span class="o">:</span> <span class="n">workList</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 获取 WorkRequest 中的 WorkSpec
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">WorkSpec</span> <span class="n">workSpec</span> <span class="o">=</span> <span class="n">work</span><span class="o">.</span><span class="na">getWorkSpec</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">hasPrerequisite</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">hasCompletedAllPrerequisites</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(!</span><span class="n">workSpec</span><span class="o">.</span><span class="na">isPeriodic</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 如果是周期任务, 则将周期执行的开始时间设为当前时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">workSpec</span><span class="o">.</span><span class="na">periodStartTime</span> <span class="o">=</span> <span class="n">currentTimeMillis</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">workSpec</span><span class="o">.</span><span class="na">periodStartTime</span> <span class="o">=</span> <span class="mi">0</span><span class="n">L</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 在 Api 23~35 将带有电量和存储空间约束的 Worker 代理给 ConstraintTrackingWorker
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&gt;=</span> <span class="n">WorkManagerImpl</span><span class="o">.</span><span class="na">MIN_JOB_SCHEDULER_API_LEVEL</span>
+</span></span><span class="line"><span class="cl">                <span class="o">&amp;&amp;</span> <span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&lt;=</span> <span class="mi">25</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tryDelegateConstrainedWorkSpec</span><span class="o">(</span><span class="n">workSpec</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&lt;=</span> <span class="n">WorkManagerImpl</span><span class="o">.</span><span class="na">MAX_PRE_JOB_SCHEDULER_API_LEVEL</span>
+</span></span><span class="line"><span class="cl">                <span class="o">&amp;&amp;</span> <span class="n">usesScheduler</span><span class="o">(</span><span class="n">workManagerImpl</span><span class="o">,</span> <span class="n">Schedulers</span><span class="o">.</span><span class="na">GCM_SCHEDULER</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tryDelegateConstrainedWorkSpec</span><span class="o">(</span><span class="n">workSpec</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">workSpec</span><span class="o">.</span><span class="na">state</span> <span class="o">==</span> <span class="n">ENQUEUED</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">needsScheduling</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 将 WorkSpace 插入到 WorkSpec 表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">workDatabase</span><span class="o">.</span><span class="na">workSpecDao</span><span class="o">().</span><span class="na">insertWorkSpec</span><span class="o">(</span><span class="n">workSpec</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">tag</span> <span class="o">:</span> <span class="n">work</span><span class="o">.</span><span class="na">getTags</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 将 tag 和 worker 的 uuid 绑定, 插入到 WorkTag 表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">workDatabase</span><span class="o">.</span><span class="na">workTagDao</span><span class="o">().</span><span class="na">insert</span><span class="o">(</span><span class="k">new</span> <span class="n">WorkTag</span><span class="o">(</span><span class="n">tag</span><span class="o">,</span> <span class="n">work</span><span class="o">.</span><span class="na">getStringId</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">isNamed</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 如果是命名 Worker, 将 name 和 worker 的 uuid 绑定, 插入到 WorkName 表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">workDatabase</span><span class="o">.</span><span class="na">workNameDao</span><span class="o">().</span><span class="na">insert</span><span class="o">(</span><span class="k">new</span> <span class="n">WorkName</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">work</span><span class="o">.</span><span class="na">getStringId</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">needsScheduling</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><table>
 <thead>
@@ -2725,7 +2672,7 @@ if (!doNotTrack) {
     
 <div class="donation">
   <div class="donation__message">
-    Support the author with
+    您的鼓励是我最大的动力
   </div>
   <div class="donation__icons">
     
@@ -2776,7 +2723,7 @@ if (!doNotTrack) {
   </div>
   <div class="whoami__contents">
     <div class="whoami__written-by">
-      WRITTEN BY
+      作者
     </div>
     <div class="whoami__title">
       
@@ -2962,7 +2909,7 @@ if (!doNotTrack) {
 </div>
 
 
-<script defer src="/js/swipe.min.989e074dfb92ce7f57a92c1df7027f88b53c50a54fd9ad450a673a64aa91bfa4.js"></script>
+<script defer src="/js/swipe.min.feb438efb7ca009ecd7fc2ac3ad2fced4840990b2798d81f87137f2dc6281f05.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
@@ -3235,7 +3182,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <span class="icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
   </span>
-  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="搜索" autocomplete="off">
   <div id="search-results" class="dropdown">
     <div id="search-menu" class="dropdown-menu" role="menu">
     </div>
@@ -3255,7 +3202,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section class="sidebar hide">
   <script>document.querySelector('.sidebar').classList.remove('hide')</script>
   <div class="toc__flexbox" data-position="fixed">
-    <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
+    <h6 class="toc__title" data-ani="true">目录</h6>
     
       <label class="switch" data-ani="true">
         <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
@@ -3679,7 +3626,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.trigger.classList.add('tooltipped');
       e.trigger.classList.add('tooltipped-s');
     });
-    // =================================================================
+    
 
 
 
@@ -3897,6 +3844,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
+      
+      
+        
+        
+          
+            
+          
+        
+      
+        
+      
+    
   </div>
 </div>
 
@@ -4007,7 +3966,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2022, All Rights Reserved
+                    ©2023, All Rights Reserved
                 
             </p>
         

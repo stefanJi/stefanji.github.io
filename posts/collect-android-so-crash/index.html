@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh" dir="ltr">
 
 <head prefix="og: http://ogp.me/ns#">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.3ce954c8aea3b69cc5e6f734d8273ba4cd48d3a7987dbdca145849bc4b8fc296.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -663,6 +663,12 @@
     
     var enableSearch = JSON.parse("true");
     
+    var searchDistance = JSON.parse("null");
+    
+    var searchThreshold = JSON.parse("null");
+    
+    var searchContent = JSON.parse("null");
+    
     var enableSearchHighlight = JSON.parse("true");
     
     var searchResultPosition = JSON.parse("null");
@@ -686,12 +692,13 @@
         xhr.onload = function () {
           if (xhr.status === 200) {
             fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
-              keys: sectionType.includes('publication') ? ['title', 'abstract'] : ['title', 'description', 'content'],
+              keys: sectionType.includes('publication') ? ['title', 'abstract'] : 
+                searchContent ? ['title', 'description', 'content'] : ['title', 'description'],
               includeMatches: enableSearchHighlight,
               shouldSort: true, 
-              threshold: 0.4, 
+              threshold: searchThreshold ? searchThreshold : 0.4, 
               location: 0, 
-              distance: 100, 
+              distance: searchDistance ? searchDistance : 100, 
               maxPatternLength: 32,
               minMatchCharLength: 1,
               isCaseSensitive: false, 
@@ -715,7 +722,7 @@
       var a = document.createElement('a');
       a.innerHTML = obj.item.title;
       a.setAttribute('class', 'search-result__item--title');
-      a.setAttribute('href', obj.item.permalink);
+      a.setAttribute('href', obj.item.uri);
 
       var descDiv = document.createElement('div');
       descDiv.setAttribute('class', 'search-result__item--desc');
@@ -1315,7 +1322,8 @@
     }
   
   });
-</script>    
+</script>
+    
     
 
 
@@ -1341,7 +1349,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="记录捕获到的一些关于 natice crash 处理相关的内容">
 
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.115.1">
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1396,7 +1404,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
   
 <script type="application/javascript">
 var doNotTrack = false;
@@ -1453,7 +1460,7 @@ if (!doNotTrack) {
     &nbsp;&nbsp;
     
     
-      <a href="/" title="Home" rel="home" class="navbar__title-link">
+      <a href="/" title="主页" rel="home" class="navbar__title-link">
         <h6 class="navbar__title">YangBlog</h6>
       </a>
     
@@ -1500,7 +1507,7 @@ if (!doNotTrack) {
 
 <div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
   <div class="mobile-search__top">
-    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="搜索" class="mobile-search__top--input"/>
     <div id="search-mobile-close" class="mobile-search__top--icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
     </div>
@@ -1521,59 +1528,23 @@ if (!doNotTrack) {
   <ul dir="ltr">
     
     
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="/categories">category</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item active">
-          <a href="/posts">posts</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="https://life.jiyang.site">about</a>
-        </li>
-      
-      
-    
 
     
       <li class="navbarm__menu--item ">
         <a href="/tags" class="navbarm__menu--term" data-index="0">
-          Tags
+          标签
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/categories" class="navbarm__menu--term" data-index="1">
-          Categories
+          分类
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/series" class="navbarm__menu--term" data-index="2">
-          Series
+          系列
         </a>
       </li>
     
@@ -1618,30 +1589,6 @@ if (!doNotTrack) {
 
   
   
-  
-  
-  
-  
-  
-  <a href="/categories" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">category</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="/posts" class="navbar__menu-item navbar__slide-down active" dir="ltr" data-ani="true">posts</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="https://life.jiyang.site" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">about</a>
-  
-  
 </div>
 </nav>
             
@@ -1684,16 +1631,16 @@ if (!doNotTrack) {
   
   
   <div class="single ">
-    <div class="single__nojs">This page looks best with JavaScript enabled</div>
+    <div class="single__nojs">Please enable Javascript to view the contents</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
     <h2 class="single__title" data-ani="true">Android 处理 Native Crash</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Jun 14, 2020 </time>
+  <time class="single__info" title="创建日期">📅&nbsp;2020年06月14日 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;8&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="阅读时长"> ☕&nbsp;8&nbsp;分钟 </span>
   
   <span class="single__info">
     
@@ -1756,7 +1703,7 @@ if (!doNotTrack) {
 <p>我这里定义了一个 <code>NativeCatcher</code> 空间来做 native crash 的收集。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1771,25 +1718,25 @@ if (!doNotTrack) {
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">namespace</span> <span class="n">NativeCatcher</span> <span class="p">{</span>
-    <span class="c1">// 只捕获会造成进程终止的几种异常
-</span><span class="c1"></span>    <span class="k">const</span> <span class="kt">int</span> <span class="n">SIGNALS_LEN</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-    <span class="k">const</span> <span class="kt">int</span> <span class="n">signal_array</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="n">SIGILL</span><span class="p">,</span> <span class="n">SIGABRT</span><span class="p">,</span> <span class="n">SIGBUS</span><span class="p">,</span> <span class="n">SIGFPE</span><span class="p">,</span> <span class="n">SIGSEGV</span><span class="p">,</span> <span class="n">SIGSTKFLT</span><span class="p">,</span> <span class="n">SIGSYS</span><span class="p">};</span>
-    <span class="c1">// 储存系统默认的异常处理
-</span><span class="c1"></span>    <span class="k">struct</span> <span class="nc">sigaction</span> <span class="n">old_signal_handlers</span><span class="p">[</span><span class="n">SIGNALS_LEN</span><span class="p">];</span>
-
-    <span class="kt">void</span> <span class="nf">init</span><span class="p">();</span>
-
-    <span class="kt">void</span> <span class="nf">signal_handler</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="n">siginfo_t</span> <span class="o">*</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="p">);</span>
-
-    <span class="kt">void</span> <span class="nf">make_crash</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">namespace</span> <span class="n">NativeCatcher</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 只捕获会造成进程终止的几种异常
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">const</span> <span class="kt">int</span> <span class="n">SIGNALS_LEN</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">int</span> <span class="n">signal_array</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="n">SIGILL</span><span class="p">,</span> <span class="n">SIGABRT</span><span class="p">,</span> <span class="n">SIGBUS</span><span class="p">,</span> <span class="n">SIGFPE</span><span class="p">,</span> <span class="n">SIGSEGV</span><span class="p">,</span> <span class="n">SIGSTKFLT</span><span class="p">,</span> <span class="n">SIGSYS</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 储存系统默认的异常处理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">struct</span> <span class="nc">sigaction</span> <span class="n">old_signal_handlers</span><span class="p">[</span><span class="n">SIGNALS_LEN</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">init</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">signal_handler</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="n">siginfo_t</span> <span class="o">*</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">make_crash</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在 <code>JNI_OnLoad</code> 的时候，调用 <code>init</code> 设置异常处理函数:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1798,19 +1745,19 @@ if (!doNotTrack) {
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">static</span> <span class="n">jclass</span> <span class="n">CLASS</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
-
-<span class="k">extern</span> <span class="s">&#34;C&#34;</span> <span class="n">jint</span> <span class="n">JNI_OnLoad</span><span class="p">(</span><span class="n">JavaVM</span> <span class="o">*</span><span class="n">vm</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">reserved</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">NativeCatcher</span><span class="o">::</span><span class="n">init</span><span class="p">();</span>
-    <span class="c1">//...
-</span><span class="c1"></span>    <span class="k">return</span> <span class="n">JNI_VERSION_1_4</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">static</span> <span class="n">jclass</span> <span class="n">CLASS</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">extern</span> <span class="s">&#34;C&#34;</span> <span class="n">jint</span> <span class="n">JNI_OnLoad</span><span class="p">(</span><span class="n">JavaVM</span> <span class="o">*</span><span class="n">vm</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">reserved</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">NativeCatcher</span><span class="o">::</span><span class="n">init</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">JNI_VERSION_1_4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>注册异常处理函数, 并持有默认的处理函数。<code>sigaction</code> 是 <code>sigaction()</code> 系统调用的参数, <code>sa_flags</code> 用于配置信号会携带的数据, 如果 <code>sa_flags</code> 含有 <code>SA_SIGINFO</code> 标志位, 则异常处理函数(<code>sa_sigaction</code>) 需要为 <code>void (*sa_sigaction)(int, siginfo_t *, void *)</code> 的函数指针，否则就需要为 <code>void (*sa_handler)(int)</code> 的函数指针。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1821,21 +1768,21 @@ if (!doNotTrack) {
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">NativeCatcher</span><span class="o">::</span><span class="n">init</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">struct</span> <span class="nc">sigaction</span> <span class="n">handler</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="p">.</span><span class="n">sa_sigaction</span> <span class="o">=</span> <span class="n">NativeCatcher</span><span class="o">::</span><span class="n">signal_handler</span><span class="p">,</span>
-            <span class="p">.</span><span class="n">sa_flags</span> <span class="o">=</span> <span class="n">SA_SIGINFO</span>
-    <span class="p">};</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">SIGNALS_LEN</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">sigaction</span><span class="p">(</span><span class="n">signal_array</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">handler</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">old_signal_handlers</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">NativeCatcher</span><span class="o">::</span><span class="n">init</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">sigaction</span> <span class="n">handler</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">sa_sigaction</span> <span class="o">=</span> <span class="n">NativeCatcher</span><span class="o">::</span><span class="n">signal_handler</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">sa_flags</span> <span class="o">=</span> <span class="n">SA_SIGINFO</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">SIGNALS_LEN</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sigaction</span><span class="p">(</span><span class="n">signal_array</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">handler</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">old_signal_handlers</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>异常处理函数:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1864,49 +1811,49 @@ if (!doNotTrack) {
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">NativeCatcher</span><span class="o">::</span><span class="n">signal_handler</span><span class="p">(</span><span class="kt">int</span> <span class="n">signal</span><span class="p">,</span> <span class="n">siginfo_t</span> <span class="o">*</span><span class="n">info</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">context</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// 自己做一些处理工作
-</span><span class="c1"></span>    <span class="k">const</span> <span class="kt">int</span> <span class="n">code</span> <span class="o">=</span> <span class="n">info</span><span class="o">-&gt;</span><span class="n">si_code</span><span class="p">;</span>
-    <span class="n">LOG_D</span><span class="p">(</span><span class="s">&#34;handler signal %d, code: %d, pid: %d, uid: %d, tid: %d&#34;</span><span class="p">,</span>
-          <span class="n">signal</span><span class="p">,</span>
-          <span class="n">code</span><span class="p">,</span>
-          <span class="n">info</span><span class="o">-&gt;</span><span class="n">si_pid</span><span class="p">,</span>
-          <span class="n">info</span><span class="o">-&gt;</span><span class="n">si_uid</span><span class="p">,</span>
-          <span class="n">info</span><span class="o">-&gt;</span><span class="n">si_tid</span>
-    <span class="p">);</span>
-
-    <span class="c1">// 找到异常对应的默认处理函数
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">SIGNALS_LEN</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">signal_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">signal</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
-            <span class="k">break</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">LOG_E</span><span class="p">(</span><span class="s">&#34;Not found match handler&#34;</span><span class="p">);</span>
-        <span class="n">exit</span><span class="p">(</span><span class="n">code</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">struct</span> <span class="nc">sigaction</span> <span class="n">old</span> <span class="o">=</span> <span class="n">old_signal_handlers</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
-    <span class="c1">// 调用默认的异常处理函数
-</span><span class="c1"></span>    <span class="n">old</span><span class="p">.</span><span class="n">sa_sigaction</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">context</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">NativeCatcher</span><span class="o">::</span><span class="n">signal_handler</span><span class="p">(</span><span class="kt">int</span> <span class="n">signal</span><span class="p">,</span> <span class="n">siginfo_t</span> <span class="o">*</span><span class="n">info</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 自己做一些处理工作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">const</span> <span class="kt">int</span> <span class="n">code</span> <span class="o">=</span> <span class="n">info</span><span class="o">-&gt;</span><span class="n">si_code</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LOG_D</span><span class="p">(</span><span class="s">&#34;handler signal %d, code: %d, pid: %d, uid: %d, tid: %d&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">signal</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">code</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">info</span><span class="o">-&gt;</span><span class="n">si_pid</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">info</span><span class="o">-&gt;</span><span class="n">si_uid</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">info</span><span class="o">-&gt;</span><span class="n">si_tid</span>
+</span></span><span class="line"><span class="cl">    <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 找到异常对应的默认处理函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">SIGNALS_LEN</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">signal_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">signal</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">index</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">LOG_E</span><span class="p">(</span><span class="s">&#34;Not found match handler&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">exit</span><span class="p">(</span><span class="n">code</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">sigaction</span> <span class="n">old</span> <span class="o">=</span> <span class="n">old_signal_handlers</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 调用默认的异常处理函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">old</span><span class="p">.</span><span class="n">sa_sigaction</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">context</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>模拟产生异常:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">NativeCatcher</span><span class="o">::</span><span class="n">make_crash</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="n">a</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">NativeCatcher</span><span class="o">::</span><span class="n">make_crash</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="获取-crash-数据">获取 crash 数据</h1>
 <p>异常处理函数的第3个参数 <code>void* context</code> 将会用与 crash 数据的收集。<code>context</code> 参数是指向 <strong>ucontext_t</strong> 类型的一个指针。</p>
@@ -1929,7 +1876,7 @@ if (!doNotTrack) {
 <p>由于寄存器等信息在不同处理器架构下都不相同。如下是在 <em>arm</em> 架构下的 ucontext_t 定义:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1954,35 +1901,35 @@ if (!doNotTrack) {
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-h" data-lang="h"><span class="cp">#if defined(__arm__)
-</span><span class="cp"></span>
-<span class="cp">#define NGREG 18 </span><span class="cm">/* Like glibc. */</span><span class="cp">
-</span><span class="cp"></span>
-<span class="k">typedef</span> <span class="kt">int</span> <span class="n">greg_t</span><span class="p">;</span>
-<span class="k">typedef</span> <span class="n">greg_t</span> <span class="n">gregset_t</span><span class="p">[</span><span class="n">NGREG</span><span class="p">];</span>
-<span class="k">typedef</span> <span class="k">struct</span> <span class="n">user_fpregs</span> <span class="n">fpregset_t</span><span class="p">;</span>
-
-<span class="cp">#include</span> <span class="cpf">&lt;asm/sigcontext.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">sigcontext</span> <span class="n">mcontext_t</span><span class="p">;</span>
-
-<span class="k">typedef</span> <span class="k">struct</span> <span class="n">ucontext</span> <span class="p">{</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">uc_flags</span><span class="p">;</span>
-  <span class="k">struct</span> <span class="n">ucontext</span><span class="o">*</span> <span class="n">uc_link</span><span class="p">;</span>
-  <span class="n">stack_t</span> <span class="n">uc_stack</span><span class="p">;</span>
-  <span class="n">mcontext_t</span> <span class="n">uc_mcontext</span><span class="p">;</span>
-  <span class="n">sigset_t</span> <span class="n">uc_sigmask</span><span class="p">;</span>
-  <span class="cm">/* Android has a wrong (smaller) sigset_t on ARM. */</span>
-  <span class="n">uint32_t</span> <span class="n">__padding_rt_sigset</span><span class="p">;</span>
-  <span class="cm">/* The kernel adds extra padding after uc_sigmask to match glibc sigset_t on ARM. */</span>
-  <span class="kt">char</span> <span class="n">__padding</span><span class="p">[</span><span class="mi">120</span><span class="p">];</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">uc_regspace</span><span class="p">[</span><span class="mi">128</span><span class="p">]</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">__aligned__</span><span class="p">(</span><span class="mi">8</span><span class="p">)));</span>
-<span class="p">}</span> <span class="n">ucontext_t</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-h" data-lang="h"><span class="line"><span class="cl"><span class="cp">#if defined(__arm__)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define NGREG 18 </span><span class="cm">/* Like glibc. */</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">int</span> <span class="kt">greg_t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">greg_t</span> <span class="kt">gregset_t</span><span class="p">[</span><span class="n">NGREG</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">user_fpregs</span> <span class="kt">fpregset_t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;asm/sigcontext.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">sigcontext</span> <span class="kt">mcontext_t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">ucontext</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">uc_flags</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">struct</span> <span class="n">ucontext</span><span class="o">*</span> <span class="n">uc_link</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">stack_t</span> <span class="n">uc_stack</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">mcontext_t</span> <span class="n">uc_mcontext</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">sigset_t</span> <span class="n">uc_sigmask</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="cm">/* Android has a wrong (smaller) sigset_t on ARM. */</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">uint32_t</span> <span class="n">__padding_rt_sigset</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="cm">/* The kernel adds extra padding after uc_sigmask to match glibc sigset_t on ARM. */</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">__padding</span><span class="p">[</span><span class="mi">120</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">uc_regspace</span><span class="p">[</span><span class="mi">128</span><span class="p">]</span> <span class="nf">__attribute__</span><span class="p">((</span><span class="nf">__aligned__</span><span class="p">(</span><span class="mi">8</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="kt">ucontext_t</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>从上面可以看出，在 ARM 下这里会在 <code>gregset_t</code> 数组中储存 18 个寄存器，而且 <code>mcontext_t</code> 的类型是 <code>arm/sigcontext.h</code> 中的 <code>sigcontext</code>:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2007,30 +1954,30 @@ if (!doNotTrack) {
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">sigcontext</span> <span class="p">{</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">trap_no</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">error_code</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">oldmask</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r0</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r1</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r2</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r3</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r4</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r5</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r6</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r7</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r8</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r9</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r10</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_fp</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_ip</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_sp</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_lr</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_pc</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_cpsr</span><span class="p">;</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">fault_address</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">sigcontext</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">trap_no</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">error_code</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">oldmask</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r7</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r8</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r9</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_r10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_fp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_ip</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_sp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_lr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_pc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">arm_cpsr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">fault_address</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>sigcontext</code> 中的 <code>arm_pc</code> 就代表了 ARM 处理器的 PC 寄存器。</p>
 <h2 id="定位问题代码">定位问题代码</h2>
@@ -2039,16 +1986,16 @@ if (!doNotTrack) {
 <p>定义如下方法来实现获取程序计数器存储的地址:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">uint</span> <span class="n">NativeCatcher</span><span class="o">::</span><span class="n">get_pc</span><span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">context</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">uint</span> <span class="n">NativeCatcher</span><span class="o">::</span><span class="nf">get_pc</span><span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">context</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>由于不同的处理器架构在不同的寄存器中储存程序寄存器，所以需要针对性的获取:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2063,25 +2010,25 @@ if (!doNotTrack) {
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">const</span> <span class="k">auto</span> <span class="o">*</span><span class="n">ucxt</span> <span class="o">=</span> <span class="n">static_cast</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">ucontext_t</span> <span class="o">*&gt;</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
-<span class="n">greg_t</span> <span class="n">absolute_pc</span><span class="p">;</span>
-<span class="cp">#if defined(__arm__)
-</span><span class="cp"></span>    <span class="n">absolute_pc</span> <span class="o">=</span> <span class="n">ucxt</span><span class="o">-&gt;</span><span class="n">uc_mcontext</span><span class="p">.</span><span class="n">arm_pc</span><span class="p">;</span>
-<span class="cp">#elif defined(__aarch64__)
-</span><span class="cp"></span>    <span class="n">absolute_pc</span> <span class="o">=</span> <span class="n">ucxt</span><span class="o">-&gt;</span><span class="n">uc_mcontext</span><span class="p">.</span><span class="n">pc</span><span class="p">;</span>
-<span class="cp">#elif defined(__i386__)
-</span><span class="cp"></span>    <span class="n">absolute_pc</span> <span class="o">=</span> <span class="n">ucxt</span><span class="o">-&gt;</span><span class="n">uc_mcontext</span><span class="p">.</span><span class="n">gregs</span><span class="p">[</span><span class="n">REG_EIP</span><span class="p">];</span>
-<span class="cp">#elif defined(__mips__)
-</span><span class="cp"></span>    <span class="n">absolute_pc</span> <span class="o">=</span> <span class="n">ucxt</span><span class="o">-&gt;</span><span class="n">uc_mcontext</span><span class="p">.</span><span class="n">pc</span><span class="p">;</span>
-<span class="cp">#elif defined(__x86_64__)
-</span><span class="cp"></span>    <span class="n">absolute_pc</span> <span class="o">=</span> <span class="n">ucxt</span><span class="o">-&gt;</span><span class="n">uc_mcontext</span><span class="p">.</span><span class="n">gregs</span><span class="p">[</span><span class="n">REG_RIP</span><span class="p">];</span>
-<span class="cp">#endif
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">const</span> <span class="k">auto</span> <span class="o">*</span><span class="n">ucxt</span> <span class="o">=</span> <span class="n">static_cast</span><span class="o">&lt;</span><span class="k">const</span> <span class="kt">ucontext_t</span> <span class="o">*&gt;</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">greg_t</span> <span class="n">absolute_pc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#if defined(__arm__)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="n">absolute_pc</span> <span class="o">=</span> <span class="n">ucxt</span><span class="o">-&gt;</span><span class="n">uc_mcontext</span><span class="p">.</span><span class="n">arm_pc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#elif defined(__aarch64__)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="n">absolute_pc</span> <span class="o">=</span> <span class="n">ucxt</span><span class="o">-&gt;</span><span class="n">uc_mcontext</span><span class="p">.</span><span class="n">pc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#elif defined(__i386__)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="n">absolute_pc</span> <span class="o">=</span> <span class="n">ucxt</span><span class="o">-&gt;</span><span class="n">uc_mcontext</span><span class="p">.</span><span class="n">gregs</span><span class="p">[</span><span class="n">REG_EIP</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#elif defined(__mips__)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="n">absolute_pc</span> <span class="o">=</span> <span class="n">ucxt</span><span class="o">-&gt;</span><span class="n">uc_mcontext</span><span class="p">.</span><span class="n">pc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#elif defined(__x86_64__)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="n">absolute_pc</span> <span class="o">=</span> <span class="n">ucxt</span><span class="o">-&gt;</span><span class="n">uc_mcontext</span><span class="p">.</span><span class="n">gregs</span><span class="p">[</span><span class="n">REG_RIP</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>程序寄存器中存储的当前指令在内存中的<strong>绝对地址</strong> ，而 <em>addr2line</em> 工具需要的是指令在指令所属的 so 中的相对地址，所以需要先获取出现异常的指令属于的共享库(so)被加载到内存的开始地址，然后使用 <strong>绝对地址</strong> 减去 <strong>开始地址</strong> 得出程序寄存器相对 <strong>开始地址</strong> 的偏移量: <code>相对地址 = 绝对地址(pc) - so被加载到的地址</code>。通过 <code>dladdr</code> 库函数，可以找到一个绝对地址所属的 so, 以及 so 被加载到内存的位置：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2096,54 +2043,54 @@ if (!doNotTrack) {
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">Dl_info</span> <span class="n">dl_info</span><span class="p">;</span>
-<span class="n">LOG_D</span><span class="p">(</span><span class="s">&#34;calculate pc(%d)&#34;</span><span class="p">,</span> <span class="n">absolute_pc</span><span class="p">);</span>
-<span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">dladdr</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="n">absolute_pc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">dl_info</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&amp;&amp;</span> <span class="n">dl_info</span><span class="p">.</span><span class="n">dli_fname</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// so 加载到内存的地址
-</span><span class="c1"></span>    <span class="n">uint</span> <span class="n">base</span> <span class="o">=</span> <span class="n">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">long</span><span class="o">&gt;</span><span class="p">(</span><span class="n">dl_info</span><span class="p">.</span><span class="n">dli_fbase</span><span class="p">);</span>
-    <span class="c1">// 当前 pc 属于的方法的名称
-</span><span class="c1"></span>    <span class="n">LOG_D</span><span class="p">(</span><span class="s">&#34;symbol is %s&#34;</span><span class="p">,</span> <span class="n">dl_info</span><span class="p">.</span><span class="n">dli_sname</span><span class="p">);</span>
-    <span class="c1">// 计算相对位置
-</span><span class="c1"></span>    <span class="n">uint</span> <span class="n">relative_pc</span> <span class="o">=</span> <span class="n">absolute_pc</span> <span class="o">-</span> <span class="n">base</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">relative_pc</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Dl_info</span> <span class="n">dl_info</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">LOG_D</span><span class="p">(</span><span class="s">&#34;calculate pc(%d)&#34;</span><span class="p">,</span> <span class="n">absolute_pc</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="nf">dladdr</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="n">absolute_pc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">dl_info</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&amp;&amp;</span> <span class="n">dl_info</span><span class="p">.</span><span class="n">dli_fname</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// so 加载到内存的地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">uint</span> <span class="n">base</span> <span class="o">=</span> <span class="n">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">long</span><span class="o">&gt;</span><span class="p">(</span><span class="n">dl_info</span><span class="p">.</span><span class="n">dli_fbase</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 当前 pc 属于的方法的名称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">LOG_D</span><span class="p">(</span><span class="s">&#34;symbol is %s&#34;</span><span class="p">,</span> <span class="n">dl_info</span><span class="p">.</span><span class="n">dli_sname</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 计算相对位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">uint</span> <span class="n">relative_pc</span> <span class="o">=</span> <span class="n">absolute_pc</span> <span class="o">-</span> <span class="n">base</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">relative_pc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>输出:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">D: calculate pc<span class="o">(</span>613568945<span class="o">)</span>
-D: share object is /data/app/.../lib/x86_64/libnative-catcher.so
-D: symbol is _ZN13NativeCatcher10make_crashEv
-D: relative pc register: 00000000000011b1
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">D: calculate pc<span class="o">(</span>613568945<span class="o">)</span>
+</span></span><span class="line"><span class="cl">D: share object is /data/app/.../lib/x86_64/libnative-catcher.so
+</span></span><span class="line"><span class="cl">D: symbol is _ZN13NativeCatcher10make_crashEv
+</span></span><span class="line"><span class="cl">D: relative pc register: 00000000000011b1
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>使用 <em>addr2line</em> 找到 pc 寄存器对应的方法和行数:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">▶ x86_64_addr2line -e libnative-catcher.so -f 00000000000011b1
-_ZN13NativeCatcher10make_crashEv
-??:?
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">▶ x86_64_addr2line -e libnative-catcher.so -f 00000000000011b1
+</span></span><span class="line"><span class="cl">_ZN13NativeCatcher10make_crashEv
+</span></span><span class="line"><span class="cl">??:?
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="debug-模式下">debug 模式下</h3>
 <p>从输出上看到由于行数没有找到而显示了 <code>??:?</code>，这是因为 Android Gradle Plugin 在 native 编译时会默认对 so 进行 <strong>strip</strong> 操作，so 中与调试相关的信息都被去掉了。所以可以在 debug 编译下禁用 strip:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2157,32 +2104,32 @@ _ZN13NativeCatcher10make_crashEv
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">android</span> <span class="o">{</span>
-    <span class="o">...</span>
-    <span class="n">buildTypes</span> <span class="o">{</span>
-        <span class="o">...</span>
-        <span class="n">debug</span> <span class="o">{</span>
-            <span class="n">packagingOptions</span> <span class="o">{</span>
-                <span class="n">doNotStrip</span> <span class="s2">&#34;*/x86_64/*.so&#34;</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="o">...</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">android</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">buildTypes</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">...</span>
+</span></span><span class="line"><span class="cl">        <span class="n">debug</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">packagingOptions</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">doNotStrip</span> <span class="s2">&#34;*/x86_64/*.so&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后使用 debug 下编译出的 so 就能看到问题代码在源码中的行数了:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">▶ x86_64_addr2line -e libnative-catcher.so -f 00000000000011b1
-_ZN13NativeCatcher10make_crashEv
-.../src/main/cpp/native_catcher.cpp:92
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">▶ x86_64_addr2line -e libnative-catcher.so -f 00000000000011b1
+</span></span><span class="line"><span class="cl">_ZN13NativeCatcher10make_crashEv
+</span></span><span class="line"><span class="cl">.../src/main/cpp/native_catcher.cpp:92
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="release-模式下">release 模式下</h3>
 <p>上面提到了因为 <strong>strip</strong> 的原因，我们无法定位到问题代码在源码中的行数，但是如果不进行 <strong>strip</strong>，so 就会因为包含许多运行时用不到的符号信息、调试信息变得很大，从而导致Apk的安装包很大，而且 so 中包含调试信息也存在安全隐患。所以如何在 release 下既能使用 <strong>strip</strong>，又能让我们通过 <em>addr2line</em> 定位到问题代码呢？</p>
@@ -2190,7 +2137,7 @@ _ZN13NativeCatcher10make_crashEv
 <p>到 bugly 对应的 maven 仓库找到了 <code>SymtabToolAndroid</code> 这个工具库, 尝试导出一份符号表试下:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2198,13 +2145,13 @@ _ZN13NativeCatcher10make_crashEv
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">static</span> <span class="n">String</span> <span class="n">path</span> <span class="o">=</span> <span class="s">&#34;.../libnative-catcher.so&#34;</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">SymtabToolAndroid</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[]{</span><span class="s">&#34;-i&#34;</span><span class="o">,</span> <span class="n">path</span><span class="o">});</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">SymtabToolAndroid</span><span class="o">.</span><span class="na">symtabFileName</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="n">String</span> <span class="n">path</span> <span class="o">=</span> <span class="s">&#34;.../libnative-catcher.so&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SymtabToolAndroid</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[]{</span><span class="s">&#34;-i&#34;</span><span class="o">,</span> <span class="n">path</span><span class="o">});</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">SymtabToolAndroid</span><span class="o">.</span><span class="na">symtabFileName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>结果:</p>
 <p><img src="https://image.youcute.cn/FnyKsmmRp8iO8nAmTAPYQTbAFZJd" alt="bugly导出的符号文件" /></p>
@@ -2217,7 +2164,7 @@ _ZN13NativeCatcher10make_crashEv
 <p>通过 Android NDK 工具包中的 <em>readelf</em> 工具可以查看 ELF 文件的详细内容, <em>readelf -S</em> 查看含有哪些 Section:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2233,21 +2180,21 @@ _ZN13NativeCatcher10make_crashEv
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">▶ x86_64_readelf libnative-catcher.so -S
-There are <span class="m">38</span> section headers, starting at offset 0xec78:
-
-Section Headers:
-  <span class="o">[</span>Nr<span class="o">]</span> Name              Type             Address           Offset
-       Size              EntSize          Flags  Link  Info  Align
-  <span class="o">[</span>25<span class="o">]</span> .debug_str        PROGBITS         <span class="m">0000000000000000</span>  0000206d
-       <span class="m">0000000000005229</span>  <span class="m">0000000000000001</span>  MS       <span class="m">0</span>     <span class="m">0</span>     <span class="m">1</span>
-  <span class="o">[</span>28<span class="o">]</span> .debug_info       PROGBITS         <span class="m">0000000000000000</span>  00007ce5
-       0000000000005a51  <span class="m">0000000000000000</span>           <span class="m">0</span>     <span class="m">0</span>     <span class="m">1</span>
-  <span class="o">[</span>29<span class="o">]</span> .debug_ranges     PROGBITS         <span class="m">0000000000000000</span>  0000d736
-       <span class="m">0000000000000070</span>  <span class="m">0000000000000000</span>           <span class="m">0</span>     <span class="m">0</span>     <span class="m">1</span>
-  <span class="o">[</span>33<span class="o">]</span> .debug_line       PROGBITS         <span class="m">0000000000000000</span>  0000dec9
-       00000000000005ed  <span class="m">0000000000000000</span>           <span class="m">0</span>     <span class="m">0</span>     <span class="m">1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">▶ x86_64_readelf libnative-catcher.so -S
+</span></span><span class="line"><span class="cl">There are <span class="m">38</span> section headers, starting at offset 0xec78:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Section Headers:
+</span></span><span class="line"><span class="cl">  <span class="o">[</span>Nr<span class="o">]</span> Name              Type             Address           Offset
+</span></span><span class="line"><span class="cl">       Size              EntSize          Flags  Link  Info  Align
+</span></span><span class="line"><span class="cl">  <span class="o">[</span>25<span class="o">]</span> .debug_str        PROGBITS         <span class="m">0000000000000000</span>  0000206d
+</span></span><span class="line"><span class="cl">       <span class="m">0000000000005229</span>  <span class="m">0000000000000001</span>  MS       <span class="m">0</span>     <span class="m">0</span>     <span class="m">1</span>
+</span></span><span class="line"><span class="cl">  <span class="o">[</span>28<span class="o">]</span> .debug_info       PROGBITS         <span class="m">0000000000000000</span>  00007ce5
+</span></span><span class="line"><span class="cl">       0000000000005a51  <span class="m">0000000000000000</span>           <span class="m">0</span>     <span class="m">0</span>     <span class="m">1</span>
+</span></span><span class="line"><span class="cl">  <span class="o">[</span>29<span class="o">]</span> .debug_ranges     PROGBITS         <span class="m">0000000000000000</span>  0000d736
+</span></span><span class="line"><span class="cl">       <span class="m">0000000000000070</span>  <span class="m">0000000000000000</span>           <span class="m">0</span>     <span class="m">0</span>     <span class="m">1</span>
+</span></span><span class="line"><span class="cl">  <span class="o">[</span>33<span class="o">]</span> .debug_line       PROGBITS         <span class="m">0000000000000000</span>  0000dec9
+</span></span><span class="line"><span class="cl">       00000000000005ed  <span class="m">0000000000000000</span>           <span class="m">0</span>     <span class="m">0</span>     <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>那这些 Section 我们应该如何从 ELF 文件(我们这里是 so)中读取呢? 在查找读取方式的过程中，我发现了一个新名词 <a href="https://en.wikipedia.org/wiki/DWARF">DWARF</a>。原来 <em>ELF</em> 文件中的调试信息都是按照一种叫 <em>DWARF</em> 的标准来读写的。http://dwarfstd.org/ 的维护网站上详细介绍了这个标准。</p>
 <p>通过 <em>readelf</em> 的 <code>--debug-dump</code> 方式，我们可以输出对应 Section 的内容:</p>
@@ -2255,7 +2202,7 @@ Section Headers:
 <p><code>--debug-dump=decodedline</code>: 会解码输出 <code>.debug_line</code> 的内容，储存着某行代码在编译之后的内存地址</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2267,24 +2214,24 @@ Section Headers:
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">▶ x86_64_readelf libnative-catcher.so --debug-dump<span class="o">=</span>decodedline
-Decoded dump of debug contents of section .debug_line:
-
-File name                            Line number    Starting address
-../native_catcher.cpp:
-native_catcher.cpp                            <span class="m">91</span>              0x11a0
-native_catcher.cpp                            <span class="m">92</span>              0x11a9
-native_catcher.cpp                            <span class="m">93</span>              0x11b0
-native_catcher.cpp                            <span class="m">93</span>              0x11b4
-native_catcher.cpp                            <span class="m">94</span>              0x11b7
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">▶ x86_64_readelf libnative-catcher.so --debug-dump<span class="o">=</span>decodedline
+</span></span><span class="line"><span class="cl">Decoded dump of debug contents of section .debug_line:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">File name                            Line number    Starting address
+</span></span><span class="line"><span class="cl">../native_catcher.cpp:
+</span></span><span class="line"><span class="cl">native_catcher.cpp                            <span class="m">91</span>              0x11a0
+</span></span><span class="line"><span class="cl">native_catcher.cpp                            <span class="m">92</span>              0x11a9
+</span></span><span class="line"><span class="cl">native_catcher.cpp                            <span class="m">93</span>              0x11b0
+</span></span><span class="line"><span class="cl">native_catcher.cpp                            <span class="m">93</span>              0x11b4
+</span></span><span class="line"><span class="cl">native_catcher.cpp                            <span class="m">94</span>              0x11b7
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里查看的是 debug 模式下的 so 的 .debug_line Section, 可以看到包含了上面期望的 <code>0x11b0</code> 地址，它对应的源码行数是 93 行，这和 <em>addr2line</em> 的结果一致。</p>
 <p>所以，要在 release 模式下没有符号信息的情况下找到出错地址对应的源码行数，可以将包含调试信息的 so 的 <em>.debug_line</em> Section 中的内容导出储存，然后根据出错地址匹配到源码行数。</p>
 <p>PS: &ndash;debug-dump <em>.debug_line</em> 的输出中，是按方法分的，每块对应的一个方法相关的行，方法之间以文件路径分隔：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2295,16 +2242,16 @@ native_catcher.cpp                            <span class="m">94</span>         
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">File name                            Line number    Starting address
-cpp/native_catcher.cpp:
-native_catcher.cpp                            <span class="m">16</span>               0xcf0
-
-cpp/native_catcher.cpp:
-native_catcher.cpp                            <span class="m">26</span>               0xda0
-
-cpp/native_catcher.cpp:
-native_catcher.cpp                            <span class="m">55</span>               0xf30
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">File name                            Line number    Starting address
+</span></span><span class="line"><span class="cl">cpp/native_catcher.cpp:
+</span></span><span class="line"><span class="cl">native_catcher.cpp                            <span class="m">16</span>               0xcf0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cpp/native_catcher.cpp:
+</span></span><span class="line"><span class="cl">native_catcher.cpp                            <span class="m">26</span>               0xda0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cpp/native_catcher.cpp:
+</span></span><span class="line"><span class="cl">native_catcher.cpp                            <span class="m">55</span>               0xf30
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="获取方法调用栈">获取方法调用栈</h2>
 <p>获取方法的调用栈，有多种方式。目前应用最多的是 Google 的 breakpad</p>
@@ -2521,7 +2468,7 @@ native_catcher.cpp                            <span class="m">55</span>         
     
 <div class="donation">
   <div class="donation__message">
-    Support the author with
+    您的鼓励是我最大的动力
   </div>
   <div class="donation__icons">
     
@@ -2572,7 +2519,7 @@ native_catcher.cpp                            <span class="m">55</span>         
   </div>
   <div class="whoami__contents">
     <div class="whoami__written-by">
-      WRITTEN BY
+      作者
     </div>
     <div class="whoami__title">
       
@@ -2758,7 +2705,7 @@ native_catcher.cpp                            <span class="m">55</span>         
 </div>
 
 
-<script defer src="/js/swipe.min.989e074dfb92ce7f57a92c1df7027f88b53c50a54fd9ad450a673a64aa91bfa4.js"></script>
+<script defer src="/js/swipe.min.feb438efb7ca009ecd7fc2ac3ad2fced4840990b2798d81f87137f2dc6281f05.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
@@ -3031,7 +2978,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <span class="icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
   </span>
-  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="搜索" autocomplete="off">
   <div id="search-results" class="dropdown">
     <div id="search-menu" class="dropdown-menu" role="menu">
     </div>
@@ -3051,7 +2998,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section class="sidebar hide">
   <script>document.querySelector('.sidebar').classList.remove('hide')</script>
   <div class="toc__flexbox" data-position="fixed">
-    <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
+    <h6 class="toc__title" data-ani="true">目录</h6>
     
       <label class="switch" data-ani="true">
         <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
@@ -3476,7 +3423,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.trigger.classList.add('tooltipped');
       e.trigger.classList.add('tooltipped-s');
     });
-    // =================================================================
+    
 
 
 
@@ -3694,6 +3641,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
+      
+      
+        
+        
+          
+            
+          
+        
+      
+        
+      
+    
   </div>
 </div>
 
@@ -3804,7 +3763,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2022, All Rights Reserved
+                    ©2023, All Rights Reserved
                 
             </p>
         

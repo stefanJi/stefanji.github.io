@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh" dir="ltr">
 
 <head prefix="og: http://ogp.me/ns#">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.3ce954c8aea3b69cc5e6f734d8273ba4cd48d3a7987dbdca145849bc4b8fc296.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -663,6 +663,12 @@
     
     var enableSearch = JSON.parse("true");
     
+    var searchDistance = JSON.parse("null");
+    
+    var searchThreshold = JSON.parse("null");
+    
+    var searchContent = JSON.parse("null");
+    
     var enableSearchHighlight = JSON.parse("true");
     
     var searchResultPosition = JSON.parse("null");
@@ -686,12 +692,13 @@
         xhr.onload = function () {
           if (xhr.status === 200) {
             fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
-              keys: sectionType.includes('publication') ? ['title', 'abstract'] : ['title', 'description', 'content'],
+              keys: sectionType.includes('publication') ? ['title', 'abstract'] : 
+                searchContent ? ['title', 'description', 'content'] : ['title', 'description'],
               includeMatches: enableSearchHighlight,
               shouldSort: true, 
-              threshold: 0.4, 
+              threshold: searchThreshold ? searchThreshold : 0.4, 
               location: 0, 
-              distance: 100, 
+              distance: searchDistance ? searchDistance : 100, 
               maxPatternLength: 32,
               minMatchCharLength: 1,
               isCaseSensitive: false, 
@@ -715,7 +722,7 @@
       var a = document.createElement('a');
       a.innerHTML = obj.item.title;
       a.setAttribute('class', 'search-result__item--title');
-      a.setAttribute('href', obj.item.permalink);
+      a.setAttribute('href', obj.item.uri);
 
       var descDiv = document.createElement('div');
       descDiv.setAttribute('class', 'search-result__item--desc');
@@ -1315,7 +1322,8 @@
     }
   
   });
-</script>    
+</script>
+    
     
 
 
@@ -1339,7 +1347,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="通过实际案列理解 Flutter 中 Key 在其渲染机制中起到的作用，从而达到能在合理的时间和地点使用合理的 Key">
 
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.115.1">
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1393,7 +1401,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
   
 <script type="application/javascript">
 var doNotTrack = false;
@@ -1450,7 +1457,7 @@ if (!doNotTrack) {
     &nbsp;&nbsp;
     
     
-      <a href="/" title="Home" rel="home" class="navbar__title-link">
+      <a href="/" title="主页" rel="home" class="navbar__title-link">
         <h6 class="navbar__title">YangBlog</h6>
       </a>
     
@@ -1497,7 +1504,7 @@ if (!doNotTrack) {
 
 <div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
   <div class="mobile-search__top">
-    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="搜索" class="mobile-search__top--input"/>
     <div id="search-mobile-close" class="mobile-search__top--icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
     </div>
@@ -1518,59 +1525,23 @@ if (!doNotTrack) {
   <ul dir="ltr">
     
     
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="/categories">category</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item active">
-          <a href="/posts">posts</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="https://life.jiyang.site">about</a>
-        </li>
-      
-      
-    
 
     
       <li class="navbarm__menu--item ">
         <a href="/tags" class="navbarm__menu--term" data-index="0">
-          Tags
+          标签
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/categories" class="navbarm__menu--term" data-index="1">
-          Categories
+          分类
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/series" class="navbarm__menu--term" data-index="2">
-          Series
+          系列
         </a>
       </li>
     
@@ -1615,30 +1586,6 @@ if (!doNotTrack) {
 
   
   
-  
-  
-  
-  
-  
-  <a href="/categories" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">category</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="/posts" class="navbar__menu-item navbar__slide-down active" dir="ltr" data-ani="true">posts</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="https://life.jiyang.site" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">about</a>
-  
-  
 </div>
 </nav>
             
@@ -1681,16 +1628,16 @@ if (!doNotTrack) {
   
   
   <div class="single ">
-    <div class="single__nojs">This page looks best with JavaScript enabled</div>
+    <div class="single__nojs">Please enable Javascript to view the contents</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
     <h2 class="single__title" data-ani="true">理解 Flutter 中的 Key</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Jun 1, 2019 </time>
+  <time class="single__info" title="创建日期">📅&nbsp;2019年06月01日 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;6&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="阅读时长"> ☕&nbsp;6&nbsp;分钟 </span>
   
   <span class="single__info">
     
@@ -1718,7 +1665,7 @@ if (!doNotTrack) {
 <p>使用 <code>StatelessWidget</code>(<code>StatelessColorfulTile</code>) 做 <code>child</code>(<code>tiles</code>):</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1748,40 +1695,40 @@ if (!doNotTrack) {
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-dart" data-lang="dart"><span class="kd">class</span> <span class="nc">PositionedTiles</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="p">{</span>
-  <span class="err">@</span><span class="n">override</span>
-  <span class="n">State</span><span class="o">&lt;</span><span class="n">StatefulWidget</span><span class="o">&gt;</span> <span class="n">createState</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="n">PositionedTilesState</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">PositionedTilesState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">PositionedTiles</span><span class="o">&gt;</span> <span class="p">{</span>
-  <span class="n">List</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">tiles</span><span class="p">;</span>
-
-  <span class="err">@</span><span class="n">override</span>
-  <span class="kt">void</span> <span class="n">initState</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span>
-    <span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span>
-      <span class="n">StatelessColorfulTile</span><span class="p">(),</span>
-      <span class="n">StatelessColorfulTile</span><span class="p">(),</span>
-    <span class="p">];</span>
-  <span class="p">}</span>
-
-  <span class="err">@</span><span class="n">override</span>
-  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">Scaffold</span><span class="p">(</span>
-        <span class="nl">body:</span> <span class="n">SafeArea</span><span class="p">(</span>
-            <span class="nl">child:</span> <span class="n">Center</span><span class="p">(</span>
-                <span class="nl">child:</span> <span class="n">Row</span><span class="p">(</span>
-                    <span class="nl">mainAxisAlignment:</span> <span class="n">MainAxisAlignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-                    <span class="nl">children:</span> <span class="n">tiles</span><span class="p">))),</span>
-        <span class="nl">floatingActionButton:</span> <span class="n">FloatingActionButton</span><span class="p">(</span>
-            <span class="nl">child:</span> <span class="n">Icon</span><span class="p">(</span><span class="n">Icons</span><span class="p">.</span><span class="n">sentiment_very_satisfied</span><span class="p">),</span> <span class="nl">onPressed:</span> <span class="n">swapTiles</span><span class="p">));</span>
-  <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">PositionedTiles</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="err">@</span><span class="n">override</span>
+</span></span><span class="line"><span class="cl">  <span class="n">State</span><span class="o">&lt;</span><span class="n">StatefulWidget</span><span class="o">&gt;</span> <span class="n">createState</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="n">PositionedTilesState</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">PositionedTilesState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">PositionedTiles</span><span class="o">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">List</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">tiles</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="err">@</span><span class="n">override</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="n">initState</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="n">StatelessColorfulTile</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">      <span class="n">StatelessColorfulTile</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="err">@</span><span class="n">override</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Scaffold</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="nl">body:</span> <span class="n">SafeArea</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="nl">child:</span> <span class="n">Center</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="nl">child:</span> <span class="n">Row</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="nl">mainAxisAlignment:</span> <span class="n">MainAxisAlignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nl">children:</span> <span class="n">tiles</span><span class="p">))),</span>
+</span></span><span class="line"><span class="cl">        <span class="nl">floatingActionButton:</span> <span class="n">FloatingActionButton</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="nl">child:</span> <span class="n">Icon</span><span class="p">(</span><span class="n">Icons</span><span class="p">.</span><span class="n">sentiment_very_satisfied</span><span class="p">),</span> <span class="nl">onPressed:</span> <span class="n">swapTiles</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>当点击按钮时，更新 <code>PositionedTilesState</code> 中储存的 <code>tiles</code>:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1789,17 +1736,17 @@ if (!doNotTrack) {
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-dart" data-lang="dart"><span class="kt">void</span> <span class="n">swapTiles</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">setState</span><span class="p">(()</span> <span class="p">{</span>
-      <span class="n">tiles</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">tiles</span><span class="p">.</span><span class="n">removeAt</span><span class="p">(</span><span class="m">0</span><span class="p">));</span>
-    <span class="p">});</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">swapTiles</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">setState</span><span class="p">(()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">tiles</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">tiles</span><span class="p">.</span><span class="n">removeAt</span><span class="p">(</span><span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1809,15 +1756,15 @@ if (!doNotTrack) {
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-dart" data-lang="dart"><span class="kd">class</span> <span class="nc">StatelessColorfulTile</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="p">{</span>
-  <span class="kd">final</span> <span class="n">Color</span> <span class="n">color</span> <span class="o">=</span> <span class="n">UniqueColorGenaretor</span><span class="p">.</span><span class="n">getColor</span><span class="p">();</span>
-
-  <span class="n">StatelessColorfulTile</span><span class="p">({</span><span class="n">Key</span> <span class="n">key</span><span class="p">})</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="nl">key:</span> <span class="n">key</span><span class="p">);</span>
-
-  <span class="err">@</span><span class="n">override</span>
-  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">buildColorfulTile</span><span class="p">(</span><span class="n">color</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">StatelessColorfulTile</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">final</span> <span class="n">Color</span> <span class="n">color</span> <span class="o">=</span> <span class="n">UniqueColorGenaretor</span><span class="p">.</span><span class="n">getColor</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">StatelessColorfulTile</span><span class="p">({</span><span class="n">Key</span> <span class="n">key</span><span class="p">})</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="nl">key:</span> <span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="err">@</span><span class="n">override</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">buildColorfulTile</span><span class="p">(</span><span class="n">color</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="结果">结果</h5>
 <img alt="PositionedTiles" src="https://image.youcute.cn/image/blog/gifhome_433x532.gif" width=200/>
@@ -1828,7 +1775,7 @@ if (!doNotTrack) {
 <p>使用 <code>StatefulWidget</code>(<code>StatefulColorfulTile</code>) 做 <code>child</code>(<code>tiles</code>):</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1850,32 +1797,32 @@ if (!doNotTrack) {
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-dart" data-lang="dart"><span class="kd">class</span> <span class="nc">StatefulColorfulTile</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="p">{</span>
-  <span class="n">StatefulColorfulTile</span><span class="p">({</span><span class="n">Key</span> <span class="n">key</span><span class="p">})</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="nl">key:</span> <span class="n">key</span><span class="p">);</span>
-
-  <span class="err">@</span><span class="n">override</span>
-  <span class="n">State</span><span class="o">&lt;</span><span class="n">StatefulWidget</span><span class="o">&gt;</span> <span class="n">createState</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="n">StatefulColorfulTileState</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">StatefulColorfulTileState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">StatefulColorfulTile</span><span class="o">&gt;</span> <span class="p">{</span>
-  <span class="c1">// 将 Color 储存在 StatefulColorfulTile 的 State StatefulColorfulTileState 中.
-</span><span class="c1"></span>  <span class="n">Color</span> <span class="n">color</span><span class="p">;</span>
-
-  <span class="err">@</span><span class="n">override</span>
-  <span class="kt">void</span> <span class="n">initState</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span>
-    <span class="n">color</span> <span class="o">=</span> <span class="n">UniqueColorGenaretor</span><span class="p">.</span><span class="n">getColor</span><span class="p">();</span>
-  <span class="p">}</span>
-
-  <span class="err">@</span><span class="n">override</span>
-  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">buildColorfulTile</span><span class="p">(</span><span class="n">color</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">StatefulColorfulTile</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">StatefulColorfulTile</span><span class="p">({</span><span class="n">Key</span> <span class="n">key</span><span class="p">})</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="nl">key:</span> <span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="err">@</span><span class="n">override</span>
+</span></span><span class="line"><span class="cl">  <span class="n">State</span><span class="o">&lt;</span><span class="n">StatefulWidget</span><span class="o">&gt;</span> <span class="n">createState</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="n">StatefulColorfulTileState</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">StatefulColorfulTileState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">StatefulColorfulTile</span><span class="o">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 将 Color 储存在 StatefulColorfulTile 的 State StatefulColorfulTileState 中.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Color</span> <span class="n">color</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="err">@</span><span class="n">override</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="n">initState</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">color</span> <span class="o">=</span> <span class="n">UniqueColorGenaretor</span><span class="p">.</span><span class="n">getColor</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="err">@</span><span class="n">override</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">buildColorfulTile</span><span class="p">(</span><span class="n">color</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>修改外部容器 <code>PositionedTiles</code> 中 <code>tiles</code>:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1885,15 +1832,15 @@ if (!doNotTrack) {
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-dart" data-lang="dart">  <span class="err">@</span><span class="n">override</span>
-  <span class="kt">void</span> <span class="n">initState</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span>
-    <span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span>
-      <span class="n">StatefulColorfulTile</span><span class="p">(),</span>
-      <span class="n">StatefulColorfulTile</span><span class="p">(),</span>
-    <span class="p">];</span>
-  <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl">  <span class="err">@</span><span class="n">override</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="n">initState</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="n">StatefulColorfulTile</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">      <span class="n">StatefulColorfulTile</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="结果-1">结果</h5>
 <img alt="PositionedTiles" src="https://image.youcute.cn/image/blog/gifhome_229x272.gif" width=200/>
@@ -1905,21 +1852,21 @@ if (!doNotTrack) {
 <p>在 Flutter 框架中，视图维持在树的结构中，我们编写的 Widget 一个嵌套一个，最终组合为一个 Tree。</p>
 <h4 id="statelesswidget">StatelessWidget</h4>
 <p>在第一种使用 <code>StatelessWidget</code> 的实现中，当 Flutter 渲染这些 Widgets 时，<code>Row</code> Widget 为它的子 Widget 提供了一组有序的插槽。对于每一个 Widget，Flutter 都会构建一个对应的 <code>Element</code>。构建的这个 <code>Element</code> Tree 相当简单，仅保存有关每个 <code>Widget</code> 类型的信息以及对子<code>Widget</code> 的引用。你可以将这个 <code>Element</code> Tree 当做就像你的 Flutter App 的骨架。它展示了 App 的结构，但其他信息需要通过引用原始<code>Widget</code>来查找。</p>
-<p><img alt="StatelessWidget Tree & Element Tree" src="https://image.youcute.cn/image/blog/flutter_tree.png" width=300 /></p>
+<img alt="StatelessWidget Tree & Element Tree" src="https://image.youcute.cn/image/blog/flutter_tree.png" width=300 />
 <p>当我们交换行中的两个色块时，Flutter 遍历 <code>Widget</code> 树，看看骨架结构是否相同。它从 <code>Row</code> Widget 开始，然后移动到它的子 Widget，Element 树检查 Widget 是否与旧 Widget 是相同类型和 <code>Key</code>。 如果都相同的话，它会更新对新 widget 的引用。在我们这里，Widget 没有设置 Key，所以<code>Flutter</code>只是检查类型。它对第二个孩子做同样的事情。所以 Element 树将根据 Widget 树进行对应的更新。</p>
-<p><img alt="swap之后" src="https://image.youcute.cn/image/blog/flutter_element_tree.png" width=300 /></p>
+<img alt="swap之后" src="https://image.youcute.cn/image/blog/flutter_element_tree.png" width=300 />
 <p>当 Element Tree 更新完成后，Flutter 将根据 Element Tree 构建一个 Render Object Tree，最终开始渲染流程。</p>
 <p><img src="http://gw.alicdn.com/mt/TB1UIYNnVuWBuNjSspnXXX1NVXa-2108-1224.png" alt="类似这样的渲染流程" /></p>
 <h4 id="statefulwidget">StatefulWidget</h4>
 <p>当使用 <code>StatefulWidget</code> 实现时，控件树的结构也是类似的，只是现在 color 信息没有存储控件自身了，而是在外部的 State 对象中。</p>
-<p><img alt="StatefulWidget Tree & Element Tree" src="https://image.youcute.cn/image/blog/flutter_statefullwidget_tree.png" width=300 /></p>
+<img alt="StatefulWidget Tree & Element Tree" src="https://image.youcute.cn/image/blog/flutter_statefullwidget_tree.png" width=300 />
 <p>现在，我们点击按钮，交换控件的次序，Flutter 将遍历 Element 树，检查 Widget 树中 <code>Row</code> 控件并且更新 Element 树中的引用，然后第一个 Tile 控件检查它对应的控件是否是相同类型，它发现对方是相同的类型; 然后第二个 Tile 控件做相同的事情，最终就导致 Flutter 认为这两个控件都没有发生改变。Flutter 使用 Element 树和它对应的控件的 State 去确定要在设备上显示的内容, 所以 Element 树没有改变，显示的内容也就不会改变。</p>
-<p><img alt="swap之后" src="https://image.youcute.cn/image/blog/flutter_statefullwidget_tree_swap.png" width=300 /></p>
+<img alt="swap之后" src="https://image.youcute.cn/image/blog/flutter_statefullwidget_tree_swap.png" width=300 />
 <h4 id="statefullwidget-结合-key">StatefullWidget 结合 Key</h4>
 <p>现在，为 <code>StatefulColorfulTile</code> 传递一个 <code>Key</code> 对象:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1929,15 +1876,15 @@ if (!doNotTrack) {
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-dart" data-lang="dart"><span class="kt">void</span> <span class="n">initState</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span>
-  <span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="c1">// 使用 UniqueKey
-</span><span class="c1"></span>    <span class="n">StatefulColorfulTile</span><span class="p">(</span><span class="nl">key:</span> <span class="n">UniqueKey</span><span class="p">()),</span>
-    <span class="n">StatefulColorfulTile</span><span class="p">(</span><span class="nl">key:</span> <span class="n">UniqueKey</span><span class="p">()),</span>
-  <span class="p">];</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">initState</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 使用 UniqueKey
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">StatefulColorfulTile</span><span class="p">(</span><span class="nl">key:</span> <span class="n">UniqueKey</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">StatefulColorfulTile</span><span class="p">(</span><span class="nl">key:</span> <span class="n">UniqueKey</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>再次运行:</p>
 <img alt="PositionedTiles" src="https://image.youcute.cn/image/blog/gifhome_433x532.gif" width=200/>
@@ -1957,7 +1904,7 @@ if (!doNotTrack) {
 <p>回到 <code>StatefulColorfulTile</code> 例子中，为每个色块添加一个 <code>Padding</code>，同时 <code>key</code> 还是设置在相同的地方:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1973,23 +1920,23 @@ if (!doNotTrack) {
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-dart" data-lang="dart"><span class="err">@</span><span class="n">override</span>
-<span class="kt">void</span> <span class="n">initState</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span>
-  <span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">Padding</span><span class="p">(</span>
-      <span class="nl">padding:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">8.0</span><span class="p">),</span>
-      <span class="nl">child:</span> <span class="n">StatefulColorfulTile</span><span class="p">(</span><span class="nl">key:</span> <span class="n">UniqueKey</span><span class="p">()),</span>
-    <span class="p">),</span>
-    <span class="n">Padding</span><span class="p">(</span>
-      <span class="nl">padding:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">8.0</span><span class="p">),</span>
-      <span class="nl">child:</span> <span class="n">StatefulColorfulTile</span><span class="p">(</span><span class="nl">key:</span> <span class="n">UniqueKey</span><span class="p">()),</span>
-    <span class="p">),</span>
-  <span class="p">];</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="err">@</span><span class="n">override</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">initState</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Padding</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nl">padding:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">8.0</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">      <span class="nl">child:</span> <span class="n">StatefulColorfulTile</span><span class="p">(</span><span class="nl">key:</span> <span class="n">UniqueKey</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Padding</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nl">padding:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">8.0</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">      <span class="nl">child:</span> <span class="n">StatefulColorfulTile</span><span class="p">(</span><span class="nl">key:</span> <span class="n">UniqueKey</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><img alt="交换时" src="https://image.youcute.cn/image/blog/flutter_color_swap.gif" width=300 /></p>
+</div><img alt="交换时" src="https://image.youcute.cn/image/blog/flutter_color_swap.gif" width=300 />
 <p>当点击按钮发生交换之后，可以看到两个色块的颜色会随机改变，但是我的预期是两个固定的颜色彼此交换。</p>
 <h3 id="为什么产生问题">为什么产生问题</h3>
 <p>当Widget 树中两个 <code>Padding</code> 发生了交换，它们包裹的色块也就发生了交换:</p>
@@ -2014,7 +1961,7 @@ if (!doNotTrack) {
 <p>当 Widget 树中两个 <code>Padding</code> 发生交换之后，Flutter 就能根据 <code>Padding</code> 上 <code>Key</code> 的变化，更新 <code>Element</code> 树中的两个 <code>Padding</code>，从而实现交换。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2032,25 +1979,25 @@ if (!doNotTrack) {
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-dart" data-lang="dart"> <span class="err">@</span><span class="n">override</span>
- <span class="kt">void</span> <span class="n">initState</span><span class="p">()</span> <span class="p">{</span>
-   <span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span>
-   <span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span>
-     <span class="n">Padding</span><span class="p">(</span>
-       <span class="nl">key:</span> <span class="n">UniqueKey</span><span class="p">(),</span>
-       <span class="nl">padding:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">8.0</span><span class="p">),</span>
-       <span class="nl">child:</span> <span class="n">StatefulColorfulTile</span><span class="p">(),</span>
-     <span class="p">),</span>
-     <span class="n">Padding</span><span class="p">(</span>
-       <span class="nl">key:</span> <span class="n">UniqueKey</span><span class="p">(),</span>
-       <span class="nl">padding:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">8.0</span><span class="p">),</span>
-       <span class="nl">child:</span> <span class="n">StatefulColorfulTile</span><span class="p">(),</span>
-     <span class="p">),</span>
-   <span class="p">];</span>
- <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"> <span class="err">@</span><span class="n">override</span>
+</span></span><span class="line"><span class="cl"> <span class="kt">void</span> <span class="n">initState</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">   <span class="n">tiles</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">     <span class="n">Padding</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">       <span class="nl">key:</span> <span class="n">UniqueKey</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">       <span class="nl">padding:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">8.0</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">       <span class="nl">child:</span> <span class="n">StatefulColorfulTile</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">     <span class="p">),</span>
+</span></span><span class="line"><span class="cl">     <span class="n">Padding</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">       <span class="nl">key:</span> <span class="n">UniqueKey</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">       <span class="nl">padding:</span> <span class="kd">const</span> <span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">8.0</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">       <span class="nl">child:</span> <span class="n">StatefulColorfulTile</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">     <span class="p">),</span>
+</span></span><span class="line"><span class="cl">   <span class="p">];</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://image.youcute.cn/image/blog/flutter_swap_padding.gif" alt="根据 Padding Key" width=300 /></p>
+</div><img src="https://image.youcute.cn/image/blog/flutter_swap_padding.gif" alt="根据 Padding Key" width=300 />
 <h2 id="which-该使用哪种类型的-key">Which: 该使用哪种类型的 Key</h2>
 <p><code>Key</code> 的目的在于为每个 Widget 指明一个唯一的身份，使用何种 <code>Key</code> 就要依具体的使用场景决定。</p>
 <ul>
@@ -2076,7 +2023,7 @@ if (!doNotTrack) {
 <ul>
 <li>比如: 要在两个不同的屏幕上显示相同的 Widget，同时保持相同的 State，则需要使用 GlobalKeys。</li>
 </ul>
-<p><img src="https://image.youcute.cn/image/blog/flutter_global_keys_sample.gif" alt="复用 Widget" width=200 /></p>
+<img src="https://image.youcute.cn/image/blog/flutter_global_keys_sample.gif" alt="复用 Widget" width=200 />
 </li>
 <li>
 <p>在第二种情况下，您可能希望验证密码，但不希望与树中的其他 Widget 共享该状态信息，可以使用 <code>GlobalKey&lt;FromState&gt;</code> 持有一个表单 <code>Form</code> 的 <code>State</code>。 Flutter.dev 上有这个例子<a href="https://flutter.dev/docs/cookbook/forms/validation">Building a form with validation</a>。</p>
@@ -2296,7 +2243,7 @@ if (!doNotTrack) {
     
 <div class="donation">
   <div class="donation__message">
-    Support the author with
+    您的鼓励是我最大的动力
   </div>
   <div class="donation__icons">
     
@@ -2347,7 +2294,7 @@ if (!doNotTrack) {
   </div>
   <div class="whoami__contents">
     <div class="whoami__written-by">
-      WRITTEN BY
+      作者
     </div>
     <div class="whoami__title">
       
@@ -2533,7 +2480,7 @@ if (!doNotTrack) {
 </div>
 
 
-<script defer src="/js/swipe.min.989e074dfb92ce7f57a92c1df7027f88b53c50a54fd9ad450a673a64aa91bfa4.js"></script>
+<script defer src="/js/swipe.min.feb438efb7ca009ecd7fc2ac3ad2fced4840990b2798d81f87137f2dc6281f05.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
@@ -2806,7 +2753,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <span class="icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
   </span>
-  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="搜索" autocomplete="off">
   <div id="search-results" class="dropdown">
     <div id="search-menu" class="dropdown-menu" role="menu">
     </div>
@@ -2826,7 +2773,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section class="sidebar hide">
   <script>document.querySelector('.sidebar').classList.remove('hide')</script>
   <div class="toc__flexbox" data-position="fixed">
-    <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
+    <h6 class="toc__title" data-ani="true">目录</h6>
     
       <label class="switch" data-ani="true">
         <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
@@ -3257,7 +3204,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.trigger.classList.add('tooltipped');
       e.trigger.classList.add('tooltipped-s');
     });
-    // =================================================================
+    
 
 
 
@@ -3475,6 +3422,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
+      
+      
+        
+        
+          
+            
+          
+        
+      
+        
+      
+    
   </div>
 </div>
 
@@ -3585,7 +3544,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2022, All Rights Reserved
+                    ©2023, All Rights Reserved
                 
             </p>
         

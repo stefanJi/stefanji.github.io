@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh" dir="ltr">
 
 <head prefix="og: http://ogp.me/ns#">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.3ce954c8aea3b69cc5e6f734d8273ba4cd48d3a7987dbdca145849bc4b8fc296.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -663,6 +663,12 @@
     
     var enableSearch = JSON.parse("true");
     
+    var searchDistance = JSON.parse("null");
+    
+    var searchThreshold = JSON.parse("null");
+    
+    var searchContent = JSON.parse("null");
+    
     var enableSearchHighlight = JSON.parse("true");
     
     var searchResultPosition = JSON.parse("null");
@@ -686,12 +692,13 @@
         xhr.onload = function () {
           if (xhr.status === 200) {
             fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
-              keys: sectionType.includes('publication') ? ['title', 'abstract'] : ['title', 'description', 'content'],
+              keys: sectionType.includes('publication') ? ['title', 'abstract'] : 
+                searchContent ? ['title', 'description', 'content'] : ['title', 'description'],
               includeMatches: enableSearchHighlight,
               shouldSort: true, 
-              threshold: 0.4, 
+              threshold: searchThreshold ? searchThreshold : 0.4, 
               location: 0, 
-              distance: 100, 
+              distance: searchDistance ? searchDistance : 100, 
               maxPatternLength: 32,
               minMatchCharLength: 1,
               isCaseSensitive: false, 
@@ -715,7 +722,7 @@
       var a = document.createElement('a');
       a.innerHTML = obj.item.title;
       a.setAttribute('class', 'search-result__item--title');
-      a.setAttribute('href', obj.item.permalink);
+      a.setAttribute('href', obj.item.uri);
 
       var descDiv = document.createElement('div');
       descDiv.setAttribute('class', 'search-result__item--desc');
@@ -1315,7 +1322,8 @@
     }
   
   });
-</script>    
+</script>
+    
     
 
 
@@ -1339,7 +1347,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="Ji Yang(YangJi) blog. Android,OpenGL,iOS,Flutter,Network,Teac">
 
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.115.1">
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1393,7 +1401,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
   
 <script type="application/javascript">
 var doNotTrack = false;
@@ -1450,7 +1457,7 @@ if (!doNotTrack) {
     &nbsp;&nbsp;
     
     
-      <a href="/" title="Home" rel="home" class="navbar__title-link">
+      <a href="/" title="主页" rel="home" class="navbar__title-link">
         <h6 class="navbar__title">YangBlog</h6>
       </a>
     
@@ -1497,7 +1504,7 @@ if (!doNotTrack) {
 
 <div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
   <div class="mobile-search__top">
-    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="搜索" class="mobile-search__top--input"/>
     <div id="search-mobile-close" class="mobile-search__top--icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
     </div>
@@ -1518,59 +1525,23 @@ if (!doNotTrack) {
   <ul dir="ltr">
     
     
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="/categories">category</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item active">
-          <a href="/posts">posts</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="https://life.jiyang.site">about</a>
-        </li>
-      
-      
-    
 
     
       <li class="navbarm__menu--item ">
         <a href="/tags" class="navbarm__menu--term" data-index="0">
-          Tags
+          标签
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/categories" class="navbarm__menu--term" data-index="1">
-          Categories
+          分类
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/series" class="navbarm__menu--term" data-index="2">
-          Series
+          系列
         </a>
       </li>
     
@@ -1615,30 +1586,6 @@ if (!doNotTrack) {
 
   
   
-  
-  
-  
-  
-  
-  <a href="/categories" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">category</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="/posts" class="navbar__menu-item navbar__slide-down active" dir="ltr" data-ani="true">posts</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="https://life.jiyang.site" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">about</a>
-  
-  
 </div>
 </nav>
             
@@ -1681,16 +1628,16 @@ if (!doNotTrack) {
   
   
   <div class="single ">
-    <div class="single__nojs">This page looks best with JavaScript enabled</div>
+    <div class="single__nojs">Please enable Javascript to view the contents</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
     <h2 class="single__title" data-ani="true">MMKV分析</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Oct 19, 2018 </time>
+  <time class="single__info" title="创建日期">📅&nbsp;2018年10月19日 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;4&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="阅读时长"> ☕&nbsp;4&nbsp;分钟 </span>
   
   <span class="single__info">
     
@@ -1735,16 +1682,16 @@ if (!doNotTrack) {
 <h2 id="获取-mmkv-实例">获取 MMKV 实例</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">native</span> <span class="kd">static</span> <span class="kt">long</span> <span class="nf">getMMKVWithID</span><span class="o">(</span><span class="n">String</span> <span class="n">mmapID</span><span class="o">,</span> <span class="kt">int</span> <span class="n">mode</span><span class="o">,</span> <span class="n">String</span> <span class="n">cryptKey</span><span class="o">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">native</span> <span class="kd">static</span> <span class="kt">long</span> <span class="nf">getMMKVWithID</span><span class="o">(</span><span class="n">String</span> <span class="n">mmapID</span><span class="o">,</span> <span class="kt">int</span> <span class="n">mode</span><span class="o">,</span> <span class="n">String</span> <span class="n">cryptKey</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>对应的 Native 代码:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1766,32 +1713,32 @@ if (!doNotTrack) {
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">extern</span> <span class="s">&#34;C&#34;</span> <span class="n">JNIEXPORT</span> <span class="n">JNICALL</span> <span class="n">jlong</span> <span class="n">Java_com_tencent_mmkv_MMKV_getMMKVWithID</span><span class="p">(</span>
-    <span class="n">JNIEnv</span> <span class="o">*</span><span class="n">env</span><span class="p">,</span> <span class="n">jobject</span> <span class="n">obj</span><span class="p">,</span> <span class="n">jstring</span> <span class="n">mmapID</span><span class="p">,</span> <span class="n">jint</span> <span class="n">mode</span><span class="p">,</span> <span class="n">jstring</span> <span class="n">cryptKey</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">MMKV</span> <span class="o">*</span><span class="n">kv</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">mmapID</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">jlong</span><span class="p">)</span> <span class="n">kv</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">string</span> <span class="n">str</span> <span class="o">=</span> <span class="n">jstring2string</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">mmapID</span><span class="p">);</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">cryptKey</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">string</span> <span class="n">crypt</span> <span class="o">=</span> <span class="n">jstring2string</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">cryptKey</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">crypt</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">kv</span> <span class="o">=</span> <span class="n">MMKV</span><span class="o">::</span><span class="n">mmkvWithID</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">DEFAULT_MMAP_SIZE</span><span class="p">,</span> <span class="p">(</span><span class="n">MMKVMode</span><span class="p">)</span> <span class="n">mode</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">crypt</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">kv</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">kv</span> <span class="o">=</span> <span class="n">MMKV</span><span class="o">::</span><span class="n">mmkvWithID</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">DEFAULT_MMAP_SIZE</span><span class="p">,</span> <span class="p">(</span><span class="n">MMKVMode</span><span class="p">)</span> <span class="n">mode</span><span class="p">,</span> <span class="k">nullptr</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="p">(</span><span class="n">jlong</span><span class="p">)</span> <span class="n">kv</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">extern</span> <span class="s">&#34;C&#34;</span> <span class="n">JNIEXPORT</span> <span class="n">JNICALL</span> <span class="n">jlong</span> <span class="n">Java_com_tencent_mmkv_MMKV_getMMKVWithID</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">JNIEnv</span> <span class="o">*</span><span class="n">env</span><span class="p">,</span> <span class="n">jobject</span> <span class="n">obj</span><span class="p">,</span> <span class="n">jstring</span> <span class="n">mmapID</span><span class="p">,</span> <span class="n">jint</span> <span class="n">mode</span><span class="p">,</span> <span class="n">jstring</span> <span class="n">cryptKey</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MMKV</span> <span class="o">*</span><span class="n">kv</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">mmapID</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="n">jlong</span><span class="p">)</span> <span class="n">kv</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">str</span> <span class="o">=</span> <span class="n">jstring2string</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">mmapID</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">cryptKey</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">string</span> <span class="n">crypt</span> <span class="o">=</span> <span class="n">jstring2string</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">cryptKey</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">crypt</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">kv</span> <span class="o">=</span> <span class="n">MMKV</span><span class="o">::</span><span class="n">mmkvWithID</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">DEFAULT_MMAP_SIZE</span><span class="p">,</span> <span class="p">(</span><span class="n">MMKVMode</span><span class="p">)</span> <span class="n">mode</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">crypt</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">kv</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">kv</span> <span class="o">=</span> <span class="n">MMKV</span><span class="o">::</span><span class="n">mmkvWithID</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">DEFAULT_MMAP_SIZE</span><span class="p">,</span> <span class="p">(</span><span class="n">MMKVMode</span><span class="p">)</span> <span class="n">mode</span><span class="p">,</span> <span class="k">nullptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">jlong</span><span class="p">)</span> <span class="n">kv</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>进一步调用 MMKV 类的静态方法:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1819,33 +1766,33 @@ if (!doNotTrack) {
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// 声明
-</span><span class="c1"></span><span class="k">static</span> <span class="n">MMKV</span> <span class="o">*</span><span class="nf">mmkvWithID</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">mmapID</span><span class="p">,</span>
-                            <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">DEFAULT_MMAP_SIZE</span><span class="p">,</span>
-                            <span class="n">MMKVMode</span> <span class="n">mode</span> <span class="o">=</span> <span class="n">MMKV_SINGLE_PROCESS</span><span class="p">,</span>
-                            <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">*</span><span class="n">cryptKey</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">);</span>
-
-<span class="c1">// 实现
-</span><span class="c1"></span><span class="n">MMKV</span> <span class="o">*</span><span class="n">MMKV</span><span class="o">::</span><span class="n">mmkvWithID</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">mmapID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="n">MMKVMode</span> <span class="n">mode</span><span class="p">,</span> <span class="n">string</span> <span class="o">*</span><span class="n">cryptKey</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">mmapID</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">// 线程同步锁，使用区域锁模式
-</span><span class="c1"></span>    <span class="n">SCOPEDLOCK</span><span class="p">(</span><span class="n">g_instanceLock</span><span class="p">);</span>
-
-    <span class="c1">// static unordered_map&lt;std::string, MMKV *&gt; *g_instanceDic;
-</span><span class="c1"></span>    <span class="c1">// 从全局的缓存对象中获取一个对象，如果缓存中没有，就创建一个新的对象，并加到全局缓存中
-</span><span class="c1"></span>    <span class="k">auto</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">g_instanceDic</span><span class="o">-&gt;</span><span class="n">find</span><span class="p">(</span><span class="n">mmapID</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">itr</span> <span class="o">!=</span> <span class="n">g_instanceDic</span><span class="o">-&gt;</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">MMKV</span> <span class="o">*</span><span class="n">kv</span> <span class="o">=</span> <span class="n">itr</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">;</span>
-        <span class="k">return</span> <span class="n">kv</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">auto</span> <span class="n">kv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MMKV</span><span class="p">(</span><span class="n">mmapID</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">cryptKey</span><span class="p">);</span>
-    <span class="p">(</span><span class="o">*</span><span class="n">g_instanceDic</span><span class="p">)[</span><span class="n">mmapID</span><span class="p">]</span> <span class="o">=</span> <span class="n">kv</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">kv</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">static</span> <span class="n">MMKV</span> <span class="o">*</span><span class="nf">mmkvWithID</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">mmapID</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">DEFAULT_MMAP_SIZE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">MMKVMode</span> <span class="n">mode</span> <span class="o">=</span> <span class="n">MMKV_SINGLE_PROCESS</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">*</span><span class="n">cryptKey</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">MMKV</span> <span class="o">*</span><span class="n">MMKV</span><span class="o">::</span><span class="n">mmkvWithID</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">mmapID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="n">MMKVMode</span> <span class="n">mode</span><span class="p">,</span> <span class="n">string</span> <span class="o">*</span><span class="n">cryptKey</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">mmapID</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 线程同步锁，使用区域锁模式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">SCOPEDLOCK</span><span class="p">(</span><span class="n">g_instanceLock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// static unordered_map&lt;std::string, MMKV *&gt; *g_instanceDic;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 从全局的缓存对象中获取一个对象，如果缓存中没有，就创建一个新的对象，并加到全局缓存中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">auto</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">g_instanceDic</span><span class="o">-&gt;</span><span class="n">find</span><span class="p">(</span><span class="n">mmapID</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">itr</span> <span class="o">!=</span> <span class="n">g_instanceDic</span><span class="o">-&gt;</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MMKV</span> <span class="o">*</span><span class="n">kv</span> <span class="o">=</span> <span class="n">itr</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">kv</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">kv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MMKV</span><span class="p">(</span><span class="n">mmapID</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">cryptKey</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="o">*</span><span class="n">g_instanceDic</span><span class="p">)[</span><span class="n">mmapID</span><span class="p">]</span> <span class="o">=</span> <span class="n">kv</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">kv</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="题外话mmkv-中的锁">题外话，MMKV 中的锁</h2>
 <p>MMKV 中封装了2个与锁相关的类:</p>
@@ -1855,7 +1802,7 @@ if (!doNotTrack) {
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1887,41 +1834,41 @@ if (!doNotTrack) {
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">class</span> <span class="nc">ThreadLock</span> <span class="p">{</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="n">pthread_mutex_t</span> <span class="n">m_lock</span><span class="p">;</span>
-
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">ThreadLock</span><span class="p">();</span>
-    <span class="o">~</span><span class="n">ThreadLock</span><span class="p">();</span>
-
-    <span class="kt">void</span> <span class="nf">lock</span><span class="p">();</span>
-    <span class="kt">bool</span> <span class="nf">try_lock</span><span class="p">();</span>
-    <span class="kt">void</span> <span class="nf">unlock</span><span class="p">();</span>
-<span class="p">};</span>
-
-<span class="n">ThreadLock</span><span class="o">::</span><span class="n">ThreadLock</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// 创建一个互斥锁属性
-</span><span class="c1"></span>    <span class="n">pthread_mutexattr_t</span> <span class="n">attr</span><span class="p">;</span>
-    <span class="n">pthread_mutexattr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
-    <span class="c1">// 锁的类型: PTHREAD_MUTEX_RECURSIVE: 如果线程在不首先解除锁定互斥锁的情况下尝试重新锁定该互斥锁，则可成功锁定该互斥锁
-</span><span class="c1"></span>    <span class="n">pthread_mutexattr_settype</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">,</span> <span class="n">PTHREAD_MUTEX_RECURSIVE</span><span class="p">);</span>
-
-    <span class="c1">// 通过属性创建初始化锁
-</span><span class="c1"></span>    <span class="n">pthread_mutex_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m_lock</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
-    <span class="c1">// 销毁属性
-</span><span class="c1"></span>    <span class="n">pthread_mutexattr_destroy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="n">ThreadLock</span><span class="o">::~</span><span class="n">ThreadLock</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// 析构时销毁互斥锁
-</span><span class="c1"></span>    <span class="n">pthread_mutex_destroy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m_lock</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ThreadLock</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pthread_mutex_t</span> <span class="n">m_lock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ThreadLock</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">ThreadLock</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">lock</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">try_lock</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">unlock</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ThreadLock</span><span class="o">::</span><span class="n">ThreadLock</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 创建一个互斥锁属性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">pthread_mutexattr_t</span> <span class="n">attr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pthread_mutexattr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 锁的类型: PTHREAD_MUTEX_RECURSIVE: 如果线程在不首先解除锁定互斥锁的情况下尝试重新锁定该互斥锁，则可成功锁定该互斥锁
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">pthread_mutexattr_settype</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">,</span> <span class="n">PTHREAD_MUTEX_RECURSIVE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 通过属性创建初始化锁
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">pthread_mutex_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m_lock</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 销毁属性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">pthread_mutexattr_destroy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ThreadLock</span><span class="o">::~</span><span class="n">ThreadLock</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 析构时销毁互斥锁
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">pthread_mutex_destroy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1966,50 +1913,50 @@ if (!doNotTrack) {
 </span><span class="lnt">43
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">class</span> <span class="nc">ScopedLock</span> <span class="p">{</span>
-    <span class="n">T</span> <span class="o">*</span><span class="n">m_lock</span><span class="p">;</span>
-
-    <span class="c1">// just forbid it for possibly misuse
-</span><span class="c1"></span>    <span class="n">ScopedLock</span><span class="p">(</span><span class="k">const</span> <span class="n">ScopedLock</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-
-    <span class="n">ScopedLock</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">ScopedLock</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">ScopedLock</span><span class="p">(</span><span class="n">T</span> <span class="o">*</span><span class="n">oLock</span><span class="p">)</span> <span class="o">:</span> <span class="n">m_lock</span><span class="p">(</span><span class="n">oLock</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">assert</span><span class="p">(</span><span class="n">m_lock</span><span class="p">);</span>
-        <span class="n">lock</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="o">~</span><span class="n">ScopedLock</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">unlock</span><span class="p">();</span>
-        <span class="n">m_lock</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="kt">void</span> <span class="nf">lock</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">m_lock</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">m_lock</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="kt">bool</span> <span class="nf">try_lock</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">m_lock</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="n">m_lock</span><span class="o">-&gt;</span><span class="n">try_lock</span><span class="p">();</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="kt">void</span> <span class="nf">unlock</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">m_lock</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">m_lock</span><span class="o">-&gt;</span><span class="n">unlock</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="cp">#define SCOPEDLOCK(lock) _SCOPEDLOCK(lock, __COUNTER__)
-</span><span class="cp">#define _SCOPEDLOCK(lock, counter) __SCOPEDLOCK(lock, counter)
-</span><span class="cp">#define __SCOPEDLOCK(lock, counter) ScopedLock&lt;decltype(lock)&gt; __scopedLock##counter(&amp;lock)
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ScopedLock</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">T</span> <span class="o">*</span><span class="n">m_lock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// just forbid it for possibly misuse
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ScopedLock</span><span class="p">(</span><span class="k">const</span> <span class="n">ScopedLock</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ScopedLock</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">ScopedLock</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ScopedLock</span><span class="p">(</span><span class="n">T</span> <span class="o">*</span><span class="n">oLock</span><span class="p">)</span> <span class="o">:</span> <span class="n">m_lock</span><span class="p">(</span><span class="n">oLock</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">assert</span><span class="p">(</span><span class="n">m_lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lock</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">ScopedLock</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unlock</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m_lock</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">lock</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">m_lock</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m_lock</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">try_lock</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">m_lock</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">m_lock</span><span class="o">-&gt;</span><span class="n">try_lock</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">unlock</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">m_lock</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m_lock</span><span class="o">-&gt;</span><span class="n">unlock</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#define SCOPEDLOCK(lock) _SCOPEDLOCK(lock, __COUNTER__)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define _SCOPEDLOCK(lock, counter) __SCOPEDLOCK(lock, counter)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define __SCOPEDLOCK(lock, counter) ScopedLock&lt;decltype(lock)&gt; __scopedLock##counter(&amp;lock)
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="todo-">TODO ⬇️</h2>
 <h2 id="内存准备">内存准备</h2>
@@ -2020,7 +1967,7 @@ if (!doNotTrack) {
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2068,53 +2015,53 @@ if (!doNotTrack) {
 </span><span class="lnt">46
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">MMKV</span><span class="o">::</span><span class="n">loadFromFile</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">//获取文件句柄
-</span><span class="c1"></span>    <span class="n">m_fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="n">m_path</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">O_RDWR</span> <span class="o">|</span> <span class="n">O_CREAT</span><span class="p">,</span> <span class="n">S_IRWXU</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">m_fd</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">MMKVError</span><span class="p">(</span><span class="s">&#34;fail to open:%s, %s&#34;</span><span class="p">,</span> <span class="n">m_path</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="n">m_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="c1">// 获取文件大小
-</span><span class="c1"></span>        <span class="k">struct</span> <span class="nc">stat</span> <span class="n">st</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">fstat</span><span class="p">(</span><span class="n">m_fd</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">st</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">m_size</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">st_size</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="c1">// round up to (n * pagesize)
-</span><span class="c1"></span>        <span class="c1">// 如果 size 小于系统内存分页大小 或 不是整数倍,就增加到整数倍
-</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">m_size</span> <span class="o">&lt;</span> <span class="n">DEFAULT_MMAP_SIZE</span> <span class="o">||</span> <span class="p">(</span><span class="n">m_size</span> <span class="o">%</span> <span class="n">DEFAULT_MMAP_SIZE</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-            <span class="n">size_t</span> <span class="n">oldSize</span> <span class="o">=</span> <span class="n">m_size</span><span class="p">;</span>
-            <span class="n">m_size</span> <span class="o">=</span> <span class="p">((</span><span class="n">m_size</span> <span class="o">/</span> <span class="n">DEFAULT_MMAP_SIZE</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">DEFAULT_MMAP_SIZE</span><span class="p">;</span>
-            <span class="c1">//改变文件大小到新的 size
-</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">ftruncate</span><span class="p">(</span><span class="n">m_fd</span><span class="p">,</span> <span class="n">m_size</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">m_size</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">st_size</span><span class="p">);</span>
-            <span class="p">}</span>
-            <span class="c1">//用 0 把新增的空间填满
-</span><span class="c1"></span>            <span class="n">zeroFillFile</span><span class="p">(</span><span class="n">m_fd</span><span class="p">,</span> <span class="n">oldSize</span><span class="p">,</span> <span class="n">m_size</span> <span class="o">-</span> <span class="n">oldSize</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="c1">//建立内存映射
-</span><span class="c1"></span>        <span class="n">m_ptr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="n">mmap</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span> <span class="n">m_size</span><span class="p">,</span> <span class="n">PROT_READ</span> <span class="o">|</span> <span class="n">PROT_WRITE</span><span class="p">,</span> <span class="n">MAP_SHARED</span><span class="p">,</span> <span class="n">m_fd</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">m_ptr</span> <span class="o">==</span> <span class="n">MAP_FAILED</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">MMKVError</span><span class="p">(</span><span class="s">&#34;fail to mmap [%s], %s&#34;</span><span class="p">,</span> <span class="n">m_mmapID</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m_actualSize</span><span class="p">,</span> <span class="n">m_ptr</span><span class="p">,</span> <span class="n">Fixed32Size</span><span class="p">);</span>
-            <span class="kt">bool</span> <span class="n">loaded</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">m_actualSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">m_actualSize</span> <span class="o">&lt;</span> <span class="n">m_size</span> <span class="o">&amp;&amp;</span> <span class="n">m_actualSize</span> <span class="o">+</span> <span class="n">Fixed32Size</span> <span class="o">&lt;=</span> <span class="n">m_size</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">checkFileCRCValid</span><span class="p">())</span> <span class="p">{</span>
-                        <span class="c1">// 将文件解码为字典，存到内存中
-</span><span class="c1"></span>                        <span class="n">m_dic</span> <span class="o">=</span> <span class="n">MiniPBCoder</span><span class="o">::</span><span class="n">decodeMap</span><span class="p">(</span><span class="n">inputBuffer</span><span class="p">);</span>
-                        <span class="c1">// 将原始内存映射指针位移到已经填充之后的位置，构造成一个负责输出数据到文件的对象，供后面写数据使用
-</span><span class="c1"></span>                        <span class="n">m_output</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CodedOutputData</span><span class="p">(</span><span class="n">m_ptr</span> <span class="o">+</span> <span class="n">Fixed32Size</span> <span class="o">+</span> <span class="n">m_actualSize</span><span class="p">,</span> <span class="n">m_size</span> <span class="o">-</span> <span class="n">Fixed32Size</span> <span class="o">-</span> <span class="n">m_actualSize</span><span class="p">);</span>
-                        <span class="n">loaded</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="n">m_needLoadFromFile</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">MMKV</span><span class="o">::</span><span class="n">loadFromFile</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//获取文件句柄
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">m_fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="n">m_path</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">O_RDWR</span> <span class="o">|</span> <span class="n">O_CREAT</span><span class="p">,</span> <span class="n">S_IRWXU</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">m_fd</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MMKVError</span><span class="p">(</span><span class="s">&#34;fail to open:%s, %s&#34;</span><span class="p">,</span> <span class="n">m_path</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 获取文件大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">struct</span> <span class="nc">stat</span> <span class="n">st</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">fstat</span><span class="p">(</span><span class="n">m_fd</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">st</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m_size</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">st_size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// round up to (n * pagesize)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 如果 size 小于系统内存分页大小 或 不是整数倍,就增加到整数倍
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">m_size</span> <span class="o">&lt;</span> <span class="n">DEFAULT_MMAP_SIZE</span> <span class="o">||</span> <span class="p">(</span><span class="n">m_size</span> <span class="o">%</span> <span class="n">DEFAULT_MMAP_SIZE</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">size_t</span> <span class="n">oldSize</span> <span class="o">=</span> <span class="n">m_size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m_size</span> <span class="o">=</span> <span class="p">((</span><span class="n">m_size</span> <span class="o">/</span> <span class="n">DEFAULT_MMAP_SIZE</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">DEFAULT_MMAP_SIZE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//改变文件大小到新的 size
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">ftruncate</span><span class="p">(</span><span class="n">m_fd</span><span class="p">,</span> <span class="n">m_size</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">m_size</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">st_size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//用 0 把新增的空间填满
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">zeroFillFile</span><span class="p">(</span><span class="n">m_fd</span><span class="p">,</span> <span class="n">oldSize</span><span class="p">,</span> <span class="n">m_size</span> <span class="o">-</span> <span class="n">oldSize</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//建立内存映射
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">m_ptr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="n">mmap</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span> <span class="n">m_size</span><span class="p">,</span> <span class="n">PROT_READ</span> <span class="o">|</span> <span class="n">PROT_WRITE</span><span class="p">,</span> <span class="n">MAP_SHARED</span><span class="p">,</span> <span class="n">m_fd</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">m_ptr</span> <span class="o">==</span> <span class="n">MAP_FAILED</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">MMKVError</span><span class="p">(</span><span class="s">&#34;fail to mmap [%s], %s&#34;</span><span class="p">,</span> <span class="n">m_mmapID</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m_actualSize</span><span class="p">,</span> <span class="n">m_ptr</span><span class="p">,</span> <span class="n">Fixed32Size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">bool</span> <span class="n">loaded</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">m_actualSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">m_actualSize</span> <span class="o">&lt;</span> <span class="n">m_size</span> <span class="o">&amp;&amp;</span> <span class="n">m_actualSize</span> <span class="o">+</span> <span class="n">Fixed32Size</span> <span class="o">&lt;=</span> <span class="n">m_size</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="p">(</span><span class="n">checkFileCRCValid</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">// 将文件解码为字典，存到内存中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="n">m_dic</span> <span class="o">=</span> <span class="n">MiniPBCoder</span><span class="o">::</span><span class="n">decodeMap</span><span class="p">(</span><span class="n">inputBuffer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">// 将原始内存映射指针位移到已经填充之后的位置，构造成一个负责输出数据到文件的对象，供后面写数据使用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="n">m_output</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CodedOutputData</span><span class="p">(</span><span class="n">m_ptr</span> <span class="o">+</span> <span class="n">Fixed32Size</span> <span class="o">+</span> <span class="n">m_actualSize</span><span class="p">,</span> <span class="n">m_size</span> <span class="o">-</span> <span class="n">Fixed32Size</span> <span class="o">-</span> <span class="n">m_actualSize</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">loaded</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m_needLoadFromFile</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="数据组织">数据组织</h2>
 <p>数据序列化方面选用 protobuf 协议</p>
@@ -2125,7 +2072,7 @@ if (!doNotTrack) {
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2158,44 +2105,44 @@ if (!doNotTrack) {
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="n">MMKV</span><span class="o">::</span><span class="n">setStringForKey</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">value</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">// 序列化 value
-</span><span class="c1"></span>    <span class="k">auto</span> <span class="n">data</span> <span class="o">=</span> <span class="n">MiniPBCoder</span><span class="o">::</span><span class="n">encodeDataWithObject</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nf">setDataForKey</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">key</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">bool</span> <span class="n">MMKV</span><span class="o">::</span><span class="n">setDataForKey</span><span class="p">(</span><span class="n">MMBuffer</span> <span class="o">&amp;&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">key</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="c1">// check 文件是否已经加载到内存，没有就加载一次
-</span><span class="c1"></span>    <span class="n">checkLoadData</span><span class="p">();</span>
-
-    <span class="c1">// m_dic[key] = std::move(data);
-</span><span class="c1"></span>    <span class="c1">// 从内存中的字典拿
-</span><span class="c1"></span>    <span class="k">auto</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">m_dic</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">itr</span> <span class="o">==</span> <span class="n">m_dic</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
-        <span class="c1">// 没有就插入
-</span><span class="c1"></span>        <span class="n">itr</span> <span class="o">=</span> <span class="n">m_dic</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">data</span><span class="p">)).</span><span class="n">first</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="c1">// 有就更新
-</span><span class="c1"></span>        <span class="n">itr</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="c1">// 至此内存中操作结束
-</span><span class="c1"></span>    <span class="c1">// 然后进行将数据写到内存映射
-</span><span class="c1"></span>    <span class="k">return</span> <span class="nf">appendDataWithKey</span><span class="p">(</span><span class="n">itr</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">MMKV</span><span class="o">::</span><span class="n">setStringForKey</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">value</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 序列化 value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">auto</span> <span class="n">data</span> <span class="o">=</span> <span class="n">MiniPBCoder</span><span class="o">::</span><span class="n">encodeDataWithObject</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nf">setDataForKey</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">MMKV</span><span class="o">::</span><span class="n">setDataForKey</span><span class="p">(</span><span class="n">MMBuffer</span> <span class="o">&amp;&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">key</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// check 文件是否已经加载到内存，没有就加载一次
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">checkLoadData</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// m_dic[key] = std::move(data);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 从内存中的字典拿
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">auto</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">m_dic</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">itr</span> <span class="o">==</span> <span class="n">m_dic</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 没有就插入
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">itr</span> <span class="o">=</span> <span class="n">m_dic</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">data</span><span class="p">)).</span><span class="n">first</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 有就更新
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">itr</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 至此内存中操作结束
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 然后进行将数据写到内存映射
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="nf">appendDataWithKey</span><span class="p">(</span><span class="n">itr</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="空间增长">空间增长</h2>
 <p>使用 append 实现增量更新</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2229,39 +2176,39 @@ if (!doNotTrack) {
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="n">MMKV</span><span class="o">::</span><span class="n">appendDataWithKey</span><span class="p">(</span><span class="k">const</span> <span class="n">MMBuffer</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="c1">// 扩容
-</span><span class="c1"></span>    <span class="kt">bool</span> <span class="n">hasEnoughSize</span> <span class="o">=</span> <span class="n">ensureMemorySize</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">hasEnoughSize</span> <span class="o">||</span> <span class="o">!</span><span class="n">isFileValid</span><span class="p">())</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">// 如果实际大小为0，表示第一次写入数据
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">m_actualSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// 直接将内存中的字典全部写入
-</span><span class="c1"></span>        <span class="k">auto</span> <span class="n">allData</span> <span class="o">=</span> <span class="n">MiniPBCoder</span><span class="o">::</span><span class="n">encodeDataWithObject</span><span class="p">(</span><span class="n">m_dic</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">allData</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">writeAcutalSize</span><span class="p">(</span><span class="n">allData</span><span class="p">.</span><span class="n">length</span><span class="p">());</span>
-            <span class="n">m_output</span><span class="o">-&gt;</span><span class="n">writeRawData</span><span class="p">(</span><span class="n">allData</span><span class="p">);</span>
-            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="c1">// 向末尾追加数据
-</span><span class="c1"></span>        <span class="n">writeAcutalSize</span><span class="p">(</span><span class="n">m_actualSize</span> <span class="o">+</span> <span class="n">size</span><span class="p">);</span>
-        <span class="n">m_output</span><span class="o">-&gt;</span><span class="n">writeString</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-        <span class="n">m_output</span><span class="o">-&gt;</span><span class="n">writeData</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
-        <span class="k">auto</span> <span class="n">ptr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uint8_t</span> <span class="o">*</span><span class="p">)</span> <span class="n">m_ptr</span> <span class="o">+</span> <span class="n">Fixed32Size</span> <span class="o">+</span> <span class="n">m_actualSize</span> <span class="o">-</span> <span class="n">size</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">m_crypter</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">m_crypter</span><span class="o">-&gt;</span><span class="n">encrypt</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span> <span class="n">ptr</span><span class="p">,</span> <span class="n">size</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="n">updateCRCDigest</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">KeepSequence</span><span class="p">);</span>
-
-        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">MMKV</span><span class="o">::</span><span class="n">appendDataWithKey</span><span class="p">(</span><span class="k">const</span> <span class="n">MMBuffer</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 扩容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">bool</span> <span class="n">hasEnoughSize</span> <span class="o">=</span> <span class="n">ensureMemorySize</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">hasEnoughSize</span> <span class="o">||</span> <span class="o">!</span><span class="n">isFileValid</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 如果实际大小为0，表示第一次写入数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">m_actualSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 直接将内存中的字典全部写入
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">auto</span> <span class="n">allData</span> <span class="o">=</span> <span class="n">MiniPBCoder</span><span class="o">::</span><span class="n">encodeDataWithObject</span><span class="p">(</span><span class="n">m_dic</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">allData</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">writeAcutalSize</span><span class="p">(</span><span class="n">allData</span><span class="p">.</span><span class="n">length</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m_output</span><span class="o">-&gt;</span><span class="n">writeRawData</span><span class="p">(</span><span class="n">allData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 向末尾追加数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">writeAcutalSize</span><span class="p">(</span><span class="n">m_actualSize</span> <span class="o">+</span> <span class="n">size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m_output</span><span class="o">-&gt;</span><span class="n">writeString</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m_output</span><span class="o">-&gt;</span><span class="n">writeData</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="n">ptr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uint8_t</span> <span class="o">*</span><span class="p">)</span> <span class="n">m_ptr</span> <span class="o">+</span> <span class="n">Fixed32Size</span> <span class="o">+</span> <span class="n">m_actualSize</span> <span class="o">-</span> <span class="n">size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">m_crypter</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m_crypter</span><span class="o">-&gt;</span><span class="n">encrypt</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span> <span class="n">ptr</span><span class="p">,</span> <span class="n">size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">updateCRCDigest</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">KeepSequence</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="总结">总结</h1>
 <ul>
@@ -2466,7 +2413,7 @@ if (!doNotTrack) {
     
 <div class="donation">
   <div class="donation__message">
-    Support the author with
+    您的鼓励是我最大的动力
   </div>
   <div class="donation__icons">
     
@@ -2517,7 +2464,7 @@ if (!doNotTrack) {
   </div>
   <div class="whoami__contents">
     <div class="whoami__written-by">
-      WRITTEN BY
+      作者
     </div>
     <div class="whoami__title">
       
@@ -2703,7 +2650,7 @@ if (!doNotTrack) {
 </div>
 
 
-<script defer src="/js/swipe.min.989e074dfb92ce7f57a92c1df7027f88b53c50a54fd9ad450a673a64aa91bfa4.js"></script>
+<script defer src="/js/swipe.min.feb438efb7ca009ecd7fc2ac3ad2fced4840990b2798d81f87137f2dc6281f05.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
@@ -2976,7 +2923,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <span class="icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
   </span>
-  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="搜索" autocomplete="off">
   <div id="search-results" class="dropdown">
     <div id="search-menu" class="dropdown-menu" role="menu">
     </div>
@@ -2996,7 +2943,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section class="sidebar hide">
   <script>document.querySelector('.sidebar').classList.remove('hide')</script>
   <div class="toc__flexbox" data-position="fixed">
-    <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
+    <h6 class="toc__title" data-ani="true">目录</h6>
     
       <label class="switch" data-ani="true">
         <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
@@ -3403,7 +3350,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.trigger.classList.add('tooltipped');
       e.trigger.classList.add('tooltipped-s');
     });
-    // =================================================================
+    
 
 
 
@@ -3621,6 +3568,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
+      
+      
+        
+        
+          
+            
+          
+        
+      
+        
+      
+    
   </div>
 </div>
 
@@ -3731,7 +3690,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2022, All Rights Reserved
+                    ©2023, All Rights Reserved
                 
             </p>
         

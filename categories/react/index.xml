@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>react on Yang Blog</title>
+    <link>https://jiyang.site/categories/react/</link>
+    <description>Recent content in react on Yang Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>©2023, All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 06 Jul 2023 11:31:17 +0800</lastBuildDate>
+    
+        <atom:link href="https://jiyang.site/categories/react/index.xml" rel="self" type="application/rss+xml" />
+    
+
+      
+      <item>
+        <title>理解虚拟列表的实现之React Virtuoso</title>
+        <link>https://jiyang.site/posts/react_virtual_list/</link>
+        <pubDate>Thu, 06 Jul 2023 11:31:17 +0800</pubDate>
+        
+        <atom:modified>Thu, 06 Jul 2023 11:31:17 +0800</atom:modified>
+        <guid>https://jiyang.site/posts/react_virtual_list/</guid>
+        <description>https://virtuoso.dev/ 支持使用不同的 UI 组件实现内部列表：React、MUI 支持：自动处理可变高度的 item、顶部加载更多、底部加载更多 支持：从特定位置开始渲染 结</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>react-virtuoso</category>
+            
+          
+            
+              <category>react</category>
+            
+          
+            
+              <category>虚拟列表</category>
+            
+          
+        
+        
+          
+            
+              <category>react</category>
+            
+          
+        
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>

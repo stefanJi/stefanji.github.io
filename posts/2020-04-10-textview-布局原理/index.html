@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh" dir="ltr">
 
 <head prefix="og: http://ogp.me/ns#">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,9 +18,9 @@
 
 <script defer src="/js/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js"></script>
 
-<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+<script defer src="/js/helper/getParents.min.086022fb02d7a1517e33c2670bffb976b3e80bcacd9caeee0c6a586064f20e42.js"></script>
 
-<script defer src="/js/helper/fadeinout.min.1d13d3e810c3940e80cbba6216a1c76fbf42b5431fc83537ea6997863802362b.js"></script>
+<script defer src="/js/helper/fadeinout.min.3ce954c8aea3b69cc5e6f734d8273ba4cd48d3a7987dbdca145849bc4b8fc296.js"></script>
 
 <script defer src="/js/helper/closest.min.js"></script>
   
@@ -663,6 +663,12 @@
     
     var enableSearch = JSON.parse("true");
     
+    var searchDistance = JSON.parse("null");
+    
+    var searchThreshold = JSON.parse("null");
+    
+    var searchContent = JSON.parse("null");
+    
     var enableSearchHighlight = JSON.parse("true");
     
     var searchResultPosition = JSON.parse("null");
@@ -686,12 +692,13 @@
         xhr.onload = function () {
           if (xhr.status === 200) {
             fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
-              keys: sectionType.includes('publication') ? ['title', 'abstract'] : ['title', 'description', 'content'],
+              keys: sectionType.includes('publication') ? ['title', 'abstract'] : 
+                searchContent ? ['title', 'description', 'content'] : ['title', 'description'],
               includeMatches: enableSearchHighlight,
               shouldSort: true, 
-              threshold: 0.4, 
+              threshold: searchThreshold ? searchThreshold : 0.4, 
               location: 0, 
-              distance: 100, 
+              distance: searchDistance ? searchDistance : 100, 
               maxPatternLength: 32,
               minMatchCharLength: 1,
               isCaseSensitive: false, 
@@ -715,7 +722,7 @@
       var a = document.createElement('a');
       a.innerHTML = obj.item.title;
       a.setAttribute('class', 'search-result__item--title');
-      a.setAttribute('href', obj.item.permalink);
+      a.setAttribute('href', obj.item.uri);
 
       var descDiv = document.createElement('div');
       descDiv.setAttribute('class', 'search-result__item--desc');
@@ -1315,7 +1322,8 @@
     }
   
   });
-</script>    
+</script>
+    
     
 
 
@@ -1339,7 +1347,7 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="业务上为了满足各种设计需求，会涉及对文字排版的要求，于是深入了解了 TextView 的布局细节。">
 
-<meta name="generator" content="Hugo 0.81.0" />
+<meta name="generator" content="Hugo 0.115.1">
 <meta name="msapplication-TileColor" content="#fff">
 
 <meta name="theme-color" content="#fff">
@@ -1393,7 +1401,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
   
 <script type="application/javascript">
 var doNotTrack = false;
@@ -1450,7 +1457,7 @@ if (!doNotTrack) {
     &nbsp;&nbsp;
     
     
-      <a href="/" title="Home" rel="home" class="navbar__title-link">
+      <a href="/" title="主页" rel="home" class="navbar__title-link">
         <h6 class="navbar__title">YangBlog</h6>
       </a>
     
@@ -1497,7 +1504,7 @@ if (!doNotTrack) {
 
 <div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
   <div class="mobile-search__top">
-    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="搜索" class="mobile-search__top--input"/>
     <div id="search-mobile-close" class="mobile-search__top--icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
     </div>
@@ -1518,59 +1525,23 @@ if (!doNotTrack) {
   <ul dir="ltr">
     
     
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="/categories">category</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item active">
-          <a href="/posts">posts</a>
-        </li>
-      
-      
-    
-      
-      
-      
-      
-
-      
-        <li class="navbarm__menu--item ">
-          <a href="https://life.jiyang.site">about</a>
-        </li>
-      
-      
-    
 
     
       <li class="navbarm__menu--item ">
         <a href="/tags" class="navbarm__menu--term" data-index="0">
-          Tags
+          标签
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/categories" class="navbarm__menu--term" data-index="1">
-          Categories
+          分类
         </a>
       </li>
     
       <li class="navbarm__menu--item ">
         <a href="/series" class="navbarm__menu--term" data-index="2">
-          Series
+          系列
         </a>
       </li>
     
@@ -1615,30 +1586,6 @@ if (!doNotTrack) {
 
   
   
-  
-  
-  
-  
-  
-  <a href="/categories" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">category</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="/posts" class="navbar__menu-item navbar__slide-down active" dir="ltr" data-ani="true">posts</a>
-  
-  
-  
-  
-  
-  
-  
-  <a href="https://life.jiyang.site" class="navbar__menu-item navbar__slide-down " dir="ltr" data-ani="true">about</a>
-  
-  
 </div>
 </nav>
             
@@ -1681,16 +1628,16 @@ if (!doNotTrack) {
   
   
   <div class="single ">
-    <div class="single__nojs">This page looks best with JavaScript enabled</div>
+    <div class="single__nojs">Please enable Javascript to view the contents</div>
     <script>document.querySelector('.single').classList.remove('hide'); document.querySelector('.single__nojs').classList.add('hide');</script>
     <h2 class="single__title" data-ani="true">TextView 的布局细节</h2>
     <h3 class="single__subtitle"></h3>
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Apr 10, 2020 </time>
+  <time class="single__info" title="创建日期">📅&nbsp;2020年04月10日 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;5&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="阅读时长"> ☕&nbsp;5&nbsp;分钟 </span>
   
   <span class="single__info">
     
@@ -1775,7 +1722,7 @@ if (!doNotTrack) {
 <p>自己尝试画这些线：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1784,14 +1731,14 @@ if (!doNotTrack) {
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="n">repeat</span><span class="p">(</span><span class="n">layout</span><span class="p">.</span><span class="n">lineCount</span><span class="p">)</span> <span class="p">{</span>
-   <span class="n">drawLine</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">Color</span><span class="p">.</span><span class="n">RED</span><span class="p">,</span> <span class="n">layout</span><span class="p">.</span><span class="n">getLineTop</span><span class="p">(</span><span class="k">it</span><span class="p">),</span> <span class="s2">&#34;top&#34;</span><span class="p">)</span>
-   <span class="n">drawLine</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">Color</span><span class="p">.</span><span class="n">YELLOW</span><span class="p">,</span> <span class="n">layout</span><span class="p">.</span><span class="n">getLineAscent</span><span class="p">(</span><span class="k">it</span><span class="p">)</span> <span class="p">+</span> <span class="n">layout</span><span class="p">.</span><span class="n">getLineBottom</span><span class="p">(</span><span class="k">it</span><span class="p">),</span> <span class="s2">&#34;ascent&#34;</span><span class="p">)</span>
-   <span class="n">drawLine</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">Color</span><span class="p">.</span><span class="n">BLUE</span><span class="p">,</span> <span class="n">layout</span><span class="p">.</span><span class="n">getLineBaseline</span><span class="p">(</span><span class="k">it</span><span class="p">),</span> <span class="s2">&#34;baseline&#34;</span><span class="p">)</span>
-   <span class="n">drawLine</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">Color</span><span class="p">.</span><span class="n">GREEN</span><span class="p">,</span> <span class="n">layout</span><span class="p">.</span><span class="n">getLineBottom</span><span class="p">(</span><span class="k">it</span><span class="p">),</span> <span class="s2">&#34;bottom&#34;</span><span class="p">)</span>
-   <span class="n">drawLine</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">Color</span><span class="p">.</span><span class="n">BLACK</span><span class="p">,</span> <span class="n">layout</span><span class="p">.</span><span class="n">getLineDescent</span><span class="p">(</span><span class="k">it</span><span class="p">)</span> <span class="p">+</span> <span class="n">layout</span><span class="p">.</span><span class="n">getLineBottom</span><span class="p">(</span><span class="k">it</span><span class="p">),</span> <span class="s2">&#34;descent&#34;</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="n">repeat</span><span class="p">(</span><span class="n">layout</span><span class="p">.</span><span class="n">lineCount</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">drawLine</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="nc">Color</span><span class="p">.</span><span class="n">RED</span><span class="p">,</span> <span class="n">layout</span><span class="p">.</span><span class="n">getLineTop</span><span class="p">(</span><span class="k">it</span><span class="p">),</span> <span class="s2">&#34;top&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="n">drawLine</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="nc">Color</span><span class="p">.</span><span class="n">YELLOW</span><span class="p">,</span> <span class="n">layout</span><span class="p">.</span><span class="n">getLineAscent</span><span class="p">(</span><span class="k">it</span><span class="p">)</span> <span class="p">+</span> <span class="n">layout</span><span class="p">.</span><span class="n">getLineBottom</span><span class="p">(</span><span class="k">it</span><span class="p">),</span> <span class="s2">&#34;ascent&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="n">drawLine</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="nc">Color</span><span class="p">.</span><span class="n">BLUE</span><span class="p">,</span> <span class="n">layout</span><span class="p">.</span><span class="n">getLineBaseline</span><span class="p">(</span><span class="k">it</span><span class="p">),</span> <span class="s2">&#34;baseline&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="n">drawLine</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="nc">Color</span><span class="p">.</span><span class="n">GREEN</span><span class="p">,</span> <span class="n">layout</span><span class="p">.</span><span class="n">getLineBottom</span><span class="p">(</span><span class="k">it</span><span class="p">),</span> <span class="s2">&#34;bottom&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="n">drawLine</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="nc">Color</span><span class="p">.</span><span class="n">BLACK</span><span class="p">,</span> <span class="n">layout</span><span class="p">.</span><span class="n">getLineDescent</span><span class="p">(</span><span class="k">it</span><span class="p">)</span> <span class="p">+</span> <span class="n">layout</span><span class="p">.</span><span class="n">getLineBottom</span><span class="p">(</span><span class="k">it</span><span class="p">),</span> <span class="s2">&#34;descent&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><table>
 <thead>
@@ -1811,7 +1758,7 @@ if (!doNotTrack) {
 <p>与文本布局有关的还有一个数据类，FontMetricsInt，它封装了一系列字体相对与 <code>baseline</code> 的偏移量。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1837,38 +1784,38 @@ if (!doNotTrack) {
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">FontMetricsInt</span> <span class="o">{</span>
-   <span class="cm">/**
-</span><span class="cm">    * The maximum distance above the baseline for the tallest glyph in
-</span><span class="cm">    * the font at a given text size.
-</span><span class="cm">    */</span>
-   <span class="kd">public</span> <span class="kt">int</span>   <span class="n">top</span><span class="o">;</span>
-   <span class="cm">/**
-</span><span class="cm">    * The recommended distance above the baseline for singled spaced text.
-</span><span class="cm">    */</span>
-   <span class="kd">public</span> <span class="kt">int</span>   <span class="n">ascent</span><span class="o">;</span>
-   <span class="cm">/**
-</span><span class="cm">    * The recommended distance below the baseline for singled spaced text.
-</span><span class="cm">    */</span>
-   <span class="kd">public</span> <span class="kt">int</span>   <span class="n">descent</span><span class="o">;</span>
-   <span class="cm">/**
-</span><span class="cm">    * The maximum distance below the baseline for the lowest glyph in
-</span><span class="cm">    * the font at a given text size.
-</span><span class="cm">    */</span>
-   <span class="kd">public</span> <span class="kt">int</span>   <span class="n">bottom</span><span class="o">;</span>
-   <span class="cm">/**
-</span><span class="cm">    * The recommended additional space to add between lines of text.
-</span><span class="cm">    */</span>
-   <span class="kd">public</span> <span class="kt">int</span>   <span class="n">leading</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">FontMetricsInt</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">    * The maximum distance above the baseline for the tallest glyph in
+</span></span></span><span class="line"><span class="cl"><span class="cm">    * the font at a given text size.
+</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">public</span> <span class="kt">int</span>   <span class="n">top</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">   <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">    * The recommended distance above the baseline for singled spaced text.
+</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">public</span> <span class="kt">int</span>   <span class="n">ascent</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">   <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">    * The recommended distance below the baseline for singled spaced text.
+</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">public</span> <span class="kt">int</span>   <span class="n">descent</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">   <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">    * The maximum distance below the baseline for the lowest glyph in
+</span></span></span><span class="line"><span class="cl"><span class="cm">    * the font at a given text size.
+</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">public</span> <span class="kt">int</span>   <span class="n">bottom</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">   <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">    * The recommended additional space to add between lines of text.
+</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">public</span> <span class="kt">int</span>   <span class="n">leading</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://image.youcute.cn/Fku1VrxKd9ySZW0Tk6zxrhEt5k0f" alt="" /></p>
 <h3 id="实验">实验</h3>
 <p>通过继承一个 TextView，可以方便的在布局和绘制相关方法中输出当前 TextView 使用的 Layout。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1887,31 +1834,31 @@ if (!doNotTrack) {
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">class</span> <span class="nc">MTv</span> <span class="nd">@JvmOverloads</span> <span class="k">constructor</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">attrs</span><span class="p">:</span> <span class="n">AttributeSet</span><span class="p">?,</span> <span class="n">defStyleAttr</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">0</span><span class="p">)</span> <span class="p">:</span>
-    <span class="n">androidx</span><span class="p">.</span><span class="n">appcompat</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">AppCompatTextView</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">defStyleAttr</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onMeasure</span><span class="p">(</span><span class="n">widthMeasureSpec</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">heightMeasureSpec</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">super</span><span class="p">.</span><span class="n">onMeasure</span><span class="p">(</span><span class="n">widthMeasureSpec</span><span class="p">,</span> <span class="n">heightMeasureSpec</span><span class="p">)</span>
-        <span class="n">Log</span><span class="p">.</span><span class="n">d</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s2">&#34;[onMeasure] </span><span class="si">$layout</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onLayout</span><span class="p">(</span><span class="n">changed</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">left</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">top</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">right</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">bottom</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">super</span><span class="p">.</span><span class="n">onLayout</span><span class="p">(</span><span class="n">changed</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">)</span>
-        <span class="n">Log</span><span class="p">.</span><span class="n">d</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s2">&#34;[onLayout] </span><span class="si">$layout</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onDraw</span><span class="p">(</span><span class="n">canvas</span><span class="p">:</span> <span class="n">Canvas</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Log</span><span class="p">.</span><span class="n">d</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s2">&#34;[onDraw] </span><span class="si">$layout</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MTv</span> <span class="nd">@JvmOverloads</span> <span class="k">constructor</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">attrs</span><span class="p">:</span> <span class="n">AttributeSet</span><span class="p">?,</span> <span class="n">defStyleAttr</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">0</span><span class="p">)</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">androidx</span><span class="p">.</span><span class="n">appcompat</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">AppCompatTextView</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">defStyleAttr</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onMeasure</span><span class="p">(</span><span class="n">widthMeasureSpec</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">heightMeasureSpec</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">super</span><span class="p">.</span><span class="n">onMeasure</span><span class="p">(</span><span class="n">widthMeasureSpec</span><span class="p">,</span> <span class="n">heightMeasureSpec</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nc">Log</span><span class="p">.</span><span class="n">d</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s2">&#34;[onMeasure] </span><span class="si">$layout</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onLayout</span><span class="p">(</span><span class="n">changed</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">left</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">top</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">right</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">bottom</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">super</span><span class="p">.</span><span class="n">onLayout</span><span class="p">(</span><span class="n">changed</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nc">Log</span><span class="p">.</span><span class="n">d</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s2">&#34;[onLayout] </span><span class="si">$layout</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onDraw</span><span class="p">(</span><span class="n">canvas</span><span class="p">:</span> <span class="n">Canvas</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nc">Log</span><span class="p">.</span><span class="n">d</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s2">&#34;[onDraw] </span><span class="si">$layout</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后做以下实验，让 TextView 分别显示长字符串和短字符串，以及使用 EditText。</p>
 <ul>
 <li>
 <p>当文本为 <em>What is a good time for you?</em> 时，输出：</p>
 <p><img src="https://image.youcute.cn/FoseM7p_frPkYOVgLr7_ERxHR_tA" alt="StaticLayout" /></p>
-<pre><code>D/TAG: [onMeasure] android.text.StaticLayout@b677650
+<pre tabindex="0"><code>D/TAG: [onMeasure] android.text.StaticLayout@b677650
 D/TAG: [onMeasure] android.text.StaticLayout@b677650
 D/TAG: [onMeasure] android.text.StaticLayout@19ea28b
 D/TAG: [onMeasure] android.text.StaticLayout@19ea28b
@@ -1922,7 +1869,7 @@ D/TAG: [onDraw] android.text.StaticLayout@19ea28b
 <li>
 <p>当文本为较短的 <em>a good time</em> 时，输出：</p>
 <p><img src="https://image.youcute.cn/Fm4wjbQ3ViUw8BIiJZfqDSMkUo54" alt="BoringLayout" /></p>
-<pre><code>D/TAG: [onMeasure] android.text.BoringLayout@fb6605a
+<pre tabindex="0"><code>D/TAG: [onMeasure] android.text.BoringLayout@fb6605a
 D/TAG: [onMeasure] android.text.BoringLayout@fb6605a
 D/TAG: [onMeasure] android.text.BoringLayout@fb6605a
 D/TAG: [onMeasure] android.text.BoringLayout@fb6605a
@@ -1933,7 +1880,7 @@ D/TAG: [onDraw] android.text.BoringLayout@fb6605a
 <li>
 <p>使用 EditText 时：</p>
 <p><img src="https://image.youcute.cn/FgsccnUzOF-__0QK-j2CE9ewlqm-" alt="DynamicLayout" /></p>
-<pre><code>D/TAG: [onMeasure] android.text.DynamicLayout@aa9b261
+<pre tabindex="0"><code>D/TAG: [onMeasure] android.text.DynamicLayout@aa9b261
 D/TAG: [onMeasure] android.text.DynamicLayout@aa9b261
 D/TAG: [onMeasure] android.text.DynamicLayout@c1d4c99
 D/TAG: [onMeasure] android.text.DynamicLayout@c1d4c99
@@ -1956,22 +1903,22 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 <p>上面提到过判断文本是否符合使用 BoringLayout 的条件，可以通过调用 <code>isBoring</code> 方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//Returns null if not boring; the width, ascent, and descent if boring.
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">Metrics</span> <span class="nf">isBoring</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">text</span><span class="o">,</span> <span class="n">TextPaint</span> <span class="n">paint</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">isBoring</span><span class="o">(</span><span class="n">text</span><span class="o">,</span> <span class="n">paint</span><span class="o">,</span> <span class="n">TextDirectionHeuristics</span><span class="o">.</span><span class="na">FIRSTSTRONG_LTR</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//Returns null if not boring; the width, ascent, and descent if boring.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">Metrics</span> <span class="nf">isBoring</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">text</span><span class="o">,</span> <span class="n">TextPaint</span> <span class="n">paint</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">isBoring</span><span class="o">(</span><span class="n">text</span><span class="o">,</span> <span class="n">paint</span><span class="o">,</span> <span class="n">TextDirectionHeuristics</span><span class="o">.</span><span class="na">FIRSTSTRONG_LTR</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><a href="https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/text/BoringLayout.java;l=282">isBoring</a> 方法会返回一个 <a href="https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/text/BoringLayout.java;l=480">BoringLayout.Metrics</a> 对象，如果返回了 null，则说明目标文本不符合使用 BoringLayout 的条件。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1981,52 +1928,52 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Metrics</span> <span class="nf">isBoring</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">text</span><span class="o">,</span> <span class="n">TextPaint</span> <span class="n">paint</span><span class="o">,</span> <span class="n">TextDirectionHeuristic</span> <span class="n">textDir</span><span class="o">,</span> <span class="n">Metrics</span> <span class="n">metrics</span><span class="o">)</span> <span class="o">{</span>
-   <span class="kd">final</span> <span class="kt">int</span> <span class="n">textLength</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
-   <span class="c1">//1
-</span><span class="c1"></span>   <span class="c1">//2
-</span><span class="c1"></span>   <span class="c1">//3
-</span><span class="c1"></span>   <span class="c1">//4
-</span><span class="c1"></span>   <span class="k">return</span> <span class="n">fm</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Metrics</span> <span class="nf">isBoring</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">text</span><span class="o">,</span> <span class="n">TextPaint</span> <span class="n">paint</span><span class="o">,</span> <span class="n">TextDirectionHeuristic</span> <span class="n">textDir</span><span class="o">,</span> <span class="n">Metrics</span> <span class="n">metrics</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">final</span> <span class="kt">int</span> <span class="n">textLength</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">//1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="c1">//2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="c1">//3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="c1">//4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="k">return</span> <span class="n">fm</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol>
 <li>
 <p>判断文本中是否存在一些特殊字符</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">hasAnyInterestingChars</span><span class="o">(</span><span class="n">text</span><span class="o">,</span> <span class="n">textLength</span><span class="o">))</span> <span class="o">{</span>
-   <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>  <span class="c1">// There are some interesting characters. Not boring.
-</span><span class="c1"></span><span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="n">hasAnyInterestingChars</span><span class="o">(</span><span class="n">text</span><span class="o">,</span> <span class="n">textLength</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>  <span class="c1">// There are some interesting characters. Not boring.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
 <p>判断是不是从右到左的方向</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">textDir</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">textDir</span><span class="o">.</span><span class="na">isRtl</span><span class="o">(</span><span class="n">text</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">textLength</span><span class="o">))</span> <span class="o">{</span>
-   <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>  <span class="c1">// The heuristic considers the whole text RTL. Not boring.
-</span><span class="c1"></span><span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="n">textDir</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">textDir</span><span class="o">.</span><span class="na">isRtl</span><span class="o">(</span><span class="n">text</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">textLength</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>  <span class="c1">// The heuristic considers the whole text RTL. Not boring.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
 <p>判断有没有存在 ParagraphStyle</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -2035,21 +1982,21 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">text</span> <span class="k">instanceof</span> <span class="n">Spanned</span><span class="o">)</span> <span class="o">{</span>
-   <span class="n">Spanned</span> <span class="n">sp</span> <span class="o">=</span> <span class="o">(</span><span class="n">Spanned</span><span class="o">)</span> <span class="n">text</span><span class="o">;</span>
-   <span class="n">Object</span><span class="o">[]</span> <span class="n">styles</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="na">getSpans</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">textLength</span><span class="o">,</span> <span class="n">ParagraphStyle</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-   <span class="k">if</span> <span class="o">(</span><span class="n">styles</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-      <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>  <span class="c1">// There are some PargraphStyle spans. Not boring.
-</span><span class="c1"></span>   <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="n">text</span> <span class="k">instanceof</span> <span class="n">Spanned</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">Spanned</span> <span class="n">sp</span> <span class="o">=</span> <span class="o">(</span><span class="n">Spanned</span><span class="o">)</span> <span class="n">text</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">Object</span><span class="o">[]</span> <span class="n">styles</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="na">getSpans</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">textLength</span><span class="o">,</span> <span class="n">ParagraphStyle</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="o">(</span><span class="n">styles</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>  <span class="c1">// There are some PargraphStyle spans. Not boring.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
 <p>以上条件都通过之后，就会创建布局相关的参数</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2064,20 +2011,20 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Metrics</span> <span class="n">fm</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">;</span>
-<span class="k">if</span> <span class="o">(</span><span class="n">fm</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">fm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Metrics</span><span class="o">();</span>
-<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-    <span class="n">fm</span><span class="o">.</span><span class="na">reset</span><span class="o">();</span>
-<span class="o">}</span>
-
-<span class="n">TextLine</span> <span class="n">line</span> <span class="o">=</span> <span class="n">TextLine</span><span class="o">.</span><span class="na">obtain</span><span class="o">();</span> <span class="c1">// 从 TextLine 对象池复用一个 TextLine
-</span><span class="c1">// 将参数注入 TextLine
-</span><span class="c1"></span><span class="n">line</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">paint</span><span class="o">,</span> <span class="n">text</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">textLength</span><span class="o">,</span> <span class="n">Layout</span><span class="o">.</span><span class="na">DIR_LEFT_TO_RIGHT</span><span class="o">,</span> <span class="n">Layout</span><span class="o">.</span><span class="na">DIRS_ALL_LEFT_TO_RIGHT</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span><span class="kc">null</span><span class="o">);</span>
-<span class="c1">// 将经过测量之后的文本将要占用的宽赋值到 BoringLayout.Metrics#width
-</span><span class="c1"></span><span class="n">fm</span><span class="o">.</span><span class="na">width</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">line</span><span class="o">.</span><span class="na">metrics</span><span class="o">(</span><span class="n">fm</span><span class="o">));</span>
-<span class="n">TextLine</span><span class="o">.</span><span class="na">recycle</span><span class="o">(</span><span class="n">line</span><span class="o">);</span> <span class="c1">// 对象回收进池子
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Metrics</span> <span class="n">fm</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="n">fm</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Metrics</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fm</span><span class="o">.</span><span class="na">reset</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">TextLine</span> <span class="n">line</span> <span class="o">=</span> <span class="n">TextLine</span><span class="o">.</span><span class="na">obtain</span><span class="o">();</span> <span class="c1">// 从 TextLine 对象池复用一个 TextLine
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 将参数注入 TextLine
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">line</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">paint</span><span class="o">,</span> <span class="n">text</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">textLength</span><span class="o">,</span> <span class="n">Layout</span><span class="o">.</span><span class="na">DIR_LEFT_TO_RIGHT</span><span class="o">,</span> <span class="n">Layout</span><span class="o">.</span><span class="na">DIRS_ALL_LEFT_TO_RIGHT</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span><span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 将经过测量之后的文本将要占用的宽赋值到 BoringLayout.Metrics#width
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">fm</span><span class="o">.</span><span class="na">width</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">line</span><span class="o">.</span><span class="na">metrics</span><span class="o">(</span><span class="n">fm</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl"><span class="n">TextLine</span><span class="o">.</span><span class="na">recycle</span><span class="o">(</span><span class="n">line</span><span class="o">);</span> <span class="c1">// 对象回收进池子
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ol>
@@ -2087,7 +2034,7 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2103,35 +2050,35 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">set</span><span class="o">(</span><span class="n">TextPaint</span> <span class="n">paint</span><span class="o">,</span> <span class="n">CharSequence</span> <span class="n">text</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">limit</span><span class="o">,</span> <span class="kt">int</span> <span class="n">dir</span><span class="o">,</span> <span class="n">Directions</span> <span class="n">directions</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">hasTabs</span><span class="o">,</span> <span class="n">TabStops</span> <span class="n">tabStops</span><span class="o">)</span> <span class="o">{</span>
-   <span class="n">mPaint</span> <span class="o">=</span> <span class="n">paint</span><span class="o">;</span>
-   <span class="n">mText</span> <span class="o">=</span> <span class="n">text</span><span class="o">;</span>
-   <span class="n">mStart</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span>
-   <span class="n">mLen</span> <span class="o">=</span> <span class="n">limit</span> <span class="o">-</span> <span class="n">start</span><span class="o">;</span>
-   <span class="n">mDir</span> <span class="o">=</span> <span class="n">dir</span><span class="o">;</span>
-   <span class="n">mDirections</span> <span class="o">=</span> <span class="n">directions</span><span class="o">;</span>
-   <span class="k">if</span> <span class="o">(</span><span class="n">mDirections</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-       <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;Directions cannot be null&#34;</span><span class="o">);</span>
-   <span class="o">}</span>
-   <span class="n">mHasTabs</span> <span class="o">=</span> <span class="n">hasTabs</span><span class="o">;</span>
-   <span class="n">mSpanned</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-   <span class="c1">//...
-</span><span class="c1"></span><span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">set</span><span class="o">(</span><span class="n">TextPaint</span> <span class="n">paint</span><span class="o">,</span> <span class="n">CharSequence</span> <span class="n">text</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">limit</span><span class="o">,</span> <span class="kt">int</span> <span class="n">dir</span><span class="o">,</span> <span class="n">Directions</span> <span class="n">directions</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">hasTabs</span><span class="o">,</span> <span class="n">TabStops</span> <span class="n">tabStops</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">mPaint</span> <span class="o">=</span> <span class="n">paint</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">mText</span> <span class="o">=</span> <span class="n">text</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">mStart</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">mLen</span> <span class="o">=</span> <span class="n">limit</span> <span class="o">-</span> <span class="n">start</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">mDir</span> <span class="o">=</span> <span class="n">dir</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">mDirections</span> <span class="o">=</span> <span class="n">directions</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="o">(</span><span class="n">mDirections</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">       <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;Directions cannot be null&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">   <span class="o">}</span>
+</span></span><span class="line"><span class="cl">   <span class="n">mHasTabs</span> <span class="o">=</span> <span class="n">hasTabs</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">mSpanned</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">float</span> <span class="nf">metrics</span><span class="o">(</span><span class="n">FontMetricsInt</span> <span class="n">fmi</span><span class="o">)</span> <span class="o">{</span>
-   <span class="c1">//对于 BoringLayout, mLen 就是文本的长度
-</span><span class="c1"></span>    <span class="k">return</span> <span class="n">measure</span><span class="o">(</span><span class="n">mLen</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="n">fmi</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">float</span> <span class="nf">metrics</span><span class="o">(</span><span class="n">FontMetricsInt</span> <span class="n">fmi</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">//对于 BoringLayout, mLen 就是文本的长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">measure</span><span class="o">(</span><span class="n">mLen</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="n">fmi</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>measure 最终会调用到 <em>TextPaint#getRunAdvance</em> 去获取文本占用的宽。对于 <em>TextPaint</em> 如何去测量文本占用的宽，这里不再深入。其对应的 native 实现在 <a href="https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/jni/android/graphics/Paint.cpp;l=532?q=nGetRunAdvance">Paint.cpp</a> 中。</p>
 <h3 id="staticlayout">StaticLayout</h3>
@@ -2148,15 +2095,15 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 <p>TextView 某一行的行高计算：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getLineHeight</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">FastMath</span><span class="o">.</span><span class="na">round</span><span class="o">(</span><span class="n">mTextPaint</span><span class="o">.</span><span class="na">getFontMetricsInt</span><span class="o">(</span><span class="kc">null</span><span class="o">)</span> <span class="o">*</span> <span class="n">mSpacingMult</span> <span class="o">+</span> <span class="n">mSpacingAdd</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getLineHeight</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">FastMath</span><span class="o">.</span><span class="na">round</span><span class="o">(</span><span class="n">mTextPaint</span><span class="o">.</span><span class="na">getFontMetricsInt</span><span class="o">(</span><span class="kc">null</span><span class="o">)</span> <span class="o">*</span> <span class="n">mSpacingMult</span> <span class="o">+</span> <span class="n">mSpacingAdd</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><code>mTextPaint.getFontMetricsInt(null)</code> 就是<strong>默认行高</strong>，是一个根据具体字体和 <code>textSize</code> 属性计算出来的值</li>
@@ -2207,7 +2154,7 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 <p>使用 BoringLayout</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2221,26 +2168,26 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">fun</span> <span class="nf">measureTextByBoringLayout</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">paint</span><span class="p">:</span> <span class="n">TextPaint</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">val</span> <span class="py">layout</span> <span class="p">=</span> <span class="n">BoringLayout</span><span class="p">(</span>
-        <span class="n">text</span><span class="p">,</span>
-        <span class="n">paint</span><span class="p">,</span>
-        <span class="n">width</span><span class="p">,</span>
-        <span class="n">Layout</span><span class="p">.</span><span class="n">Alignment</span><span class="p">.</span><span class="n">ALIGN_NORMAL</span><span class="p">,</span>
-        <span class="m">0f</span><span class="p">,</span>
-        <span class="m">0f</span><span class="p">,</span>
-        <span class="n">BoringLayout</span><span class="p">.</span><span class="n">Metrics</span><span class="p">(),</span>
-        <span class="k">true</span>
-    <span class="p">)</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">fun</span> <span class="nf">measureTextByBoringLayout</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">paint</span><span class="p">:</span> <span class="n">TextPaint</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="py">layout</span> <span class="p">=</span> <span class="n">BoringLayout</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">text</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">paint</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">width</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nc">Layout</span><span class="p">.</span><span class="nc">Alignment</span><span class="p">.</span><span class="n">ALIGN_NORMAL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="m">0f</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="m">0f</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nc">BoringLayout</span><span class="p">.</span><span class="n">Metrics</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="k">true</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
 <p>使用 StaticLayout</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2266,42 +2213,42 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">fun</span> <span class="nf">measureTextByStaticLayout</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">paint</span><span class="p">:</span> <span class="n">TextPaint</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="n">String</span><span class="p">):</span> <span class="n">ArrayList</span><span class="p">&lt;</span><span class="n">Pair</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">,</span> <span class="n">Int</span><span class="p">&gt;&gt;</span> <span class="p">{</span>
-    <span class="k">val</span> <span class="py">layout</span> <span class="p">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">Build</span><span class="p">.</span><span class="n">VERSION</span><span class="p">.</span><span class="n">SDK_INT</span> <span class="o">&gt;=</span> <span class="n">Build</span><span class="p">.</span><span class="n">VERSION_CODES</span><span class="p">.</span><span class="n">M</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">val</span> <span class="py">builder</span> <span class="p">=</span> <span class="n">StaticLayout</span><span class="p">.</span><span class="n">Builder</span><span class="p">.</span><span class="n">obtain</span><span class="p">(</span>
-            <span class="n">text</span><span class="p">,</span>
-            <span class="m">0</span><span class="p">,</span>
-            <span class="n">text</span><span class="p">.</span><span class="n">length</span><span class="p">,</span>
-            <span class="n">paint</span><span class="p">,</span>
-            <span class="n">width</span>
-        <span class="p">)</span>
-        <span class="n">builder</span><span class="p">.</span><span class="n">build</span><span class="p">()</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="n">StaticLayout</span><span class="p">(</span>
-            <span class="n">text</span><span class="p">,</span>
-            <span class="m">0</span><span class="p">,</span>
-            <span class="n">text</span><span class="p">.</span><span class="n">length</span><span class="p">,</span>
-            <span class="n">paint</span><span class="p">,</span>
-            <span class="n">width</span><span class="p">,</span>
-            <span class="n">Layout</span><span class="p">.</span><span class="n">Alignment</span><span class="p">.</span><span class="n">ALIGN_NORMAL</span><span class="p">,</span>
-            <span class="m">0f</span><span class="p">,</span>
-            <span class="m">0f</span><span class="p">,</span>
-            <span class="k">true</span>
-        <span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">fun</span> <span class="nf">measureTextByStaticLayout</span><span class="p">(</span><span class="n">width</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">paint</span><span class="p">:</span> <span class="n">TextPaint</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="n">String</span><span class="p">):</span> <span class="n">ArrayList</span><span class="p">&lt;</span><span class="n">Pair</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">,</span> <span class="n">Int</span><span class="p">&gt;&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="py">layout</span> <span class="p">=</span> <span class="k">if</span> <span class="p">(</span><span class="nc">Build</span><span class="p">.</span><span class="nc">VERSION</span><span class="p">.</span><span class="n">SDK_INT</span> <span class="o">&gt;=</span> <span class="nc">Build</span><span class="p">.</span><span class="nc">VERSION_CODES</span><span class="p">.</span><span class="n">M</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">val</span> <span class="py">builder</span> <span class="p">=</span> <span class="nc">StaticLayout</span><span class="p">.</span><span class="nc">Builder</span><span class="p">.</span><span class="n">obtain</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">text</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="m">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">text</span><span class="p">.</span><span class="n">length</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">paint</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">width</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">builder</span><span class="p">.</span><span class="n">build</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">StaticLayout</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">text</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="m">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">text</span><span class="p">.</span><span class="n">length</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">paint</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">width</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nc">Layout</span><span class="p">.</span><span class="nc">Alignment</span><span class="p">.</span><span class="n">ALIGN_NORMAL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="m">0f</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="m">0f</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="k">true</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
 <p>DynamicLayout</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="c1">//TODO
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="c1">//TODO
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -2511,7 +2458,7 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
     
 <div class="donation">
   <div class="donation__message">
-    Support the author with
+    您的鼓励是我最大的动力
   </div>
   <div class="donation__icons">
     
@@ -2562,7 +2509,7 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
   </div>
   <div class="whoami__contents">
     <div class="whoami__written-by">
-      WRITTEN BY
+      作者
     </div>
     <div class="whoami__title">
       
@@ -2748,7 +2695,7 @@ D/TAG: [onDraw] android.text.DynamicLayout@c1d4c99
 </div>
 
 
-<script defer src="/js/swipe.min.989e074dfb92ce7f57a92c1df7027f88b53c50a54fd9ad450a673a64aa91bfa4.js"></script>
+<script defer src="/js/swipe.min.feb438efb7ca009ecd7fc2ac3ad2fced4840990b2798d81f87137f2dc6281f05.js"></script>
 
 <script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
 
@@ -3021,7 +2968,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <span class="icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
   </span>
-  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="搜索" autocomplete="off">
   <div id="search-results" class="dropdown">
     <div id="search-menu" class="dropdown-menu" role="menu">
     </div>
@@ -3041,7 +2988,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <section class="sidebar hide">
   <script>document.querySelector('.sidebar').classList.remove('hide')</script>
   <div class="toc__flexbox" data-position="fixed">
-    <h6 class="toc__title" data-ani="true">What&#39;s on this Page</h6>
+    <h6 class="toc__title" data-ani="true">目录</h6>
     
       <label class="switch" data-ani="true">
         <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
@@ -3460,7 +3407,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.trigger.classList.add('tooltipped');
       e.trigger.classList.add('tooltipped-s');
     });
-    // =================================================================
+    
 
 
 
@@ -3678,6 +3625,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
+      
+      
+        
+        
+          
+            
+          
+        
+      
+        
+      
+    
   </div>
 </div>
 
@@ -3788,7 +3747,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             <p class="caption">
                 
-                    ©2022, All Rights Reserved
+                    ©2023, All Rights Reserved
                 
             </p>
         
