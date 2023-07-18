@@ -314,6 +314,30 @@
       </item>
       
       <item>
+        <title>解决 Unity 2020 导出项目到 Android 中 So 加载问题</title>
+        <link>https://jiyang.site/posts/unity-export-android-library-so-not-found/</link>
+        <pubDate>Wed, 20 Jan 2021 18:17:41 +0800</pubDate>
+        
+        <atom:modified>Wed, 20 Jan 2021 18:17:41 +0800</atom:modified>
+        <guid>https://jiyang.site/posts/unity-export-android-library-so-not-found/</guid>
+        <description>问题 Unity 项目将版本从 2018 升级到 2020 版本之后，导出集成到 Android 项目时，运行时报错找不到 libmain.so。 java.lang.UnsatisfiedLinkError: dlopen failed: library &amp;#34;/data/app/xxx/lib/arm/libmain.so&amp;#34; not found 原因 最终找到了根本原因： Unity 2020 版</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>Android</category>
+            
+          
+        
+        
+      </item>
+      
+      <item>
         <title>Compile And Run FFmpeg Examples</title>
         <link>https://jiyang.site/posts/compile-and-run-ffmpeg-examples/</link>
         <pubDate>Thu, 26 Nov 2020 22:20:19 +0800</pubDate>
@@ -863,6 +887,34 @@
           
             
               <category>Android</category>
+            
+          
+        
+        
+      </item>
+      
+      <item>
+        <title>Android Binder</title>
+        <link>https://jiyang.site/posts/2020-01-06-android-binder/</link>
+        <pubDate>Mon, 06 Jan 2020 23:03:06 +0000</pubDate>
+        
+        <atom:modified>Mon, 06 Jan 2020 23:03:06 +0000</atom:modified>
+        <guid>https://jiyang.site/posts/2020-01-06-android-binder/</guid>
+        <description>一篇对 Android 主要的 IPC 机制(Binder) 的记录，理解自一份 RUB(https://en.wikipedia.org/wiki/Ruhr_Univ</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>Android</category>
+            
+          
+            
+              <category>读书笔记</category>
             
           
         
@@ -2740,54 +2792,6 @@
           
             
               <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>AsyncTask Source Code</title>
-        <link>https://jiyang.site/posts/2017-08-06-asynctask%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://jiyang.site/posts/2017-08-06-asynctask%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/</guid>
-        <description>AsyncTask类的初始化过程 初始化阶段： 初始化线程池THREAD_POOL_EXECUTOR。用于执行任务。 构造一个负责调度线程的线程池</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Android</category>
-            
-          
-        
-        
-      </item>
-      
-      <item>
-        <title>BlockingQueue-CountDownLatch</title>
-        <link>https://jiyang.site/posts/2017-07-25-blockingqueue-countdownlatch/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        
-        <guid>https://jiyang.site/posts/2017-07-25-blockingqueue-countdownlatch/</guid>
-        <description>BlockingQueue:Java提供的线程安全的队列接口。 CountDownWatch:可用来让一个线程一直等待watch的值为0,另一</description>
-        
-        <dc:creator>Yang</dc:creator>
-        
-        
-        
-        
-        
-          
-            
-              <category>Java</category>
             
           
         

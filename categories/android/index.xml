@@ -109,6 +109,30 @@
       </item>
       
       <item>
+        <title>解决 Unity 2020 导出项目到 Android 中 So 加载问题</title>
+        <link>https://jiyang.site/posts/unity-export-android-library-so-not-found/</link>
+        <pubDate>Wed, 20 Jan 2021 18:17:41 +0800</pubDate>
+        
+        <atom:modified>Wed, 20 Jan 2021 18:17:41 +0800</atom:modified>
+        <guid>https://jiyang.site/posts/unity-export-android-library-so-not-found/</guid>
+        <description>问题 Unity 项目将版本从 2018 升级到 2020 版本之后，导出集成到 Android 项目时，运行时报错找不到 libmain.so。 java.lang.UnsatisfiedLinkError: dlopen failed: library &amp;#34;/data/app/xxx/lib/arm/libmain.so&amp;#34; not found 原因 最终找到了根本原因： Unity 2020 版</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>Android</category>
+            
+          
+        
+        
+      </item>
+      
+      <item>
         <title>Android 上 FFMpeg 和 MediaCodec 视频解码效率对比</title>
         <link>https://jiyang.site/posts/android-ffmpeg-vs-mediacodec-video-decode/</link>
         <pubDate>Sat, 05 Sep 2020 22:41:45 +0800</pubDate>
@@ -350,6 +374,34 @@
           
             
               <category>Android</category>
+            
+          
+        
+        
+      </item>
+      
+      <item>
+        <title>Android Binder</title>
+        <link>https://jiyang.site/posts/2020-01-06-android-binder/</link>
+        <pubDate>Mon, 06 Jan 2020 23:03:06 +0000</pubDate>
+        
+        <atom:modified>Mon, 06 Jan 2020 23:03:06 +0000</atom:modified>
+        <guid>https://jiyang.site/posts/2020-01-06-android-binder/</guid>
+        <description>一篇对 Android 主要的 IPC 机制(Binder) 的记录，理解自一份 RUB(https://en.wikipedia.org/wiki/Ruhr_Univ</description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+          
+            
+              <category>Android</category>
+            
+          
+            
+              <category>读书笔记</category>
             
           
         
