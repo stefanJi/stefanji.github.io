@@ -19,12 +19,30 @@
 
       
       <item>
-        <title>React</title>
+        <title>react</title>
         <link>https://jiyang.site/categories/react/</link>
         <pubDate>Wed, 19 Jul 2023 10:09:01 +0800</pubDate>
         
         
         <guid>https://jiyang.site/categories/react/</guid>
+        <description></description>
+        
+        <dc:creator>Yang</dc:creator>
+        
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>前端</title>
+        <link>https://jiyang.site/categories/%E5%89%8D%E7%AB%AF/</link>
+        <pubDate>Wed, 19 Jul 2023 10:09:01 +0800</pubDate>
+        
+        
+        <guid>https://jiyang.site/categories/%E5%89%8D%E7%AB%AF/</guid>
         <description></description>
         
         <dc:creator>Yang</dc:creator>

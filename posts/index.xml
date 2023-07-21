@@ -19,7 +19,7 @@
 
       
       <item>
-        <title>优雅的实现react输入框@搜索</title>
+        <title>React 实现类微信输入框@搜索</title>
         <link>https://jiyang.site/posts/implement-a-react-@-editor/</link>
         <pubDate>Wed, 19 Jul 2023 10:09:01 +0800</pubDate>
         
@@ -45,7 +45,11 @@
         
           
             
-              <category>React</category>
+              <category>react</category>
+            
+          
+            
+              <category>前端</category>
             
           
         
@@ -88,6 +92,10 @@
           
             
               <category>react</category>
+            
+          
+            
+              <category>前端</category>
             
           
         
