@@ -210,11 +210,11 @@
       
       <item>
         <title>使用 OnFrameMetricsAvailableListener 统计绘制耗时</title>
-        <link>https://jiyang.site/posts/%E4%BD%BF%E7%94%A8-onframemetricsavailablelistener-%E7%BB%9F%E8%AE%A1%E7%BB%98%E5%88%B6%E8%80%97%E6%97%B6/</link>
+        <link>https://jiyang.site/posts/2020-04-21-%E4%BD%BF%E7%94%A8-onframemetricsavailablelistener-%E7%BB%9F%E8%AE%A1%E7%BB%98%E5%88%B6%E8%80%97%E6%97%B6/</link>
         <pubDate>Tue, 21 Apr 2020 22:12:00 +0800</pubDate>
         
         <atom:modified>Tue, 21 Apr 2020 22:12:00 +0800</atom:modified>
-        <guid>https://jiyang.site/posts/%E4%BD%BF%E7%94%A8-onframemetricsavailablelistener-%E7%BB%9F%E8%AE%A1%E7%BB%98%E5%88%B6%E8%80%97%E6%97%B6/</guid>
+        <guid>https://jiyang.site/posts/2020-04-21-%E4%BD%BF%E7%94%A8-onframemetricsavailablelistener-%E7%BB%9F%E8%AE%A1%E7%BB%98%E5%88%B6%E8%80%97%E6%97%B6/</guid>
         <description>在 Android 7.0, 增加了一个 Api 可以方便的统计一个 Window 的 View 树的绘制耗时。 功能 统计渲染子系统报告的帧生命周期中各个里程碑的时序数据。可以通过其相应的标识符查询</description>
         
         <dc:creator>Yang</dc:creator>

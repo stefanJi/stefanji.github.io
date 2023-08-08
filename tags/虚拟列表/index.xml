@@ -25,7 +25,7 @@
         
         <atom:modified>Thu, 06 Jul 2023 11:31:17 +0800</atom:modified>
         <guid>https://jiyang.site/posts/react_virtual_list/</guid>
-        <description>欢迎体验新产品, 抖音聊天 https://virtuoso.dev/ 支持使用不同的 UI 组件实现内部列表：React、MUI 支持：自动处理可变高度的 item、顶部加载更多、底部加载更多 支</description>
+        <description>https://virtuoso.dev/ 支持使用不同的 UI 组件实现内部列表：React、MUI 支持：自动处理可变高度的 item、顶部加载更多、底部加载更多 支持：从特定位置开始渲染 结</description>
         
         <dc:creator>Yang</dc:creator>
         

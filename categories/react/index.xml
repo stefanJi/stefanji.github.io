@@ -25,7 +25,7 @@
         
         <atom:modified>Wed, 19 Jul 2023 10:09:01 +0800</atom:modified>
         <guid>https://jiyang.site/posts/implement-a-react-@-editor/</guid>
-        <description>欢迎体验新产品, 抖音聊天 整体流程 整个处理过程由按键事件发起，拥有两个状态(模式)，可见和搜索 可见时一定可以搜索 不可见时也可以搜索 不可以搜索时</description>
+        <description>整体流程 整个处理过程由按键事件发起，拥有两个状态(模式)，可见和搜索 可见时一定可以搜索 不可见时也可以搜索 不可以搜索时一定不可见 输入 @ 后支持连</description>
         
         <dc:creator>Yang</dc:creator>
         
@@ -63,7 +63,7 @@
         
         <atom:modified>Thu, 06 Jul 2023 11:31:17 +0800</atom:modified>
         <guid>https://jiyang.site/posts/react_virtual_list/</guid>
-        <description>欢迎体验新产品, 抖音聊天 https://virtuoso.dev/ 支持使用不同的 UI 组件实现内部列表：React、MUI 支持：自动处理可变高度的 item、顶部加载更多、底部加载更多 支</description>
+        <description>https://virtuoso.dev/ 支持使用不同的 UI 组件实现内部列表：React、MUI 支持：自动处理可变高度的 item、顶部加载更多、底部加载更多 支持：从特定位置开始渲染 结</description>
         
         <dc:creator>Yang</dc:creator>
         

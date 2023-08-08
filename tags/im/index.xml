@@ -25,7 +25,7 @@
         
         <atom:modified>Wed, 19 Jul 2023 10:09:01 +0800</atom:modified>
         <guid>https://jiyang.site/posts/implement-a-react-@-editor/</guid>
-        <description>欢迎体验新产品, 抖音聊天 整体流程 整个处理过程由按键事件发起，拥有两个状态(模式)，可见和搜索 可见时一定可以搜索 不可见时也可以搜索 不可以搜索时</description>
+        <description>整体流程 整个处理过程由按键事件发起，拥有两个状态(模式)，可见和搜索 可见时一定可以搜索 不可见时也可以搜索 不可以搜索时一定不可见 输入 @ 后支持连</description>
         
         <dc:creator>Yang</dc:creator>
         
