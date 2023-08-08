@@ -46,12 +46,18 @@
         
         <atom:modified>Tue, 08 Aug 2023 11:11:04 +0800</atom:modified>
         <guid>https://jiyang.site/posts/electron-mac-universal-package/</guid>
-        <description>Title1 欢迎体验新产品, 抖音聊天</description>
+        <description>目前我们新产品的安装包是 x86_64 架构的，在 mac m1/m2 芯片的电脑上运行时，性能、流畅性相比在 intel 芯片 mac 上运行都明显卡顿。所以迫切的需要针对 apple silicon 出包。 ffi 支持 arm64</description>
         
         <dc:creator>Yang</dc:creator>
         
         
         
+        
+          
+            
+              <category>electron</category>
+            
+          
         
         
         
